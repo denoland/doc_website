@@ -64,11 +64,11 @@ impl Compiler {
         }
     }
 
-    pub fn print_docs(
+    pub fn get_docs(
         &mut self,
         file_name: String,
         source_code: String,
-    ) -> Result<(), SwcDiagnostics> {
+    ) -> Result<String, SwcDiagnostics> {
         swc_common::GLOBALS.set(&swc_common::Globals::new(), || {
             let swc_source_file = self
                 .source_map
@@ -100,15 +100,16 @@ impl Compiler {
                     SwcDiagnostics::from(buffered_err)
                 })?;
 
+            let mut docstring = String::new();
+
             for node in module.body.iter() {
                 if let swc_ecma_ast::ModuleItem::ModuleDecl(module_decl) = node {
                     if let swc_ecma_ast::ModuleDecl::ExportDecl(export_decl) = module_decl {
                         let span = export_decl.span;
-                        println!();
                         if let Some(comments) = self.comments.take_leading_comments(span.lo()) {
                             for comment in comments {
                                 let text = comment.text.to_string();
-                                println!("/*{}*/", text);
+                                docstring.push_str(&format!("/*{}*/\n", text));
                             }
                         }
 
@@ -117,12 +118,12 @@ impl Compiler {
                         // TODO(bartlomieju): construct declaration string in a more
                         // robust way instead of trimming
                         let declaration = line.trim_end().trim_end_matches('{');
-                        println!("{}", declaration);
+                        docstring.push_str(&format!("{}\n", declaration));
                     }
                 }
             }
 
-            Ok(())
+            Ok(docstring)
         })
     }
 }
@@ -138,7 +139,23 @@ fn main() {
     let file_name = args[1].to_string();
     let source_code = std::fs::read_to_string(&file_name).expect("Failed to read file");
     let mut compiler = Compiler::default();
-    compiler
-        .print_docs(file_name, source_code)
+    let docstring = compiler
+        .get_docs(file_name, source_code)
         .expect("Failed to print docs");
+    println!("{}", docstring);
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn export_const() {
+        let mut compiler = Compiler::default();
+        let source_code =
+            "/** Something about fizzBuzz */\nexport const fizzBuzz = \"fizzBuzz\";\n";
+        let result = compiler.get_docs("test.ts".to_string(), source_code.to_string());
+        assert!(result.is_ok());
+        assert_eq!(result.unwrap(), source_code);
+    }
 }
