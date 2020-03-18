@@ -104,19 +104,20 @@ impl Compiler {
                 if let swc_ecma_ast::ModuleItem::ModuleDecl(module_decl) = node {
                     if let swc_ecma_ast::ModuleDecl::ExportDecl(export_decl) = module_decl {
                         let span = export_decl.span;
-                        if let Some(cmts) = self.comments.take_leading_comments(span.lo()) {
-                            for com in cmts {
-                                println!("comment: {:#?}", com.text);
-                                let text = com.text.to_string();
-                                let js_doc = text.trim_start_matches('*').trim_start();
-                                println!("{:#?}", js_doc);
+                        println!();
+                        if let Some(comments) = self.comments.take_leading_comments(span.lo()) {
+                            for comment in comments {
+                                let text = comment.text.to_string();
+                                println!("/*{}*/", text);
                             }
-                            let line_no = swc_source_file.lookup_line(span.lo()).unwrap();
-                            let line = swc_source_file.get_line(line_no).unwrap().to_string();
-                            println!("code line: {:#?}", line);
-                            let declaration = line.trim_end().trim_end_matches('{');
-                            println!("{:#?}", declaration);
                         }
+
+                        let line_no = swc_source_file.lookup_line(span.lo()).unwrap();
+                        let line = swc_source_file.get_line(line_no).unwrap().to_string();
+                        // TODO(bartlomieju): construct declaration string in a more
+                        // robust way instead of trimming
+                        let declaration = line.trim_end().trim_end_matches('{');
+                        println!("{}", declaration);
                     }
                 }
             }
