@@ -34,7 +34,7 @@ jobs:
         run: cargo clippy --all-targets --locked -- -D clippy::all
 
       - name: format
-        run: rustfmt --check src/**/*.rs
+        run: rustfmt --check src/main.rs
 
       - name: test
         run: cargo test --locked --all-targets
