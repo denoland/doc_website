@@ -1,6 +1,7 @@
 use std::sync::Arc;
 use std::sync::RwLock;
 use swc_common;
+use swc_common::comments::CommentKind;
 use swc_common::comments::Comments;
 use swc_common::errors::Diagnostic;
 use swc_common::errors::DiagnosticBuilder;
@@ -9,6 +10,7 @@ use swc_common::errors::Handler;
 use swc_common::errors::HandlerFlags;
 use swc_common::FileName;
 use swc_common::SourceMap;
+use swc_common::Span;
 use swc_ecma_ast;
 use swc_ecma_parser::lexer::Lexer;
 use swc_ecma_parser::JscTarget;
@@ -36,14 +38,19 @@ impl From<BufferedError> for Vec<Diagnostic> {
     }
 }
 
-pub struct Compiler {
+pub struct DocEntry {
+    js_doc: String,
+    declaration: String,
+}
+
+pub struct DocParser {
     buffered_error: BufferedError,
     pub source_map: Arc<SourceMap>,
     pub handler: Handler,
     comments: Comments,
 }
 
-impl Compiler {
+impl DocParser {
     pub fn default() -> Self {
         let buffered_error = BufferedError::default();
 
@@ -56,7 +63,7 @@ impl Compiler {
             },
         );
 
-        Compiler {
+        DocParser {
             buffered_error,
             source_map: Arc::new(SourceMap::default()),
             handler,
@@ -64,11 +71,22 @@ impl Compiler {
         }
     }
 
+    fn get_js_doc(&self, span: Span) -> Option<String> {
+        let comments = self.comments.take_leading_comments(span.lo())?;
+        let js_doc_comment = comments.iter().find(|comment| {
+            return comment.kind == CommentKind::Block && comment.text.starts_with('*');
+        })?;
+
+        // SWC strips leading and trailing markers, add them back, so we're working
+        // on "raw" JSDoc later.
+        Some(format!("/*{}*/", js_doc_comment.text))
+    }
+
     pub fn get_docs(
         &mut self,
         file_name: String,
         source_code: String,
-    ) -> Result<String, SwcDiagnostics> {
+    ) -> Result<Vec<DocEntry>, SwcDiagnostics> {
         swc_common::GLOBALS.set(&swc_common::Globals::new(), || {
             let swc_source_file = self
                 .source_map
@@ -100,30 +118,41 @@ impl Compiler {
                     SwcDiagnostics::from(buffered_err)
                 })?;
 
-            let mut docstring = String::new();
+            let mut doc_entries: Vec<DocEntry> = vec![];
 
             for node in module.body.iter() {
                 if let swc_ecma_ast::ModuleItem::ModuleDecl(module_decl) = node {
-                    if let swc_ecma_ast::ModuleDecl::ExportDecl(export_decl) = module_decl {
-                        let span = export_decl.span;
-                        if let Some(comments) = self.comments.take_leading_comments(span.lo()) {
-                            for comment in comments {
-                                let text = comment.text.to_string();
-                                docstring.push_str(&format!("/*{}*/\n", text));
+                    use swc_ecma_ast::ModuleDecl::*;
+
+                    match module_decl {
+                        ExportDecl(export_decl) => {
+                            let span = export_decl.span;
+
+                            // If there's no JS doc for exported member go to next declaration
+                            if let Some(js_doc) = self.get_js_doc(span) {
+                                let line_no = swc_source_file.lookup_line(span.lo()).unwrap();
+                                let line = swc_source_file.get_line(line_no).unwrap().to_string();
+                                // TODO(bartlomieju): construct declaration string in a more
+                                // robust way instead of trimming
+                                let declaration = line.trim_end().trim_end_matches('{').to_string();
+                                doc_entries.push(DocEntry {
+                                    js_doc,
+                                    declaration,
+                                })
                             }
                         }
-
-                        let line_no = swc_source_file.lookup_line(span.lo()).unwrap();
-                        let line = swc_source_file.get_line(line_no).unwrap().to_string();
-                        // TODO(bartlomieju): construct declaration string in a more
-                        // robust way instead of trimming
-                        let declaration = line.trim_end().trim_end_matches('{');
-                        docstring.push_str(&format!("{}\n", declaration));
+                        ExportNamed(_) => todo!(),
+                        ExportDefaultDecl(_) => todo!(),
+                        ExportDefaultExpr(_) => todo!(),
+                        ExportAll(_) => todo!(),
+                        TsExportAssignment(_) => todo!(),
+                        TsNamespaceExport(_) => todo!(),
+                        _ => todo!(),
                     }
                 }
             }
 
-            Ok(docstring)
+            Ok(doc_entries)
         })
     }
 }
@@ -138,11 +167,16 @@ fn main() {
 
     let file_name = args[1].to_string();
     let source_code = std::fs::read_to_string(&file_name).expect("Failed to read file");
-    let mut compiler = Compiler::default();
-    let docstring = compiler
+    let mut compiler = DocParser::default();
+    let doc_entries = compiler
         .get_docs(file_name, source_code)
         .expect("Failed to print docs");
-    println!("{}", docstring);
+
+    for doc_entry in doc_entries {
+        println!("{}", doc_entry.js_doc);
+        println!("{}", doc_entry.declaration);
+        println!();
+    }
 }
 
 #[cfg(test)]
@@ -151,11 +185,15 @@ mod tests {
 
     #[test]
     fn export_const() {
-        let mut compiler = Compiler::default();
+        let mut compiler = DocParser::default();
         let source_code =
             "/** Something about fizzBuzz */\nexport const fizzBuzz = \"fizzBuzz\";\n";
         let result = compiler.get_docs("test.ts".to_string(), source_code.to_string());
         assert!(result.is_ok());
-        assert_eq!(result.unwrap(), source_code);
+        let entries = result.unwrap();
+        assert_eq!(entries.len(), 1);
+        let entry = &entries[0];
+        assert_eq!(entry.js_doc, "/** Something about fizzBuzz */");
+        assert_eq!(entry.declaration, "export const fizzBuzz = \"fizzBuzz\";");
     }
 }

@@ -1,4 +1,4 @@
-export { fizz, buzz } from "./bar.ts"
+// export { fizz, buzz } from "./bar.ts"
 
 /**
  * Hello there, this is a multiline JSdoc.
