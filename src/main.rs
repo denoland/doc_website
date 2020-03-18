@@ -44,7 +44,7 @@ pub struct Compiler {
 }
 
 impl Compiler {
-    pub fn new() -> Self {
+    pub fn default() -> Self {
         let buffered_error = BufferedError::default();
 
         let handler = Handler::with_emitter_and_flags(
@@ -101,42 +101,22 @@ impl Compiler {
                 })?;
 
             for node in module.body.iter() {
-                match node {
-                    swc_ecma_ast::ModuleItem::ModuleDecl(module_decl) => match module_decl {
-                        swc_ecma_ast::ModuleDecl::ExportDecl(export_decl) => {
-                            let span = export_decl.span;
-                            if let Some(cmts) = self.comments.take_leading_comments(span.lo()) {
-                                for com in cmts {
-                                    println!("comment: {:#?}", com.text);
-                                    let text = com.text.to_string();
-                                    let js_doc = text.trim_start_matches("*").trim_start();
-                                    println!("{:#?}", js_doc);
-                                }
-                                let line_no = swc_source_file.lookup_line(span.lo()).unwrap();
-                                let line = swc_source_file.get_line(line_no).unwrap().to_string();
-                                println!("code line: {:#?}", line);
-                                let declaration = line.trim_end().trim_end_matches("{");
-                                println!("{:#?}", declaration);
+                if let swc_ecma_ast::ModuleItem::ModuleDecl(module_decl) = node {
+                    if let swc_ecma_ast::ModuleDecl::ExportDecl(export_decl) = module_decl {
+                        let span = export_decl.span;
+                        if let Some(cmts) = self.comments.take_leading_comments(span.lo()) {
+                            for com in cmts {
+                                println!("comment: {:#?}", com.text);
+                                let text = com.text.to_string();
+                                let js_doc = text.trim_start_matches('*').trim_start();
+                                println!("{:#?}", js_doc);
                             }
-                            match &export_decl.decl {
-                                swc_ecma_ast::Decl::Fn(fn_decl) => {
-                                    println!("go fn decl");
-                                    let span = fn_decl.ident.span;
-                                    if let Some(cmts) =
-                                        self.comments.take_leading_comments(span.lo())
-                                    {
-                                        println!("go fn decl comments {:#?}", cmts);
-                                    }
-                                }
-                                _ => println!("not a decl"),
-                            }
+                            let line_no = swc_source_file.lookup_line(span.lo()).unwrap();
+                            let line = swc_source_file.get_line(line_no).unwrap().to_string();
+                            println!("code line: {:#?}", line);
+                            let declaration = line.trim_end().trim_end_matches('{');
+                            println!("{:#?}", declaration);
                         }
-                        _ => {
-                            println!("not an export decl");
-                        }
-                    },
-                    _ => {
-                        println!("not a module decl");
                     }
                 }
             }
@@ -156,7 +136,7 @@ fn main() {
 
     let file_name = args[1].to_string();
     let source_code = std::fs::read_to_string(&file_name).expect("Failed to read file");
-    let mut compiler = Compiler::new();
+    let mut compiler = Compiler::default();
     compiler
         .print_docs(file_name, source_code)
         .expect("Failed to print docs");
