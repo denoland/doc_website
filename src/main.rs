@@ -190,38 +190,48 @@ impl DocParser {
 
   fn get_doc_for_class_decl(
     &self,
-    span: Span,
+    parent_span: Span,
     class_decl: &swc_ecma_ast::ClassDecl,
   ) -> DocEntry {
-    let js_doc = self.get_js_doc(span).unwrap_or("".to_string());
+    let js_doc = self.get_js_doc(parent_span).unwrap_or("".to_string());
 
-    let mut declaration_str = String::new();
+    let mut snippet = self
+      .source_map
+      .span_to_snippet(parent_span)
+      .expect("Snippet not found");
 
-    if class_decl.class.is_abstract {
-      declaration_str.push_str("abstract ");
+    if !class_decl.class.body.is_empty() {
+      let body_beggining_span = class_decl.class.body.first().unwrap().span();
+      let body_end_span = class_decl.class.body.last().unwrap().span();
+      let body_span = Span::new(
+        body_beggining_span.lo(),
+        body_end_span.hi(),
+        body_end_span.ctxt(),
+      );
+      let body_snippet = self.source_map.span_to_snippet(body_span).unwrap();
+      let index = snippet
+        .find(&body_snippet)
+        .expect("Body not found in snippet");
+      // Remove body from snippet
+      let _ = snippet.split_off(index);
     }
 
-    declaration_str.push_str("class ");
-    declaration_str.push_str(&class_decl.ident.sym.to_string());
+    // TODO(bartlomieju): trimming manually `{` is bad
+    let mut snippet = snippet
+      .trim_end()
+      .trim_end_matches('{')
+      .trim_end()
+      .to_string();
 
-    if let Some(_super_class) = &class_decl.class.super_class {
-      declaration_str.push_str(" extends <TODO>");
-    }
+    snippet.push_str(" {\n");
 
-    if !class_decl.class.implements.is_empty() {
-      declaration_str.push_str(" implements");
-      for _i in &class_decl.class.implements {
-        declaration_str.push_str(" <TODO>,");
-      }
-    }
+    // TODO(bartlomieju): class body
 
-    declaration_str.push_str("{\n");
-
-    declaration_str.push_str("}");
+    snippet.push_str("}");
 
     DocEntry {
       js_doc,
-      declaration_str,
+      declaration_str: snippet.to_string(),
     }
   }
 

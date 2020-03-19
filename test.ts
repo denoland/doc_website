@@ -17,7 +17,7 @@ export function bar(a: string, b: number): void {
 }
 
 /** Class doc */
-export class Foobar {
+export class Foobar extends Fizz implements Buzz {
     private private1: boolean;
     protected protected1: number;
     public public1: boolean;
