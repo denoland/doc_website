@@ -225,7 +225,113 @@ impl DocParser {
 
     snippet.push_str(" {\n");
 
-    // TODO(bartlomieju): class body
+    for member in &class_decl.class.body {
+      use swc_ecma_ast::ClassMember::*;
+
+      match member {
+        Constructor(ctor) => {
+          let ctor_js_doc =
+            self.get_js_doc(ctor.span()).unwrap_or("".to_string());
+          let mut ctor_snippet =
+            self.source_map.span_to_snippet(ctor.span()).unwrap();
+
+          if let Some(body) = &ctor.body {
+            let ctor_body_snippet =
+              self.source_map.span_to_snippet(body.span()).unwrap();
+            let index = ctor_snippet
+              .find(&ctor_body_snippet)
+              .expect("Body not found in snippet");
+            // Remove body from snippet
+            let _ = ctor_snippet.split_off(index);
+          }
+
+          let mut ctor_snippet = ctor_snippet.trim_end().to_string();
+
+          if !ctor_snippet.ends_with(';') {
+            ctor_snippet.push_str(";");
+          }
+
+          //   eprintln!("ctor jsdoc {:?}", ctor_js_doc);
+          //   eprintln!("ctor snippet {:?}", ctor_snippet);
+          if !ctor_js_doc.is_empty() {
+            snippet.push_str(&format!(" {}\n", ctor_js_doc));
+          }
+          snippet.push_str(&format!(" {}\n", ctor_snippet));
+        }
+        Method(class_method) => {
+          let method_js_doc = self
+            .get_js_doc(class_method.span())
+            .unwrap_or("".to_string());
+          let mut method_snippet = self
+            .source_map
+            .span_to_snippet(class_method.span())
+            .unwrap();
+
+          if let Some(body) = &class_method.function.body {
+            let body_span = body.span();
+            let body_snippet =
+              self.source_map.span_to_snippet(body_span).unwrap();
+            let index = method_snippet
+              .find(&body_snippet)
+              .expect("Body not found in snippet");
+            // Remove body from snippet
+            let _ = method_snippet.split_off(index);
+          }
+
+          let mut method_snippet = method_snippet.trim_end().to_string();
+
+          if !method_snippet.ends_with(';') {
+            method_snippet.push_str(";");
+          }
+
+          //   eprintln!("method jsdoc {:?}", method_js_doc);
+          //   eprintln!("method snippet {:?}", method_snippet);
+
+          if !method_js_doc.is_empty() {
+            snippet.push_str(&format!(" {}\n", method_js_doc));
+          }
+          snippet.push_str(&format!(" {}\n", method_snippet));
+        }
+        ClassProp(class_prop) => {
+          let prop_js_doc =
+            self.get_js_doc(class_prop.span()).unwrap_or("".to_string());
+          let prop_snippet =
+            self.source_map.span_to_snippet(class_prop.span()).unwrap();
+
+          if let Some(accessibility) = class_prop.accessibility {
+            match accessibility {
+              swc_ecma_ast::Accessibility::Private => continue,
+              _ => {}
+            }
+          }
+
+          //   eprintln!("method jsdoc {:?}", prop_js_doc);
+          //   eprintln!("method snippet {:?}", prop_snippet);
+
+          if !prop_js_doc.is_empty() {
+            snippet.push_str(&format!(" {}\n", prop_js_doc));
+          }
+          snippet.push_str(&format!(" {}\n", prop_snippet));
+        }
+        TsIndexSignature(ts_index_signature) => {
+          let index_js_doc = self
+            .get_js_doc(ts_index_signature.span())
+            .unwrap_or("".to_string());
+          let index_snippet = self
+            .source_map
+            .span_to_snippet(ts_index_signature.span())
+            .unwrap();
+
+          if !index_js_doc.is_empty() {
+            snippet.push_str(&format!(" {}\n", index_js_doc));
+          }
+          snippet.push_str(&format!(" {}\n", index_snippet));
+        }
+        // Ignored in output
+        PrivateMethod(_) => {}
+        PrivateProp(_) => {}
+      }
+    }
 
     snippet.push_str("}");
 
@@ -324,10 +430,10 @@ impl DocParser {
               //   eprintln!("export decl {:#?}", export_decl);
               let export_span = export_decl.span();
 
-              eprintln!(
-                "span to string {:?}",
-                self.source_map.span_to_snippet(export_span)
-              );
+              //   eprintln!(
+              //     "span to string {:?}",
+              //     self.source_map.span_to_snippet(export_span)
+              //   );
               use swc_ecma_ast::Decl::*;
 
               match &export_decl.decl {

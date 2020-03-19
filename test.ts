@@ -23,6 +23,7 @@ export class Foobar extends Fizz implements Buzz {
     public public1: boolean;
     public2: number;
 
+    /** Constructor js doc */
     constructor(name: string, private private2: number, protected protected2: number) {}
 
     /** Async foo method */
