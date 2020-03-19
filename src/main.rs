@@ -165,6 +165,29 @@ impl DocParser {
     }
   }
 
+  fn get_doc_for_ts_type_alias_decl(
+    &self,
+    parent_span: Span,
+    _ts_type_alias: &swc_ecma_ast::TsTypeAliasDecl,
+  ) -> DocEntry {
+    let js_doc = self.get_js_doc(parent_span).unwrap_or("".to_string());
+    let snippet = self
+      .source_map
+      .span_to_snippet(parent_span)
+      .expect("Snippet not found");
+
+    let mut snippet = snippet.trim_end().to_string();
+
+    if !snippet.ends_with(';') {
+      snippet.push_str(";");
+    }
+
+    DocEntry {
+      js_doc,
+      declaration_str: snippet.to_string(),
+    }
+  }
+
   fn get_doc_for_class_decl(
     &self,
     span: Span,
@@ -204,62 +227,42 @@ impl DocParser {
 
   fn get_doc_for_ts_interface_decl(
     &self,
-    swc_source_file: Arc<swc_common::SourceFile>,
-    span: Span,
-    _var_decl: &swc_ecma_ast::TsInterfaceDecl,
+    parent_span: Span,
+    _interface_decl: &swc_ecma_ast::TsInterfaceDecl,
   ) -> DocEntry {
-    let js_doc = self.get_js_doc(span).unwrap_or("".to_string());
-    let line_no = swc_source_file.lookup_line(span.lo()).unwrap();
-    let line = swc_source_file.get_line(line_no).unwrap().to_string();
-    // TODO(bartlomieju): construct declaration string in a more
-    // robust way instead of trimming
-    let declaration = line.trim_end().to_string();
+    let js_doc = self.get_js_doc(parent_span).unwrap_or("".to_string());
+    let snippet = self
+      .source_map
+      .span_to_snippet(parent_span)
+      .expect("Snippet not found");
 
     DocEntry {
       js_doc,
-      declaration_str: declaration.to_string(),
+      declaration_str: snippet.to_string(),
     }
   }
 
+  // TODO(bartlomieju): broken, has no "export" tag, nor js doc
   fn get_doc_for_ts_enum_decl(
     &self,
-    span: Span,
-    enum_decl: &swc_ecma_ast::TsEnumDecl,
+    parent_span: Span,
+    _enum_decl: &swc_ecma_ast::TsEnumDecl,
   ) -> DocEntry {
-    let js_doc = self.get_js_doc(span).unwrap_or("".to_string());
+    let js_doc = self.get_js_doc(parent_span).unwrap_or("".to_string());
+    let snippet = self
+      .source_map
+      .span_to_snippet(parent_span)
+      .expect("Snippet not found");
 
-    let mut declaration_str = String::new();
+    let mut snippet = snippet.trim_end().to_string();
 
-    if enum_decl.is_const {
-      declaration_str.push_str("const ");
+    if !snippet.ends_with(';') {
+      snippet.push_str(";");
     }
-    declaration_str.push_str("enum ");
-    declaration_str.push_str(&enum_decl.id.sym.to_string());
-    declaration_str.push_str(" {\n");
-
-    use swc_ecma_ast::TsEnumMemberId::*;
-
-    for member in &enum_decl.members {
-      declaration_str.push_str("\t");
-      match &member.id {
-        Ident(ident) => {
-          declaration_str.push_str(&ident.sym.to_string());
-        }
-        Str(str_) => {
-          declaration_str.push_str(&str_.value.to_string());
-        }
-      }
-      if let Some(_init) = &member.init {
-        declaration_str.push_str(" = <TODO>,");
-      }
-      declaration_str.push_str("\n");
-    }
-
-    declaration_str.push_str("}");
 
     DocEntry {
       js_doc,
-      declaration_str,
+      declaration_str: snippet.to_string(),
     }
   }
 
@@ -308,7 +311,7 @@ impl DocParser {
 
           let maybe_doc_entry = match module_decl {
             ExportDecl(export_decl) => {
-              eprintln!("export decl {:#?}", export_decl);
+              //   eprintln!("export decl {:#?}", export_decl);
               let export_span = export_decl.span();
 
               eprintln!(
@@ -329,12 +332,14 @@ impl DocParser {
                 }
                 TsInterface(ts_interface_decl) => {
                   Some(self.get_doc_for_ts_interface_decl(
-                    swc_source_file.clone(),
                     export_span,
                     ts_interface_decl,
                   ))
                 }
-                TsTypeAlias(_ts_type_alias) => None,
+                TsTypeAlias(ts_type_alias) => Some(
+                  self
+                    .get_doc_for_ts_type_alias_decl(export_span, ts_type_alias),
+                ),
                 TsEnum(ts_enum) => {
                   Some(self.get_doc_for_ts_enum_decl(export_span, ts_enum))
                 }
@@ -378,7 +383,9 @@ fn main() {
     .expect("Failed to print docs");
 
   for doc_entry in doc_entries {
-    println!("{}", doc_entry.js_doc);
+    if !doc_entry.js_doc.is_empty() {
+      println!("{}", doc_entry.js_doc);
+    }
     println!("{}", doc_entry.declaration_str);
     println!();
   }

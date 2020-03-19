@@ -39,6 +39,9 @@ export class Foobar {
 /** Something about fizzBuzz */
 export const fizzBuzz: string = "fizzBuzz";
 
+/**
+ * Interface js doc
+ */
 export interface Reader {
     /** Read n bytes */
     read(buf: Uint8Array, something: unknown): Promise<number>
