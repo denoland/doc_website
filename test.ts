@@ -53,7 +53,7 @@ export type NumberArray = Array<number>;
 /**
  * Some enum for good measure
  */
-export const enum Hello {
+export enum Hello {
     World = "world",
     Fizz = "fizz",
     Buzz = "buzz",
