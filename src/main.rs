@@ -254,9 +254,9 @@ impl DocParser {
           //   eprintln!("ctor jsdoc {:?}", ctor_js_doc);
           //   eprintln!("ctor snippet {:?}", ctor_snippet);
           if !ctor_js_doc.is_empty() {
-            snippet.push_str(&format!(" {}\n", ctor_js_doc));
+            snippet.push_str(&format!("  {}\n", ctor_js_doc));
           }
-          snippet.push_str(&format!(" {}\n", ctor_snippet));
+          snippet.push_str(&format!("  {}\n", ctor_snippet));
         }
         Method(class_method) => {
           let method_js_doc = self
@@ -288,9 +288,9 @@ impl DocParser {
           //   eprintln!("method snippet {:?}", method_snippet);
 
           if !method_js_doc.is_empty() {
-            snippet.push_str(&format!(" {}\n", method_js_doc));
+            snippet.push_str(&format!("  {}\n", method_js_doc));
           }
-          snippet.push_str(&format!(" {}\n", method_snippet));
+          snippet.push_str(&format!("  {}\n", method_snippet));
         }
         ClassProp(class_prop) => {
           let prop_js_doc =
@@ -309,9 +309,9 @@ impl DocParser {
           //   eprintln!("method snippet {:?}", prop_snippet);
 
           if !prop_js_doc.is_empty() {
-            snippet.push_str(&format!(" {}\n", prop_js_doc));
+            snippet.push_str(&format!("  {}\n", prop_js_doc));
           }
-          snippet.push_str(&format!(" {}\n", prop_snippet));
+          snippet.push_str(&format!("  {}\n", prop_snippet));
         }
         TsIndexSignature(ts_index_signature) => {
           let index_js_doc = self
@@ -323,9 +323,9 @@ impl DocParser {
             .unwrap();
 
           if !index_js_doc.is_empty() {
-            snippet.push_str(&format!(" {}\n", index_js_doc));
+            snippet.push_str(&format!("  {}\n", index_js_doc));
           }
-          snippet.push_str(&format!(" {}\n", index_snippet));
+          snippet.push_str(&format!("  {}\n", index_snippet));
         }
         // Ignored in output
         PrivateMethod(_) => {}
@@ -562,6 +562,132 @@ export function foo(a: string, b: number): void {
     assert_eq!(
       entry.declaration_str,
       "export const fizzBuzz = \"fizzBuzz\";"
+    );
+  }
+
+  #[test]
+  fn export_class() {
+    let mut compiler = DocParser::default();
+    let source_code = r#"
+/** Class doc */
+export class Foobar extends Fizz implements Buzz {
+    private private1: boolean;
+    protected protected1: number;
+    public public1: boolean;
+    public2: number;
+
+    /** Constructor js doc */
+    constructor(name: string, private private2: number, protected protected2: number) {}
+
+    /** Async foo method */
+    async foo(): Promise<void> {
+        //
+    }
+
+    /** Sync bar method */
+    bar(): void {
+        //
+    }
+}
+"#;
+    let result =
+      compiler.get_docs("test.ts".to_string(), source_code.to_string());
+    assert!(result.is_ok());
+    let entries = result.unwrap();
+    assert_eq!(entries.len(), 1);
+    let entry = &entries[0];
+    assert_eq!(entry.js_doc, "/** Class doc */");
+    assert_eq!(
+      entry.declaration_str,
+      r#"export class Foobar extends Fizz implements Buzz {
+  protected protected1: number;
+  public public1: boolean;
+  public2: number;
+  /** Constructor js doc */
+  constructor(name: string, private private2: number, protected protected2: number);
+  /** Async foo method */
+  async foo(): Promise<void>;
+  /** Sync bar method */
+  bar(): void;
+}"#
+    );
+  }
+
+  #[test]
+  fn export_interface() {
+    let mut compiler = DocParser::default();
+    let source_code = r#"
+/**
+ * Interface js doc
+ */
+export interface Reader {
+    /** Read n bytes */
+    read(buf: Uint8Array, something: unknown): Promise<number>
+}
+    "#;
+    let result =
+      compiler.get_docs("test.ts".to_string(), source_code.to_string());
+    assert!(result.is_ok());
+    let entries = result.unwrap();
+    assert_eq!(entries.len(), 1);
+    let entry = &entries[0];
+    assert_eq!(entry.js_doc, "/**\n * Interface js doc\n */");
+    assert_eq!(
+      entry.declaration_str,
+      r#"export interface Reader {
+    /** Read n bytes */
+    read(buf: Uint8Array, something: unknown): Promise<number>
+}"#
+    );
+  }
+
+  #[test]
+  fn export_type_alias() {
+    let mut compiler = DocParser::default();
+    let source_code = r#"
+/** Array holding numbers */
+export type NumberArray = Array<number>;
+    "#;
+    let result =
+      compiler.get_docs("test.ts".to_string(), source_code.to_string());
+    assert!(result.is_ok());
+    let entries = result.unwrap();
+    assert_eq!(entries.len(), 1);
+    let entry = &entries[0];
+    assert_eq!(entry.js_doc, "/** Array holding numbers */");
+    assert_eq!(
+      entry.declaration_str,
+      "export type NumberArray = Array<number>;"
+    );
+  }
+
+  #[test]
+  fn export_enum() {
+    let mut compiler = DocParser::default();
+    let source_code = r#"
+/**
+ * Some enum for good measure
+ */
+export enum Hello {
+    World = "world",
+    Fizz = "fizz",
+    Buzz = "buzz",
+}
+    "#;
+    let result =
+      compiler.get_docs("test.ts".to_string(), source_code.to_string());
+    assert!(result.is_ok());
+    let entries = result.unwrap();
+    assert_eq!(entries.len(), 1);
+    let entry = &entries[0];
+    assert_eq!(entry.js_doc, "/**\n * Some enum for good measure\n */");
+    assert_eq!(
+      entry.declaration_str,
+      r#"export enum Hello {
+    World = "world",
+    Fizz = "fizz",
+    Buzz = "buzz",
+};"#
     );
   }
 }
