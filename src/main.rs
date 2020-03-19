@@ -56,7 +56,7 @@ impl From<BufferedError> for Vec<Diagnostic> {
 // }
 
 pub struct DocEntry {
-  js_doc: String,
+  js_doc: Option<String>,
   declaration_str: String,
   // TODO: add serde and store json for each
 }
@@ -99,8 +99,7 @@ impl DocParser {
   fn get_js_doc(&self, span: Span) -> Option<String> {
     let comments = self.comments.take_leading_comments(span.lo())?;
     let js_doc_comment = comments.iter().find(|comment| {
-      return comment.kind == CommentKind::Block
-        && comment.text.starts_with('*');
+      comment.kind == CommentKind::Block && comment.text.starts_with('*')
     })?;
 
     // SWC strips leading and trailing markers, add them back, so we're working
@@ -113,7 +112,7 @@ impl DocParser {
     parent_span: Span,
     fn_decl: &swc_ecma_ast::FnDecl,
   ) -> DocEntry {
-    let js_doc = self.get_js_doc(parent_span).unwrap_or("".to_string());
+    let js_doc = self.get_js_doc(parent_span);
 
     let mut snippet = self
       .source_map
@@ -138,7 +137,7 @@ impl DocParser {
 
     DocEntry {
       js_doc,
-      declaration_str: snippet.to_string(),
+      declaration_str: snippet,
     }
   }
 
@@ -147,7 +146,7 @@ impl DocParser {
     parent_span: Span,
     _var_decl: &swc_ecma_ast::VarDecl,
   ) -> DocEntry {
-    let js_doc = self.get_js_doc(parent_span).unwrap_or("".to_string());
+    let js_doc = self.get_js_doc(parent_span);
     let snippet = self
       .source_map
       .span_to_snippet(parent_span)
@@ -161,7 +160,7 @@ impl DocParser {
 
     DocEntry {
       js_doc,
-      declaration_str: snippet.to_string(),
+      declaration_str: snippet,
     }
   }
 
@@ -170,7 +169,7 @@ impl DocParser {
     parent_span: Span,
     _ts_type_alias: &swc_ecma_ast::TsTypeAliasDecl,
   ) -> DocEntry {
-    let js_doc = self.get_js_doc(parent_span).unwrap_or("".to_string());
+    let js_doc = self.get_js_doc(parent_span);
     let snippet = self
       .source_map
       .span_to_snippet(parent_span)
@@ -184,7 +183,7 @@ impl DocParser {
 
     DocEntry {
       js_doc,
-      declaration_str: snippet.to_string(),
+      declaration_str: snippet,
     }
   }
 
@@ -193,7 +192,7 @@ impl DocParser {
     parent_span: Span,
     class_decl: &swc_ecma_ast::ClassDecl,
   ) -> DocEntry {
-    let js_doc = self.get_js_doc(parent_span).unwrap_or("".to_string());
+    let js_doc = self.get_js_doc(parent_span);
 
     let mut snippet = self
       .source_map
@@ -230,8 +229,7 @@ impl DocParser {
 
       match member {
         Constructor(ctor) => {
-          let ctor_js_doc =
-            self.get_js_doc(ctor.span()).unwrap_or("".to_string());
+          let ctor_js_doc = self.get_js_doc(ctor.span());
           let mut ctor_snippet =
             self.source_map.span_to_snippet(ctor.span()).unwrap();
 
@@ -253,15 +251,13 @@ impl DocParser {
 
           //   eprintln!("ctor jsdoc {:?}", ctor_js_doc);
           //   eprintln!("ctor snippet {:?}", ctor_snippet);
-          if !ctor_js_doc.is_empty() {
-            snippet.push_str(&format!("  {}\n", ctor_js_doc));
+          if let Some(doc) = ctor_js_doc {
+            snippet.push_str(&format!("  {}\n", doc));
           }
           snippet.push_str(&format!("  {}\n", ctor_snippet));
         }
         Method(class_method) => {
-          let method_js_doc = self
-            .get_js_doc(class_method.span())
-            .unwrap_or("".to_string());
+          let method_js_doc = self.get_js_doc(class_method.span());
           let mut method_snippet = self
             .source_map
             .span_to_snippet(class_method.span())
@@ -287,43 +283,39 @@ impl DocParser {
           //   eprintln!("method jsdoc {:?}", method_js_doc);
           //   eprintln!("method snippet {:?}", method_snippet);
 
-          if !method_js_doc.is_empty() {
-            snippet.push_str(&format!("  {}\n", method_js_doc));
+          if let Some(doc) = method_js_doc {
+            snippet.push_str(&format!("  {}\n", doc));
           }
           snippet.push_str(&format!("  {}\n", method_snippet));
         }
         ClassProp(class_prop) => {
-          let prop_js_doc =
-            self.get_js_doc(class_prop.span()).unwrap_or("".to_string());
+          let prop_js_doc = self.get_js_doc(class_prop.span());
           let prop_snippet =
             self.source_map.span_to_snippet(class_prop.span()).unwrap();
 
-          if let Some(accessibility) = class_prop.accessibility {
-            match accessibility {
-              swc_ecma_ast::Accessibility::Private => continue,
-              _ => {}
-            }
+          if let Some(swc_ecma_ast::Accessibility::Private) =
+            class_prop.accessibility
+          {
+            continue;
           }
 
           //   eprintln!("method jsdoc {:?}", prop_js_doc);
           //   eprintln!("method snippet {:?}", prop_snippet);
 
-          if !prop_js_doc.is_empty() {
-            snippet.push_str(&format!("  {}\n", prop_js_doc));
+          if let Some(doc) = prop_js_doc {
+            snippet.push_str(&format!("  {}\n", doc));
           }
           snippet.push_str(&format!("  {}\n", prop_snippet));
         }
         TsIndexSignature(ts_index_signature) => {
-          let index_js_doc = self
-            .get_js_doc(ts_index_signature.span())
-            .unwrap_or("".to_string());
+          let index_js_doc = self.get_js_doc(ts_index_signature.span());
           let index_snippet = self
             .source_map
             .span_to_snippet(ts_index_signature.span())
             .unwrap();
 
-          if !index_js_doc.is_empty() {
-            snippet.push_str(&format!("  {}\n", index_js_doc));
+          if let Some(doc) = index_js_doc {
+            snippet.push_str(&format!("  {}\n", doc));
           }
           snippet.push_str(&format!("  {}\n", index_snippet));
         }
@@ -337,7 +329,7 @@ impl DocParser {
 
     DocEntry {
       js_doc,
-      declaration_str: snippet.to_string(),
+      declaration_str: snippet,
     }
   }
 
@@ -346,7 +338,7 @@ impl DocParser {
     parent_span: Span,
     _interface_decl: &swc_ecma_ast::TsInterfaceDecl,
   ) -> DocEntry {
-    let js_doc = self.get_js_doc(parent_span).unwrap_or("".to_string());
+    let js_doc = self.get_js_doc(parent_span);
     let snippet = self
       .source_map
       .span_to_snippet(parent_span)
@@ -354,7 +346,7 @@ impl DocParser {
 
     DocEntry {
       js_doc,
-      declaration_str: snippet.to_string(),
+      declaration_str: snippet,
     }
   }
 
@@ -364,7 +356,7 @@ impl DocParser {
     parent_span: Span,
     _enum_decl: &swc_ecma_ast::TsEnumDecl,
   ) -> DocEntry {
-    let js_doc = self.get_js_doc(parent_span).unwrap_or("".to_string());
+    let js_doc = self.get_js_doc(parent_span);
     let snippet = self
       .source_map
       .span_to_snippet(parent_span)
@@ -378,7 +370,7 @@ impl DocParser {
 
     DocEntry {
       js_doc,
-      declaration_str: snippet.to_string(),
+      declaration_str: snippet,
     }
   }
 
@@ -499,8 +491,8 @@ fn main() {
     .expect("Failed to print docs");
 
   for doc_entry in doc_entries {
-    if !doc_entry.js_doc.is_empty() {
-      println!("{}", doc_entry.js_doc);
+    if let Some(doc) = doc_entry.js_doc {
+      println!("{}", doc);
     }
     println!("{}", doc_entry.declaration_str);
     println!();
@@ -533,13 +525,16 @@ export function foo(a: string, b: number): void {
     let entry = &entries[0];
     assert_eq!(
       entry.js_doc,
-      r#"/**
+      Some(
+        r#"/**
 * Hello there, this is a multiline JSdoc.
 * 
 * It has many lines
 * 
 * Or not that many?
 */"#
+          .to_string()
+      )
     );
     assert_eq!(
       entry.declaration_str,
@@ -558,7 +553,10 @@ export function foo(a: string, b: number): void {
     let entries = result.unwrap();
     assert_eq!(entries.len(), 1);
     let entry = &entries[0];
-    assert_eq!(entry.js_doc, "/** Something about fizzBuzz */");
+    assert_eq!(
+      entry.js_doc,
+      Some("/** Something about fizzBuzz */".to_string())
+    );
     assert_eq!(
       entry.declaration_str,
       "export const fizzBuzz = \"fizzBuzz\";"
@@ -596,7 +594,7 @@ export class Foobar extends Fizz implements Buzz {
     let entries = result.unwrap();
     assert_eq!(entries.len(), 1);
     let entry = &entries[0];
-    assert_eq!(entry.js_doc, "/** Class doc */");
+    assert_eq!(entry.js_doc, Some("/** Class doc */".to_string()));
     assert_eq!(
       entry.declaration_str,
       r#"export class Foobar extends Fizz implements Buzz {
@@ -631,7 +629,10 @@ export interface Reader {
     let entries = result.unwrap();
     assert_eq!(entries.len(), 1);
     let entry = &entries[0];
-    assert_eq!(entry.js_doc, "/**\n * Interface js doc\n */");
+    assert_eq!(
+      entry.js_doc,
+      Some("/**\n * Interface js doc\n */".to_string())
+    );
     assert_eq!(
       entry.declaration_str,
       r#"export interface Reader {
@@ -654,7 +655,10 @@ export type NumberArray = Array<number>;
     let entries = result.unwrap();
     assert_eq!(entries.len(), 1);
     let entry = &entries[0];
-    assert_eq!(entry.js_doc, "/** Array holding numbers */");
+    assert_eq!(
+      entry.js_doc,
+      Some("/** Array holding numbers */".to_string())
+    );
     assert_eq!(
       entry.declaration_str,
       "export type NumberArray = Array<number>;"
@@ -680,7 +684,10 @@ export enum Hello {
     let entries = result.unwrap();
     assert_eq!(entries.len(), 1);
     let entry = &entries[0];
-    assert_eq!(entry.js_doc, "/**\n * Some enum for good measure\n */");
+    assert_eq!(
+      entry.js_doc,
+      Some("/**\n * Some enum for good measure\n */".to_string())
+    );
     assert_eq!(
       entry.declaration_str,
       r#"export enum Hello {
