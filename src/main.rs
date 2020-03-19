@@ -61,7 +61,6 @@ pub struct DocEntry {
   // TODO: add serde and store json for each
 }
 
-
 // struct DocNode {
 //     name: String,
 //     docstring: Option<String>,
@@ -116,20 +115,25 @@ impl DocParser {
   ) -> DocEntry {
     let js_doc = self.get_js_doc(parent_span).unwrap_or("".to_string());
 
-    let mut snippet = self.source_map.span_to_snippet(parent_span).expect("Snippet not found");
+    let mut snippet = self
+      .source_map
+      .span_to_snippet(parent_span)
+      .expect("Snippet not found");
 
     if let Some(body) = &fn_decl.function.body {
-        let body_span = body.span();
-        let body_snippet = self.source_map.span_to_snippet(body_span).unwrap();
-        let index = snippet.find(&body_snippet).expect("Body not found in snippet");
-        // Remove body from snippet
-        let _ = snippet.split_off(index);
+      let body_span = body.span();
+      let body_snippet = self.source_map.span_to_snippet(body_span).unwrap();
+      let index = snippet
+        .find(&body_snippet)
+        .expect("Body not found in snippet");
+      // Remove body from snippet
+      let _ = snippet.split_off(index);
     }
 
     let mut snippet = snippet.trim_end().to_string();
 
     if !snippet.ends_with(';') {
-        snippet.push_str(";");
+      snippet.push_str(";");
     }
 
     DocEntry {
@@ -140,19 +144,24 @@ impl DocParser {
 
   fn get_doc_for_var_decl(
     &self,
-    swc_source_file: Arc<swc_common::SourceFile>,
-    span: Span,
+    parent_span: Span,
     _var_decl: &swc_ecma_ast::VarDecl,
   ) -> DocEntry {
-    let js_doc = self.get_js_doc(span).unwrap_or("".to_string());
-    let line_no = swc_source_file.lookup_line(span.lo()).unwrap();
-    let line = swc_source_file.get_line(line_no).unwrap().to_string();
-    // TODO(bartlomieju): construct declaration string in a more
-    // robust way instead of trimming
-    let declaration = line.trim_end().to_string();
+    let js_doc = self.get_js_doc(parent_span).unwrap_or("".to_string());
+    let snippet = self
+      .source_map
+      .span_to_snippet(parent_span)
+      .expect("Snippet not found");
+
+    let mut snippet = snippet.trim_end().to_string();
+
+    if !snippet.ends_with(';') {
+      snippet.push_str(";");
+    }
+
     DocEntry {
       js_doc,
-      declaration_str: declaration.to_string(),
+      declaration_str: snippet.to_string(),
     }
   }
 
@@ -164,23 +173,23 @@ impl DocParser {
     let js_doc = self.get_js_doc(span).unwrap_or("".to_string());
 
     let mut declaration_str = String::new();
-    
+
     if class_decl.class.is_abstract {
-        declaration_str.push_str("abstract ");
+      declaration_str.push_str("abstract ");
     }
-    
+
     declaration_str.push_str("class ");
     declaration_str.push_str(&class_decl.ident.sym.to_string());
 
     if let Some(_super_class) = &class_decl.class.super_class {
-        declaration_str.push_str(" extends <TODO>");
+      declaration_str.push_str(" extends <TODO>");
     }
 
     if !class_decl.class.implements.is_empty() {
-        declaration_str.push_str(" implements");
-        for _i in &class_decl.class.implements {
-            declaration_str.push_str(" <TODO>,");
-        }
+      declaration_str.push_str(" implements");
+      for _i in &class_decl.class.implements {
+        declaration_str.push_str(" <TODO>,");
+      }
     }
 
     declaration_str.push_str("{\n");
@@ -222,7 +231,7 @@ impl DocParser {
     let mut declaration_str = String::new();
 
     if enum_decl.is_const {
-        declaration_str.push_str("const ");
+      declaration_str.push_str("const ");
     }
     declaration_str.push_str("enum ");
     declaration_str.push_str(&enum_decl.id.sym.to_string());
@@ -231,19 +240,19 @@ impl DocParser {
     use swc_ecma_ast::TsEnumMemberId::*;
 
     for member in &enum_decl.members {
-        declaration_str.push_str("\t");
-        match &member.id {
-            Ident(ident) => {
-                declaration_str.push_str(&ident.sym.to_string());
-            },
-            Str(str_) => {
-                declaration_str.push_str(&str_.value.to_string());
-            }
+      declaration_str.push_str("\t");
+      match &member.id {
+        Ident(ident) => {
+          declaration_str.push_str(&ident.sym.to_string());
         }
-        if let Some(_init) = &member.init {
-            declaration_str.push_str(" = <TODO>,");
+        Str(str_) => {
+          declaration_str.push_str(&str_.value.to_string());
         }
-        declaration_str.push_str("\n");
+      }
+      if let Some(_init) = &member.init {
+        declaration_str.push_str(" = <TODO>,");
+      }
+      declaration_str.push_str("\n");
     }
 
     declaration_str.push_str("}");
@@ -302,30 +311,33 @@ impl DocParser {
               eprintln!("export decl {:#?}", export_decl);
               let export_span = export_decl.span();
 
-              eprintln!("span to string {:?}", self.source_map.span_to_snippet(export_span));
+              eprintln!(
+                "span to string {:?}",
+                self.source_map.span_to_snippet(export_span)
+              );
               use swc_ecma_ast::Decl::*;
 
               match &export_decl.decl {
-                Class(class_decl) => Some(
-                    self
-                      .get_doc_for_class_decl(export_span, class_decl),
-                  ),
-                Fn(fn_decl) => Some(
-                  self
-                    .get_doc_for_fn_decl(export_span, fn_decl),
-                ),
-                Var(var_decl) => Some(
-                    self
-                      .get_doc_for_var_decl(swc_source_file.clone(), export_span, var_decl),
-                  ),
-                TsInterface(ts_interface_decl) => Some(
-                    self
-                      .get_doc_for_ts_interface_decl(swc_source_file.clone(), export_span, ts_interface_decl),
-                  ),
+                Class(class_decl) => {
+                  Some(self.get_doc_for_class_decl(export_span, class_decl))
+                }
+                Fn(fn_decl) => {
+                  Some(self.get_doc_for_fn_decl(export_span, fn_decl))
+                }
+                Var(var_decl) => {
+                  Some(self.get_doc_for_var_decl(export_span, var_decl))
+                }
+                TsInterface(ts_interface_decl) => {
+                  Some(self.get_doc_for_ts_interface_decl(
+                    swc_source_file.clone(),
+                    export_span,
+                    ts_interface_decl,
+                  ))
+                }
                 TsTypeAlias(_ts_type_alias) => None,
-                TsEnum(ts_enum) => Some(
-                    self.get_doc_for_ts_enum_decl(export_span, ts_enum)
-                ),
+                TsEnum(ts_enum) => {
+                  Some(self.get_doc_for_ts_enum_decl(export_span, ts_enum))
+                }
                 TsModule(_ts_module) => None,
               }
             }
@@ -396,14 +408,20 @@ export function foo(a: string, b: number): void {
     let entries = result.unwrap();
     assert_eq!(entries.len(), 1);
     let entry = &entries[0];
-    assert_eq!(entry.js_doc, r#"/**
+    assert_eq!(
+      entry.js_doc,
+      r#"/**
 * Hello there, this is a multiline JSdoc.
 * 
 * It has many lines
 * 
 * Or not that many?
-*/"#);
-    assert_eq!(entry.declaration_str, "export function foo(a: string, b: number): void;");
+*/"#
+    );
+    assert_eq!(
+      entry.declaration_str,
+      "export function foo(a: string, b: number): void;"
+    );
   }
 
   #[test]
@@ -418,6 +436,9 @@ export function foo(a: string, b: number): void {
     assert_eq!(entries.len(), 1);
     let entry = &entries[0];
     assert_eq!(entry.js_doc, "/** Something about fizzBuzz */");
-    assert_eq!(entry.declaration_str, "export const fizzBuzz = \"fizzBuzz\";");
+    assert_eq!(
+      entry.declaration_str,
+      "export const fizzBuzz = \"fizzBuzz\";"
+    );
   }
 }
