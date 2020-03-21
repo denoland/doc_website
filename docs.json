@@ -1,11 +1,23 @@
 [
   {
+    "kind": "namespace",
+    "name": "C",
+    "snippet": "export namespace C {  \n    export var x = 1;  \n}",
+    "location": {
+      "filename": "./test.ts",
+      "line": 4,
+      "col": 0
+    },
+    "jsDoc": null,
+    "namespaceDef": {}
+  },
+  {
     "kind": "function",
     "name": "diagnostics",
     "snippet": "export function diagnostics(a: Promise<string>, b: () => Record<string, string>): Promise<[DiagnosticItem[] | undefined, Record<string, string>]>",
     "location": {
       "filename": "./test.ts",
-      "line": 6,
+      "line": 11,
       "col": 0
     },
     "jsDoc": "/**\n * Complicated function\n */",
@@ -14,13 +26,13 @@
         {
           "name": "a",
           "tsType": {
-            "repr": "Promise<[DiagnosticItem[] | undefined, Record<string, string>]>"
+            "repr": "Promise<string>"
           }
         },
         {
           "name": "b",
           "tsType": {
-            "repr": "Promise<[DiagnosticItem[] | undefined, Record<string, string>]>"
+            "repr": "() => Record<string, string>"
           }
         }
       ],
@@ -37,7 +49,7 @@
     "snippet": "export function foo(a: string, b: number): void",
     "location": {
       "filename": "./test.ts",
-      "line": 17,
+      "line": 22,
       "col": 0
     },
     "jsDoc": "/**\n * Hello there, this is a multiline JSdoc.\n * \n * It has many lines\n * \n * Or not that many?\n */",
@@ -46,13 +58,13 @@
         {
           "name": "a",
           "tsType": {
-            "repr": "void"
+            "repr": "string"
           }
         },
         {
           "name": "b",
           "tsType": {
-            "repr": "void"
+            "repr": "number"
           }
         }
       ],
@@ -69,7 +81,7 @@
     "snippet": "export function bar(a: string, b: number): void",
     "location": {
       "filename": "./test.ts",
-      "line": 22,
+      "line": 27,
       "col": 0
     },
     "jsDoc": "/** This is single line JSdoc */",
@@ -78,13 +90,13 @@
         {
           "name": "a",
           "tsType": {
-            "repr": "void"
+            "repr": "string"
           }
         },
         {
           "name": "b",
           "tsType": {
-            "repr": "void"
+            "repr": "number"
           }
         }
       ],
@@ -101,7 +113,7 @@
     "snippet": "export class Foobar extends Fizz implements Buzz",
     "location": {
       "filename": "./test.ts",
-      "line": 27,
+      "line": 32,
       "col": 0
     },
     "jsDoc": "/** Class doc */",
@@ -193,7 +205,7 @@
     "snippet": "export const fizzBuzz: string = \"fizzBuzz\";",
     "location": {
       "filename": "./test.ts",
-      "line": 48,
+      "line": 61,
       "col": 0
     },
     "jsDoc": "/** Something about fizzBuzz */"
@@ -204,7 +216,7 @@
     "snippet": "export interface Reader {\n    /** Read n bytes */\n    read(buf: Uint8Array, something: unknown): Promise<number>\n}",
     "location": {
       "filename": "./test.ts",
-      "line": 53,
+      "line": 66,
       "col": 0
     },
     "jsDoc": "/**\n * Interface js doc\n */",
@@ -216,10 +228,34 @@
     "snippet": "export type NumberArray = Array<number>;",
     "location": {
       "filename": "./test.ts",
-      "line": 59,
+      "line": 72,
       "col": 0
     },
     "jsDoc": "/** Array holding numbers */",
+    "typeAliasDef": {}
+  },
+  {
+    "kind": "typeAlias",
+    "name": "OperatingSystem",
+    "snippet": "export type OperatingSystem = \"mac\" | \"win\" | \"linux\";",
+    "location": {
+      "filename": "./test.ts",
+      "line": 74,
+      "col": 0
+    },
+    "jsDoc": null,
+    "typeAliasDef": {}
+  },
+  {
+    "kind": "typeAlias",
+    "name": "Arch",
+    "snippet": "export type Arch = \"x64\" | \"arm64\";",
+    "location": {
+      "filename": "./test.ts",
+      "line": 76,
+      "col": 0
+    },
+    "jsDoc": null,
     "typeAliasDef": {}
   },
   {
@@ -228,7 +264,7 @@
     "snippet": "export enum Hello {\n    World = \"world\",\n    Fizz = \"fizz\",\n    Buzz = \"buzz\",\n}",
     "location": {
       "filename": "./test.ts",
-      "line": 64,
+      "line": 81,
       "col": 0
     },
     "jsDoc": "/**\n * Some enum for good measure\n */",
@@ -247,24 +283,12 @@
     }
   },
   {
-    "kind": "namespace",
-    "name": "C",
-    "snippet": "export namespace C {  \n    export var x = 1;  \n}",
-    "location": {
-      "filename": "./test.ts",
-      "line": 70,
-      "col": 0
-    },
-    "jsDoc": null,
-    "namespaceDef": {}
-  },
-  {
     "kind": "variable",
     "name": "<TODO>",
     "snippet": "export const symbols: {\n/** Symbol to access exposed internal Deno API */\nreadonly internal: unique symbol;\n/** A symbol which can be used as a key for a custom method which will be\n * called when `Deno.inspect()` is called, or when the object is logged to\n * the console. */\nreadonly customInspect: unique symbol;\n// TODO(ry) move EOF here?\n};",
     "location": {
       "filename": "./test.ts",
-      "line": 77,
+      "line": 91,
       "col": 0
     },
     "jsDoc": "/** **UNSTABLE**: new API. Maybe move `Deno.EOF` here.\n *\n * Special Deno related symbols. */"

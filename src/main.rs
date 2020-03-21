@@ -21,6 +21,8 @@ use swc_ecma_parser::SourceFileInput;
 use swc_ecma_parser::Syntax;
 use swc_ecma_parser::TsConfig;
 
+use crate::doc::ts_type::ts_type_ann_to_def;
+
 mod doc;
 
 pub type SwcDiagnostics = Vec<Diagnostic>;
@@ -126,15 +128,10 @@ impl DocParser {
 
       let param_def = match param {
         Pat::Ident(ident) => {
-          let ts_type = fn_decl.function.return_type.as_ref().map(|rt| {
-            let repr = self
-              .source_map
-              .span_to_snippet(rt.span)
-              .expect("Parameter type not found");
-            let repr = repr.trim_start_matches(":").trim_start().to_string();
-
-            doc::TsTypeDef { repr }
-          });
+          let ts_type = ident
+            .type_ann
+            .as_ref()
+            .map(|rt| ts_type_ann_to_def(&self.source_map, rt));
 
           doc::ParamDef {
             name: ident.sym.to_string(),
@@ -150,15 +147,11 @@ impl DocParser {
       params.push(param_def);
     }
 
-    let maybe_return_type = fn_decl.function.return_type.as_ref().map(|rt| {
-      let repr = self
-        .source_map
-        .span_to_snippet(rt.span)
-        .expect("Return type not found");
-      let repr = repr.trim_start_matches(":").trim_start().to_string();
-
-      doc::TsTypeDef { repr }
-    });
+    let maybe_return_type = fn_decl
+      .function
+      .return_type
+      .as_ref()
+      .map(|rt| ts_type_ann_to_def(&self.source_map, rt));
 
     let fn_def = doc::FunctionDef {
       params,
@@ -356,15 +349,10 @@ impl DocParser {
           let prop_snippet =
             self.source_map.span_to_snippet(class_prop.span()).unwrap();
 
-          let ts_type = class_prop.type_ann.as_ref().map(|rt| {
-            let repr = self
-              .source_map
-              .span_to_snippet(rt.span)
-              .expect("Class prop type not found");
-            let repr = repr.trim_start_matches(":").trim_start().to_string();
-
-            doc::TsTypeDef { repr }
-          });
+          let ts_type = class_prop
+            .type_ann
+            .as_ref()
+            .map(|rt| ts_type_ann_to_def(&self.source_map, rt));
 
           use swc_ecma_ast::Expr;
           let prop_name = match &*class_prop.key {
@@ -535,7 +523,7 @@ impl DocParser {
   ) -> doc::DocNode {
     let export_span = export_decl.span();
     use swc_ecma_ast::Decl;
-    eprintln!("export decl: \n {:#?}", export_decl);
+    // eprintln!("export decl: \n {:#?}", export_decl);
     match &export_decl.decl {
       Decl::Class(class_decl) => {
         self.get_doc_for_class_decl(export_span, class_decl)
@@ -677,6 +665,7 @@ export function foo(a: string, b: number): void {
     let entries = result.unwrap();
     assert_eq!(entries.len(), 1);
     let entry = &entries[0];
+    assert_eq!(entry.kind, doc::DocNodeKind::Function);
     assert_eq!(
       entry.js_doc,
       Some(
@@ -691,8 +680,8 @@ export function foo(a: string, b: number): void {
       )
     );
     assert_eq!(
-      entry.declaration_str,
-      "export function foo(a: string, b: number): void;"
+      entry.snippet,
+      "export function foo(a: string, b: number): void"
     );
   }
 
@@ -707,14 +696,12 @@ export function foo(a: string, b: number): void {
     let entries = result.unwrap();
     assert_eq!(entries.len(), 1);
     let entry = &entries[0];
+    assert_eq!(entry.kind, doc::DocNodeKind::Variable);
     assert_eq!(
       entry.js_doc,
       Some("/** Something about fizzBuzz */".to_string())
     );
-    assert_eq!(
-      entry.declaration_str,
-      "export const fizzBuzz = \"fizzBuzz\";"
-    );
+    assert_eq!(entry.snippet, "export const fizzBuzz = \"fizzBuzz\";");
   }
 
   #[test]
@@ -748,20 +735,11 @@ export class Foobar extends Fizz implements Buzz {
     let entries = result.unwrap();
     assert_eq!(entries.len(), 1);
     let entry = &entries[0];
+    assert_eq!(entry.kind, doc::DocNodeKind::Class);
     assert_eq!(entry.js_doc, Some("/** Class doc */".to_string()));
     assert_eq!(
-      entry.declaration_str,
-      r#"export class Foobar extends Fizz implements Buzz {
-  protected protected1: number;
-  public public1: boolean;
-  public2: number;
-  /** Constructor js doc */
-  constructor(name: string, private private2: number, protected protected2: number);
-  /** Async foo method */
-  async foo(): Promise<void>;
-  /** Sync bar method */
-  bar(): void;
-}"#
+      entry.snippet,
+      r#"export class Foobar extends Fizz implements Buzz"#
     );
   }
 
@@ -783,12 +761,13 @@ export interface Reader {
     let entries = result.unwrap();
     assert_eq!(entries.len(), 1);
     let entry = &entries[0];
+    assert_eq!(entry.kind, doc::DocNodeKind::Interface);
     assert_eq!(
       entry.js_doc,
       Some("/**\n * Interface js doc\n */".to_string())
     );
     assert_eq!(
-      entry.declaration_str,
+      entry.snippet,
       r#"export interface Reader {
     /** Read n bytes */
     read(buf: Uint8Array, something: unknown): Promise<number>
@@ -809,14 +788,12 @@ export type NumberArray = Array<number>;
     let entries = result.unwrap();
     assert_eq!(entries.len(), 1);
     let entry = &entries[0];
+    assert_eq!(entry.kind, doc::DocNodeKind::TypeAlias);
     assert_eq!(
       entry.js_doc,
       Some("/** Array holding numbers */".to_string())
     );
-    assert_eq!(
-      entry.declaration_str,
-      "export type NumberArray = Array<number>;"
-    );
+    assert_eq!(entry.snippet, "export type NumberArray = Array<number>;");
   }
 
   #[test]
@@ -838,17 +815,18 @@ export enum Hello {
     let entries = result.unwrap();
     assert_eq!(entries.len(), 1);
     let entry = &entries[0];
+    assert_eq!(entry.kind, doc::DocNodeKind::Enum);
     assert_eq!(
       entry.js_doc,
       Some("/**\n * Some enum for good measure\n */".to_string())
     );
     assert_eq!(
-      entry.declaration_str,
+      entry.snippet,
       r#"export enum Hello {
     World = "world",
     Fizz = "fizz",
     Buzz = "buzz",
-};"#
+}"#
     );
   }
 }

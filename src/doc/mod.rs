@@ -2,7 +2,11 @@ use serde::Serialize;
 use swc_common;
 use swc_ecma_ast;
 
-#[derive(Debug, Serialize)]
+pub mod ts_type;
+
+use ts_type::TsTypeDef;
+
+#[derive(Debug, PartialEq, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub enum DocNodeKind {
   Function,
@@ -12,12 +16,6 @@ pub enum DocNodeKind {
   Interface,
   TypeAlias,
   Namespace,
-}
-
-#[derive(Debug, Serialize)]
-pub struct TsTypeDef {
-  pub repr: String,
-  // TODO: make this struct more conrete
 }
 
 #[derive(Debug, Serialize)]
