@@ -125,7 +125,7 @@ impl DocParser {
       kind: doc::DocNodeKind::Function,
       name: fn_decl.ident.sym.to_string(),
       snippet: snippet.to_string(),
-      location: self.source_map.lookup_char_pos(parent_span.lo()),
+      location: self.source_map.lookup_char_pos(parent_span.lo()).into(),
       js_doc: js_doc.clone(),
       function_def: Some(fn_def),
       variable_def: None,
@@ -159,7 +159,7 @@ impl DocParser {
       kind: doc::DocNodeKind::Variable,
       name: var_name,
       snippet: snippet.to_string(),
-      location: self.source_map.lookup_char_pos(parent_span.lo()),
+      location: self.source_map.lookup_char_pos(parent_span.lo()).into(),
       js_doc: js_doc.clone(),
       function_def: None,
       variable_def: None,
@@ -195,7 +195,7 @@ impl DocParser {
       kind: doc::DocNodeKind::TypeAlias,
       name: alias_name,
       snippet: snippet.to_string(),
-      location: self.source_map.lookup_char_pos(parent_span.lo()),
+      location: self.source_map.lookup_char_pos(parent_span.lo()).into(),
       js_doc: js_doc.clone(),
       function_def: None,
       variable_def: None,
@@ -257,7 +257,7 @@ impl DocParser {
       kind: doc::DocNodeKind::Class,
       name: class_name,
       snippet: snippet.to_string(),
-      location: self.source_map.lookup_char_pos(parent_span.lo()),
+      location: self.source_map.lookup_char_pos(parent_span.lo()).into(),
       js_doc: js_doc.clone(),
       function_def: None,
       variable_def: None,
@@ -395,7 +395,7 @@ impl DocParser {
       kind: doc::DocNodeKind::Interface,
       name: interface_name,
       snippet: snippet.to_string(),
-      location: self.source_map.lookup_char_pos(parent_span.lo()),
+      location: self.source_map.lookup_char_pos(parent_span.lo()).into(),
       js_doc: js_doc.clone(),
       function_def: None,
       variable_def: None,
@@ -444,7 +444,7 @@ impl DocParser {
       kind: doc::DocNodeKind::Enum,
       name: enum_name,
       snippet: snippet.to_string(),
-      location: self.source_map.lookup_char_pos(parent_span.lo()),
+      location: self.source_map.lookup_char_pos(parent_span.lo()).into(),
       js_doc: js_doc.clone(),
       function_def: None,
       variable_def: None,
@@ -575,13 +575,16 @@ fn main() {
     .get_docs(file_name, source_code)
     .expect("Failed to print docs");
 
-  for doc_node in doc_nodes {
-    if let Some(doc) = doc_node.js_doc {
-      println!("{}", doc);
-    }
-    println!("{}", doc_node.snippet);
-    println!();
-  }
+  let docs_json = serde_json::to_string_pretty(&doc_nodes).unwrap();
+
+  println!("{}", docs_json);
+  //   for doc_node in doc_nodes {
+  //     if let Some(doc) = doc_node.js_doc {
+  //       println!("{}", doc);
+  //     }
+  //     println!("{}", doc_node.snippet);
+  //     println!();
+  //   }
 }
 
 #[cfg(test)]
