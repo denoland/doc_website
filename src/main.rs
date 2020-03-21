@@ -21,6 +21,8 @@ use swc_ecma_parser::SourceFileInput;
 use swc_ecma_parser::Syntax;
 use swc_ecma_parser::TsConfig;
 
+mod doc;
+
 pub type SwcDiagnostics = Vec<Diagnostic>;
 
 #[derive(Clone, Default)]
@@ -38,35 +40,6 @@ impl From<BufferedError> for Vec<Diagnostic> {
     s.clone()
   }
 }
-
-// export interface DocEntry {
-//  kind: "class" | "method" | "property" | "enum" | "enumMember";
-//  name: string;
-//  typestr?: string;
-//  docstr?: string;
-//  args?: ArgEntry[];
-//  retType?: string;
-//  sourceUrl?: string;
-// }
-
-// export interface ArgEntry {
-//  name: string;
-//  typestr?: string;
-//  docstr?: string;
-// }
-
-pub struct DocEntry {
-  js_doc: Option<String>,
-  declaration_str: String,
-  // TODO: add serde and store json for each
-}
-
-// struct DocNode {
-//     name: String,
-//     docstring: Option<String>,
-//     declaration: Decl,
-//     children: Vec<DocNode>,
-// }
 
 pub struct DocParser {
   buffered_error: BufferedError,
@@ -111,7 +84,7 @@ impl DocParser {
     &self,
     parent_span: Span,
     fn_decl: &swc_ecma_ast::FnDecl,
-  ) -> DocEntry {
+  ) -> doc::DocNode {
     let js_doc = self.get_js_doc(parent_span);
 
     let mut snippet = self
@@ -129,69 +102,120 @@ impl DocParser {
       let _ = snippet.split_off(index);
     }
 
-    let mut snippet = snippet.trim_end().to_string();
+    let snippet = snippet.trim_end().to_string();
 
-    if !snippet.ends_with(';') {
-      snippet.push_str(";");
-    }
+    let maybe_return_type = fn_decl.function.return_type.as_ref().map(|rt| {
+      let repr = self
+        .source_map
+        .span_to_snippet(rt.span)
+        .expect("Return type not found");
+      let repr = repr.trim_start_matches(":").trim_start().to_string();
 
-    DocEntry {
-      js_doc,
-      declaration_str: snippet,
-    }
+      doc::TsTypeDef { repr }
+    });
+
+    let fn_def = doc::FunctionDef {
+      args: vec![],
+      return_type: maybe_return_type,
+      is_async: fn_decl.function.is_async,
+      is_generator: fn_decl.function.is_generator,
+    };
+
+    let doc_node = doc::DocNode {
+      kind: doc::DocNodeKind::Function,
+      name: fn_decl.ident.sym.to_string(),
+      snippet: snippet.to_string(),
+      location: self.source_map.lookup_char_pos(parent_span.lo()),
+      js_doc: js_doc.clone(),
+      function_def: Some(fn_def),
+      variable_def: None,
+      enum_def: None,
+      class_def: None,
+      type_alias_def: None,
+      namespace_def: None,
+      interface_def: None,
+    };
+
+    eprintln!("doc node {:#?}", doc_node);
+    doc_node
   }
 
   fn get_doc_for_var_decl(
     &self,
     parent_span: Span,
     _var_decl: &swc_ecma_ast::VarDecl,
-  ) -> DocEntry {
+  ) -> doc::DocNode {
     let js_doc = self.get_js_doc(parent_span);
     let snippet = self
       .source_map
       .span_to_snippet(parent_span)
-      .expect("Snippet not found");
+      .expect("Snippet not found")
+      .trim_end()
+      .to_string();
 
-    let mut snippet = snippet.trim_end().to_string();
+    let var_name = "<TODO>".to_string();
 
-    if !snippet.ends_with(';') {
-      snippet.push_str(";");
-    }
+    let doc_node = doc::DocNode {
+      kind: doc::DocNodeKind::Variable,
+      name: var_name,
+      snippet: snippet.to_string(),
+      location: self.source_map.lookup_char_pos(parent_span.lo()),
+      js_doc: js_doc.clone(),
+      function_def: None,
+      variable_def: None,
+      enum_def: None,
+      class_def: None,
+      type_alias_def: None,
+      namespace_def: None,
+      interface_def: None,
+    };
 
-    DocEntry {
-      js_doc,
-      declaration_str: snippet,
-    }
+    eprintln!("doc node {:#?}", doc_node);
+    doc_node
   }
 
   fn get_doc_for_ts_type_alias_decl(
     &self,
     parent_span: Span,
-    _ts_type_alias: &swc_ecma_ast::TsTypeAliasDecl,
-  ) -> DocEntry {
+    type_alias_decl: &swc_ecma_ast::TsTypeAliasDecl,
+  ) -> doc::DocNode {
     let js_doc = self.get_js_doc(parent_span);
     let snippet = self
       .source_map
       .span_to_snippet(parent_span)
-      .expect("Snippet not found");
+      .expect("Snippet not found")
+      .trim_end()
+      .to_string();
 
-    let mut snippet = snippet.trim_end().to_string();
+    let alias_name = type_alias_decl.id.sym.to_string();
+    // TODO:
+    let type_alias_def = doc::TypeAliasDef {};
 
-    if !snippet.ends_with(';') {
-      snippet.push_str(";");
-    }
+    let doc_node = doc::DocNode {
+      kind: doc::DocNodeKind::TypeAlias,
+      name: alias_name,
+      snippet: snippet.to_string(),
+      location: self.source_map.lookup_char_pos(parent_span.lo()),
+      js_doc: js_doc.clone(),
+      function_def: None,
+      variable_def: None,
+      enum_def: None,
+      class_def: None,
+      type_alias_def: Some(type_alias_def),
+      namespace_def: None,
+      interface_def: None,
+    };
 
-    DocEntry {
-      js_doc,
-      declaration_str: snippet,
-    }
+    eprintln!("doc node {:#?}", doc_node);
+
+    doc_node
   }
 
   fn get_doc_for_class_decl(
     &self,
     parent_span: Span,
     class_decl: &swc_ecma_ast::ClassDecl,
-  ) -> DocEntry {
+  ) -> doc::DocNode {
     let js_doc = self.get_js_doc(parent_span);
 
     let mut snippet = self
@@ -221,6 +245,30 @@ impl DocParser {
       .trim_end_matches('{')
       .trim_end()
       .to_string();
+
+    let class_name = class_decl.ident.sym.to_string();
+    let class_def = doc::ClassDef {
+      constructors: vec![],
+      properties: vec![],
+      methods: vec![],
+    };
+
+    let doc_node = doc::DocNode {
+      kind: doc::DocNodeKind::Class,
+      name: class_name,
+      snippet: snippet.to_string(),
+      location: self.source_map.lookup_char_pos(parent_span.lo()),
+      js_doc: js_doc.clone(),
+      function_def: None,
+      variable_def: None,
+      enum_def: None,
+      class_def: Some(class_def),
+      type_alias_def: None,
+      namespace_def: None,
+      interface_def: None,
+    };
+
+    eprintln!("doc node {:#?}", doc_node);
 
     snippet.push_str(" {\n");
 
@@ -327,58 +375,95 @@ impl DocParser {
 
     snippet.push_str("}");
 
-    DocEntry {
-      js_doc,
-      declaration_str: snippet,
-    }
+    doc_node
   }
 
   fn get_doc_for_ts_interface_decl(
     &self,
     parent_span: Span,
-    _interface_decl: &swc_ecma_ast::TsInterfaceDecl,
-  ) -> DocEntry {
+    interface_decl: &swc_ecma_ast::TsInterfaceDecl,
+  ) -> doc::DocNode {
     let js_doc = self.get_js_doc(parent_span);
     let snippet = self
       .source_map
       .span_to_snippet(parent_span)
       .expect("Snippet not found");
 
-    DocEntry {
-      js_doc,
-      declaration_str: snippet,
-    }
+    let interface_name = interface_decl.id.sym.to_string();
+
+    let doc_node = doc::DocNode {
+      kind: doc::DocNodeKind::Interface,
+      name: interface_name,
+      snippet: snippet.to_string(),
+      location: self.source_map.lookup_char_pos(parent_span.lo()),
+      js_doc: js_doc.clone(),
+      function_def: None,
+      variable_def: None,
+      enum_def: None,
+      class_def: None,
+      type_alias_def: None,
+      namespace_def: None,
+      interface_def: Some(doc::InterfaceDef {}),
+    };
+
+    eprintln!("doc node {:#?}", doc_node);
+    doc_node
   }
 
-  // TODO(bartlomieju): broken, has no "export" tag, nor js doc
   fn get_doc_for_ts_enum_decl(
     &self,
     parent_span: Span,
-    _enum_decl: &swc_ecma_ast::TsEnumDecl,
-  ) -> DocEntry {
+    enum_decl: &swc_ecma_ast::TsEnumDecl,
+  ) -> doc::DocNode {
     let js_doc = self.get_js_doc(parent_span);
     let snippet = self
       .source_map
       .span_to_snippet(parent_span)
-      .expect("Snippet not found");
+      .expect("Snippet not found")
+      .trim_end()
+      .to_string();
 
-    let mut snippet = snippet.trim_end().to_string();
+    let enum_name = enum_decl.id.sym.to_string();
+    let mut members = vec![];
 
-    if !snippet.ends_with(';') {
-      snippet.push_str(";");
+    for enum_member in &enum_decl.members {
+      use swc_ecma_ast::TsEnumMemberId::*;
+
+      let member_name = match &enum_member.id {
+        Ident(ident) => ident.sym.to_string(),
+        Str(str_) => str_.value.to_string(),
+      };
+
+      let member_def = doc::EnumMemberDef { name: member_name };
+      members.push(member_def);
     }
 
-    DocEntry {
-      js_doc,
-      declaration_str: snippet,
-    }
+    let enum_def = doc::EnumDef { members };
+
+    let doc_node = doc::DocNode {
+      kind: doc::DocNodeKind::Enum,
+      name: enum_name,
+      snippet: snippet.to_string(),
+      location: self.source_map.lookup_char_pos(parent_span.lo()),
+      js_doc: js_doc.clone(),
+      function_def: None,
+      variable_def: None,
+      enum_def: Some(enum_def),
+      class_def: None,
+      type_alias_def: None,
+      namespace_def: None,
+      interface_def: None,
+    };
+
+    eprintln!("doc node {:#?}", doc_node);
+    doc_node
   }
 
   pub fn get_docs(
     &mut self,
     file_name: String,
     source_code: String,
-  ) -> Result<Vec<DocEntry>, SwcDiagnostics> {
+  ) -> Result<Vec<doc::DocNode>, SwcDiagnostics> {
     swc_common::GLOBALS.set(&swc_common::Globals::new(), || {
       let swc_source_file = self
         .source_map
@@ -411,15 +496,15 @@ impl DocParser {
             SwcDiagnostics::from(buffered_err)
           })?;
 
-      let mut doc_entries: Vec<DocEntry> = vec![];
+      let mut doc_entries: Vec<doc::DocNode> = vec![];
 
       for node in module.body.iter() {
         if let swc_ecma_ast::ModuleItem::ModuleDecl(module_decl) = node {
           use swc_ecma_ast::ModuleDecl::*;
 
-          let maybe_doc_entry = match module_decl {
+          let maybe_doc_node = match module_decl {
             ExportDecl(export_decl) => {
-              //   eprintln!("export decl {:#?}", export_decl);
+              eprintln!("export decl {:?}", export_decl);
               let export_span = export_decl.span();
 
               //   eprintln!(
@@ -463,7 +548,7 @@ impl DocParser {
             _ => None,
           };
 
-          if let Some(doc_entry) = maybe_doc_entry {
+          if let Some(doc_entry) = maybe_doc_node {
             doc_entries.push(doc_entry);
           }
         }
@@ -486,15 +571,15 @@ fn main() {
   let source_code =
     std::fs::read_to_string(&file_name).expect("Failed to read file");
   let mut compiler = DocParser::default();
-  let doc_entries = compiler
+  let doc_nodes = compiler
     .get_docs(file_name, source_code)
     .expect("Failed to print docs");
 
-  for doc_entry in doc_entries {
-    if let Some(doc) = doc_entry.js_doc {
+  for doc_node in doc_nodes {
+    if let Some(doc) = doc_node.js_doc {
       println!("{}", doc);
     }
-    println!("{}", doc_entry.declaration_str);
+    println!("{}", doc_node.snippet);
     println!();
   }
 }
