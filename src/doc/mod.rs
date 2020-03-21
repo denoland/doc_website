@@ -23,6 +23,7 @@ use swc_ecma_ast;
 // }
 
 #[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
 pub enum DocNodeKind {
   Function,
   Variable,
@@ -45,6 +46,7 @@ pub struct ArgDef {
 }
 
 #[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
 pub struct FunctionDef {
   pub args: Vec<ArgDef>,
   pub return_type: Option<TsTypeDef>,

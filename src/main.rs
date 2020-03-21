@@ -459,6 +459,72 @@ impl DocParser {
     doc_node
   }
 
+  fn get_doc_for_ts_module(
+    &self,
+    parent_span: Span,
+    ts_module_decl: &swc_ecma_ast::TsModuleDecl,
+  ) -> doc::DocNode {
+    let js_doc = self.get_js_doc(parent_span);
+    let snippet = self
+      .source_map
+      .span_to_snippet(parent_span)
+      .expect("Snippet not found")
+      .trim_end()
+      .to_string();
+
+    use swc_ecma_ast::TsModuleName;
+    let namespace_name = match &ts_module_decl.id {
+      TsModuleName::Ident(ident) => ident.sym.to_string(),
+      TsModuleName::Str(str_) => str_.value.to_string(),
+    };
+
+    let doc_node = doc::DocNode {
+      kind: doc::DocNodeKind::Namespace,
+      name: namespace_name,
+      snippet: snippet.to_string(),
+      location: self.source_map.lookup_char_pos(parent_span.lo()).into(),
+      js_doc: js_doc.clone(),
+      function_def: None,
+      variable_def: None,
+      enum_def: None,
+      class_def: None,
+      type_alias_def: None,
+      namespace_def: Some(doc::NamespaceDef {}),
+      interface_def: None,
+    };
+
+    eprintln!("doc node {:#?}", doc_node);
+    doc_node
+  }
+
+  pub fn get_doc_node_for_export_decl(
+    &self,
+    export_decl: &swc_ecma_ast::ExportDecl,
+  ) -> doc::DocNode {
+    let export_span = export_decl.span();
+    use swc_ecma_ast::Decl;
+
+    match &export_decl.decl {
+      Decl::Class(class_decl) => {
+        self.get_doc_for_class_decl(export_span, class_decl)
+      }
+      Decl::Fn(fn_decl) => self.get_doc_for_fn_decl(export_span, fn_decl),
+      Decl::Var(var_decl) => self.get_doc_for_var_decl(export_span, var_decl),
+      Decl::TsInterface(ts_interface_decl) => {
+        self.get_doc_for_ts_interface_decl(export_span, ts_interface_decl)
+      }
+      Decl::TsTypeAlias(ts_type_alias) => {
+        self.get_doc_for_ts_type_alias_decl(export_span, ts_type_alias)
+      }
+      Decl::TsEnum(ts_enum) => {
+        self.get_doc_for_ts_enum_decl(export_span, ts_enum)
+      }
+      Decl::TsModule(ts_module) => {
+        self.get_doc_for_ts_module(export_span, ts_module)
+      }
+    }
+  }
+
   pub fn get_docs(
     &mut self,
     file_name: String,
@@ -504,40 +570,7 @@ impl DocParser {
 
           let maybe_doc_node = match module_decl {
             ExportDecl(export_decl) => {
-              eprintln!("export decl {:?}", export_decl);
-              let export_span = export_decl.span();
-
-              //   eprintln!(
-              //     "span to string {:?}",
-              //     self.source_map.span_to_snippet(export_span)
-              //   );
-              use swc_ecma_ast::Decl::*;
-
-              match &export_decl.decl {
-                Class(class_decl) => {
-                  Some(self.get_doc_for_class_decl(export_span, class_decl))
-                }
-                Fn(fn_decl) => {
-                  Some(self.get_doc_for_fn_decl(export_span, fn_decl))
-                }
-                Var(var_decl) => {
-                  Some(self.get_doc_for_var_decl(export_span, var_decl))
-                }
-                TsInterface(ts_interface_decl) => {
-                  Some(self.get_doc_for_ts_interface_decl(
-                    export_span,
-                    ts_interface_decl,
-                  ))
-                }
-                TsTypeAlias(ts_type_alias) => Some(
-                  self
-                    .get_doc_for_ts_type_alias_decl(export_span, ts_type_alias),
-                ),
-                TsEnum(ts_enum) => {
-                  Some(self.get_doc_for_ts_enum_decl(export_span, ts_enum))
-                }
-                TsModule(_ts_module) => None,
-              }
+              Some(self.get_doc_node_for_export_decl(export_decl))
             }
             ExportNamed(_) => None,
             ExportDefaultDecl(_) => None,
@@ -578,13 +611,6 @@ fn main() {
   let docs_json = serde_json::to_string_pretty(&doc_nodes).unwrap();
 
   println!("{}", docs_json);
-  //   for doc_node in doc_nodes {
-  //     if let Some(doc) = doc_node.js_doc {
-  //       println!("{}", doc);
-  //     }
-  //     println!("{}", doc_node.snippet);
-  //     println!();
-  //   }
 }
 
 #[cfg(test)]
