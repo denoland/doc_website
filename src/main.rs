@@ -41,6 +41,21 @@ impl From<BufferedError> for Vec<Diagnostic> {
   }
 }
 
+fn prop_name_to_string(
+  source_map: &SourceMap,
+  prop_name: &swc_ecma_ast::PropName,
+) -> String {
+  use swc_ecma_ast::PropName;
+  match prop_name {
+    PropName::Ident(ident) => ident.sym.to_string(),
+    PropName::Str(str_) => str_.value.to_string(),
+    PropName::Num(num) => num.value.to_string(),
+    PropName::Computed(comp_prop_name) => {
+      source_map.span_to_snippet(comp_prop_name.span).unwrap()
+    }
+  }
+}
+
 pub struct DocParser {
   buffered_error: BufferedError,
   pub source_map: Arc<SourceMap>,
@@ -104,6 +119,37 @@ impl DocParser {
 
     let snippet = snippet.trim_end().to_string();
 
+    let mut params = vec![];
+
+    for param in &fn_decl.function.params {
+      use swc_ecma_ast::Pat;
+
+      let param_def = match param {
+        Pat::Ident(ident) => {
+          let ts_type = fn_decl.function.return_type.as_ref().map(|rt| {
+            let repr = self
+              .source_map
+              .span_to_snippet(rt.span)
+              .expect("Parameter type not found");
+            let repr = repr.trim_start_matches(":").trim_start().to_string();
+
+            doc::TsTypeDef { repr }
+          });
+
+          doc::ParamDef {
+            name: ident.sym.to_string(),
+            ts_type,
+          }
+        }
+        _ => doc::ParamDef {
+          name: "<TODO>".to_string(),
+          ts_type: None,
+        },
+      };
+
+      params.push(param_def);
+    }
+
     let maybe_return_type = fn_decl.function.return_type.as_ref().map(|rt| {
       let repr = self
         .source_map
@@ -115,13 +161,13 @@ impl DocParser {
     });
 
     let fn_def = doc::FunctionDef {
-      args: vec![],
+      params,
       return_type: maybe_return_type,
       is_async: fn_decl.function.is_async,
       is_generator: fn_decl.function.is_generator,
     };
 
-    let doc_node = doc::DocNode {
+    doc::DocNode {
       kind: doc::DocNodeKind::Function,
       name: fn_decl.ident.sym.to_string(),
       snippet: snippet.to_string(),
@@ -134,10 +180,7 @@ impl DocParser {
       type_alias_def: None,
       namespace_def: None,
       interface_def: None,
-    };
-
-    eprintln!("doc node {:#?}", doc_node);
-    doc_node
+    }
   }
 
   fn get_doc_for_var_decl(
@@ -155,7 +198,7 @@ impl DocParser {
 
     let var_name = "<TODO>".to_string();
 
-    let doc_node = doc::DocNode {
+    doc::DocNode {
       kind: doc::DocNodeKind::Variable,
       name: var_name,
       snippet: snippet.to_string(),
@@ -168,10 +211,7 @@ impl DocParser {
       type_alias_def: None,
       namespace_def: None,
       interface_def: None,
-    };
-
-    eprintln!("doc node {:#?}", doc_node);
-    doc_node
+    }
   }
 
   fn get_doc_for_ts_type_alias_decl(
@@ -191,7 +231,7 @@ impl DocParser {
     // TODO:
     let type_alias_def = doc::TypeAliasDef {};
 
-    let doc_node = doc::DocNode {
+    doc::DocNode {
       kind: doc::DocNodeKind::TypeAlias,
       name: alias_name,
       snippet: snippet.to_string(),
@@ -204,11 +244,7 @@ impl DocParser {
       type_alias_def: Some(type_alias_def),
       namespace_def: None,
       interface_def: None,
-    };
-
-    eprintln!("doc node {:#?}", doc_node);
-
-    doc_node
+    }
   }
 
   fn get_doc_for_class_decl(
@@ -240,37 +276,15 @@ impl DocParser {
     }
 
     // TODO(bartlomieju): trimming manually `{` is bad
-    let mut snippet = snippet
+    let snippet = snippet
       .trim_end()
       .trim_end_matches('{')
       .trim_end()
       .to_string();
 
-    let class_name = class_decl.ident.sym.to_string();
-    let class_def = doc::ClassDef {
-      constructors: vec![],
-      properties: vec![],
-      methods: vec![],
-    };
-
-    let doc_node = doc::DocNode {
-      kind: doc::DocNodeKind::Class,
-      name: class_name,
-      snippet: snippet.to_string(),
-      location: self.source_map.lookup_char_pos(parent_span.lo()).into(),
-      js_doc: js_doc.clone(),
-      function_def: None,
-      variable_def: None,
-      enum_def: None,
-      class_def: Some(class_def),
-      type_alias_def: None,
-      namespace_def: None,
-      interface_def: None,
-    };
-
-    eprintln!("doc node {:#?}", doc_node);
-
-    snippet.push_str(" {\n");
+    let mut constructors = vec![];
+    let mut methods = vec![];
+    let mut properties = vec![];
 
     for member in &class_decl.class.body {
       use swc_ecma_ast::ClassMember::*;
@@ -291,18 +305,17 @@ impl DocParser {
             let _ = ctor_snippet.split_off(index);
           }
 
-          let mut ctor_snippet = ctor_snippet.trim_end().to_string();
+          let ctor_snippet = ctor_snippet.trim_end().to_string();
+          let constructor_name =
+            prop_name_to_string(&self.source_map, &ctor.key);
 
-          if !ctor_snippet.ends_with(';') {
-            ctor_snippet.push_str(";");
-          }
-
-          //   eprintln!("ctor jsdoc {:?}", ctor_js_doc);
-          //   eprintln!("ctor snippet {:?}", ctor_snippet);
-          if let Some(doc) = ctor_js_doc {
-            snippet.push_str(&format!("  {}\n", doc));
-          }
-          snippet.push_str(&format!("  {}\n", ctor_snippet));
+          let constructor_def = doc::ClassConstructorDef {
+            js_doc: ctor_js_doc,
+            snippet: ctor_snippet,
+            accessibility: ctor.accessibility,
+            name: constructor_name,
+          };
+          constructors.push(constructor_def);
         }
         Method(class_method) => {
           let method_js_doc = self.get_js_doc(class_method.span());
@@ -322,58 +335,84 @@ impl DocParser {
             let _ = method_snippet.split_off(index);
           }
 
-          let mut method_snippet = method_snippet.trim_end().to_string();
+          let method_snippet = method_snippet.trim_end().to_string();
 
-          if !method_snippet.ends_with(';') {
-            method_snippet.push_str(";");
-          }
+          let method_name =
+            prop_name_to_string(&self.source_map, &class_method.key);
 
-          //   eprintln!("method jsdoc {:?}", method_js_doc);
-          //   eprintln!("method snippet {:?}", method_snippet);
-
-          if let Some(doc) = method_js_doc {
-            snippet.push_str(&format!("  {}\n", doc));
-          }
-          snippet.push_str(&format!("  {}\n", method_snippet));
+          let method_def = doc::ClassMethodDef {
+            js_doc: method_js_doc,
+            snippet: method_snippet,
+            accessibility: class_method.accessibility,
+            is_abstract: class_method.is_abstract,
+            is_static: class_method.is_static,
+            name: method_name,
+            kind: class_method.kind,
+          };
+          methods.push(method_def);
         }
         ClassProp(class_prop) => {
           let prop_js_doc = self.get_js_doc(class_prop.span());
           let prop_snippet =
             self.source_map.span_to_snippet(class_prop.span()).unwrap();
 
-          if let Some(swc_ecma_ast::Accessibility::Private) =
-            class_prop.accessibility
-          {
-            continue;
-          }
+          let ts_type = class_prop.type_ann.as_ref().map(|rt| {
+            let repr = self
+              .source_map
+              .span_to_snippet(rt.span)
+              .expect("Class prop type not found");
+            let repr = repr.trim_start_matches(":").trim_start().to_string();
 
-          //   eprintln!("method jsdoc {:?}", prop_js_doc);
-          //   eprintln!("method snippet {:?}", prop_snippet);
+            doc::TsTypeDef { repr }
+          });
 
-          if let Some(doc) = prop_js_doc {
-            snippet.push_str(&format!("  {}\n", doc));
-          }
-          snippet.push_str(&format!("  {}\n", prop_snippet));
+          use swc_ecma_ast::Expr;
+          let prop_name = match &*class_prop.key {
+            Expr::Ident(ident) => ident.sym.to_string(),
+            _ => "<TODO>".to_string(),
+          };
+
+          let prop_def = doc::ClassPropertyDef {
+            js_doc: prop_js_doc,
+            snippet: prop_snippet,
+            ts_type,
+            readonly: class_prop.readonly,
+            is_abstract: class_prop.is_abstract,
+            is_static: class_prop.is_static,
+            accessibility: class_prop.accessibility,
+            name: prop_name,
+          };
+          properties.push(prop_def);
         }
-        TsIndexSignature(ts_index_signature) => {
-          let index_js_doc = self.get_js_doc(ts_index_signature.span());
-          let index_snippet = self
-            .source_map
-            .span_to_snippet(ts_index_signature.span())
-            .unwrap();
-
-          if let Some(doc) = index_js_doc {
-            snippet.push_str(&format!("  {}\n", doc));
-          }
-          snippet.push_str(&format!("  {}\n", index_snippet));
-        }
-        // Ignored in output
+        // TODO:
+        TsIndexSignature(_) => {}
         PrivateMethod(_) => {}
         PrivateProp(_) => {}
       }
     }
 
-    snippet.push_str("}");
+    let class_name = class_decl.ident.sym.to_string();
+    let class_def = doc::ClassDef {
+      is_abstract: class_decl.class.is_abstract,
+      constructors,
+      properties,
+      methods,
+    };
+
+    let doc_node = doc::DocNode {
+      kind: doc::DocNodeKind::Class,
+      name: class_name,
+      snippet: snippet.to_string(),
+      location: self.source_map.lookup_char_pos(parent_span.lo()).into(),
+      js_doc: js_doc.clone(),
+      function_def: None,
+      variable_def: None,
+      enum_def: None,
+      class_def: Some(class_def),
+      type_alias_def: None,
+      namespace_def: None,
+      interface_def: None,
+    };
 
     doc_node
   }
@@ -391,7 +430,7 @@ impl DocParser {
 
     let interface_name = interface_decl.id.sym.to_string();
 
-    let doc_node = doc::DocNode {
+    doc::DocNode {
       kind: doc::DocNodeKind::Interface,
       name: interface_name,
       snippet: snippet.to_string(),
@@ -404,10 +443,7 @@ impl DocParser {
       type_alias_def: None,
       namespace_def: None,
       interface_def: Some(doc::InterfaceDef {}),
-    };
-
-    eprintln!("doc node {:#?}", doc_node);
-    doc_node
+    }
   }
 
   fn get_doc_for_ts_enum_decl(
@@ -440,7 +476,7 @@ impl DocParser {
 
     let enum_def = doc::EnumDef { members };
 
-    let doc_node = doc::DocNode {
+    doc::DocNode {
       kind: doc::DocNodeKind::Enum,
       name: enum_name,
       snippet: snippet.to_string(),
@@ -453,10 +489,7 @@ impl DocParser {
       type_alias_def: None,
       namespace_def: None,
       interface_def: None,
-    };
-
-    eprintln!("doc node {:#?}", doc_node);
-    doc_node
+    }
   }
 
   fn get_doc_for_ts_module(
@@ -478,7 +511,9 @@ impl DocParser {
       TsModuleName::Str(str_) => str_.value.to_string(),
     };
 
-    let doc_node = doc::DocNode {
+    // TODO: parse the body, either nested namespace or `TsModuleBlock`
+    // (which is just like module body)
+    doc::DocNode {
       kind: doc::DocNodeKind::Namespace,
       name: namespace_name,
       snippet: snippet.to_string(),
@@ -491,10 +526,7 @@ impl DocParser {
       type_alias_def: None,
       namespace_def: Some(doc::NamespaceDef {}),
       interface_def: None,
-    };
-
-    eprintln!("doc node {:#?}", doc_node);
-    doc_node
+    }
   }
 
   pub fn get_doc_node_for_export_decl(
@@ -503,7 +535,7 @@ impl DocParser {
   ) -> doc::DocNode {
     let export_span = export_decl.span();
     use swc_ecma_ast::Decl;
-
+    eprintln!("export decl: \n {:#?}", export_decl);
     match &export_decl.decl {
       Decl::Class(class_decl) => {
         self.get_doc_for_class_decl(export_span, class_decl)
@@ -523,6 +555,28 @@ impl DocParser {
         self.get_doc_for_ts_module(export_span, ts_module)
       }
     }
+  }
+
+  pub fn get_doc_node_for_module_decl(
+    &self,
+    module_decl: &swc_ecma_ast::ModuleDecl,
+  ) -> Option<doc::DocNode> {
+    use swc_ecma_ast::ModuleDecl;
+
+    let maybe_doc_node = match module_decl {
+      ModuleDecl::ExportDecl(export_decl) => {
+        Some(self.get_doc_node_for_export_decl(export_decl))
+      }
+      ModuleDecl::ExportNamed(_) => None,
+      ModuleDecl::ExportDefaultDecl(_) => None,
+      ModuleDecl::ExportDefaultExpr(_) => None,
+      ModuleDecl::ExportAll(_) => None,
+      ModuleDecl::TsExportAssignment(_) => None,
+      ModuleDecl::TsNamespaceExport(_) => None,
+      _ => None,
+    };
+
+    maybe_doc_node
   }
 
   pub fn get_docs(
@@ -566,21 +620,7 @@ impl DocParser {
 
       for node in module.body.iter() {
         if let swc_ecma_ast::ModuleItem::ModuleDecl(module_decl) = node {
-          use swc_ecma_ast::ModuleDecl::*;
-
-          let maybe_doc_node = match module_decl {
-            ExportDecl(export_decl) => {
-              Some(self.get_doc_node_for_export_decl(export_decl))
-            }
-            ExportNamed(_) => None,
-            ExportDefaultDecl(_) => None,
-            ExportDefaultExpr(_) => None,
-            ExportAll(_) => None,
-            TsExportAssignment(_) => None,
-            TsNamespaceExport(_) => None,
-            _ => None,
-          };
-
+          let maybe_doc_node = self.get_doc_node_for_module_decl(module_decl);
           if let Some(doc_entry) = maybe_doc_node {
             doc_entries.push(doc_entry);
           }

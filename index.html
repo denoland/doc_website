@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="doc">
+        <ol>
+            <li v-for="docNode in docs">
+                <i>{{ docNode.kind}}</i> <strong>{{ docNode.name }}</strong>
+                <pre>{{ docNode.location.filename }}:{{ docNode.location.line }}</pre>
+                <pre v-if="docNode.jsDoc">{{ docNode.jsDoc }}</pre>
+
+                <pre>{{ docNode.snippet }}</pre>
+
+                <div v-if="docNode.functionDef">
+                    <b>Params:</b><br>
+                    <ul>
+                        <li v-for="param in docNode.functionDef.params">
+                            <span>{{ param.name }}</span>
+                            <span v-if="param.tsType">: <i>{{ param.tsType.repr }}</i></span>
+                        </li>
+                    </ul>
+                    <b>Return type:</b><br>
+                    <i>{{ docNode.functionDef.returnType.repr }}</i>
+                </div>
+
+                <div v-if="docNode.classDef">
+                    <b>Constructors:</b><br>
+                    <ul>
+                        <li v-for="ctor in docNode.classDef.constructors">
+                            <i v-if="ctor.accessibility">{{ ctor.accessibility }}</i>
+                            <span>{{ ctor.name }}</span>
+                            <pre v-if="ctor.jsDoc">{{ ctor.jsDoc }}</pre>
+                            <pre>{{ ctor.snippet }}</pre>
+                        </li>
+                    </ul>
+
+                    <b>Properties:</b><br>
+                    <ul>
+                        <li v-for="prop in docNode.classDef.properties">
+                            <i>{{ prop.accessibility }}</i>
+                            <span>{{ prop.name }}</span>
+                            <span v-if="prop.tsType">: <i>{{ prop.tsType.repr }}</i></span>
+                            <pre v-if="prop.jsDoc">{{ prop.jsDoc }}</pre>
+                            <pre>{{ prop.snippet }}</pre>
+                        </li>
+                    </ul>
+
+                    <b>Methods:</b><br>
+                    <ul>
+                        <li v-for="method in docNode.classDef.methods">
+                            <i>{{ method.accessibility }} {{ method.kind }}</i>
+                            <span>{{ method.name }}</span>
+                            <pre v-if="method.jsDoc">{{ method.jsDoc }}</pre>
+                            <pre>{{ method.snippet }}</pre>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- DEBUG -->
+                <br><br>
+
+                <div>
+                    JSON:<br>
+                    <pre>{{ JSON.stringify(docNode, null, 2) }}</pre>
+                </div>
+
+                <br><br>
+            </li>
+        </ol>
+    </div>
+    <script src="./script.js" type="module"></script>
+</body>
+</html>

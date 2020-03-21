@@ -1,26 +1,6 @@
-#![allow(unused)]
-
 use serde::Serialize;
-
 use swc_common;
-
 use swc_ecma_ast;
-
-// export interface DocEntry {
-//  kind: "class" | "method" | "property" | "enum" | "enumMember";
-//  name: string;
-//  typestr?: string;
-//  docstr?: string;
-//  args?: ArgEntry[];
-//  retType?: string;
-//  sourceUrl?: string;
-// }
-
-// export interface ArgEntry {
-//  name: string;
-//  typestr?: string;
-//  docstr?: string;
-// }
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -37,53 +17,96 @@ pub enum DocNodeKind {
 #[derive(Debug, Serialize)]
 pub struct TsTypeDef {
   pub repr: String,
+  // TODO: make this struct more conrete
 }
 
 #[derive(Debug, Serialize)]
-pub struct ArgDef {
+#[serde(rename_all = "camelCase")]
+pub struct ParamDef {
   pub name: String,
-  pub type_: TsTypeDef,
+  pub ts_type: Option<TsTypeDef>,
 }
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct FunctionDef {
-  pub args: Vec<ArgDef>,
+  pub params: Vec<ParamDef>,
   pub return_type: Option<TsTypeDef>,
   pub is_async: bool,
   pub is_generator: bool,
   // TODO: type_params, decorators
 }
-#[derive(Debug, Serialize)]
-pub enum VariableKind {}
 
 #[derive(Debug, Serialize)]
 pub struct VariableDef {
   type_: TsTypeDef,
   kind: swc_ecma_ast::VarDeclKind,
 }
+
 #[derive(Debug, Serialize)]
 pub struct EnumMemberDef {
   pub name: String,
 }
+
 #[derive(Debug, Serialize)]
 pub struct EnumDef {
   pub members: Vec<EnumMemberDef>,
 }
+
 #[derive(Debug, Serialize)]
-pub struct ClassConstructorDef {}
-#[derive(Debug, Serialize)]
-pub struct ClassPropertyDef {}
-#[derive(Debug, Serialize)]
-pub struct ClassMethodDef {}
-#[derive(Debug, Serialize)]
-pub struct ClassDef {
-  pub constructors: Vec<ClassConstructorDef>,
-  pub properties: Vec<ClassConstructorDef>,
-  pub methods: Vec<ClassConstructorDef>,
+#[serde(rename_all = "camelCase")]
+pub struct ClassConstructorDef {
+  pub js_doc: Option<String>,
+  pub snippet: String,
+  pub accessibility: Option<swc_ecma_ast::Accessibility>,
+  pub name: String,
 }
+
 #[derive(Debug, Serialize)]
-pub struct TypeAliasDef {}
+#[serde(rename_all = "camelCase")]
+pub struct ClassPropertyDef {
+  pub js_doc: Option<String>,
+  pub snippet: String,
+  pub ts_type: Option<TsTypeDef>,
+  pub readonly: bool,
+  pub accessibility: Option<swc_ecma_ast::Accessibility>,
+  pub is_abstract: bool,
+  pub is_static: bool,
+  pub name: String,
+}
+
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ClassMethodDef {
+  pub js_doc: Option<String>,
+  pub snippet: String,
+  //   pub ts_type: Option<TsTypeDef>,
+  //   pub readonly: bool,
+  pub accessibility: Option<swc_ecma_ast::Accessibility>,
+  pub is_abstract: bool,
+  pub is_static: bool,
+  pub name: String,
+  pub kind: swc_ecma_ast::MethodKind,
+}
+
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ClassDef {
+  // TODO: decorators, super_class, implements,
+  // type_params, super_type_params
+  pub is_abstract: bool,
+  pub constructors: Vec<ClassConstructorDef>,
+  pub properties: Vec<ClassPropertyDef>,
+  pub methods: Vec<ClassMethodDef>,
+}
+
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct TypeAliasDef {
+  // pub ts_type: TsTypeDef,
+// TODO: type_params
+}
+
 #[derive(Debug, Serialize)]
 pub struct NamespaceDef {}
 
@@ -126,18 +149,25 @@ pub struct DocNode {
   pub snippet: String,
   pub location: Location,
   pub js_doc: Option<String>,
+
   #[serde(skip_serializing_if = "Option::is_none")]
   pub function_def: Option<FunctionDef>,
+
   #[serde(skip_serializing_if = "Option::is_none")]
   pub variable_def: Option<VariableDef>,
+
   #[serde(skip_serializing_if = "Option::is_none")]
   pub enum_def: Option<EnumDef>,
+
   #[serde(skip_serializing_if = "Option::is_none")]
   pub class_def: Option<ClassDef>,
+
   #[serde(skip_serializing_if = "Option::is_none")]
   pub type_alias_def: Option<TypeAliasDef>,
+
   #[serde(skip_serializing_if = "Option::is_none")]
   pub namespace_def: Option<NamespaceDef>,
+
   #[serde(skip_serializing_if = "Option::is_none")]
   pub interface_def: Option<InterfaceDef>,
 }
