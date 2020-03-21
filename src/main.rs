@@ -1,9 +1,5 @@
-use std::sync::Arc;
-use std::sync::RwLock;
 use swc_common;
-use swc_common::errors::Diagnostic;
 use swc_common::errors::DiagnosticBuilder;
-use swc_common::errors::Emitter;
 use swc_common::FileName;
 use swc_common::SourceMap;
 use swc_common::Span;
@@ -18,26 +14,9 @@ use swc_ecma_parser::Syntax;
 use swc_ecma_parser::TsConfig;
 
 use crate::doc::parser::DocParser;
+use crate::doc::parser::SwcDiagnostics;
 use crate::doc::ts_type::ts_type_ann_to_def;
 mod doc;
-
-pub type SwcDiagnostics = Vec<Diagnostic>;
-
-#[derive(Clone, Default)]
-pub(crate) struct BufferedError(Arc<RwLock<SwcDiagnostics>>);
-
-impl Emitter for BufferedError {
-  fn emit(&mut self, db: &DiagnosticBuilder) {
-    self.0.write().unwrap().push((**db).clone());
-  }
-}
-
-impl From<BufferedError> for Vec<Diagnostic> {
-  fn from(buf: BufferedError) -> Self {
-    let s = buf.0.read().unwrap();
-    s.clone()
-  }
-}
 
 fn prop_name_to_string(
   source_map: &SourceMap,
@@ -156,7 +135,7 @@ fn get_doc_for_var_decl(
 
   let var_name = match &var_declarator.name {
     swc_ecma_ast::Pat::Ident(ident) => ident.sym.to_string(),
-    _ => "TODO>".to_string(),
+    _ => "<TODO>".to_string(),
   };
 
   doc::DocNode {
@@ -464,6 +443,52 @@ fn get_doc_for_ts_enum_decl(
   }
 }
 
+fn get_doc_for_ts_namespace_decl(
+  doc_parser: &DocParser,
+  ts_namespace_decl: &swc_ecma_ast::TsNamespaceDecl,
+) -> doc::DocNode {
+  let js_doc = doc_parser.js_doc_for_span(ts_namespace_decl.span);
+  let snippet = doc_parser
+    .source_map
+    .span_to_snippet(ts_namespace_decl.span)
+    .expect("Snippet not found")
+    .trim_end()
+    .to_string();
+
+  let namespace_name = ts_namespace_decl.id.sym.to_string();
+
+  use swc_ecma_ast::TsNamespaceBody::*;
+
+  let elements = match &*ts_namespace_decl.body {
+    TsModuleBlock(ts_module_block) => {
+      get_doc_nodes_for_module_body(doc_parser, ts_module_block.body.clone())
+    }
+    TsNamespaceDecl(ts_namespace_decl) => {
+      vec![get_doc_for_ts_namespace_decl(doc_parser, ts_namespace_decl)]
+    }
+  };
+
+  let ns_def = doc::NamespaceDef { elements };
+
+  doc::DocNode {
+    kind: doc::DocNodeKind::Namespace,
+    name: namespace_name,
+    snippet,
+    location: doc_parser
+      .source_map
+      .lookup_char_pos(ts_namespace_decl.span.lo())
+      .into(),
+    js_doc,
+    function_def: None,
+    variable_def: None,
+    enum_def: None,
+    class_def: None,
+    type_alias_def: None,
+    namespace_def: Some(ns_def),
+    interface_def: None,
+  }
+}
+
 fn get_doc_for_ts_module(
   doc_parser: &DocParser,
   parent_span: Span,
@@ -483,8 +508,23 @@ fn get_doc_for_ts_module(
     TsModuleName::Str(str_) => str_.value.to_string(),
   };
 
-  // TODO: parse the body, either nested namespace or `TsModuleBlock`
-  // (which is just like module body)
+  let elements = if let Some(body) = &ts_module_decl.body {
+    use swc_ecma_ast::TsNamespaceBody::*;
+
+    match &body {
+      TsModuleBlock(ts_module_block) => {
+        get_doc_nodes_for_module_body(doc_parser, ts_module_block.body.clone())
+      }
+      TsNamespaceDecl(ts_namespace_decl) => {
+        vec![get_doc_for_ts_namespace_decl(doc_parser, ts_namespace_decl)]
+      }
+    }
+  } else {
+    vec![]
+  };
+
+  let ns_def = doc::NamespaceDef { elements };
+
   doc::DocNode {
     kind: doc::DocNodeKind::Namespace,
     name: namespace_name,
@@ -499,7 +539,7 @@ fn get_doc_for_ts_module(
     enum_def: None,
     class_def: None,
     type_alias_def: None,
-    namespace_def: Some(doc::NamespaceDef {}),
+    namespace_def: Some(ns_def),
     interface_def: None,
   }
 }
@@ -510,13 +550,14 @@ pub fn get_doc_node_for_export_decl(
 ) -> doc::DocNode {
   let export_span = export_decl.span();
   use swc_ecma_ast::Decl;
-  eprintln!("export decl: \n {:#?}", export_decl);
   match &export_decl.decl {
     Decl::Class(class_decl) => {
       get_doc_for_class_decl(doc_parser, export_span, class_decl)
     }
     Decl::Fn(fn_decl) => get_doc_for_fn_decl(doc_parser, export_span, fn_decl),
-    Decl::Var(var_decl) => get_doc_for_var_decl(doc_parser, export_span, var_decl),
+    Decl::Var(var_decl) => {
+      get_doc_for_var_decl(doc_parser, export_span, var_decl)
+    }
     Decl::TsInterface(ts_interface_decl) => {
       get_doc_for_ts_interface_decl(doc_parser, export_span, ts_interface_decl)
     }
@@ -550,6 +591,23 @@ pub fn get_doc_node_for_module_decl(
     ModuleDecl::TsNamespaceExport(_) => None,
     _ => None,
   }
+}
+
+fn get_doc_nodes_for_module_body(
+  doc_parser: &DocParser,
+  module_body: Vec<swc_ecma_ast::ModuleItem>,
+) -> Vec<doc::DocNode> {
+  let mut doc_entries: Vec<doc::DocNode> = vec![];
+  for node in module_body.iter() {
+    if let swc_ecma_ast::ModuleItem::ModuleDecl(module_decl) = node {
+      let maybe_doc_node =
+        get_doc_node_for_module_decl(&doc_parser, module_decl);
+      if let Some(doc_entry) = maybe_doc_node {
+        doc_entries.push(doc_entry);
+      }
+    }
+  }
+  doc_entries
 }
 
 pub fn get_docs(
@@ -590,18 +648,7 @@ pub fn get_docs(
           SwcDiagnostics::from(buffered_err)
         })?;
 
-    let mut doc_entries: Vec<doc::DocNode> = vec![];
-
-    for node in module.body.iter() {
-      if let swc_ecma_ast::ModuleItem::ModuleDecl(module_decl) = node {
-        let maybe_doc_node =
-          get_doc_node_for_module_decl(&doc_parser, module_decl);
-        if let Some(doc_entry) = maybe_doc_node {
-          doc_entries.push(doc_entry);
-        }
-      }
-    }
-
+    let doc_entries = get_doc_nodes_for_module_body(&doc_parser, module.body);
     Ok(doc_entries)
   })
 }
@@ -642,9 +689,8 @@ export function foo(a: string, b: number): void {
     console.log("Hello world");
 }
 "#;
-    let result = get_docs("test.ts".to_string(), source_code.to_string());
-    assert!(result.is_ok());
-    let entries = result.unwrap();
+    let entries =
+      get_docs("test.ts".to_string(), source_code.to_string()).unwrap();
     assert_eq!(entries.len(), 1);
     let entry = &entries[0];
     assert_eq!(entry.kind, doc::DocNodeKind::Function);
@@ -671,9 +717,8 @@ export function foo(a: string, b: number): void {
   fn export_const() {
     let source_code =
             "/** Something about fizzBuzz */\nexport const fizzBuzz = \"fizzBuzz\";\n";
-    let result = get_docs("test.ts".to_string(), source_code.to_string());
-    assert!(result.is_ok());
-    let entries = result.unwrap();
+    let entries =
+      get_docs("test.ts".to_string(), source_code.to_string()).unwrap();
     assert_eq!(entries.len(), 1);
     let entry = &entries[0];
     assert_eq!(entry.kind, doc::DocNodeKind::Variable);
@@ -708,9 +753,8 @@ export class Foobar extends Fizz implements Buzz {
     }
 }
 "#;
-    let result = get_docs("test.ts".to_string(), source_code.to_string());
-    assert!(result.is_ok());
-    let entries = result.unwrap();
+    let entries =
+      get_docs("test.ts".to_string(), source_code.to_string()).unwrap();
     assert_eq!(entries.len(), 1);
     let entry = &entries[0];
     assert_eq!(entry.kind, doc::DocNodeKind::Class);
@@ -732,9 +776,8 @@ export interface Reader {
     read(buf: Uint8Array, something: unknown): Promise<number>
 }
     "#;
-    let result = get_docs("test.ts".to_string(), source_code.to_string());
-    assert!(result.is_ok());
-    let entries = result.unwrap();
+    let entries =
+      get_docs("test.ts".to_string(), source_code.to_string()).unwrap();
     assert_eq!(entries.len(), 1);
     let entry = &entries[0];
     assert_eq!(entry.kind, doc::DocNodeKind::Interface);
@@ -757,9 +800,8 @@ export interface Reader {
 /** Array holding numbers */
 export type NumberArray = Array<number>;
     "#;
-    let result = get_docs("test.ts".to_string(), source_code.to_string());
-    assert!(result.is_ok());
-    let entries = result.unwrap();
+    let entries =
+      get_docs("test.ts".to_string(), source_code.to_string()).unwrap();
     assert_eq!(entries.len(), 1);
     let entry = &entries[0];
     assert_eq!(entry.kind, doc::DocNodeKind::TypeAlias);
@@ -782,9 +824,8 @@ export enum Hello {
     Buzz = "buzz",
 }
     "#;
-    let result = get_docs("test.ts".to_string(), source_code.to_string());
-    assert!(result.is_ok());
-    let entries = result.unwrap();
+    let entries =
+      get_docs("test.ts".to_string(), source_code.to_string()).unwrap();
     assert_eq!(entries.len(), 1);
     let entry = &entries[0];
     assert_eq!(entry.kind, doc::DocNodeKind::Enum);

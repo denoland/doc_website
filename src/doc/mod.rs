@@ -107,7 +107,9 @@ pub struct TypeAliasDef {
 }
 
 #[derive(Debug, Serialize)]
-pub struct NamespaceDef {}
+pub struct NamespaceDef {
+  pub elements: Vec<DocNode>,
+}
 
 #[derive(Debug, Serialize)]
 pub struct InterfaceDef {
