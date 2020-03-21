@@ -39,7 +39,7 @@ pub fn ts_type_ann_to_def(
   let repr = source_map
     .span_to_snippet(type_ann.span)
     .expect("Class prop type not found");
-  let repr = repr.trim_start_matches(":").trim_start().to_string();
+  let repr = repr.trim_start_matches(':').trim_start().to_string();
 
   TsTypeDef { repr }
 }

@@ -1,5 +1,10 @@
 // export { fizz, buzz } from "./bar.ts"
 
+
+// /** Something about fizzBuzz */
+// export const fizzBuzz: string = "fizzBuzz";
+
+
 // /**
 //  * Complicated function
 //  */
@@ -23,37 +28,34 @@
 //     console.log("Hello world");
 // }
 
-/** Class doc */
-export class Foobar extends Fizz implements Buzz {
-    private private1: boolean;
-    /** Js doc for protected1 */
-    protected protected1: number;
-    public public1: boolean;
-    /** 
-     * Js doc for public2
-     * 
-     * Foobar
-     * 
-     * Foo
-     */
-    public2: number;
+// /** Class doc */
+// export class Foobar extends Fizz implements Buzz {
+//     private private1: boolean;
+//     /** Js doc for protected1 */
+//     protected protected1: number;
+//     public public1: boolean;
+//     /** 
+//      * Js doc for public2
+//      * 
+//      * Foobar
+//      * 
+//      * Foo
+//      */
+//     public2: number;
 
-    /** Constructor js doc */
-    constructor(name: string, private private2: number, protected protected2: number) {}
+//     /** Constructor js doc */
+//     constructor(name: string, private private2: number, protected protected2: number) {}
 
-    /** Async foo method */
-    async foo(): Promise<void> {
-        //
-    }
+//     /** Async foo method */
+//     async foo(): Promise<void> {
+//         //
+//     }
 
-    /** Sync bar method */
-    bar(): void {
-        //
-    }
-}
-
-// /** Something about fizzBuzz */
-// export const fizzBuzz: string = "fizzBuzz";
+//     /** Sync bar method */
+//     bar(): void {
+//         //
+//     }
+// }
 
 // /**
 //  * Interface js doc
@@ -63,13 +65,15 @@ export class Foobar extends Fizz implements Buzz {
 //     read(buf: Uint8Array, something: unknown): Promise<number>
 // }
 
-// /** Array holding numbers */
-// export type NumberArray = Array<number>;
+/** Array holding numbers */
+export type NumberArray = Array<number>;
 
-// export type OperatingSystem = "mac" | "win" | "linux";
+export type OperatingSystem = "mac" | "win" | "linux";
 
-// export type Arch = "x64" | "arm64";
+export type Arch = "x64" | "arm64";
 
+export type BuildInfo = OperatingSystem | Arch;
+export type ReadonlyArray<T> = Array<T>;
 // /**
 //  * Some enum for good measure
 //  */

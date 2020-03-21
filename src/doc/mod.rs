@@ -2,6 +2,7 @@ use serde::Serialize;
 use swc_common;
 use swc_ecma_ast;
 
+pub mod parser;
 pub mod ts_type;
 
 use ts_type::TsTypeDef;
