@@ -573,23 +573,62 @@ pub fn get_doc_node_for_export_decl(
   }
 }
 
-pub fn get_doc_node_for_module_decl(
+pub fn get_doc_nodes_for_named_export(
+  _doc_parser: &DocParser,
+  named_export: &swc_ecma_ast::NamedExport,
+) -> Vec<doc::DocNode> {
+  let file_name = named_export.src.as_ref().expect("").value.to_string();
+  // TODO: resolve specifier
+  let source_code =
+    std::fs::read_to_string(&file_name).expect("Failed to read file");
+  let doc_nodes =
+    get_docs(file_name, source_code).expect("Failed to print docs");
+  let reexports: Vec<String> = named_export
+    .specifiers
+    .iter()
+    .map(|export_specifier| {
+      use swc_ecma_ast::ExportSpecifier::*;
+
+      match export_specifier {
+        Named(named_export_specifier) => {
+          Some(named_export_specifier.orig.sym.to_string())
+        }
+        // TODO:
+        Namespace(_) => None,
+        Default(_) => None,
+      }
+    })
+    .filter(|s| s.is_some())
+    .map(|s| s.unwrap())
+    .collect();
+
+  let reexports_docs: Vec<doc::DocNode> = doc_nodes
+    .into_iter()
+    .filter(|doc_node| reexports.contains(&doc_node.name))
+    .collect();
+
+  reexports_docs
+}
+
+pub fn get_doc_nodes_for_module_decl(
   doc_parser: &DocParser,
   module_decl: &swc_ecma_ast::ModuleDecl,
-) -> Option<doc::DocNode> {
+) -> Vec<doc::DocNode> {
   use swc_ecma_ast::ModuleDecl;
 
   match module_decl {
     ModuleDecl::ExportDecl(export_decl) => {
-      Some(get_doc_node_for_export_decl(doc_parser, export_decl))
+      vec![get_doc_node_for_export_decl(doc_parser, export_decl)]
     }
-    ModuleDecl::ExportNamed(_) => None,
-    ModuleDecl::ExportDefaultDecl(_) => None,
-    ModuleDecl::ExportDefaultExpr(_) => None,
-    ModuleDecl::ExportAll(_) => None,
-    ModuleDecl::TsExportAssignment(_) => None,
-    ModuleDecl::TsNamespaceExport(_) => None,
-    _ => None,
+    ModuleDecl::ExportNamed(named_export) => {
+      get_doc_nodes_for_named_export(doc_parser, named_export)
+    }
+    ModuleDecl::ExportDefaultDecl(_) => vec![],
+    ModuleDecl::ExportDefaultExpr(_) => vec![],
+    ModuleDecl::ExportAll(_) => vec![],
+    ModuleDecl::TsExportAssignment(_) => vec![],
+    ModuleDecl::TsNamespaceExport(_) => vec![],
+    _ => vec![],
   }
 }
 
@@ -600,11 +639,8 @@ fn get_doc_nodes_for_module_body(
   let mut doc_entries: Vec<doc::DocNode> = vec![];
   for node in module_body.iter() {
     if let swc_ecma_ast::ModuleItem::ModuleDecl(module_decl) = node {
-      let maybe_doc_node =
-        get_doc_node_for_module_decl(&doc_parser, module_decl);
-      if let Some(doc_entry) = maybe_doc_node {
-        doc_entries.push(doc_entry);
-      }
+      doc_entries
+        .extend(get_doc_nodes_for_module_decl(&doc_parser, module_decl));
     }
   }
   doc_entries

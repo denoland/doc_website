@@ -1,11 +1,33 @@
 [
   {
     "kind": "variable",
+    "name": "fizz",
+    "snippet": "export const fizz = \"fizz\";",
+    "location": {
+      "filename": "./bar.ts",
+      "line": 1,
+      "col": 0
+    },
+    "jsDoc": null
+  },
+  {
+    "kind": "variable",
+    "name": "buzz",
+    "snippet": "export const buzz = \"buzz\";",
+    "location": {
+      "filename": "./bar.ts",
+      "line": 3,
+      "col": 0
+    },
+    "jsDoc": null
+  },
+  {
+    "kind": "variable",
     "name": "fizzBuzz",
     "snippet": "export const fizzBuzz: string = \"fizzBuzz\";",
     "location": {
       "filename": "./test.ts",
-      "line": 5,
+      "line": 7,
       "col": 0
     },
     "jsDoc": "/** Something about fizzBuzz */"
@@ -16,7 +38,7 @@
     "snippet": "export function diagnostics(a: Promise<string>, b: () => Record<string, string>): Promise<[DiagnosticItem[] | undefined, Record<string, string>]>",
     "location": {
       "filename": "./test.ts",
-      "line": 10,
+      "line": 12,
       "col": 0
     },
     "jsDoc": "/**\n * Complicated function\n */",
@@ -48,7 +70,7 @@
     "snippet": "export function foo(a: string, b: number): void",
     "location": {
       "filename": "./test.ts",
-      "line": 21,
+      "line": 23,
       "col": 0
     },
     "jsDoc": "/**\n * Hello there, this is a multiline JSdoc.\n * \n * It has many lines\n * \n * Or not that many?\n */",
@@ -80,7 +102,7 @@
     "snippet": "export function bar(a: string, b: number): void",
     "location": {
       "filename": "./test.ts",
-      "line": 26,
+      "line": 28,
       "col": 0
     },
     "jsDoc": "/** This is single line JSdoc */",
@@ -112,7 +134,7 @@
     "snippet": "export class Foobar extends Fizz implements Buzz",
     "location": {
       "filename": "./test.ts",
-      "line": 31,
+      "line": 33,
       "col": 0
     },
     "jsDoc": "/** Class doc */",
@@ -204,7 +226,7 @@
     "snippet": "export interface Reader {\n    /** Read n bytes */\n    read(buf: Uint8Array, something: unknown): Promise<number>\n}",
     "location": {
       "filename": "./test.ts",
-      "line": 62,
+      "line": 64,
       "col": 0
     },
     "jsDoc": "/**\n * Interface js doc\n */",
@@ -216,7 +238,7 @@
     "snippet": "export type NumberArray = Array<number>;",
     "location": {
       "filename": "./test.ts",
-      "line": 68,
+      "line": 70,
       "col": 0
     },
     "jsDoc": "/** Array holding numbers */",
@@ -228,7 +250,7 @@
     "snippet": "export type OperatingSystem = \"mac\" | \"win\" | \"linux\";",
     "location": {
       "filename": "./test.ts",
-      "line": 69,
+      "line": 71,
       "col": 0
     },
     "jsDoc": null,
@@ -240,7 +262,7 @@
     "snippet": "export type Arch = \"x64\" | \"arm64\";",
     "location": {
       "filename": "./test.ts",
-      "line": 70,
+      "line": 72,
       "col": 0
     },
     "jsDoc": null,
@@ -252,7 +274,7 @@
     "snippet": "export type BuildInfo = OperatingSystem | Arch;",
     "location": {
       "filename": "./test.ts",
-      "line": 71,
+      "line": 73,
       "col": 0
     },
     "jsDoc": null,
@@ -264,7 +286,7 @@
     "snippet": "export type ReadonlyArray<T> = Array<T>;",
     "location": {
       "filename": "./test.ts",
-      "line": 72,
+      "line": 74,
       "col": 0
     },
     "jsDoc": null,
@@ -276,7 +298,7 @@
     "snippet": "export enum Hello {\n    World = \"world\",\n    Fizz = \"fizz\",\n    Buzz = \"buzz\",\n}",
     "location": {
       "filename": "./test.ts",
-      "line": 77,
+      "line": 79,
       "col": 0
     },
     "jsDoc": "/**\n * Some enum for good measure\n */",
@@ -300,7 +322,7 @@
     "snippet": "export namespace Deno {\n    /** Export var JSdoc */\n    export var x = 1;  \n\n    /**\n     * Nested namespace JSdoc\n     */\n    export namespace Nested {\n        /** nestedConst JSdoc */\n        export const nestedConst = \"a\";\n    }\n\n    /** Nested.Deeply namespace JSdoc */\n    export namespace Nested.Deeply {\n        /** \n         * nestedDeeplyConst JSdoc \n         */\n        export const nestedDeeplyConst = \"a\";\n    }\n}",
     "location": {
       "filename": "./test.ts",
-      "line": 84,
+      "line": 86,
       "col": 0
     },
     "jsDoc": "/** Root namespace JSdoc */",
@@ -312,7 +334,7 @@
           "snippet": "export var x = 1;",
           "location": {
             "filename": "./test.ts",
-            "line": 86,
+            "line": 88,
             "col": 4
           },
           "jsDoc": "/** Export var JSdoc */"
@@ -323,7 +345,7 @@
           "snippet": "export namespace Nested {\n        /** nestedConst JSdoc */\n        export const nestedConst = \"a\";\n    }",
           "location": {
             "filename": "./test.ts",
-            "line": 91,
+            "line": 93,
             "col": 4
           },
           "jsDoc": "/**\n     * Nested namespace JSdoc\n     */",
@@ -335,7 +357,7 @@
                 "snippet": "export const nestedConst = \"a\";",
                 "location": {
                   "filename": "./test.ts",
-                  "line": 93,
+                  "line": 95,
                   "col": 8
                 },
                 "jsDoc": "/** nestedConst JSdoc */"
@@ -349,7 +371,7 @@
           "snippet": "export namespace Nested.Deeply {\n        /** \n         * nestedDeeplyConst JSdoc \n         */\n        export const nestedDeeplyConst = \"a\";\n    }",
           "location": {
             "filename": "./test.ts",
-            "line": 97,
+            "line": 99,
             "col": 4
           },
           "jsDoc": "/** Nested.Deeply namespace JSdoc */",
@@ -361,7 +383,7 @@
                 "snippet": "Deeply {\n        /** \n         * nestedDeeplyConst JSdoc \n         */\n        export const nestedDeeplyConst = \"a\";\n    }",
                 "location": {
                   "filename": "./test.ts",
-                  "line": 97,
+                  "line": 99,
                   "col": 28
                 },
                 "jsDoc": null,
@@ -373,7 +395,7 @@
                       "snippet": "export const nestedDeeplyConst = \"a\";",
                       "location": {
                         "filename": "./test.ts",
-                        "line": 101,
+                        "line": 103,
                         "col": 8
                       },
                       "jsDoc": "/** \n         * nestedDeeplyConst JSdoc \n         */"

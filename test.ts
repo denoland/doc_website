@@ -1,4 +1,6 @@
-// export { fizz, buzz } from "./bar.ts"
+export { fizz, buzz as renamedBuzz } from "./bar.ts"
+export * from "./bar.ts";
+export * as barNamespace from "./bar.ts";
 
 
 /** Something about fizzBuzz */
