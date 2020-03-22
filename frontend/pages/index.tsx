@@ -16,7 +16,11 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {docs ? <>{docs.length}</> : <div>Loading...</div>}
+      {docs ? (
+        <div className="text-gray-900 text-3xl">{docs.length}</div>
+      ) : (
+        <div className="text-gray-600 text-lg">Loading...</div>
+      )}
     </>
   );
 };
