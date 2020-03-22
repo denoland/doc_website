@@ -57,6 +57,7 @@ jobs:
 
       - name: Insall node deps
         run: yarn --frozen-lockfile
+        working-directory: frontend
 
       - name: Format
         run: yarn format --check
