@@ -75,4 +75,6 @@ jobs:
 
       - name: Test
         run: yarn test --passWithNoTests
+        env:
+          CI: "true"
         working-directory: frontend
