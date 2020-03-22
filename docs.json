@@ -208,9 +208,9 @@
         {
           "jsDoc": "/** Async foo method */",
           "snippet": "async foo(): Promise<void>",
-          "accessibility": null,
-          "isAbstract": false,
-          "isStatic": false,
+          "accessibility": "protected",
+          "isAbstract": true,
+          "isStatic": true,
           "name": "foo",
           "kind": "method"
         },

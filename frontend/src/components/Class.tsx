@@ -1,6 +1,12 @@
 import React from "react";
 import { Page } from "./Page";
-import { cleanJSDoc, DocNodeClass } from "../util/docs";
+import {
+  cleanJSDoc,
+  DocNodeClass,
+  ClassConstructorDef,
+  ClassPropertyDef,
+  ClassMethodDef
+} from "../util/docs";
 import { FunctionLink } from "./Function";
 import { VariableLink } from "./Variable";
 
@@ -135,6 +141,117 @@ export const Class = ({ class: class_ }: { class: DocNodeClass }) => {
             </div>
           </div>
         ) : null}
+      </div>
+    </Page>
+  );
+};
+
+export const ClassConstructor = ({
+  constructor_
+}: {
+  constructor_: ClassConstructorDef;
+}) => {
+  return (
+    <Page>
+      <div className="p-8 pt-4">
+        <div className="pb-4">
+          <div className="text-gray-900 text-3xl font-medium">
+            {constructor_.name} constructor
+          </div>
+          <div className="py-1">
+            {constructor_.name}
+            <span className="text-gray-600 font-light">
+              (
+              {/* TODO(lucacasonato): https://github.com/bartlomieju/deno_doc/issues/4
+              constructor_.params
+                .map(p => `${p.name}${p.tsType ? ": " + p.tsType.repr : ""}`)
+              .join(", ")*/}
+              )
+            </span>
+          </div>
+          {constructor_.jsDoc ? (
+            <p className="text-gray-700">{cleanJSDoc(constructor_.jsDoc)}</p>
+          ) : null}
+        </div>
+      </div>
+    </Page>
+  );
+};
+
+export const ClassProperty = ({ property }: { property: ClassPropertyDef }) => {
+  return (
+    <Page>
+      <div className="p-8 pt-4">
+        <div className="pb-4">
+          <div className="text-gray-900 text-3xl font-medium">
+            {property.name} {property.isStatic ? "static" : ""} property
+          </div>
+          <div className="py-1">
+            {property.name}
+            {property.tsType?.repr ? (
+              <span className="text-gray-600 font-light">
+                {" → "}
+                {property.tsType?.repr}
+              </span>
+            ) : null}
+            <p className="text-gray-500 italic font-light">
+              {([] as string[])
+                .concat(
+                  ...(property.accessibility === "private" ? ["private"] : [])
+                )
+                .concat(
+                  ...(property.accessibility === "protected"
+                    ? ["protected"]
+                    : [])
+                )
+                .concat(...(property.isAbstract ? ["abstract"] : []))
+                .concat(property.readonly ? "read-only" : "read / write")
+                .join(", ")}
+            </p>
+          </div>
+          {property.jsDoc ? (
+            <p className="text-gray-700">{cleanJSDoc(property.jsDoc)}</p>
+          ) : null}
+        </div>
+      </div>
+    </Page>
+  );
+};
+
+export const ClassMethod = ({ method }: { method: ClassMethodDef }) => {
+  return (
+    <Page>
+      <div className="p-8 pt-4">
+        <div className="pb-4">
+          <div className="text-gray-900 text-3xl font-medium">
+            {method.name} {method.isStatic ? "static" : ""} method
+          </div>
+          <div className="py-1">
+            {method.name}
+            <span className="text-gray-600 font-light">
+              (
+              {/* TODO(lucacasonato): https://github.com/bartlomieju/deno_doc/issues/4
+              constructor_.params
+                .map(p => `${p.name}${p.tsType ? ": " + p.tsType.repr : ""}`)
+              .join(", ")*/}
+              )
+            </span>
+          </div>
+          {method.jsDoc ? (
+            <p className="text-gray-700">{cleanJSDoc(method.jsDoc)}</p>
+          ) : null}
+          <p className="text-gray-500 italic font-light">
+            {([] as string[])
+              .concat(
+                ...(method.accessibility === "private" ? ["private"] : [])
+              )
+              .concat(
+                ...(method.accessibility === "protected" ? ["protected"] : [])
+              )
+              .concat(...(method.isAbstract ? ["abstract"] : []))
+              .join(", ")}
+          </p>
+        </div>
       </div>
     </Page>
   );
