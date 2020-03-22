@@ -80,40 +80,96 @@ export interface NamespaceDef {
   elements: DocNode[];
 }
 
-export type DocNode = DocNodeShared &
-  (
-    | {
-        kind: DocNodeKind.Function;
-        functionDef: FunctionDef;
-      }
-    | {
-        kind: DocNodeKind.Variable;
-        variableDef: VariableDef;
-      }
-    | {
-        kind: DocNodeKind.Class;
-        classDef: ClassDef;
-      }
-    | {
-        kind: DocNodeKind.Enum;
-        enumDef: EnumDef;
-      }
-    | {
-        kind: DocNodeKind.Interface;
-        interfaceDef: InterfaceDef;
-      }
-    | {
-        kind: DocNodeKind.TypeAlias;
-        typeAliasDef: TypeAliasDef;
-      }
-    | {
-        kind: DocNodeKind.Namespace;
-        namespaceDef: NamespaceDef;
-      }
-  );
+export type DocNodeFunction = DocNodeShared & {
+  kind: DocNodeKind.Function;
+  functionDef: FunctionDef;
+};
+export type DocNodeVariable = DocNodeShared & {
+  kind: DocNodeKind.Variable;
+  variableDef: VariableDef;
+};
+export type DocNodeClass = DocNodeShared & {
+  kind: DocNodeKind.Class;
+  classDef: ClassDef;
+};
+export type DocNodeEnum = DocNodeShared & {
+  kind: DocNodeKind.Enum;
+  enumDef: EnumDef;
+};
+export type DocNodeInterface = DocNodeShared & {
+  kind: DocNodeKind.Interface;
+  interfaceDef: InterfaceDef;
+};
+export type DocNodeTypeAlias = DocNodeShared & {
+  kind: DocNodeKind.TypeAlias;
+  typeAliasDef: TypeAliasDef;
+};
+export type DocNodeNamespace = DocNodeShared & {
+  kind: DocNodeKind.Namespace;
+  namespaceDef: NamespaceDef;
+};
+
+export type DocNode =
+  | DocNodeFunction
+  | DocNodeVariable
+  | DocNodeClass
+  | DocNodeEnum
+  | DocNodeInterface
+  | DocNodeTypeAlias
+  | DocNodeNamespace;
 
 export async function getDocs(): Promise<DocNode[]> {
   const req = await fetch("/docs.json");
   if (!req.ok) throw new Error("Failed to fetch docs.");
   return await req.json();
+}
+
+export interface GroupedNodes {
+  functions: DocNodeFunction[];
+  variables: DocNodeVariable[];
+  classes: DocNodeClass[];
+  enums: DocNodeEnum[];
+  interfaces: DocNodeInterface[];
+  typeAliases: DocNodeTypeAlias[];
+  namespaces: DocNodeNamespace[];
+}
+
+export function groupNodes(docs: DocNode[]): GroupedNodes {
+  const groupedNodes: GroupedNodes = {
+    functions: [],
+    variables: [],
+    classes: [],
+    enums: [],
+    interfaces: [],
+    typeAliases: [],
+    namespaces: []
+  };
+
+  docs.forEach(node => {
+    switch (node.kind) {
+      case DocNodeKind.Function:
+        groupedNodes.functions.push(node);
+        break;
+      case DocNodeKind.Variable:
+        groupedNodes.variables.push(node);
+        break;
+      case DocNodeKind.Class:
+        groupedNodes.classes.push(node);
+        break;
+      case DocNodeKind.Enum:
+        groupedNodes.enums.push(node);
+        break;
+      case DocNodeKind.Interface:
+        groupedNodes.interfaces.push(node);
+        break;
+      case DocNodeKind.TypeAlias:
+        groupedNodes.typeAliases.push(node);
+        break;
+      case DocNodeKind.Namespace:
+        groupedNodes.namespaces.push(node);
+        break;
+    }
+  });
+
+  return groupedNodes;
 }

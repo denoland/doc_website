@@ -5,6 +5,10 @@ import "../components/app.css";
 export default class DenoDocApp extends App {
   render() {
     const { Component, pageProps } = this.props;
-    return <Component {...pageProps} />;
+    return (
+      <div className="h-screen">
+        <Component {...pageProps} />
+      </div>
+    );
   }
 }
