@@ -14,10 +14,10 @@ export interface DocNodeLocation {
   col: number;
 }
 export interface DocNodeShared {
-  name: String;
+  name: string;
   snippet: string;
   location: DocNodeLocation;
-  jsDoc?: String;
+  jsDoc?: string;
 }
 export interface TsTypeDef {
   repr: string;
@@ -172,4 +172,11 @@ export function groupNodes(docs: DocNode[]): GroupedNodes {
   });
 
   return groupedNodes;
+}
+
+export function cleanJSDoc(jsDoc: string): string {
+  if (jsDoc.startsWith("/**")) jsDoc = jsDoc.substr(3);
+  if (jsDoc.endsWith("*/")) jsDoc = jsDoc.substr(0, jsDoc.length - 2);
+  jsDoc = jsDoc.replace(/\n( *)\*/g, "");
+  return jsDoc.trim();
 }

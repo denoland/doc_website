@@ -24,8 +24,8 @@ const SidebarSection = (props: {
   ) : null;
 };
 
-export const Sidebar = (props: { docs: DocNode[]; generationDate: Date }) => {
-  const groups = groupNodes(props.docs);
+export const Sidebar = (props: { nodes: DocNode[]; generationDate: Date }) => {
+  const groups = groupNodes(props.nodes);
 
   return (
     <>
@@ -36,16 +36,16 @@ export const Sidebar = (props: { docs: DocNode[]; generationDate: Date }) => {
         </div>
       </header>
       <nav className="px-6 py-2">
-        <SidebarSection title="Classses" type="class" nodes={groups.classes} />
-        <SidebarSection
-          title="Functions"
-          type="function"
-          nodes={groups.functions}
-        />
+        <SidebarSection title="Classes" type="class" nodes={groups.classes} />
         <SidebarSection
           title="Variables"
           type="variable"
           nodes={groups.variables}
+        />
+        <SidebarSection
+          title="Functions"
+          type="function"
+          nodes={groups.functions}
         />
         <SidebarSection title="Enums" type="enum" nodes={groups.enums} />
         <SidebarSection

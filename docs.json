@@ -30,7 +30,13 @@
       "line": 7,
       "col": 0
     },
-    "jsDoc": "/** Something about fizzBuzz */"
+    "jsDoc": "/** Something about fizzBuzz */",
+    "variableDef": {
+      "kind": "const",
+      "type_": {
+        "repr": "asd"
+      }
+    }
   },
   {
     "kind": "function",
@@ -139,7 +145,7 @@
     },
     "jsDoc": "/** Class doc */",
     "classDef": {
-      "isAbstract": false,
+      "isAbstract": true,
       "constructors": [
         {
           "jsDoc": "/** Constructor js doc */",
