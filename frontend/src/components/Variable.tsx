@@ -18,11 +18,11 @@ export function VariableLink(props: {
       jsDoc={props.jsDoc}
       afterName={
         <>
-          {" "}
           {props.returnType?.repr ? (
             <>
               <span className="text-gray-600 font-light">
-                → {props.returnType.repr}
+                {" → "}
+                {props.returnType.repr}
               </span>
             </>
           ) : null}

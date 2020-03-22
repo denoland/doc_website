@@ -18,7 +18,6 @@ export function FunctionLink(props: {
       jsDoc={props.jsDoc}
       afterName={
         <>
-          {" "}
           <span className="text-gray-600 font-light">
             (
             {props.params
@@ -29,7 +28,8 @@ export function FunctionLink(props: {
           {props.returnType?.repr ? (
             <>
               <span className="text-gray-600 font-light">
-                → {props.returnType.repr}
+                {" → "}
+                {props.returnType.repr}
               </span>
             </>
           ) : null}
