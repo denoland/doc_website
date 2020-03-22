@@ -1,5 +1,6 @@
 import React from "react";
 import { Sidebar } from "./Sidebar";
+import { Breadcrumbs } from "./Breadcrumbs";
 
 export function Page(props: {
   children: React.ReactElement;
@@ -13,7 +14,10 @@ export function Page(props: {
           namespacesOnly={props.namespacesOnlySidebar}
         />
       </div>
-      <div className="col-span-4 bg-gray-100">{props.children}</div>
+      <div className="col-span-4 bg-gray-100">
+        <Breadcrumbs />
+        {props.children}
+      </div>
     </div>
   );
 }

@@ -13,7 +13,7 @@ export const Namespace = (props: {
 
   return (
     <Page namespacesOnlySidebar>
-      <div className="p-8">
+      <div className="p-8 pt-4">
         <div className="pb-4">
           <div className="text-gray-900 text-3xl font-medium">
             {props.namespace.name} namespace
