@@ -3,7 +3,7 @@ import { Page } from "./Page";
 import { cleanJSDoc, DocNodeTypeAlias } from "../util/docs";
 
 export const TypeAlias = ({
-  typealias: typealias_,
+  typealias: typealias_
 }: {
   typealias: DocNodeTypeAlias;
 }) => {

@@ -20,7 +20,7 @@ export const Enum = ({ enum: enum_ }: { enum: DocNodeEnum }) => {
               Members
             </div>
             <div>
-              {enum_.enumDef.members.map((node) => (
+              {enum_.enumDef.members.map(node => (
                 <div className="py-1" key={node.name}>
                   {node.name}
                 </div>

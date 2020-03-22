@@ -5,7 +5,7 @@ import {
   DocNodeClass,
   ClassConstructorDef,
   ClassPropertyDef,
-  ClassMethodDef,
+  ClassMethodDef
 } from "../util/docs";
 import { FunctionLink } from "./Function";
 import { VariableLink } from "./Variable";
@@ -13,15 +13,15 @@ import { VariableLink } from "./Variable";
 export const Class = ({ class: class_ }: { class: DocNodeClass }) => {
   const constructors = class_.classDef.constructors;
   const properties = class_.classDef.properties.filter(
-    (node) => node.accessibility !== "private"
+    node => node.accessibility !== "private"
   );
-  const realProperties = properties.filter((node) => !node.isStatic);
-  const staticProperties = properties.filter((node) => node.isStatic);
+  const realProperties = properties.filter(node => !node.isStatic);
+  const staticProperties = properties.filter(node => node.isStatic);
   const methods = class_.classDef.methods.filter(
-    (node) => node.accessibility !== "private"
+    node => node.accessibility !== "private"
   );
-  const realMethods = methods.filter((node) => !node.isStatic);
-  const staticMethods = methods.filter((node) => node.isStatic);
+  const realMethods = methods.filter(node => !node.isStatic);
+  const staticMethods = methods.filter(node => node.isStatic);
 
   return (
     <Page>
@@ -43,7 +43,7 @@ export const Class = ({ class: class_ }: { class: DocNodeClass }) => {
               Constructors
             </div>
             <div>
-              {constructors.map((node) => (
+              {constructors.map(node => (
                 // TODO(lucacasonato): https://github.com/bartlomieju/deno_doc/issues/4
                 <FunctionLink
                   key={node.name}
@@ -63,7 +63,7 @@ export const Class = ({ class: class_ }: { class: DocNodeClass }) => {
               Properties
             </div>
             <div>
-              {realProperties.map((node) => (
+              {realProperties.map(node => (
                 <VariableLink
                   key={node.name}
                   name={node.name}
@@ -84,7 +84,7 @@ export const Class = ({ class: class_ }: { class: DocNodeClass }) => {
               Methods
             </div>
             <div>
-              {realMethods.map((node) => (
+              {realMethods.map(node => (
                 // TODO(lucacasonato): https://github.com/bartlomieju/deno_doc/issues/4
                 <FunctionLink
                   key={node.name}
@@ -105,7 +105,7 @@ export const Class = ({ class: class_ }: { class: DocNodeClass }) => {
               Static Properties
             </div>
             <div>
-              {staticProperties.map((node) => (
+              {staticProperties.map(node => (
                 <VariableLink
                   key={node.name}
                   name={node.name}
@@ -126,7 +126,7 @@ export const Class = ({ class: class_ }: { class: DocNodeClass }) => {
               Static Methods
             </div>
             <div>
-              {staticMethods.map((node) => (
+              {staticMethods.map(node => (
                 // TODO(lucacasonato): https://github.com/bartlomieju/deno_doc/issues/4
                 <FunctionLink
                   key={node.name}
@@ -147,7 +147,7 @@ export const Class = ({ class: class_ }: { class: DocNodeClass }) => {
 };
 
 export const ClassConstructor = ({
-  constructor_,
+  constructor_
 }: {
   constructor_: ClassConstructorDef;
 }) => {

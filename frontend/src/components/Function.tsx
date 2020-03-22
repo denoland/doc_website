@@ -4,7 +4,7 @@ import { SimpleLink } from "./SimpleLink";
 import { Page } from "./Page";
 
 export const Function = ({
-  function: function_,
+  function: function_
 }: {
   function: DocNodeFunction;
 }) => {
@@ -20,7 +20,7 @@ export const Function = ({
             <span className="text-gray-600 font-light">
               (
               {function_.functionDef.params
-                .map((p) => `${p.name}${p.tsType ? ": " + p.tsType.repr : ""}`)
+                .map(p => `${p.name}${p.tsType ? ": " + p.tsType.repr : ""}`)
                 .join(", ")}
               )
             </span>
@@ -59,7 +59,7 @@ export function FunctionLink(props: {
           <span className="text-gray-600 font-light">
             (
             {props.params
-              .map((p) => `${p.name}${p.tsType ? ": " + p.tsType.repr : ""}`)
+              .map(p => `${p.name}${p.tsType ? ": " + p.tsType.repr : ""}`)
               .join(", ")}
             )
           </span>

@@ -28,7 +28,7 @@ export const Namespace = (props: {
               Classes
             </div>
             <div>
-              {groups.classes.map((node) => (
+              {groups.classes.map(node => (
                 <SimpleLink name={node.name} type="class" jsDoc={node.jsDoc} />
               ))}
             </div>
@@ -40,7 +40,7 @@ export const Namespace = (props: {
               Variables
             </div>
             <div>
-              {groups.variables.map((node) => (
+              {groups.variables.map(node => (
                 <VariableLink
                   key={node.name}
                   name={node.name}
@@ -59,7 +59,7 @@ export const Namespace = (props: {
               Functions
             </div>
             <div>
-              {groups.functions.map((node) => (
+              {groups.functions.map(node => (
                 <FunctionLink
                   key={node.name}
                   name={node.name}
@@ -76,7 +76,7 @@ export const Namespace = (props: {
           <div className="py-4">
             <div className="text-gray-900 text-2xl font-medium mb-1">Enums</div>
             <div>
-              {groups.enums.map((node) => (
+              {groups.enums.map(node => (
                 <SimpleLink name={node.name} type="enum" jsDoc={node.jsDoc} />
               ))}
             </div>
@@ -88,7 +88,7 @@ export const Namespace = (props: {
               Interfaces
             </div>
             <div>
-              {groups.interfaces.map((node) => (
+              {groups.interfaces.map(node => (
                 <SimpleLink
                   name={node.name}
                   type="interface"
@@ -104,7 +104,7 @@ export const Namespace = (props: {
               Type Aliases
             </div>
             <div>
-              {groups.typeAliases.map((node) => (
+              {groups.typeAliases.map(node => (
                 <SimpleLink
                   name={node.name}
                   type="typealias"
@@ -120,7 +120,7 @@ export const Namespace = (props: {
               Namespaces
             </div>
             <div>
-              {groups.namespaces.map((node) => (
+              {groups.namespaces.map(node => (
                 <SimpleLink
                   name={node.name}
                   type="namespace"

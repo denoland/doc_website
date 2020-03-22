@@ -3,7 +3,7 @@ import { Page } from "./Page";
 import { cleanJSDoc, DocNodeInterface } from "../util/docs";
 
 export const Interface = ({
-  interface: interface_,
+  interface: interface_
 }: {
   interface: DocNodeInterface;
 }) => {

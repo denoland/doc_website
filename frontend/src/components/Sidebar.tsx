@@ -14,7 +14,7 @@ const SidebarSection = (props: {
         {props.title}
       </div>
       <div>
-        {props.nodes.map((node) => (
+        {props.nodes.map(node => (
           <p key={node.name}>
             <Link
               href={`/${props.type}/${node.name}`}

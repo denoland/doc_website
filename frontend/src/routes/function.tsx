@@ -11,7 +11,7 @@ export function FunctionRoute(props: { name: string }) {
   const nodes = useNodes();
 
   const function_ = (nodes.find(
-    (node) => node.kind === DocNodeKind.Function && node.name === props.name
+    node => node.kind === DocNodeKind.Function && node.name === props.name
   ) as any) as DocNodeFunction;
 
   return function_ ? (
