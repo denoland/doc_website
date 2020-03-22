@@ -19,7 +19,7 @@ export function NamespaceRoute(props: { name: string }) {
   const isRootNamespace = prefix.namespace === "" && props.name === "";
 
   const namespace = (nodes.find(
-    node => node.kind === DocNodeKind.Namespace && node.name === props.name
+    (node) => node.kind === DocNodeKind.Namespace && node.name === props.name
   ) as any) as DocNodeNamespace;
 
   return isRootNamespace || namespace ? (
@@ -33,7 +33,7 @@ export function NamespaceRoute(props: { name: string }) {
             <PrefixProvider
               value={{
                 namespace: prefix.namespace,
-                node: `/class/${params.class}`
+                node: `/class/${params.class}`,
               }}
             >
               <ClassRoute name={params.class} />
@@ -46,7 +46,7 @@ export function NamespaceRoute(props: { name: string }) {
             <PrefixProvider
               value={{
                 namespace: prefix.namespace,
-                node: `/function/${params.function}`
+                node: `/function/${params.function}`,
               }}
             >
               <FunctionRoute name={params.function} />
@@ -59,7 +59,7 @@ export function NamespaceRoute(props: { name: string }) {
             <PrefixProvider
               value={{
                 namespace: prefix.namespace,
-                node: `/variable/${params.variable}`
+                node: `/variable/${params.variable}`,
               }}
             >
               <VariableRoute name={params.variable} />
@@ -72,7 +72,7 @@ export function NamespaceRoute(props: { name: string }) {
             <PrefixProvider
               value={{
                 namespace: prefix.namespace,
-                node: `/enum/${params.enum}`
+                node: `/enum/${params.enum}`,
               }}
             >
               <EnumRoute name={params.enum} />
@@ -85,7 +85,7 @@ export function NamespaceRoute(props: { name: string }) {
             <PrefixProvider
               value={{
                 namespace: prefix.namespace,
-                node: `/interface/${params.interface}`
+                node: `/interface/${params.interface}`,
               }}
             >
               <InterfaceRoute name={params.interface} />
@@ -98,7 +98,7 @@ export function NamespaceRoute(props: { name: string }) {
             <PrefixProvider
               value={{
                 namespace: prefix.namespace,
-                node: `/typealias/${params.typealias}`
+                node: `/typealias/${params.typealias}`,
               }}
             >
               <TypeAliasRoute name={params.typealias} />
@@ -111,7 +111,7 @@ export function NamespaceRoute(props: { name: string }) {
             <PrefixProvider
               value={{
                 namespace: `${prefix.namespace}/namespace/${params.namespace}`,
-                node: ""
+                node: "",
               }}
             >
               <NamespaceRoute name={params.namespace} />

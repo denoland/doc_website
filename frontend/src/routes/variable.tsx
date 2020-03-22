@@ -11,7 +11,7 @@ export function VariableRoute(props: { name: string }) {
   const nodes = useNodes();
 
   const variable = (nodes.find(
-    node => node.kind === DocNodeKind.Variable && node.name === props.name
+    (node) => node.kind === DocNodeKind.Variable && node.name === props.name
   ) as any) as DocNodeVariable;
 
   return variable ? (
