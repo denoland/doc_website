@@ -22,6 +22,7 @@ export const TypeAlias = ({
           <div className="text-gray-900 text-2xl font-medium mb-1">
             Type Representation
           </div>
+          {/* TODO(lucacasonato): better code formatting */}
           <div className="py-1">{typealias_.typeAliasDef.tsType?.repr}</div>
         </div>
       </div>

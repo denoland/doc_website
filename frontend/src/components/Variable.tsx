@@ -1,6 +1,38 @@
 import React from "react";
-import { TsTypeDef } from "../util/docs";
+import { TsTypeDef, cleanJSDoc, DocNodeVariable } from "../util/docs";
 import { SimpleLink } from "./SimpleLink";
+import { Page } from "./Page";
+
+export const Variable = ({ variable }: { variable: DocNodeVariable }) => {
+  return (
+    <Page>
+      <div className="p-8 pt-4">
+        <div className="pb-4">
+          <div className="text-gray-900 text-3xl font-medium">
+            {variable.name} variable
+          </div>
+          <div className="py-1">
+            {variable.name}
+            {variable.variableDef?.type_?.repr ? (
+              <span className="text-gray-600 font-light">
+                {" → "}
+                {variable.variableDef?.type_?.repr}
+              </span>
+            ) : null}
+            <p className="text-gray-500 italic font-light">
+              {variable.variableDef?.kind === "const"
+                ? "read-only"
+                : "read / write"}
+            </p>
+          </div>
+          {variable.jsDoc ? (
+            <p className="text-gray-700">{cleanJSDoc(variable.jsDoc)}</p>
+          ) : null}
+        </div>
+      </div>
+    </Page>
+  );
+};
 
 export function VariableLink(props: {
   name: string;

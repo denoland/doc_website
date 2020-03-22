@@ -10,6 +10,7 @@ import { ClassRoute } from "./class";
 import { EnumRoute } from "./enum";
 import { InterfaceRoute } from "./interface";
 import { TypeAliasRoute } from "./typealias";
+import { VariableRoute } from "./variable";
 
 export function NamespaceRoute(props: { name: string }) {
   const prefix = usePrefix();
@@ -35,6 +36,19 @@ export function NamespaceRoute(props: { name: string }) {
               }}
             >
               <ClassRoute name={params.class} />
+            </PrefixProvider>
+          )}
+        />
+        <Route
+          path={`${prefix.namespace}/variable/:variable`}
+          render={({ match: { params } }) => (
+            <PrefixProvider
+              value={{
+                namespace: prefix.namespace,
+                node: `/variable/${params.variable}`
+              }}
+            >
+              <VariableRoute name={params.variable} />
             </PrefixProvider>
           )}
         />
