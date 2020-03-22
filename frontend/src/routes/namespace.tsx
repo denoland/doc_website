@@ -7,10 +7,11 @@ import { Namespace } from "../components/Namespace";
 import { NotFound } from "../components/NotFound";
 import { usePrefix, PrefixProvider } from "../util/prefix";
 import { ClassRoute } from "./class";
+import { FunctionRoute } from "./function";
+import { VariableRoute } from "./variable";
 import { EnumRoute } from "./enum";
 import { InterfaceRoute } from "./interface";
 import { TypeAliasRoute } from "./typealias";
-import { VariableRoute } from "./variable";
 
 export function NamespaceRoute(props: { name: string }) {
   const prefix = usePrefix();
@@ -36,6 +37,19 @@ export function NamespaceRoute(props: { name: string }) {
               }}
             >
               <ClassRoute name={params.class} />
+            </PrefixProvider>
+          )}
+        />
+        <Route
+          path={`${prefix.namespace}/function/:function`}
+          render={({ match: { params } }) => (
+            <PrefixProvider
+              value={{
+                namespace: prefix.namespace,
+                node: `/function/${params.function}`
+              }}
+            >
+              <FunctionRoute name={params.function} />
             </PrefixProvider>
           )}
         />

@@ -1,6 +1,44 @@
 import React from "react";
-import { ParamDef, TsTypeDef } from "../util/docs";
+import { ParamDef, TsTypeDef, cleanJSDoc, DocNodeFunction } from "../util/docs";
 import { SimpleLink } from "./SimpleLink";
+import { Page } from "./Page";
+
+export const Function = ({
+  function: function_
+}: {
+  function: DocNodeFunction;
+}) => {
+  return (
+    <Page>
+      <div className="p-8 pt-4">
+        <div className="pb-4">
+          <div className="text-gray-900 text-3xl font-medium">
+            {function_.name} function
+          </div>
+          <div className="py-1">
+            {function_.name}
+            <span className="text-gray-600 font-light">
+              (
+              {function_.functionDef.params
+                .map(p => `${p.name}${p.tsType ? ": " + p.tsType.repr : ""}`)
+                .join(", ")}
+              )
+            </span>
+            {function_.functionDef.returnType?.repr ? (
+              <span className="text-gray-600 font-light">
+                {" → "}
+                {function_.functionDef.returnType?.repr}
+              </span>
+            ) : null}
+          </div>
+          {function_.jsDoc ? (
+            <p className="text-gray-700">{cleanJSDoc(function_.jsDoc)}</p>
+          ) : null}
+        </div>
+      </div>
+    </Page>
+  );
+};
 
 export function FunctionLink(props: {
   name: string;
