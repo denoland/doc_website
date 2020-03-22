@@ -75,7 +75,9 @@ export interface EnumDef {
   members: EnumMemberDef[];
 }
 export interface InterfaceDef {}
-export interface TypeAliasDef {}
+export interface TypeAliasDef {
+  tsType: TsTypeDef;
+}
 export interface NamespaceDef {
   elements: DocNode[];
 }

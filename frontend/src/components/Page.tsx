@@ -3,7 +3,7 @@ import { Sidebar } from "./Sidebar";
 import { Breadcrumbs } from "./Breadcrumbs";
 
 export function Page(props: {
-  children: React.ReactElement;
+  children: React.ReactNode;
   namespacesOnlySidebar?: boolean;
 }) {
   return (

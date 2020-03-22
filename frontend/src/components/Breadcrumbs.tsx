@@ -8,7 +8,7 @@ export function Breadcrumbs() {
   const segments = location.pathname.split("/");
 
   let currentPath = "";
-  const items: React.ReactElement[] =
+  const items: React.ReactNode[] =
     location.pathname !== "/"
       ? [
           <>

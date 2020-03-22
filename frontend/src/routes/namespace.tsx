@@ -7,6 +7,9 @@ import { Namespace } from "../components/Namespace";
 import { NotFound } from "../components/NotFound";
 import { usePrefix, PrefixProvider } from "../util/prefix";
 import { ClassRoute } from "./class";
+import { EnumRoute } from "./enum";
+import { InterfaceRoute } from "./interface";
+import { TypeAliasRoute } from "./typealias";
 
 export function NamespaceRoute(props: { name: string }) {
   const prefix = usePrefix();
@@ -32,6 +35,45 @@ export function NamespaceRoute(props: { name: string }) {
               }}
             >
               <ClassRoute name={params.class} />
+            </PrefixProvider>
+          )}
+        />
+        <Route
+          path={`${prefix.namespace}/enum/:enum`}
+          render={({ match: { params } }) => (
+            <PrefixProvider
+              value={{
+                namespace: prefix.namespace,
+                node: `/enum/${params.enum}`
+              }}
+            >
+              <EnumRoute name={params.enum} />
+            </PrefixProvider>
+          )}
+        />
+        <Route
+          path={`${prefix.namespace}/interface/:interface`}
+          render={({ match: { params } }) => (
+            <PrefixProvider
+              value={{
+                namespace: prefix.namespace,
+                node: `/interface/${params.interface}`
+              }}
+            >
+              <InterfaceRoute name={params.interface} />
+            </PrefixProvider>
+          )}
+        />
+        <Route
+          path={`${prefix.namespace}/typealias/:typealias`}
+          render={({ match: { params } }) => (
+            <PrefixProvider
+              value={{
+                namespace: prefix.namespace,
+                node: `/typealias/${params.typealias}`
+              }}
+            >
+              <TypeAliasRoute name={params.typealias} />
             </PrefixProvider>
           )}
         />

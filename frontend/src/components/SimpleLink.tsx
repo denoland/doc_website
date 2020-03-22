@@ -6,8 +6,8 @@ export function SimpleLink(props: {
   name: string;
   type: string;
   jsDoc?: string;
-  afterName?: React.ReactElement;
-  afterJsDoc?: React.ReactElement;
+  afterName?: React.ReactNode;
+  afterJsDoc?: React.ReactNode;
 }) {
   return (
     <div className="py-2" key={props.name}>
