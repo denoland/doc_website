@@ -164,7 +164,7 @@
           "readonly": false,
           "accessibility": "private",
           "isAbstract": false,
-          "isStatic": false,
+          "isStatic": true,
           "name": "private1"
         },
         {
@@ -176,7 +176,7 @@
           "readonly": false,
           "accessibility": "protected",
           "isAbstract": false,
-          "isStatic": false,
+          "isStatic": true,
           "name": "protected1"
         },
         {

@@ -6,11 +6,12 @@ import { RootNamespace } from "../components/RootNamespace";
 import { Namespace } from "../components/Namespace";
 import { NotFound } from "../components/NotFound";
 import { usePrefix, PrefixProvider } from "../util/prefix";
+import { ClassRoute } from "./class";
 
 export function NamespaceRoute(props: { name: string }) {
   const prefix = usePrefix();
   const nodes = useNodes();
-  const isRootNamespace = prefix === "" && props.name === "";
+  const isRootNamespace = prefix.namespace === "" && props.name === "";
 
   const namespace = (nodes.find(
     node => node.kind === DocNodeKind.Namespace && node.name === props.name
@@ -22,15 +23,33 @@ export function NamespaceRoute(props: { name: string }) {
     >
       <Switch>
         <Route
-          path={`${prefix}/namespace/:namespace`}
+          path={`${prefix.namespace}/class/:class`}
           render={({ match: { params } }) => (
-            <PrefixProvider value={newPrefix(prefix, params.namespace)}>
+            <PrefixProvider
+              value={{
+                namespace: prefix.namespace,
+                node: `/class/${params.class}`
+              }}
+            >
+              <ClassRoute name={params.class} />
+            </PrefixProvider>
+          )}
+        />
+        <Route
+          path={`${prefix.namespace}/namespace/:namespace`}
+          render={({ match: { params } }) => (
+            <PrefixProvider
+              value={{
+                namespace: `${prefix.namespace}/namespace/${params.namespace}`,
+                node: ""
+              }}
+            >
               <NamespaceRoute name={params.namespace} />
             </PrefixProvider>
           )}
         />
         <Route
-          path={prefix + "/"}
+          path={prefix.namespace + "/"}
           exact
           render={() =>
             isRootNamespace ? (
@@ -50,8 +69,4 @@ export function NamespaceRoute(props: { name: string }) {
       </div>
     </div>
   );
-}
-
-function newPrefix(prefix: string, name: string): string {
-  return prefix + "/namespace/" + name;
 }

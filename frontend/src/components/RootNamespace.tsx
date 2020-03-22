@@ -9,7 +9,7 @@ export function RootNamespace() {
     <Namespace
       namespace={{
         kind: DocNodeKind.Namespace,
-        name: "Module Root",
+        name: "Root ",
         snippet: "",
         location: {
           filename: "",

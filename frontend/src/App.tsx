@@ -13,7 +13,7 @@ function App() {
 
   return nodes ? (
     <NodesProvider value={nodes}>
-      <PrefixProvider value="">
+      <PrefixProvider value={{ namespace: "", node: "" }}>
         <NamespaceRoute name="" />
       </PrefixProvider>
     </NodesProvider>

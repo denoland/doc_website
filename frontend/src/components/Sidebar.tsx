@@ -16,7 +16,10 @@ const SidebarSection = (props: {
       <div>
         {props.nodes.map(node => (
           <p key={node.name}>
-            <Link to={`/${props.type}/${node.name}`} className="text-blue-500">
+            <Link
+              href={`/${props.type}/${node.name}`}
+              className="text-blue-500"
+            >
               {node.name}
             </Link>
           </p>

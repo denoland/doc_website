@@ -1,7 +1,9 @@
 import React from "react";
-import { Link } from "./Link";
 import { Page } from "./Page";
 import { groupNodes, cleanJSDoc, DocNodeNamespace } from "../util/docs";
+import { FunctionLink } from "./Function";
+import { VariableLink } from "./Variable";
+import { SimpleLink } from "./SimpleLink";
 
 export const Namespace = (props: {
   namespace: DocNodeNamespace;
@@ -12,13 +14,14 @@ export const Namespace = (props: {
   return (
     <Page namespacesOnlySidebar>
       <div className="p-8">
-        <div className="text-gray-900 text-3xl font-medium">
-          {props.namespace.name}
+        <div className="pb-4">
+          <div className="text-gray-900 text-3xl font-medium">
+            {props.namespace.name} namespace
+          </div>
+          {props.namespace.jsDoc ? (
+            <p className="text-gray-700">{cleanJSDoc(props.namespace.jsDoc)}</p>
+          ) : null}
         </div>
-        {props.namespace.jsDoc ? (
-          <p className="text-gray-700">{cleanJSDoc(props.namespace.jsDoc)}</p>
-        ) : null}
-
         {groups.classes.length > 0 ? (
           <div className="py-4">
             <div className="text-gray-900 text-2xl font-medium mb-1">
@@ -26,22 +29,7 @@ export const Namespace = (props: {
             </div>
             <div>
               {groups.classes.map(node => (
-                <div className="py-2" key={node.name}>
-                  <p>
-                    <Link
-                      to={`/${node.kind}/${node.name}`}
-                      className="text-blue-500"
-                    >
-                      {node.name}
-                    </Link>
-                  </p>
-                  {node.jsDoc ? (
-                    <p className="text-gray-700">{cleanJSDoc(node.jsDoc)}</p>
-                  ) : null}
-                  {node.classDef.isAbstract ? (
-                    <p className="text-gray-500 italic font-light">abstract</p>
-                  ) : null}
-                </div>
+                <SimpleLink name={node.name} type="class" jsDoc={node.jsDoc} />
               ))}
             </div>
           </div>
@@ -53,31 +41,14 @@ export const Namespace = (props: {
             </div>
             <div>
               {groups.variables.map(node => (
-                <div className="py-2" key={node.name}>
-                  <p>
-                    <Link
-                      to={`/${node.kind}/${node.name}`}
-                      className="text-blue-500"
-                    >
-                      {node.name}
-                    </Link>{" "}
-                    {node.variableDef?.type_.repr ? (
-                      <>
-                        <span className="text-gray-600 font-light">
-                          → {node.variableDef?.type_.repr}
-                        </span>
-                      </>
-                    ) : null}
-                  </p>
-                  {node.jsDoc ? (
-                    <p className="text-gray-700">{cleanJSDoc(node.jsDoc)}</p>
-                  ) : null}
-                  {node.variableDef?.kind ? (
-                    <p className="text-gray-500 italic font-light">
-                      {node.variableDef.kind}
-                    </p>
-                  ) : null}
-                </div>
+                <VariableLink
+                  key={node.name}
+                  name={node.name}
+                  jsDoc={node.jsDoc}
+                  type="variable"
+                  returnType={node.variableDef?.type_}
+                  readonly={node.variableDef?.kind === "const"}
+                />
               ))}
             </div>
           </div>
@@ -89,36 +60,14 @@ export const Namespace = (props: {
             </div>
             <div>
               {groups.functions.map(node => (
-                <div className="py-2" key={node.name}>
-                  <p>
-                    <Link
-                      to={`/${node.kind}/${node.name}`}
-                      className="text-blue-500"
-                    >
-                      {node.name}
-                    </Link>
-                    <span className="text-gray-600 font-light">
-                      (
-                      {node.functionDef.params
-                        .map(
-                          p =>
-                            `${p.name}${p.tsType ? ": " + p.tsType.repr : ""}`
-                        )
-                        .join(", ")}
-                      )
-                    </span>
-                    {node.functionDef?.returnType?.repr ? (
-                      <>
-                        <span className="text-gray-600 font-light">
-                          → {node.functionDef.returnType.repr}
-                        </span>
-                      </>
-                    ) : null}
-                  </p>
-                  {node.jsDoc ? (
-                    <p className="text-gray-700">{cleanJSDoc(node.jsDoc)}</p>
-                  ) : null}
-                </div>
+                <FunctionLink
+                  key={node.name}
+                  name={node.name}
+                  jsDoc={node.jsDoc}
+                  type="function"
+                  params={node.functionDef.params}
+                  returnType={node.functionDef.returnType}
+                />
               ))}
             </div>
           </div>
@@ -128,19 +77,7 @@ export const Namespace = (props: {
             <div className="text-gray-900 text-2xl font-medium mb-1">Enums</div>
             <div>
               {groups.enums.map(node => (
-                <div className="py-2" key={node.name}>
-                  <p>
-                    <Link
-                      to={`/${node.kind}/${node.name}`}
-                      className="text-blue-500"
-                    >
-                      {node.name}
-                    </Link>
-                  </p>
-                  {node.jsDoc ? (
-                    <p className="text-gray-700">{cleanJSDoc(node.jsDoc)}</p>
-                  ) : null}
-                </div>
+                <SimpleLink name={node.name} type="enum" jsDoc={node.jsDoc} />
               ))}
             </div>
           </div>
@@ -152,19 +89,11 @@ export const Namespace = (props: {
             </div>
             <div>
               {groups.interfaces.map(node => (
-                <div className="py-2" key={node.name}>
-                  <p>
-                    <Link
-                      to={`/${node.kind}/${node.name}`}
-                      className="text-blue-500"
-                    >
-                      {node.name}
-                    </Link>
-                  </p>
-                  {node.jsDoc ? (
-                    <p className="text-gray-700">{cleanJSDoc(node.jsDoc)}</p>
-                  ) : null}
-                </div>
+                <SimpleLink
+                  name={node.name}
+                  type="interface"
+                  jsDoc={node.jsDoc}
+                />
               ))}
             </div>
           </div>
@@ -176,19 +105,11 @@ export const Namespace = (props: {
             </div>
             <div>
               {groups.typeAliases.map(node => (
-                <div className="py-2" key={node.name}>
-                  <p>
-                    <Link
-                      to={`/${node.kind}/${node.name}`}
-                      className="text-blue-500"
-                    >
-                      {node.name}
-                    </Link>
-                  </p>
-                  {node.jsDoc ? (
-                    <p className="text-gray-700">{cleanJSDoc(node.jsDoc)}</p>
-                  ) : null}
-                </div>
+                <SimpleLink
+                  name={node.name}
+                  type="typealias"
+                  jsDoc={node.jsDoc}
+                />
               ))}
             </div>
           </div>
@@ -200,19 +121,11 @@ export const Namespace = (props: {
             </div>
             <div>
               {groups.namespaces.map(node => (
-                <div className="py-2" key={node.name}>
-                  <p>
-                    <Link
-                      to={`/${node.kind}/${node.name}`}
-                      className="text-blue-500"
-                    >
-                      {node.name}
-                    </Link>
-                  </p>
-                  {node.jsDoc ? (
-                    <p className="text-gray-700">{cleanJSDoc(node.jsDoc)}</p>
-                  ) : null}
-                </div>
+                <SimpleLink
+                  name={node.name}
+                  type="namespace"
+                  jsDoc={node.jsDoc}
+                />
               ))}
             </div>
           </div>
