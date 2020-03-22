@@ -248,7 +248,11 @@
       "col": 0
     },
     "jsDoc": "/** Array holding numbers */",
-    "typeAliasDef": {}
+    "typeAliasDef": {
+      "tsType": {
+        "repr": "type NumberArray = Array<number>;"
+      }
+    }
   },
   {
     "kind": "typeAlias",
@@ -260,7 +264,11 @@
       "col": 0
     },
     "jsDoc": null,
-    "typeAliasDef": {}
+    "typeAliasDef": {
+      "tsType": {
+        "repr": "type OperatingSystem = \"mac\" | \"win\" | \"linux\";"
+      }
+    }
   },
   {
     "kind": "typeAlias",
@@ -272,7 +280,11 @@
       "col": 0
     },
     "jsDoc": null,
-    "typeAliasDef": {}
+    "typeAliasDef": {
+      "tsType": {
+        "repr": "type Arch = \"x64\" | \"arm64\";"
+      }
+    }
   },
   {
     "kind": "typeAlias",
@@ -284,7 +296,11 @@
       "col": 0
     },
     "jsDoc": null,
-    "typeAliasDef": {}
+    "typeAliasDef": {
+      "tsType": {
+        "repr": "type BuildInfo = OperatingSystem | Arch;"
+      }
+    }
   },
   {
     "kind": "typeAlias",
@@ -296,7 +312,11 @@
       "col": 0
     },
     "jsDoc": null,
-    "typeAliasDef": {}
+    "typeAliasDef": {
+      "tsType": {
+        "repr": "type ReadonlyArray<T> = Array<T>;"
+      }
+    }
   },
   {
     "kind": "enum",

@@ -102,8 +102,8 @@ pub struct ClassDef {
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct TypeAliasDef {
-  // pub ts_type: TsTypeDef,
-// TODO: type_params
+  pub ts_type: TsTypeDef,
+  // TODO: type_params
 }
 
 #[derive(Debug, Serialize)]

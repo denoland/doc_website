@@ -172,7 +172,15 @@ fn get_doc_for_ts_type_alias_decl(
 
   let alias_name = type_alias_decl.id.sym.to_string();
   // TODO:
-  let type_alias_def = doc::TypeAliasDef {};
+  let repr = doc_parser
+    .source_map
+    .span_to_snippet(type_alias_decl.span)
+    .expect("Class prop type not found");
+  let repr = repr.trim_start_matches(':').trim_start().to_string();
+
+  let type_alias_def = doc::TypeAliasDef {
+    ts_type: doc::ts_type::TsTypeDef { repr },
+  };
 
   doc::DocNode {
     kind: doc::DocNodeKind::TypeAlias,
