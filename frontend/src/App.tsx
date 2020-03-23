@@ -30,10 +30,10 @@ function App() {
       />
     </Switch>
   ) : (
-      <div className="h-full flex justify-center items-center">
-        <div className="text-gray-800 text-2xl">Loading...</div>
-      </div>
-    );
+    <div className="h-full flex justify-center items-center">
+      <div className="text-gray-800 text-2xl">Loading...</div>
+    </div>
+  );
 }
 
 export default App;
