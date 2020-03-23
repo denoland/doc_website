@@ -15,20 +15,20 @@ const SidebarSection = (props: {
         {props.title}
       </div>
       <div>
-        {props.nodes.map(node => (
-          <p key={node.name}>
+        {props.nodes.map((node, i) => (
+          <p key={node.name + "+" + i}>
             {props.mode === "singlepage" ? (
               <a href={`#${props.type}.${node.name}`} className="text-blue-500">
                 {node.name}
               </a>
             ) : (
-              <Link
-                href={`/${props.type}/${node.name}`}
-                className="text-blue-500"
-              >
-                {node.name}
-              </Link>
-            )}
+                <Link
+                  href={`/${props.type}/${node.name}`}
+                  className="text-blue-500"
+                >
+                  {node.name}
+                </Link>
+              )}
           </p>
         ))}
       </div>
