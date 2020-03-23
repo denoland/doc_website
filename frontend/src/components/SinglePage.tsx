@@ -2,7 +2,7 @@ import React from "react";
 import { useNodes } from "../util/nodes";
 import { groupNodes, DocNode } from "../util/docs";
 import { Page } from "./Page";
-import { JSDoc } from "./JSDoc";
+import { JSDoc, CodeBlock } from "./JSDoc";
 
 export function SinglePage() {
   const nodes = useNodes();
@@ -132,14 +132,18 @@ function DocNodeCard(props: { node: DocNode }) {
         <span className="font">{node.name}</span>
       </div>
 
-      <pre className="text-sm font-mono">{node.snippet}</pre>
+      <CodeBlock value={node.snippet} />
 
       <div className="text-sm mt-2 text-gray-600">
         Defined in file '{node.location.filename}' on line {node.location.line},
         column {node.location.col}.
       </div>
 
-      {node.jsDoc ? <JSDoc jsdoc={node.jsDoc} /> : null}
+      {node.jsDoc ? (
+        <div className="mt-2">
+          <JSDoc jsdoc={node.jsDoc} />
+        </div>
+      ) : null}
     </div>
   );
 }
