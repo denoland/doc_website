@@ -1,17 +1,15 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
-import { cleanJSDoc } from "../util/docs";
 import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
 import ts from "react-syntax-highlighter/dist/esm/languages/hljs/typescript";
 import atomOneLight from "react-syntax-highlighter/dist/esm/styles/hljs/atom-one-light";
 SyntaxHighlighter.registerLanguage("ts", ts);
 
 export function JSDoc(props: { jsdoc: string; short?: boolean }) {
-  const jsdoc = cleanJSDoc(props.jsdoc);
-  const firstline = jsdoc.split("\n")[0];
+  const firstline = props.jsdoc.split("\n")[0];
   return (
     <ReactMarkdown
-      source={props.short ? firstline : jsdoc}
+      source={props.short ? firstline : props.jsdoc}
       renderers={{
         link: (props: any) => (
           <a className="text-blue-400" {...props}>

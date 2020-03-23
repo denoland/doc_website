@@ -67,7 +67,7 @@ export interface EnumMemberDef {
 export interface EnumDef {
   members: EnumMemberDef[];
 }
-export interface InterfaceDef {}
+export interface InterfaceDef { }
 export interface TypeAliasDef {
   tsType: TsTypeDef;
 }
@@ -167,11 +167,4 @@ export function groupNodes(docs: DocNode[]): GroupedNodes {
   });
 
   return groupedNodes;
-}
-
-export function cleanJSDoc(jsDoc: string): string {
-  if (jsDoc.startsWith("/**")) jsDoc = jsDoc.substr(3);
-  if (jsDoc.endsWith("*/")) jsDoc = jsDoc.substr(0, jsDoc.length - 2);
-  jsDoc = jsDoc.replace(/\n( *)\*/g, "\n");
-  return jsDoc.trim();
 }

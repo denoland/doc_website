@@ -20,7 +20,7 @@
             "line": 8,
             "col": 2
           },
-          "jsDoc": "/** The current process id of the runtime. */"
+          "jsDoc": "The current process id of the runtime. "
         },
         {
           "kind": "variable",
@@ -31,7 +31,7 @@
             "line": 13,
             "col": 2
           },
-          "jsDoc": "/** Reflects the NO_COLOR environment variable.\n   *\n   * See: https://no-color.org/ */"
+          "jsDoc": "Reflects the NO_COLOR environment variable.\n  \n  See: https://no-color.org/ "
         },
         {
           "kind": "typeAlias",
@@ -72,7 +72,7 @@
             "line": 28,
             "col": 2
           },
-          "jsDoc": "/** Register a test which will be run when `deno test` is used on the command\n   * line and the containing module looks like a test module, or explicitly\n   * when `Deno.runTests` is used */",
+          "jsDoc": "Register a test which will be run when `deno test` is used on the command\n  line and the containing module looks like a test module, or explicitly\n  when `Deno.runTests` is used ",
           "functionDef": {
             "params": [
               {
@@ -98,7 +98,7 @@
             "line": 32,
             "col": 2
           },
-          "jsDoc": "/** Register a test which will be run when `deno test` is used on the command\n   * line and the containing module looks like a test module, or explicitly\n   * when `Deno.runTests` is used */",
+          "jsDoc": "Register a test which will be run when `deno test` is used on the command\n  line and the containing module looks like a test module, or explicitly\n  when `Deno.runTests` is used ",
           "functionDef": {
             "params": [
               {
@@ -124,7 +124,7 @@
             "line": 36,
             "col": 2
           },
-          "jsDoc": "/** Register a test which will be run when `deno test` is used on the command\n   * line and the containing module looks like a test module, or explicitly\n   * when `Deno.runTests` is used */",
+          "jsDoc": "Register a test which will be run when `deno test` is used on the command\n  line and the containing module looks like a test module, or explicitly\n  when `Deno.runTests` is used ",
           "functionDef": {
             "params": [
               {
@@ -344,7 +344,7 @@
             "line": 123,
             "col": 2
           },
-          "jsDoc": "/** Run any tests which have been registered. Always resolves\n   * asynchronously. */",
+          "jsDoc": "Run any tests which have been registered. Always resolves\n  asynchronously. ",
           "functionDef": {
             "params": [
               {
@@ -370,7 +370,7 @@
             "line": 135,
             "col": 2
           },
-          "jsDoc": "/** Get the `loadavg`. Requires `allow-env` permission.\n   *\n   *       console.log(Deno.loadavg());\n   */",
+          "jsDoc": "Get the `loadavg`. Requires `allow-env` permission.\n  \n        console.log(Deno.loadavg());\n   ",
           "functionDef": {
             "params": [],
             "returnType": {
@@ -389,7 +389,7 @@
             "line": 141,
             "col": 2
           },
-          "jsDoc": "/** Get the `hostname`. Requires `allow-env` permission.\n   *\n   *       console.log(Deno.hostname());\n   */",
+          "jsDoc": "Get the `hostname`. Requires `allow-env` permission.\n  \n        console.log(Deno.hostname());\n   ",
           "functionDef": {
             "params": [],
             "returnType": {
@@ -408,7 +408,7 @@
             "line": 147,
             "col": 2
           },
-          "jsDoc": "/** Get the OS release. Requires `allow-env` permission.\n   *\n   *       console.log(Deno.osRelease());\n   */",
+          "jsDoc": "Get the OS release. Requires `allow-env` permission.\n  \n        console.log(Deno.osRelease());\n   ",
           "functionDef": {
             "params": [],
             "returnType": {
@@ -427,7 +427,7 @@
             "line": 150,
             "col": 2
           },
-          "jsDoc": "/** Exit the Deno process with optional exit code. */",
+          "jsDoc": "Exit the Deno process with optional exit code. ",
           "functionDef": {
             "params": [
               {
@@ -453,7 +453,7 @@
             "line": 163,
             "col": 2
           },
-          "jsDoc": "/** Returns a snapshot of the environment variables at invocation. Mutating a\n   * property in the object will set that variable in the environment for the\n   * process. The environment object will only accept `string`s as values.\n   *\n   *       const myEnv = Deno.env();\n   *       console.log(myEnv.SHELL);\n   *       myEnv.TEST_VAR = \"HELLO\";\n   *       const newEnv = Deno.env();\n   *       console.log(myEnv.TEST_VAR == newEnv.TEST_VAR);\n   *\n   * Requires `allow-env` permission. */",
+          "jsDoc": "Returns a snapshot of the environment variables at invocation. Mutating a\n  property in the object will set that variable in the environment for the\n  process. The environment object will only accept `string`s as values.\n  \n        const myEnv = Deno.env();\n        console.log(myEnv.SHELL);\n        myEnv.TEST_VAR = \"HELLO\";\n        const newEnv = Deno.env();\n        console.log(myEnv.TEST_VAR == newEnv.TEST_VAR);\n  \n  Requires `allow-env` permission. ",
           "functionDef": {
             "params": [],
             "returnType": {
@@ -472,7 +472,7 @@
             "line": 177,
             "col": 2
           },
-          "jsDoc": "/** Returns the value of an environment variable at invocation. If the\n   * variable is not present, `undefined` will be returned.\n   *\n   *       const myEnv = Deno.env();\n   *       console.log(myEnv.SHELL);\n   *       myEnv.TEST_VAR = \"HELLO\";\n   *       const newEnv = Deno.env();\n   *       console.log(myEnv.TEST_VAR == newEnv.TEST_VAR);\n   *\n   * Requires `allow-env` permission. */",
+          "jsDoc": "Returns the value of an environment variable at invocation. If the\n  variable is not present, `undefined` will be returned.\n  \n        const myEnv = Deno.env();\n        console.log(myEnv.SHELL);\n        myEnv.TEST_VAR = \"HELLO\";\n        const newEnv = Deno.env();\n        console.log(myEnv.TEST_VAR == newEnv.TEST_VAR);\n  \n  Requires `allow-env` permission. ",
           "functionDef": {
             "params": [
               {
@@ -498,7 +498,7 @@
             "line": 180,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE** */",
+          "jsDoc": "**UNSTABLE** ",
           "typeAliasDef": {
             "tsType": {
               "repr": "type DirKind =\n    | \"home\"\n    | \"cache\"\n    | \"config\"\n    | \"executable\"\n    | \"data\"\n    | \"data_local\"\n    | \"audio\"\n    | \"desktop\"\n    | \"document\"\n    | \"download\"\n    | \"font\"\n    | \"picture\"\n    | \"public\"\n    | \"template\"\n    | \"tmp\"\n    | \"video\";"
@@ -514,7 +514,7 @@
             "line": 334,
             "col": 2
           },
-          "jsDoc": "/**\n   * **UNSTABLE**: Might rename method `dir` and type alias `DirKind`.\n   *\n   * Returns the user and platform specific directories.\n   *\n   * Requires `allow-env` permission.\n   *\n   * Returns `null` if there is no applicable directory or if any other error\n   * occurs.\n   *\n   * Argument values: `\"home\"`, `\"cache\"`, `\"config\"`, `\"executable\"`, `\"data\"`,\n   * `\"data_local\"`, `\"audio\"`, `\"desktop\"`, `\"document\"`, `\"download\"`,\n   * `\"font\"`, `\"picture\"`, `\"public\"`, `\"template\"`, `\"tmp\"`, `\"video\"`\n   *\n   * `\"cache\"`\n   *\n   * |Platform | Value                               | Example                      |\n   * | ------- | ----------------------------------- | ---------------------------- |\n   * | Linux   | `$XDG_CACHE_HOME` or `$HOME`/.cache | /home/alice/.cache           |\n   * | macOS   | `$HOME`/Library/Caches              | /Users/Alice/Library/Caches  |\n   * | Windows | `{FOLDERID_LocalAppData}`           | C:\\Users\\Alice\\AppData\\Local |\n   *\n   * `\"config\"`\n   *\n   * |Platform | Value                                 | Example                          |\n   * | ------- | ------------------------------------- | -------------------------------- |\n   * | Linux   | `$XDG_CONFIG_HOME` or `$HOME`/.config | /home/alice/.config              |\n   * | macOS   | `$HOME`/Library/Preferences           | /Users/Alice/Library/Preferences |\n   * | Windows | `{FOLDERID_RoamingAppData}`           | C:\\Users\\Alice\\AppData\\Roaming   |\n   *\n   * `\"executable\"`\n   *\n   * |Platform | Value                                                           | Example                |\n   * | ------- | --------------------------------------------------------------- | -----------------------|\n   * | Linux   | `XDG_BIN_HOME` or `$XDG_DATA_HOME`/../bin or `$HOME`/.local/bin | /home/alice/.local/bin |\n   * | macOS   | -                                                               | -                      |\n   * | Windows | -                                                               | -                      |\n   *\n   * `\"data\"`\n   *\n   * |Platform | Value                                    | Example                                  |\n   * | ------- | ---------------------------------------- | ---------------------------------------- |\n   * | Linux   | `$XDG_DATA_HOME` or `$HOME`/.local/share | /home/alice/.local/share                 |\n   * | macOS   | `$HOME`/Library/Application Support      | /Users/Alice/Library/Application Support |\n   * | Windows | `{FOLDERID_RoamingAppData}`              | C:\\Users\\Alice\\AppData\\Roaming           |\n   *\n   * `\"data_local\"`\n   *\n   * |Platform | Value                                    | Example                                  |\n   * | ------- | ---------------------------------------- | ---------------------------------------- |\n   * | Linux   | `$XDG_DATA_HOME` or `$HOME`/.local/share | /home/alice/.local/share                 |\n   * | macOS   | `$HOME`/Library/Application Support      | /Users/Alice/Library/Application Support |\n   * | Windows | `{FOLDERID_LocalAppData}`                | C:\\Users\\Alice\\AppData\\Local             |\n   *\n   * `\"audio\"`\n   *\n   * |Platform | Value              | Example              |\n   * | ------- | ------------------ | -------------------- |\n   * | Linux   | `XDG_MUSIC_DIR`    | /home/alice/Music    |\n   * | macOS   | `$HOME`/Music      | /Users/Alice/Music   |\n   * | Windows | `{FOLDERID_Music}` | C:\\Users\\Alice\\Music |\n   *\n   * `\"desktop\"`\n   *\n   * |Platform | Value                | Example                |\n   * | ------- | -------------------- | ---------------------- |\n   * | Linux   | `XDG_DESKTOP_DIR`    | /home/alice/Desktop    |\n   * | macOS   | `$HOME`/Desktop      | /Users/Alice/Desktop   |\n   * | Windows | `{FOLDERID_Desktop}` | C:\\Users\\Alice\\Desktop |\n   *\n   * `\"document\"`\n   *\n   * |Platform | Value                  | Example                  |\n   * | ------- | ---------------------- | ------------------------ |\n   * | Linux   | `XDG_DOCUMENTS_DIR`    | /home/alice/Documents    |\n   * | macOS   | `$HOME`/Documents      | /Users/Alice/Documents   |\n   * | Windows | `{FOLDERID_Documents}` | C:\\Users\\Alice\\Documents |\n   *\n   * `\"download\"`\n   *\n   * |Platform | Value                  | Example                  |\n   * | ------- | ---------------------- | ------------------------ |\n   * | Linux   | `XDG_DOWNLOAD_DIR`     | /home/alice/Downloads    |\n   * | macOS   | `$HOME`/Downloads      | /Users/Alice/Downloads   |\n   * | Windows | `{FOLDERID_Downloads}` | C:\\Users\\Alice\\Downloads |\n   *\n   * `\"font\"`\n   *\n   * |Platform | Value                                                | Example                        |\n   * | ------- | ---------------------------------------------------- | ------------------------------ |\n   * | Linux   | `$XDG_DATA_HOME`/fonts or `$HOME`/.local/share/fonts | /home/alice/.local/share/fonts |\n   * | macOS   | `$HOME/Library/Fonts`                                | /Users/Alice/Library/Fonts     |\n   * | Windows | –                                                    | –                              |\n   *\n   * `\"picture\"`\n   *\n   * |Platform | Value                 | Example                 |\n   * | ------- | --------------------- | ----------------------- |\n   * | Linux   | `XDG_PICTURES_DIR`    | /home/alice/Pictures    |\n   * | macOS   | `$HOME`/Pictures      | /Users/Alice/Pictures   |\n   * | Windows | `{FOLDERID_Pictures}` | C:\\Users\\Alice\\Pictures |\n   *\n   * `\"public\"`\n   *\n   * |Platform | Value                 | Example             |\n   * | ------- | --------------------- | ------------------- |\n   * | Linux   | `XDG_PUBLICSHARE_DIR` | /home/alice/Public  |\n   * | macOS   | `$HOME`/Public        | /Users/Alice/Public |\n   * | Windows | `{FOLDERID_Public}`   | C:\\Users\\Public     |\n   *\n   * `\"template\"`\n   *\n   * |Platform | Value                  | Example                                                    |\n   * | ------- | ---------------------- | ---------------------------------------------------------- |\n   * | Linux   | `XDG_TEMPLATES_DIR`    | /home/alice/Templates                                      |\n   * | macOS   | –                      | –                                                          |\n   * | Windows | `{FOLDERID_Templates}` | C:\\Users\\Alice\\AppData\\Roaming\\Microsoft\\Windows\\Templates |\n   *\n   * `\"tmp\"`\n   *\n   * |Platform | Value                  | Example                                                    |\n   * | ------- | ---------------------- | ---------------------------------------------------------- |\n   * | Linux   | `TMPDIR`               | /tmp                                                       |\n   * | macOS   | `TMPDIR`               | /tmp                                                       |\n   * | Windows | `{TMP}`                | C:\\Users\\Alice\\AppData\\Local\\Temp                          |\n   *\n   * `\"video\"`\n   *\n   * |Platform | Value               | Example               |\n   * | ------- | ------------------- | --------------------- |\n   * | Linux   | `XDG_VIDEOS_DIR`    | /home/alice/Videos    |\n   * | macOS   | `$HOME`/Movies      | /Users/Alice/Movies   |\n   * | Windows | `{FOLDERID_Videos}` | C:\\Users\\Alice\\Videos |\n   *\n   */",
+          "jsDoc": "\n  **UNSTABLE**: Might rename method `dir` and type alias `DirKind`.\n  \n  Returns the user and platform specific directories.\n  \n  Requires `allow-env` permission.\n  \n  Returns `null` if there is no applicable directory or if any other error\n  occurs.\n  \n  Argument values: `\"home\"`, `\"cache\"`, `\"config\"`, `\"executable\"`, `\"data\"`,\n  `\"data_local\"`, `\"audio\"`, `\"desktop\"`, `\"document\"`, `\"download\"`,\n  `\"font\"`, `\"picture\"`, `\"public\"`, `\"template\"`, `\"tmp\"`, `\"video\"`\n  \n  `\"cache\"`\n  \n  |Platform | Value                               | Example                      |\n  | ------- | ----------------------------------- | ---------------------------- |\n  | Linux   | `$XDG_CACHE_HOME` or `$HOME`/.cache | /home/alice/.cache           |\n  | macOS   | `$HOME`/Library/Caches              | /Users/Alice/Library/Caches  |\n  | Windows | `{FOLDERID_LocalAppData}`           | C:\\Users\\Alice\\AppData\\Local |\n  \n  `\"config\"`\n  \n  |Platform | Value                                 | Example                          |\n  | ------- | ------------------------------------- | -------------------------------- |\n  | Linux   | `$XDG_CONFIG_HOME` or `$HOME`/.config | /home/alice/.config              |\n  | macOS   | `$HOME`/Library/Preferences           | /Users/Alice/Library/Preferences |\n  | Windows | `{FOLDERID_RoamingAppData}`           | C:\\Users\\Alice\\AppData\\Roaming   |\n  \n  `\"executable\"`\n  \n  |Platform | Value                                                           | Example                |\n  | ------- | --------------------------------------------------------------- | -----------------------|\n  | Linux   | `XDG_BIN_HOME` or `$XDG_DATA_HOME`/../bin or `$HOME`/.local/bin | /home/alice/.local/bin |\n  | macOS   | -                                                               | -                      |\n  | Windows | -                                                               | -                      |\n  \n  `\"data\"`\n  \n  |Platform | Value                                    | Example                                  |\n  | ------- | ---------------------------------------- | ---------------------------------------- |\n  | Linux   | `$XDG_DATA_HOME` or `$HOME`/.local/share | /home/alice/.local/share                 |\n  | macOS   | `$HOME`/Library/Application Support      | /Users/Alice/Library/Application Support |\n  | Windows | `{FOLDERID_RoamingAppData}`              | C:\\Users\\Alice\\AppData\\Roaming           |\n  \n  `\"data_local\"`\n  \n  |Platform | Value                                    | Example                                  |\n  | ------- | ---------------------------------------- | ---------------------------------------- |\n  | Linux   | `$XDG_DATA_HOME` or `$HOME`/.local/share | /home/alice/.local/share                 |\n  | macOS   | `$HOME`/Library/Application Support      | /Users/Alice/Library/Application Support |\n  | Windows | `{FOLDERID_LocalAppData}`                | C:\\Users\\Alice\\AppData\\Local             |\n  \n  `\"audio\"`\n  \n  |Platform | Value              | Example              |\n  | ------- | ------------------ | -------------------- |\n  | Linux   | `XDG_MUSIC_DIR`    | /home/alice/Music    |\n  | macOS   | `$HOME`/Music      | /Users/Alice/Music   |\n  | Windows | `{FOLDERID_Music}` | C:\\Users\\Alice\\Music |\n  \n  `\"desktop\"`\n  \n  |Platform | Value                | Example                |\n  | ------- | -------------------- | ---------------------- |\n  | Linux   | `XDG_DESKTOP_DIR`    | /home/alice/Desktop    |\n  | macOS   | `$HOME`/Desktop      | /Users/Alice/Desktop   |\n  | Windows | `{FOLDERID_Desktop}` | C:\\Users\\Alice\\Desktop |\n  \n  `\"document\"`\n  \n  |Platform | Value                  | Example                  |\n  | ------- | ---------------------- | ------------------------ |\n  | Linux   | `XDG_DOCUMENTS_DIR`    | /home/alice/Documents    |\n  | macOS   | `$HOME`/Documents      | /Users/Alice/Documents   |\n  | Windows | `{FOLDERID_Documents}` | C:\\Users\\Alice\\Documents |\n  \n  `\"download\"`\n  \n  |Platform | Value                  | Example                  |\n  | ------- | ---------------------- | ------------------------ |\n  | Linux   | `XDG_DOWNLOAD_DIR`     | /home/alice/Downloads    |\n  | macOS   | `$HOME`/Downloads      | /Users/Alice/Downloads   |\n  | Windows | `{FOLDERID_Downloads}` | C:\\Users\\Alice\\Downloads |\n  \n  `\"font\"`\n  \n  |Platform | Value                                                | Example                        |\n  | ------- | ---------------------------------------------------- | ------------------------------ |\n  | Linux   | `$XDG_DATA_HOME`/fonts or `$HOME`/.local/share/fonts | /home/alice/.local/share/fonts |\n  | macOS   | `$HOME/Library/Fonts`                                | /Users/Alice/Library/Fonts     |\n  | Windows | –                                                    | –                              |\n  \n  `\"picture\"`\n  \n  |Platform | Value                 | Example                 |\n  | ------- | --------------------- | ----------------------- |\n  | Linux   | `XDG_PICTURES_DIR`    | /home/alice/Pictures    |\n  | macOS   | `$HOME`/Pictures      | /Users/Alice/Pictures   |\n  | Windows | `{FOLDERID_Pictures}` | C:\\Users\\Alice\\Pictures |\n  \n  `\"public\"`\n  \n  |Platform | Value                 | Example             |\n  | ------- | --------------------- | ------------------- |\n  | Linux   | `XDG_PUBLICSHARE_DIR` | /home/alice/Public  |\n  | macOS   | `$HOME`/Public        | /Users/Alice/Public |\n  | Windows | `{FOLDERID_Public}`   | C:\\Users\\Public     |\n  \n  `\"template\"`\n  \n  |Platform | Value                  | Example                                                    |\n  | ------- | ---------------------- | ---------------------------------------------------------- |\n  | Linux   | `XDG_TEMPLATES_DIR`    | /home/alice/Templates                                      |\n  | macOS   | –                      | –                                                          |\n  | Windows | `{FOLDERID_Templates}` | C:\\Users\\Alice\\AppData\\Roaming\\Microsoft\\Windows\\Templates |\n  \n  `\"tmp\"`\n  \n  |Platform | Value                  | Example                                                    |\n  | ------- | ---------------------- | ---------------------------------------------------------- |\n  | Linux   | `TMPDIR`               | /tmp                                                       |\n  | macOS   | `TMPDIR`               | /tmp                                                       |\n  | Windows | `{TMP}`                | C:\\Users\\Alice\\AppData\\Local\\Temp                          |\n  \n  `\"video\"`\n  \n  |Platform | Value               | Example               |\n  | ------- | ------------------- | --------------------- |\n  | Linux   | `XDG_VIDEOS_DIR`    | /home/alice/Videos    |\n  | macOS   | `$HOME`/Movies      | /Users/Alice/Movies   |\n  | Windows | `{FOLDERID_Videos}` | C:\\Users\\Alice\\Videos |\n  \n   ",
           "functionDef": {
             "params": [
               {
@@ -540,7 +540,7 @@
             "line": 341,
             "col": 2
           },
-          "jsDoc": "/**\n   * Returns the path to the current deno executable.\n   *\n   * Requires `allow-env` permission.\n   */",
+          "jsDoc": "\n  Returns the path to the current deno executable.\n  \n  Requires `allow-env` permission.\n   ",
           "functionDef": {
             "params": [],
             "returnType": {
@@ -559,7 +559,7 @@
             "line": 355,
             "col": 2
           },
-          "jsDoc": "/**\n   * **UNSTABLE**: maybe needs permissions.\n   *\n   * Return a string representing the current working directory.\n   *\n   * If the current directory can be reached via multiple paths (due to symbolic\n   * links), `cwd()` may return any one of them.\n   *\n   * Throws `Deno.errors.NotFound` if directory not available.\n   */",
+          "jsDoc": "\n  **UNSTABLE**: maybe needs permissions.\n  \n  Return a string representing the current working directory.\n  \n  If the current directory can be reached via multiple paths (due to symbolic\n  links), `cwd()` may return any one of them.\n  \n  Throws `Deno.errors.NotFound` if directory not available.\n   ",
           "functionDef": {
             "params": [],
             "returnType": {
@@ -578,7 +578,7 @@
             "line": 371,
             "col": 2
           },
-          "jsDoc": "/**\n   * **UNSTABLE**: Currently under evaluation to decide if explicit permission is\n   * required to change the current working directory.\n   *\n   * Change the current working directory to the specified path.\n   *\n   *       Deno.chdir(\"/home/userA\");\n   *       Deno.chdir(\"../userB\");\n   *       Deno.chdir(\"C:\\\\Program Files (x86)\\\\Java\");\n   *\n   * Throws `Deno.errors.NotFound` if directory not found.\n   * Throws `Deno.errors.PermissionDenied` if the user does not have access\n   * rights\n   */",
+          "jsDoc": "\n  **UNSTABLE**: Currently under evaluation to decide if explicit permission is\n  required to change the current working directory.\n  \n  Change the current working directory to the specified path.\n  \n        Deno.chdir(\"/home/userA\");\n        Deno.chdir(\"../userB\");\n        Deno.chdir(\"C:\\\\Program Files (x86)\\\\Java\");\n  \n  Throws `Deno.errors.NotFound` if directory not found.\n  Throws `Deno.errors.PermissionDenied` if the user does not have access\n  rights\n   ",
           "functionDef": {
             "params": [
               {
@@ -604,7 +604,7 @@
             "line": 379,
             "col": 2
           },
-          "jsDoc": "/**\n   * **UNSTABLE**: New API. Maybe needs permissions.\n   *\n   * If `mask` is provided, sets the process umask. Always returns what the umask\n   * was before the call.\n   */",
+          "jsDoc": "\n  **UNSTABLE**: New API. Maybe needs permissions.\n  \n  If `mask` is provided, sets the process umask. Always returns what the umask\n  was before the call.\n   ",
           "functionDef": {
             "params": [
               {
@@ -630,7 +630,7 @@
             "line": 382,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: might move to `Deno.symbols`. */"
+          "jsDoc": "**UNSTABLE**: might move to `Deno.symbols`. "
         },
         {
           "kind": "typeAlias",
@@ -657,7 +657,7 @@
             "line": 388,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: might remove `\"SEEK_\"` prefix. Might not use all-caps. */",
+          "jsDoc": "**UNSTABLE**: might remove `\"SEEK_\"` prefix. Might not use all-caps. ",
           "enumDef": {
             "members": [
               {
@@ -681,7 +681,7 @@
             "line": 395,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: might make `Reader` into iterator of some sort. */",
+          "jsDoc": "**UNSTABLE**: might make `Reader` into iterator of some sort. ",
           "interfaceDef": {
             "methods": [
               {
@@ -691,7 +691,7 @@
                   "line": 414,
                   "col": 4
                 },
-                "jsDoc": "/** Reads up to `p.byteLength` bytes into `p`. It resolves to the number of\n     * bytes read (`0` < `n` <= `p.byteLength`) and rejects if any error\n     * encountered. Even if `read()` resolves to `n` < `p.byteLength`, it may\n     * use all of `p` as scratch space during the call. If some data is\n     * available but not `p.byteLength` bytes, `read()` conventionally resolves\n     * to what is available instead of waiting for more.\n     *\n     * When `read()` encounters end-of-file condition, it resolves to\n     * `Deno.EOF` symbol.\n     *\n     * When `read()` encounters an error, it rejects with an error.\n     *\n     * Callers should always process the `n` > `0` bytes returned before\n     * considering the `EOF`. Doing so correctly handles I/O errors that happen\n     * after reading some bytes and also both of the allowed EOF behaviors.\n     *\n     * Implementations should not retain a reference to `p`.\n     */",
+                "jsDoc": "Reads up to `p.byteLength` bytes into `p`. It resolves to the number of\n    bytes read (`0` < `n` <= `p.byteLength`) and rejects if any error\n    encountered. Even if `read()` resolves to `n` < `p.byteLength`, it may\n    use all of `p` as scratch space during the call. If some data is\n    available but not `p.byteLength` bytes, `read()` conventionally resolves\n    to what is available instead of waiting for more.\n    \n    When `read()` encounters end-of-file condition, it resolves to\n    `Deno.EOF` symbol.\n    \n    When `read()` encounters an error, it rejects with an error.\n    \n    Callers should always process the `n` > `0` bytes returned before\n    considering the `EOF`. Doing so correctly handles I/O errors that happen\n    after reading some bytes and also both of the allowed EOF behaviors.\n    \n    Implementations should not retain a reference to `p`.\n     ",
                 "params": [
                   {
                     "name": "p",
@@ -726,7 +726,7 @@
                   "line": 436,
                   "col": 4
                 },
-                "jsDoc": "/** Reads up to `p.byteLength` bytes into `p`. It resolves to the number\n     * of bytes read (`0` < `n` <= `p.byteLength`) and rejects if any error\n     * encountered. Even if `read()` returns `n` < `p.byteLength`, it may use\n     * all of `p` as scratch space during the call. If some data is available\n     * but not `p.byteLength` bytes, `read()` conventionally returns what is\n     * available instead of waiting for more.\n     *\n     * When `readSync()` encounters end-of-file condition, it returns `Deno.EOF`\n     * symbol.\n     *\n     * When `readSync()` encounters an error, it throws with an error.\n     *\n     * Callers should always process the `n` > `0` bytes returned before\n     * considering the `EOF`. Doing so correctly handles I/O errors that happen\n     * after reading some bytes and also both of the allowed EOF behaviors.\n     *\n     * Implementations should not retain a reference to `p`.\n     */",
+                "jsDoc": "Reads up to `p.byteLength` bytes into `p`. It resolves to the number\n    of bytes read (`0` < `n` <= `p.byteLength`) and rejects if any error\n    encountered. Even if `read()` returns `n` < `p.byteLength`, it may use\n    all of `p` as scratch space during the call. If some data is available\n    but not `p.byteLength` bytes, `read()` conventionally returns what is\n    available instead of waiting for more.\n    \n    When `readSync()` encounters end-of-file condition, it returns `Deno.EOF`\n    symbol.\n    \n    When `readSync()` encounters an error, it throws with an error.\n    \n    Callers should always process the `n` > `0` bytes returned before\n    considering the `EOF`. Doing so correctly handles I/O errors that happen\n    after reading some bytes and also both of the allowed EOF behaviors.\n    \n    Implementations should not retain a reference to `p`.\n     ",
                 "params": [
                   {
                     "name": "p",
@@ -761,7 +761,7 @@
                   "line": 449,
                   "col": 4
                 },
-                "jsDoc": "/** Writes `p.byteLength` bytes from `p` to the underlying data stream. It\n     * resolves to the number of bytes written from `p` (`0` <= `n` <=\n     * `p.byteLength`) or reject with the error encountered that caused the\n     * write to stop early. `write()` must reject with a non-null error if\n     * would resolve to `n` < `p.byteLength`. `write()` must not modify the\n     * slice data, even temporarily.\n     *\n     * Implementations should not retain a reference to `p`.\n     */",
+                "jsDoc": "Writes `p.byteLength` bytes from `p` to the underlying data stream. It\n    resolves to the number of bytes written from `p` (`0` <= `n` <=\n    `p.byteLength`) or reject with the error encountered that caused the\n    write to stop early. `write()` must reject with a non-null error if\n    would resolve to `n` < `p.byteLength`. `write()` must not modify the\n    slice data, even temporarily.\n    \n    Implementations should not retain a reference to `p`.\n     ",
                 "params": [
                   {
                     "name": "p",
@@ -796,7 +796,7 @@
                   "line": 462,
                   "col": 4
                 },
-                "jsDoc": "/** Writes `p.byteLength` bytes from `p` to the underlying data\n     * stream. It returns the number of bytes written from `p` (`0` <= `n`\n     * <= `p.byteLength`) and any error encountered that caused the write to\n     * stop early. `writeSync()` must throw a non-null error if it returns `n` <\n     * `p.byteLength`. `writeSync()` must not modify the slice data, even\n     * temporarily.\n     *\n     * Implementations should not retain a reference to `p`.\n     */",
+                "jsDoc": "Writes `p.byteLength` bytes from `p` to the underlying data\n    stream. It returns the number of bytes written from `p` (`0` <= `n`\n    <= `p.byteLength`) and any error encountered that caused the write to\n    stop early. `writeSync()` must throw a non-null error if it returns `n` <\n    `p.byteLength`. `writeSync()` must not modify the slice data, even\n    temporarily.\n    \n    Implementations should not retain a reference to `p`.\n     ",
                 "params": [
                   {
                     "name": "p",
@@ -859,7 +859,7 @@
                   "line": 481,
                   "col": 4
                 },
-                "jsDoc": "/** Seek sets the offset for the next `read()` or `write()` to offset,\n     * interpreted according to `whence`: `SEEK_START` means relative to the\n     * start of the file, `SEEK_CURRENT` means relative to the current offset,\n     * and `SEEK_END` means relative to the end. Seek resolves to the new offset\n     * relative to the start of the file.\n     *\n     * Seeking to an offset before the start of the file is an error. Seeking to\n     * any positive offset is legal, but the behavior of subsequent I/O\n     * operations on the underlying object is implementation-dependent.\n     * It returns the number of cursor position.\n     */",
+                "jsDoc": "Seek sets the offset for the next `read()` or `write()` to offset,\n    interpreted according to `whence`: `SEEK_START` means relative to the\n    start of the file, `SEEK_CURRENT` means relative to the current offset,\n    and `SEEK_END` means relative to the end. Seek resolves to the new offset\n    relative to the start of the file.\n    \n    Seeking to an offset before the start of the file is an error. Seeking to\n    any positive offset is legal, but the behavior of subsequent I/O\n    operations on the underlying object is implementation-dependent.\n    It returns the number of cursor position.\n     ",
                 "params": [
                   {
                     "name": "offset",
@@ -900,7 +900,7 @@
                   "line": 494,
                   "col": 4
                 },
-                "jsDoc": "/** Seek sets the offset for the next `readSync()` or `writeSync()` to\n     * offset, interpreted according to `whence`: `SEEK_START` means relative\n     * to the start of the file, `SEEK_CURRENT` means relative to the current\n     * offset, and `SEEK_END` means relative to the end.\n     *\n     * Seeking to an offset before the start of the file is an error. Seeking to\n     * any positive offset is legal, but the behavior of subsequent I/O\n     * operations on the underlying object is implementation-dependent.\n     */",
+                "jsDoc": "Seek sets the offset for the next `readSync()` or `writeSync()` to\n    offset, interpreted according to `whence`: `SEEK_START` means relative\n    to the start of the file, `SEEK_CURRENT` means relative to the current\n    offset, and `SEEK_END` means relative to the end.\n    \n    Seeking to an offset before the start of the file is an error. Seeking to\n    any positive offset is legal, but the behavior of subsequent I/O\n    operations on the underlying object is implementation-dependent.\n     ",
                 "params": [
                   {
                     "name": "offset",
@@ -1015,7 +1015,7 @@
             "line": 511,
             "col": 2
           },
-          "jsDoc": "/** Copies from `src` to `dst` until either `EOF` is reached on `src` or an\n   * error occurs. It resolves to the number of bytes copied or rejects with\n   * the first error encountered while copying.\n   *\n   * Because `copy()` is defined to read from `src` until `EOF`, it does not\n   * treat an `EOF` from `read()` as an error to be reported.\n   */",
+          "jsDoc": "Copies from `src` to `dst` until either `EOF` is reached on `src` or an\n  error occurs. It resolves to the number of bytes copied or rejects with\n  the first error encountered while copying.\n  \n  Because `copy()` is defined to read from `src` until `EOF`, it does not\n  treat an `EOF` from `read()` as an error to be reported.\n   ",
           "functionDef": {
             "params": [
               {
@@ -1047,7 +1047,7 @@
             "line": 519,
             "col": 2
           },
-          "jsDoc": "/** Turns `r` into async iterator.\n   *\n   *      for await (const chunk of toAsyncIterator(reader)) {\n   *        console.log(chunk);\n   *      }\n   */",
+          "jsDoc": "Turns `r` into async iterator.\n  \n       for await (const chunk of toAsyncIterator(reader)) {\n         console.log(chunk);\n       }\n   ",
           "functionDef": {
             "params": [
               {
@@ -1073,7 +1073,7 @@
             "line": 529,
             "col": 2
           },
-          "jsDoc": "/** Synchronously open a file and return an instance of the `File` object.\n   *\n   *       const file = Deno.openSync(\"/foo/bar.txt\", { read: true, write: true });\n   *\n   * Requires `allow-read` and `allow-write` permissions depending on openMode.\n   */",
+          "jsDoc": "Synchronously open a file and return an instance of the `File` object.\n  \n        const file = Deno.openSync(\"/foo/bar.txt\", { read: true, write: true });\n  \n  Requires `allow-read` and `allow-write` permissions depending on openMode.\n   ",
           "functionDef": {
             "params": [
               {
@@ -1105,7 +1105,7 @@
             "line": 537,
             "col": 2
           },
-          "jsDoc": "/** Synchronously open a file and return an instance of the `File` object.\n   *\n   *       const file = Deno.openSync(\"/foo/bar.txt\", \"r\");\n   *\n   * Requires `allow-read` and `allow-write` permissions depending on openMode.\n   */",
+          "jsDoc": "Synchronously open a file and return an instance of the `File` object.\n  \n        const file = Deno.openSync(\"/foo/bar.txt\", \"r\");\n  \n  Requires `allow-read` and `allow-write` permissions depending on openMode.\n   ",
           "functionDef": {
             "params": [
               {
@@ -1137,7 +1137,7 @@
             "line": 545,
             "col": 2
           },
-          "jsDoc": "/** Open a file and resolve to an instance of the `File` object.\n   *\n   *     const file = await Deno.open(\"/foo/bar.txt\", { read: true, write: true });\n   *\n   * Requires `allow-read` and `allow-write` permissions depending on openMode.\n   */",
+          "jsDoc": "Open a file and resolve to an instance of the `File` object.\n  \n      const file = await Deno.open(\"/foo/bar.txt\", { read: true, write: true });\n  \n  Requires `allow-read` and `allow-write` permissions depending on openMode.\n   ",
           "functionDef": {
             "params": [
               {
@@ -1169,7 +1169,7 @@
             "line": 553,
             "col": 2
           },
-          "jsDoc": "/** Open a file and resolves to an instance of `Deno.File`.\n   *\n   *     const file = await Deno.open(\"/foo/bar.txt, \"w+\");\n   *\n   * Requires `allow-read` and `allow-write` permissions depending on openMode.\n   */",
+          "jsDoc": "Open a file and resolves to an instance of `Deno.File`.\n  \n      const file = await Deno.open(\"/foo/bar.txt, \"w+\");\n  \n  Requires `allow-read` and `allow-write` permissions depending on openMode.\n   ",
           "functionDef": {
             "params": [
               {
@@ -1201,7 +1201,7 @@
             "line": 562,
             "col": 2
           },
-          "jsDoc": "/** Creates a file if none exists or truncates an existing file and returns\n   *  an instance of `Deno.File`.\n   *\n   *       const file = Deno.createSync(\"/foo/bar.txt\");\n   *\n   * Requires `allow-read` and `allow-write` permissions.\n   */",
+          "jsDoc": "Creates a file if none exists or truncates an existing file and returns\n   an instance of `Deno.File`.\n  \n        const file = Deno.createSync(\"/foo/bar.txt\");\n  \n  Requires `allow-read` and `allow-write` permissions.\n   ",
           "functionDef": {
             "params": [
               {
@@ -1227,7 +1227,7 @@
             "line": 571,
             "col": 2
           },
-          "jsDoc": "/** Creates a file if none exists or truncates an existing file and resolves to\n   *  an instance of `Deno.File`.\n   *\n   *       const file = await Deno.create(\"/foo/bar.txt\");\n   *\n   * Requires `allow-read` and `allow-write` permissions.\n   */",
+          "jsDoc": "Creates a file if none exists or truncates an existing file and resolves to\n   an instance of `Deno.File`.\n  \n        const file = await Deno.create(\"/foo/bar.txt\");\n  \n  Requires `allow-read` and `allow-write` permissions.\n   ",
           "functionDef": {
             "params": [
               {
@@ -1253,7 +1253,7 @@
             "line": 582,
             "col": 2
           },
-          "jsDoc": "/** Synchronously read from a file ID into an array buffer.\n   *\n   * Returns `number | EOF` for the operation.\n   *\n   *      const file = Deno.openSync(\"/foo/bar.txt\");\n   *      const buf = new Uint8Array(100);\n   *      const nread = Deno.readSync(file.rid, buf);\n   *      const text = new TextDecoder().decode(buf);\n   */",
+          "jsDoc": "Synchronously read from a file ID into an array buffer.\n  \n  Returns `number | EOF` for the operation.\n  \n       const file = Deno.openSync(\"/foo/bar.txt\");\n       const buf = new Uint8Array(100);\n       const nread = Deno.readSync(file.rid, buf);\n       const text = new TextDecoder().decode(buf);\n   ",
           "functionDef": {
             "params": [
               {
@@ -1285,7 +1285,7 @@
             "line": 593,
             "col": 2
           },
-          "jsDoc": "/** Read from a resource ID into an array buffer.\n   *\n   * Resolves to the `number | EOF` for the operation.\n   *\n   *       const file = await Deno.open(\"/foo/bar.txt\");\n   *       const buf = new Uint8Array(100);\n   *       const nread = await Deno.read(file.rid, buf);\n   *       const text = new TextDecoder().decode(buf);\n   */",
+          "jsDoc": "Read from a resource ID into an array buffer.\n  \n  Resolves to the `number | EOF` for the operation.\n  \n        const file = await Deno.open(\"/foo/bar.txt\");\n        const buf = new Uint8Array(100);\n        const nread = await Deno.read(file.rid, buf);\n        const text = new TextDecoder().decode(buf);\n   ",
           "functionDef": {
             "params": [
               {
@@ -1317,7 +1317,7 @@
             "line": 604,
             "col": 2
           },
-          "jsDoc": "/** Synchronously write to the resource ID the contents of the array buffer.\n   *\n   * Resolves to the number of bytes written.\n   *\n   *       const encoder = new TextEncoder();\n   *       const data = encoder.encode(\"Hello world\\n\");\n   *       const file = Deno.openSync(\"/foo/bar.txt\");\n   *       Deno.writeSync(file.rid, data);\n   */",
+          "jsDoc": "Synchronously write to the resource ID the contents of the array buffer.\n  \n  Resolves to the number of bytes written.\n  \n        const encoder = new TextEncoder();\n        const data = encoder.encode(\"Hello world\\n\");\n        const file = Deno.openSync(\"/foo/bar.txt\");\n        Deno.writeSync(file.rid, data);\n   ",
           "functionDef": {
             "params": [
               {
@@ -1349,7 +1349,7 @@
             "line": 615,
             "col": 2
           },
-          "jsDoc": "/** Write to the resource ID the contents of the array buffer.\n   *\n   * Resolves to the number of bytes written.\n   *\n   *      const encoder = new TextEncoder();\n   *      const data = encoder.encode(\"Hello world\\n\");\n   *      const file = await Deno.open(\"/foo/bar.txt\");\n   *      await Deno.write(file.rid, data);\n   */",
+          "jsDoc": "Write to the resource ID the contents of the array buffer.\n  \n  Resolves to the number of bytes written.\n  \n       const encoder = new TextEncoder();\n       const data = encoder.encode(\"Hello world\\n\");\n       const file = await Deno.open(\"/foo/bar.txt\");\n       await Deno.write(file.rid, data);\n   ",
           "functionDef": {
             "params": [
               {
@@ -1381,7 +1381,7 @@
             "line": 622,
             "col": 2
           },
-          "jsDoc": "/** Synchronously seek a file ID to the given offset under mode given by `whence`.\n   *\n   *       const file = Deno.openSync(\"/foo/bar.txt\");\n   *       Deno.seekSync(file.rid, 0, 0);\n   */",
+          "jsDoc": "Synchronously seek a file ID to the given offset under mode given by `whence`.\n  \n        const file = Deno.openSync(\"/foo/bar.txt\");\n        Deno.seekSync(file.rid, 0, 0);\n   ",
           "functionDef": {
             "params": [
               {
@@ -1419,7 +1419,7 @@
             "line": 633,
             "col": 2
           },
-          "jsDoc": "/** Seek a file ID to the given offset under mode given by `whence`.\n   *\n   *      const file = await Deno.open(\"/foo/bar.txt\");\n   *      await Deno.seek(file.rid, 0, 0);\n   */",
+          "jsDoc": "Seek a file ID to the given offset under mode given by `whence`.\n  \n       const file = await Deno.open(\"/foo/bar.txt\");\n       await Deno.seek(file.rid, 0, 0);\n   ",
           "functionDef": {
             "params": [
               {
@@ -1457,7 +1457,7 @@
             "line": 640,
             "col": 2
           },
-          "jsDoc": "/** Close the given resource ID. */",
+          "jsDoc": "Close the given resource ID. ",
           "functionDef": {
             "params": [
               {
@@ -1483,7 +1483,7 @@
             "line": 643,
             "col": 2
           },
-          "jsDoc": "/** The Deno abstraction for reading and writing files. */",
+          "jsDoc": "The Deno abstraction for reading and writing files. ",
           "classDef": {
             "isAbstract": false,
             "constructors": [
@@ -1747,7 +1747,7 @@
             "line": 664,
             "col": 2
           },
-          "jsDoc": "/** An instance of `Deno.File` for `stdin`. */"
+          "jsDoc": "An instance of `Deno.File` for `stdin`. "
         },
         {
           "kind": "variable",
@@ -1758,7 +1758,7 @@
             "line": 666,
             "col": 2
           },
-          "jsDoc": "/** An instance of `Deno.File` for `stdout`. */"
+          "jsDoc": "An instance of `Deno.File` for `stdout`. "
         },
         {
           "kind": "variable",
@@ -1769,7 +1769,7 @@
             "line": 668,
             "col": 2
           },
-          "jsDoc": "/** An instance of `Deno.File` for `stderr`. */"
+          "jsDoc": "An instance of `Deno.File` for `stderr`. "
         },
         {
           "kind": "interface",
@@ -1794,7 +1794,7 @@
             "line": 717,
             "col": 2
           },
-          "jsDoc": "/** A set of string literals which specify how to open a file.\n   *\n   * |Value |Description                                                                                       |\n   * |------|--------------------------------------------------------------------------------------------------|\n   * |`\"r\"` |Read-only. Default. Starts at beginning of file.                                                  |\n   * |`\"r+\"`|Read-write. Start at beginning of file.                                                           |\n   * |`\"w\"` |Write-only. Opens and truncates existing file or creates new one for writing only.                |\n   * |`\"w+\"`|Read-write. Opens and truncates existing file or creates new one for writing and reading.         |\n   * |`\"a\"` |Write-only. Opens existing file or creates new one. Each write appends content to the end of file.|\n   * |`\"a+\"`|Read-write. Behaves like `\"a\"` and allows to read from file.                                      |\n   * |`\"x\"` |Write-only. Exclusive create - creates new file only if one doesn't exist already.                |\n   * |`\"x+\"`|Read-write. Behaves like `x` and allows reading from file.                                        |\n   */",
+          "jsDoc": "A set of string literals which specify how to open a file.\n  \n  |Value |Description                                                                                       |\n  |------|--------------------------------------------------------------------------------------------------|\n  |`\"r\"` |Read-only. Default. Starts at beginning of file.                                                  |\n  |`\"r+\"`|Read-write. Start at beginning of file.                                                           |\n  |`\"w\"` |Write-only. Opens and truncates existing file or creates new one for writing only.                |\n  |`\"w+\"`|Read-write. Opens and truncates existing file or creates new one for writing and reading.         |\n  |`\"a\"` |Write-only. Opens existing file or creates new one. Each write appends content to the end of file.|\n  |`\"a+\"`|Read-write. Behaves like `\"a\"` and allows to read from file.                                      |\n  |`\"x\"` |Write-only. Exclusive create - creates new file only if one doesn't exist already.                |\n  |`\"x+\"`|Read-write. Behaves like `x` and allows reading from file.                                        |\n   ",
           "typeAliasDef": {
             "tsType": {
               "repr": "type OpenMode = \"r\" | \"r+\" | \"w\" | \"w+\" | \"a\" | \"a+\" | \"x\" | \"x+\";"
@@ -1810,7 +1810,7 @@
             "line": 724,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: newly added API\n   *\n   *  Check if a given resource is TTY. */",
+          "jsDoc": "**UNSTABLE**: newly added API\n  \n   Check if a given resource is TTY. ",
           "functionDef": {
             "params": [
               {
@@ -1836,7 +1836,7 @@
             "line": 729,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: newly added API\n   *\n   *  Set TTY to be under raw mode or not. */",
+          "jsDoc": "**UNSTABLE**: newly added API\n  \n   Set TTY to be under raw mode or not. ",
           "functionDef": {
             "params": [
               {
@@ -1868,7 +1868,7 @@
             "line": 736,
             "col": 2
           },
-          "jsDoc": "/** A variable-sized buffer of bytes with `read()` and `write()` methods.\n   *\n   * Based on [Go Buffer](https://golang.org/pkg/bytes/#Buffer). */",
+          "jsDoc": "A variable-sized buffer of bytes with `read()` and `write()` methods.\n  \n  Based on [Go Buffer](https://golang.org/pkg/bytes/#Buffer). ",
           "classDef": {
             "isAbstract": false,
             "constructors": [
@@ -1969,7 +1969,7 @@
                 }
               },
               {
-                "jsDoc": "/** A read only number of bytes of the unread portion of the buffer. */",
+                "jsDoc": "A read only number of bytes of the unread portion of the buffer. ",
                 "snippet": "readonly length: number;",
                 "tsType": {
                   "repr": "number"
@@ -1986,7 +1986,7 @@
                 }
               },
               {
-                "jsDoc": "/** The read only capacity of the buffer's underlying byte slice, that is,\n     * the total space allocated for the buffer's data. */",
+                "jsDoc": "The read only capacity of the buffer's underlying byte slice, that is,\n    the total space allocated for the buffer's data. ",
                 "snippet": "readonly capacity: number;",
                 "tsType": {
                   "repr": "number"
@@ -2005,7 +2005,7 @@
             ],
             "methods": [
               {
-                "jsDoc": "/** Returns a slice holding the unread portion of the buffer.\n     *\n     * The slice is valid for use only until the next buffer modification (that\n     * is, only until the next call to a method like `read()`, `write()`,\n     * `reset()`, or `truncate()`). The slice aliases the buffer content at\n     * least until the next buffer modification, so immediate changes to the\n     * slice will affect the result of future reads. */",
+                "jsDoc": "Returns a slice holding the unread portion of the buffer.\n    \n    The slice is valid for use only until the next buffer modification (that\n    is, only until the next call to a method like `read()`, `write()`,\n    `reset()`, or `truncate()`). The slice aliases the buffer content at\n    least until the next buffer modification, so immediate changes to the\n    slice will affect the result of future reads. ",
                 "snippet": "bytes(): Uint8Array;",
                 "accessibility": null,
                 "isAbstract": false,
@@ -2027,7 +2027,7 @@
                 }
               },
               {
-                "jsDoc": "/** Returns the contents of the unread portion of the buffer as a `string`.\n     *\n     * **Warning**: if multibyte characters are present when data is flowing\n     * through the buffer, this method may result in incorrect strings due to a\n     * character being split. */",
+                "jsDoc": "Returns the contents of the unread portion of the buffer as a `string`.\n    \n    **Warning**: if multibyte characters are present when data is flowing\n    through the buffer, this method may result in incorrect strings due to a\n    character being split. ",
                 "snippet": "toString(): string;",
                 "accessibility": null,
                 "isAbstract": false,
@@ -2049,7 +2049,7 @@
                 }
               },
               {
-                "jsDoc": "/** Returns whether the unread portion of the buffer is empty. */",
+                "jsDoc": "Returns whether the unread portion of the buffer is empty. ",
                 "snippet": "empty(): boolean;",
                 "accessibility": null,
                 "isAbstract": false,
@@ -2071,7 +2071,7 @@
                 }
               },
               {
-                "jsDoc": "/** Discards all but the first `n` unread bytes from the buffer but\n     * continues to use the same allocated storage. It throws if `n` is\n     * negative or greater than the length of the buffer. */",
+                "jsDoc": "Discards all but the first `n` unread bytes from the buffer but\n    continues to use the same allocated storage. It throws if `n` is\n    negative or greater than the length of the buffer. ",
                 "snippet": "truncate(n: number): void;",
                 "accessibility": null,
                 "isAbstract": false,
@@ -2100,7 +2100,7 @@
                 }
               },
               {
-                "jsDoc": "/** Resets the buffer to be empty, but it retains the underlying storage for\n     * use by future writes. `.reset()` is the same as `.truncate(0)`. */",
+                "jsDoc": "Resets the buffer to be empty, but it retains the underlying storage for\n    use by future writes. `.reset()` is the same as `.truncate(0)`. ",
                 "snippet": "reset(): void;",
                 "accessibility": null,
                 "isAbstract": false,
@@ -2122,7 +2122,7 @@
                 }
               },
               {
-                "jsDoc": "/** Reads the next `p.length` bytes from the buffer or until the buffer is\n     * drained. Returns the number of bytes read. If the buffer has no data to\n     * return, the return is `Deno.EOF`. */",
+                "jsDoc": "Reads the next `p.length` bytes from the buffer or until the buffer is\n    drained. Returns the number of bytes read. If the buffer has no data to\n    return, the return is `Deno.EOF`. ",
                 "snippet": "readSync(p: Uint8Array): number | EOF;",
                 "accessibility": null,
                 "isAbstract": false,
@@ -2151,7 +2151,7 @@
                 }
               },
               {
-                "jsDoc": "/** Reads the next `p.length` bytes from the buffer or until the buffer is\n     * drained. Resolves to the number of bytes read. If the buffer has no\n     * data to return, resolves to `Deno.EOF`. */",
+                "jsDoc": "Reads the next `p.length` bytes from the buffer or until the buffer is\n    drained. Resolves to the number of bytes read. If the buffer has no\n    data to return, resolves to `Deno.EOF`. ",
                 "snippet": "read(p: Uint8Array): Promise<number | EOF>;",
                 "accessibility": null,
                 "isAbstract": false,
@@ -2238,7 +2238,7 @@
                 }
               },
               {
-                "jsDoc": "/** Grows the buffer's capacity, if necessary, to guarantee space for\n     * another `n` bytes. After `.grow(n)`, at least `n` bytes can be written to\n     * the buffer without another allocation. If `n` is negative, `.grow()` will\n     * throw. If the buffer can't grow it will throw an error.\n     *\n     * Based on Go Lang's\n     * [Buffer.Grow](https://golang.org/pkg/bytes/#Buffer.Grow). */",
+                "jsDoc": "Grows the buffer's capacity, if necessary, to guarantee space for\n    another `n` bytes. After `.grow(n)`, at least `n` bytes can be written to\n    the buffer without another allocation. If `n` is negative, `.grow()` will\n    throw. If the buffer can't grow it will throw an error.\n    \n    Based on Go Lang's\n    [Buffer.Grow](https://golang.org/pkg/bytes/#Buffer.Grow). ",
                 "snippet": "grow(n: number): void;",
                 "accessibility": null,
                 "isAbstract": false,
@@ -2267,7 +2267,7 @@
                 }
               },
               {
-                "jsDoc": "/** Reads data from `r` until `Deno.EOF` and appends it to the buffer,\n     * growing the buffer as needed. It resolves to the number of bytes read.\n     * If the buffer becomes too large, `.readFrom()` will reject with an error.\n     *\n     * Based on Go Lang's\n     * [Buffer.ReadFrom](https://golang.org/pkg/bytes/#Buffer.ReadFrom). */",
+                "jsDoc": "Reads data from `r` until `Deno.EOF` and appends it to the buffer,\n    growing the buffer as needed. It resolves to the number of bytes read.\n    If the buffer becomes too large, `.readFrom()` will reject with an error.\n    \n    Based on Go Lang's\n    [Buffer.ReadFrom](https://golang.org/pkg/bytes/#Buffer.ReadFrom). ",
                 "snippet": "readFrom(r: Reader): Promise<number>;",
                 "accessibility": null,
                 "isAbstract": false,
@@ -2296,7 +2296,7 @@
                 }
               },
               {
-                "jsDoc": "/** Reads data from `r` until `Deno.EOF` and appends it to the buffer,\n     * growing the buffer as needed. It returns the number of bytes read. If the\n     * buffer becomes too large, `.readFromSync()` will throw an error.\n     *\n     * Based on Go Lang's\n     * [Buffer.ReadFrom](https://golang.org/pkg/bytes/#Buffer.ReadFrom). */",
+                "jsDoc": "Reads data from `r` until `Deno.EOF` and appends it to the buffer,\n    growing the buffer as needed. It returns the number of bytes read. If the\n    buffer becomes too large, `.readFromSync()` will throw an error.\n    \n    Based on Go Lang's\n    [Buffer.ReadFrom](https://golang.org/pkg/bytes/#Buffer.ReadFrom). ",
                 "snippet": "readFromSync(r: SyncReader): number;",
                 "accessibility": null,
                 "isAbstract": false,
@@ -2336,7 +2336,7 @@
             "line": 808,
             "col": 2
           },
-          "jsDoc": "/** Read `r` until `Deno.EOF` and resolves to the content as\n   * `Uint8Array`. */",
+          "jsDoc": "Read `r` until `Deno.EOF` and resolves to the content as\n  `Uint8Array`. ",
           "functionDef": {
             "params": [
               {
@@ -2362,7 +2362,7 @@
             "line": 811,
             "col": 2
           },
-          "jsDoc": "/** Read `r` until `Deno.EOF` and returns the content as `Uint8Array`. */",
+          "jsDoc": "Read `r` until `Deno.EOF` and returns the content as `Uint8Array`. ",
           "functionDef": {
             "params": [
               {
@@ -2388,7 +2388,7 @@
             "line": 814,
             "col": 2
           },
-          "jsDoc": "/** Write all the content of `arr` to `w`. */",
+          "jsDoc": "Write all the content of `arr` to `w`. ",
           "functionDef": {
             "params": [
               {
@@ -2420,7 +2420,7 @@
             "line": 817,
             "col": 2
           },
-          "jsDoc": "/** Synchronously write all the content of `arr` to `w`. */",
+          "jsDoc": "Synchronously write all the content of `arr` to `w`. ",
           "functionDef": {
             "params": [
               {
@@ -2466,7 +2466,7 @@
             "line": 840,
             "col": 2
           },
-          "jsDoc": "/** Synchronously creates a new directory with the specified path.\n   *\n   *       Deno.mkdirSync(\"new_dir\");\n   *       Deno.mkdirSync(\"nested/directories\", { recursive: true });\n   *\n   * Requires `allow-write` permission. */",
+          "jsDoc": "Synchronously creates a new directory with the specified path.\n  \n        Deno.mkdirSync(\"new_dir\");\n        Deno.mkdirSync(\"nested/directories\", { recursive: true });\n  \n  Requires `allow-write` permission. ",
           "functionDef": {
             "params": [
               {
@@ -2498,7 +2498,7 @@
             "line": 843,
             "col": 2
           },
-          "jsDoc": "/** @deprecated */",
+          "jsDoc": "@deprecated ",
           "functionDef": {
             "params": [
               {
@@ -2536,7 +2536,7 @@
             "line": 855,
             "col": 2
           },
-          "jsDoc": "/** Creates a new directory with the specified path.\n   *\n   *       await Deno.mkdir(\"new_dir\");\n   *       await Deno.mkdir(\"nested/directories\", { recursive: true });\n   *\n   * Requires `allow-write` permission. */",
+          "jsDoc": "Creates a new directory with the specified path.\n  \n        await Deno.mkdir(\"new_dir\");\n        await Deno.mkdir(\"nested/directories\", { recursive: true });\n  \n  Requires `allow-write` permission. ",
           "functionDef": {
             "params": [
               {
@@ -2568,7 +2568,7 @@
             "line": 858,
             "col": 2
           },
-          "jsDoc": "/** @deprecated */",
+          "jsDoc": "@deprecated ",
           "functionDef": {
             "params": [
               {
@@ -2620,7 +2620,7 @@
             "line": 893,
             "col": 2
           },
-          "jsDoc": "/** Synchronously creates a new temporary directory in the directory `dir`,\n   * its name beginning with `prefix` and ending with `suffix`.\n   *\n   * It returns the full path to the newly created directory.\n   *\n   * If `dir` is unspecified, uses the default directory for temporary files.\n   * Multiple programs calling this function simultaneously will create different\n   * directories. It is the caller's responsibility to remove the directory when\n   * no longer needed.\n   *\n   *       const tempDirName0 = Deno.makeTempDirSync();\n   *       const tempDirName1 = Deno.makeTempDirSync({ prefix: 'my_temp' });\n   *\n   * Requires `allow-write` permission. */",
+          "jsDoc": "Synchronously creates a new temporary directory in the directory `dir`,\n  its name beginning with `prefix` and ending with `suffix`.\n  \n  It returns the full path to the newly created directory.\n  \n  If `dir` is unspecified, uses the default directory for temporary files.\n  Multiple programs calling this function simultaneously will create different\n  directories. It is the caller's responsibility to remove the directory when\n  no longer needed.\n  \n        const tempDirName0 = Deno.makeTempDirSync();\n        const tempDirName1 = Deno.makeTempDirSync({ prefix: 'my_temp' });\n  \n  Requires `allow-write` permission. ",
           "functionDef": {
             "params": [
               {
@@ -2646,7 +2646,7 @@
             "line": 910,
             "col": 2
           },
-          "jsDoc": "/** Creates a new temporary directory in the directory `dir`, its name\n   * beginning with `prefix` and ending with `suffix`.\n   *\n   * It resolves to the full path to the newly created directory.\n   *\n   * If `dir` is unspecified, uses the default directory for temporary files.\n   * Multiple programs calling this function simultaneously will create different\n   * directories. It is the caller's responsibility to remove the directory when\n   * no longer needed.\n   *\n   *       const tempDirName0 = await Deno.makeTempDir();\n   *       const tempDirName1 = await Deno.makeTempDir({ prefix: 'my_temp' });\n   *\n   * Requires `allow-write` permission. */",
+          "jsDoc": "Creates a new temporary directory in the directory `dir`, its name\n  beginning with `prefix` and ending with `suffix`.\n  \n  It resolves to the full path to the newly created directory.\n  \n  If `dir` is unspecified, uses the default directory for temporary files.\n  Multiple programs calling this function simultaneously will create different\n  directories. It is the caller's responsibility to remove the directory when\n  no longer needed.\n  \n        const tempDirName0 = await Deno.makeTempDir();\n        const tempDirName1 = await Deno.makeTempDir({ prefix: 'my_temp' });\n  \n  Requires `allow-write` permission. ",
           "functionDef": {
             "params": [
               {
@@ -2672,7 +2672,7 @@
             "line": 926,
             "col": 2
           },
-          "jsDoc": "/** Synchronously creates a new temporary file in the directory `dir`, its name\n   * beginning with `prefix` and ending with `suffix`.\n   *\n   * It returns the full path to the newly created file.\n   *\n   * If `dir` is unspecified, uses the default directory for temporary files.\n   * Multiple programs calling this function simultaneously will create different\n   * files. It is the caller's responsibility to remove the file when\n   * no longer needed.\n   *\n   *       const tempFileName0 = Deno.makeTempFileSync();\n   *       const tempFileName1 = Deno.makeTempFileSync({ prefix: 'my_temp' });\n   *\n   * Requires `allow-write` permission. */",
+          "jsDoc": "Synchronously creates a new temporary file in the directory `dir`, its name\n  beginning with `prefix` and ending with `suffix`.\n  \n  It returns the full path to the newly created file.\n  \n  If `dir` is unspecified, uses the default directory for temporary files.\n  Multiple programs calling this function simultaneously will create different\n  files. It is the caller's responsibility to remove the file when\n  no longer needed.\n  \n        const tempFileName0 = Deno.makeTempFileSync();\n        const tempFileName1 = Deno.makeTempFileSync({ prefix: 'my_temp' });\n  \n  Requires `allow-write` permission. ",
           "functionDef": {
             "params": [
               {
@@ -2698,7 +2698,7 @@
             "line": 942,
             "col": 2
           },
-          "jsDoc": "/** Creates a new temporary file in the directory `dir`, its name\n   * beginning with `prefix` and ending with `suffix`.\n   *\n   * It resolves to the full path to the newly created file.\n   *\n   * If `dir` is unspecified, uses the default directory for temporary files.\n   * Multiple programs calling this function simultaneously will create different\n   * files. It is the caller's responsibility to remove the file when\n   * no longer needed.\n   *\n   *       const tempFileName0 = await Deno.makeTempFile();\n   *       const tempFileName1 = await Deno.makeTempFile({ prefix: 'my_temp' });\n   *\n   * Requires `allow-write` permission. */",
+          "jsDoc": "Creates a new temporary file in the directory `dir`, its name\n  beginning with `prefix` and ending with `suffix`.\n  \n  It resolves to the full path to the newly created file.\n  \n  If `dir` is unspecified, uses the default directory for temporary files.\n  Multiple programs calling this function simultaneously will create different\n  files. It is the caller's responsibility to remove the file when\n  no longer needed.\n  \n        const tempFileName0 = await Deno.makeTempFile();\n        const tempFileName1 = await Deno.makeTempFile({ prefix: 'my_temp' });\n  \n  Requires `allow-write` permission. ",
           "functionDef": {
             "params": [
               {
@@ -2724,7 +2724,7 @@
             "line": 956,
             "col": 2
           },
-          "jsDoc": "/** Synchronously changes the permission of a specific file/directory of\n   * specified path.  Ignores the process's umask.\n   *\n   *       Deno.chmodSync(\"/path/to/file\", 0o666);\n   *\n   * For a full description, see [chmod](#chmod)\n   *\n   * NOTE: This API currently throws on Windows\n   *\n   * Requires `allow-write` permission. */",
+          "jsDoc": "Synchronously changes the permission of a specific file/directory of\n  specified path.  Ignores the process's umask.\n  \n        Deno.chmodSync(\"/path/to/file\", 0o666);\n  \n  For a full description, see [chmod](#chmod)\n  \n  NOTE: This API currently throws on Windows\n  \n  Requires `allow-write` permission. ",
           "functionDef": {
             "params": [
               {
@@ -2756,7 +2756,7 @@
             "line": 984,
             "col": 2
           },
-          "jsDoc": "/** Changes the permission of a specific file/directory of specified path.\n   * Ignores the process's umask.\n   *\n   *       await Deno.chmod(\"/path/to/file\", 0o666);\n   *\n   * The mode is a sequence of 3 octal numbers.  The first/left-most number\n   * specifies the permissions for the owner.  The second number specifies the\n   * permissions for the group. The last/right-most number specifies the\n   * permissions for others.  For example, with a mode of 0o764, the owner (7) can\n   * read/write/execute, the group (6) can read/write and everyone else (4) can\n   * read only.\n   *\n   * | Number | Description |\n   * | ------ | ----------- |\n   * | 7      | read, write, and execute |\n   * | 6      | read and write |\n   * | 5      | read and execute |\n   * | 4      | read only |\n   * | 3      | write and execute |\n   * | 2      | write only |\n   * | 1      | execute only |\n   * | 0      | no permission |\n   *\n   * NOTE: This API currently throws on Windows\n   *\n   * Requires `allow-write` permission. */",
+          "jsDoc": "Changes the permission of a specific file/directory of specified path.\n  Ignores the process's umask.\n  \n        await Deno.chmod(\"/path/to/file\", 0o666);\n  \n  The mode is a sequence of 3 octal numbers.  The first/left-most number\n  specifies the permissions for the owner.  The second number specifies the\n  permissions for the group. The last/right-most number specifies the\n  permissions for others.  For example, with a mode of 0o764, the owner (7) can\n  read/write/execute, the group (6) can read/write and everyone else (4) can\n  read only.\n  \n  | Number | Description |\n  | ------ | ----------- |\n  | 7      | read, write, and execute |\n  | 6      | read and write |\n  | 5      | read and execute |\n  | 4      | read only |\n  | 3      | write and execute |\n  | 2      | write only |\n  | 1      | execute only |\n  | 0      | no permission |\n  \n  NOTE: This API currently throws on Windows\n  \n  Requires `allow-write` permission. ",
           "functionDef": {
             "params": [
               {
@@ -2788,7 +2788,7 @@
             "line": 997,
             "col": 2
           },
-          "jsDoc": "/** Synchronously change owner of a regular file or directory. Linux/Mac OS\n   * only at the moment.\n   *\n   * Requires `allow-write` permission.\n   *\n   * @param path path to the file\n   * @param uid user id of the new owner\n   * @param gid group id of the new owner\n   */",
+          "jsDoc": "Synchronously change owner of a regular file or directory. Linux/Mac OS\n  only at the moment.\n  \n  Requires `allow-write` permission.\n  \n  @param path path to the file\n  @param uid user id of the new owner\n  @param gid group id of the new owner\n   ",
           "functionDef": {
             "params": [
               {
@@ -2826,7 +2826,7 @@
             "line": 1008,
             "col": 2
           },
-          "jsDoc": "/** Change owner of a regular file or directory. Linux/Mac OS only at the\n   * moment.\n   *\n   * Requires `allow-write` permission.\n   *\n   * @param path path to the file\n   * @param uid user id of the new owner\n   * @param gid group id of the new owner\n   */",
+          "jsDoc": "Change owner of a regular file or directory. Linux/Mac OS only at the\n  moment.\n  \n  Requires `allow-write` permission.\n  \n  @param path path to the file\n  @param uid user id of the new owner\n  @param gid group id of the new owner\n   ",
           "functionDef": {
             "params": [
               {
@@ -2864,7 +2864,7 @@
             "line": 1021,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: needs investigation into high precision time.\n   *\n   * Synchronously changes the access and modification times of a file system\n   * object referenced by `path`. Given times are either in seconds (UNIX epoch\n   * time) or as `Date` objects.\n   *\n   *       Deno.utimeSync(\"myfile.txt\", 1556495550, new Date());\n   *\n   * Requires `allow-write` permission. */",
+          "jsDoc": "**UNSTABLE**: needs investigation into high precision time.\n  \n  Synchronously changes the access and modification times of a file system\n  object referenced by `path`. Given times are either in seconds (UNIX epoch\n  time) or as `Date` objects.\n  \n        Deno.utimeSync(\"myfile.txt\", 1556495550, new Date());\n  \n  Requires `allow-write` permission. ",
           "functionDef": {
             "params": [
               {
@@ -2902,7 +2902,7 @@
             "line": 1036,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: needs investigation into high precision time.\n   *\n   * Changes the access and modification times of a file system object\n   * referenced by `path`. Given times are either in seconds (UNIX epoch time)\n   * or as `Date` objects.\n   *\n   *       await Deno.utime(\"myfile.txt\", 1556495550, new Date());\n   *\n   * Requires `allow-write` permission. */",
+          "jsDoc": "**UNSTABLE**: needs investigation into high precision time.\n  \n  Changes the access and modification times of a file system object\n  referenced by `path`. Given times are either in seconds (UNIX epoch time)\n  or as `Date` objects.\n  \n        await Deno.utime(\"myfile.txt\", 1556495550, new Date());\n  \n  Requires `allow-write` permission. ",
           "functionDef": {
             "params": [
               {
@@ -2954,7 +2954,7 @@
             "line": 1057,
             "col": 2
           },
-          "jsDoc": "/** Synchronously removes the named file or directory. Throws error if\n   * permission denied, path not found, or path is a non-empty directory and\n   * the `recursive` option isn't set to `true`.\n   *\n   *       Deno.removeSync(\"/path/to/dir/or/file\", { recursive: false });\n   *\n   * Requires `allow-write` permission. */",
+          "jsDoc": "Synchronously removes the named file or directory. Throws error if\n  permission denied, path not found, or path is a non-empty directory and\n  the `recursive` option isn't set to `true`.\n  \n        Deno.removeSync(\"/path/to/dir/or/file\", { recursive: false });\n  \n  Requires `allow-write` permission. ",
           "functionDef": {
             "params": [
               {
@@ -2986,7 +2986,7 @@
             "line": 1066,
             "col": 2
           },
-          "jsDoc": "/** Removes the named file or directory. Throws error if permission denied,\n   * path not found, or path is a non-empty directory and the `recursive`\n   * option isn't set to `true`.\n   *\n   *       await Deno.remove(\"/path/to/dir/or/file\", { recursive: false });\n   *\n   * Requires `allow-write` permission. */",
+          "jsDoc": "Removes the named file or directory. Throws error if permission denied,\n  path not found, or path is a non-empty directory and the `recursive`\n  option isn't set to `true`.\n  \n        await Deno.remove(\"/path/to/dir/or/file\", { recursive: false });\n  \n  Requires `allow-write` permission. ",
           "functionDef": {
             "params": [
               {
@@ -3018,7 +3018,7 @@
             "line": 1078,
             "col": 2
           },
-          "jsDoc": "/** Synchronously renames (moves) `oldpath` to `newpath`. If `newpath` already\n   * exists and is not a directory, `renameSync()` replaces it. OS-specific\n   * restrictions may apply when `oldpath` and `newpath` are in different\n   * directories.\n   *\n   *       Deno.renameSync(\"old/path\", \"new/path\");\n   *\n   * Requires `allow-read` and `allow-write` permissions. */",
+          "jsDoc": "Synchronously renames (moves) `oldpath` to `newpath`. If `newpath` already\n  exists and is not a directory, `renameSync()` replaces it. OS-specific\n  restrictions may apply when `oldpath` and `newpath` are in different\n  directories.\n  \n        Deno.renameSync(\"old/path\", \"new/path\");\n  \n  Requires `allow-read` and `allow-write` permissions. ",
           "functionDef": {
             "params": [
               {
@@ -3050,7 +3050,7 @@
             "line": 1087,
             "col": 2
           },
-          "jsDoc": "/** Renames (moves) `oldpath` to `newpath`. If `newpath` already exists and is\n   * not a directory, `rename()` replaces it. OS-specific restrictions may apply\n   * when `oldpath` and `newpath` are in different directories.\n   *\n   *       await Deno.rename(\"old/path\", \"new/path\");\n   *\n   * Requires `allow-read` and `allow-write`. */",
+          "jsDoc": "Renames (moves) `oldpath` to `newpath`. If `newpath` already exists and is\n  not a directory, `rename()` replaces it. OS-specific restrictions may apply\n  when `oldpath` and `newpath` are in different directories.\n  \n        await Deno.rename(\"old/path\", \"new/path\");\n  \n  Requires `allow-read` and `allow-write`. ",
           "functionDef": {
             "params": [
               {
@@ -3082,7 +3082,7 @@
             "line": 1098,
             "col": 2
           },
-          "jsDoc": "/** Reads and returns the entire contents of a file.\n   *\n   *       const decoder = new TextDecoder(\"utf-8\");\n   *       const data = Deno.readFileSync(\"hello.txt\");\n   *       console.log(decoder.decode(data));\n   *\n   * Requires `allow-read` permission. */",
+          "jsDoc": "Reads and returns the entire contents of a file.\n  \n        const decoder = new TextDecoder(\"utf-8\");\n        const data = Deno.readFileSync(\"hello.txt\");\n        console.log(decoder.decode(data));\n  \n  Requires `allow-read` permission. ",
           "functionDef": {
             "params": [
               {
@@ -3108,7 +3108,7 @@
             "line": 1107,
             "col": 2
           },
-          "jsDoc": "/** Reads and resolves to the entire contents of a file.\n   *\n   *       const decoder = new TextDecoder(\"utf-8\");\n   *       const data = await Deno.readFile(\"hello.txt\");\n   *       console.log(decoder.decode(data));\n   *\n   * Requires `allow-read` permission. */",
+          "jsDoc": "Reads and resolves to the entire contents of a file.\n  \n        const decoder = new TextDecoder(\"utf-8\");\n        const data = await Deno.readFile(\"hello.txt\");\n        console.log(decoder.decode(data));\n  \n  Requires `allow-read` permission. ",
           "functionDef": {
             "params": [
               {
@@ -3134,7 +3134,7 @@
             "line": 1114,
             "col": 2
           },
-          "jsDoc": "/** A FileInfo describes a file and is returned by `stat`, `lstat`,\n   * `statSync`, `lstatSync`. A list of FileInfo is returned by `readdir`,\n   * `readdirSync`. */",
+          "jsDoc": "A FileInfo describes a file and is returned by `stat`, `lstat`,\n  `statSync`, `lstatSync`. A list of FileInfo is returned by `readdir`,\n  `readdirSync`. ",
           "interfaceDef": {
             "methods": [
               {
@@ -3144,7 +3144,7 @@
                   "line": 1170,
                   "col": 4
                 },
-                "jsDoc": "/** Returns whether this is info for a regular file. This result is mutually\n     * exclusive to `FileInfo.isDirectory` and `FileInfo.isSymlink`. */",
+                "jsDoc": "Returns whether this is info for a regular file. This result is mutually\n    exclusive to `FileInfo.isDirectory` and `FileInfo.isSymlink`. ",
                 "params": [],
                 "returnType": {
                   "repr": "boolean"
@@ -3157,7 +3157,7 @@
                   "line": 1173,
                   "col": 4
                 },
-                "jsDoc": "/** Returns whether this is info for a regular directory. This result is\n     * mutually exclusive to `FileInfo.isFile` and `FileInfo.isSymlink`. */",
+                "jsDoc": "Returns whether this is info for a regular directory. This result is\n    mutually exclusive to `FileInfo.isFile` and `FileInfo.isSymlink`. ",
                 "params": [],
                 "returnType": {
                   "repr": "boolean"
@@ -3170,7 +3170,7 @@
                   "line": 1176,
                   "col": 4
                 },
-                "jsDoc": "/** Returns whether this is info for a symlink. This result is\n     * mutually exclusive to `FileInfo.isFile` and `FileInfo.isDirectory`. */",
+                "jsDoc": "Returns whether this is info for a symlink. This result is\n    mutually exclusive to `FileInfo.isFile` and `FileInfo.isDirectory`. ",
                 "params": [],
                 "returnType": {
                   "repr": "boolean"
@@ -3188,7 +3188,7 @@
             "line": 1186,
             "col": 2
           },
-          "jsDoc": "/** Returns absolute normalized path with, symbolic links resolved.\n   *\n   *       const realPath = Deno.realpathSync(\"./some/path\");\n   *\n   * Requires `allow-read` permission. */",
+          "jsDoc": "Returns absolute normalized path with, symbolic links resolved.\n  \n        const realPath = Deno.realpathSync(\"./some/path\");\n  \n  Requires `allow-read` permission. ",
           "functionDef": {
             "params": [
               {
@@ -3214,7 +3214,7 @@
             "line": 1193,
             "col": 2
           },
-          "jsDoc": "/** Resolves to the absolute normalized path, with symbolic links resolved.\n   *\n   *       const realPath = await Deno.realpath(\"./some/path\");\n   *\n   * Requires `allow-read` permission. */",
+          "jsDoc": "Resolves to the absolute normalized path, with symbolic links resolved.\n  \n        const realPath = await Deno.realpath(\"./some/path\");\n  \n  Requires `allow-read` permission. ",
           "functionDef": {
             "params": [
               {
@@ -3240,7 +3240,7 @@
             "line": 1205,
             "col": 2
           },
-          "jsDoc": "/** UNSTABLE: need to consider streaming case\n   *\n   * Synchronously reads the directory given by `path` and returns an array of\n   * `Deno.FileInfo`.\n   *\n   *       const files = Deno.readdirSync(\"/\");\n   *\n   * Requires `allow-read` permission. */",
+          "jsDoc": "UNSTABLE: need to consider streaming case\n  \n  Synchronously reads the directory given by `path` and returns an array of\n  `Deno.FileInfo`.\n  \n        const files = Deno.readdirSync(\"/\");\n  \n  Requires `allow-read` permission. ",
           "functionDef": {
             "params": [
               {
@@ -3266,7 +3266,7 @@
             "line": 1214,
             "col": 2
           },
-          "jsDoc": "/** UNSTABLE: Maybe need to return an `AsyncIterable`.\n   *\n   * Reads the directory given by `path` and resolves to an array of `Deno.FileInfo`.\n   *\n   *       const files = await Deno.readdir(\"/\");\n   *\n   * Requires `allow-read` permission. */",
+          "jsDoc": "UNSTABLE: Maybe need to return an `AsyncIterable`.\n  \n  Reads the directory given by `path` and resolves to an array of `Deno.FileInfo`.\n  \n        const files = await Deno.readdir(\"/\");\n  \n  Requires `allow-read` permission. ",
           "functionDef": {
             "params": [
               {
@@ -3292,7 +3292,7 @@
             "line": 1226,
             "col": 2
           },
-          "jsDoc": "/** Synchronously copies the contents and permissions of one file to another\n   * specified path, by default creating a new file if needed, else overwriting.\n   * Fails if target path is a directory or is unwritable.\n   *\n   *       Deno.copyFileSync(\"from.txt\", \"to.txt\");\n   *\n   * Requires `allow-read` permission on fromPath.\n   * Requires `allow-write` permission on toPath. */",
+          "jsDoc": "Synchronously copies the contents and permissions of one file to another\n  specified path, by default creating a new file if needed, else overwriting.\n  Fails if target path is a directory or is unwritable.\n  \n        Deno.copyFileSync(\"from.txt\", \"to.txt\");\n  \n  Requires `allow-read` permission on fromPath.\n  Requires `allow-write` permission on toPath. ",
           "functionDef": {
             "params": [
               {
@@ -3324,7 +3324,7 @@
             "line": 1236,
             "col": 2
           },
-          "jsDoc": "/** Copies the contents and permissions of one file to another specified path,\n   * by default creating a new file if needed, else overwriting. Fails if target\n   * path is a directory or is unwritable.\n   *\n   *       await Deno.copyFile(\"from.txt\", \"to.txt\");\n   *\n   * Requires `allow-read` permission on fromPath.\n   * Requires `allow-write` permission on toPath. */",
+          "jsDoc": "Copies the contents and permissions of one file to another specified path,\n  by default creating a new file if needed, else overwriting. Fails if target\n  path is a directory or is unwritable.\n  \n        await Deno.copyFile(\"from.txt\", \"to.txt\");\n  \n  Requires `allow-read` permission on fromPath.\n  Requires `allow-write` permission on toPath. ",
           "functionDef": {
             "params": [
               {
@@ -3356,7 +3356,7 @@
             "line": 1245,
             "col": 2
           },
-          "jsDoc": "/** Returns the destination of the named symbolic link.\n   *\n   *       const targetPath = Deno.readlinkSync(\"symlink/path\");\n   *\n   * Requires `allow-read` permission. */",
+          "jsDoc": "Returns the destination of the named symbolic link.\n  \n        const targetPath = Deno.readlinkSync(\"symlink/path\");\n  \n  Requires `allow-read` permission. ",
           "functionDef": {
             "params": [
               {
@@ -3382,7 +3382,7 @@
             "line": 1252,
             "col": 2
           },
-          "jsDoc": "/** Resolves to the destination of the named symbolic link.\n   *\n   *       const targetPath = await Deno.readlink(\"symlink/path\");\n   *\n   * Requires `allow-read` permission. */",
+          "jsDoc": "Resolves to the destination of the named symbolic link.\n  \n        const targetPath = await Deno.readlink(\"symlink/path\");\n  \n  Requires `allow-read` permission. ",
           "functionDef": {
             "params": [
               {
@@ -3408,7 +3408,7 @@
             "line": 1263,
             "col": 2
           },
-          "jsDoc": "/** Resolves to a `Deno.FileInfo` for the specified `path`. If `path` is a\n   * symlink, information for the symlink will be returned.\n   *\n   *       const fileInfo = await Deno.lstat(\"hello.txt\");\n   *       assert(fileInfo.isFile());\n   *\n   * Requires `allow-read` permission. */",
+          "jsDoc": "Resolves to a `Deno.FileInfo` for the specified `path`. If `path` is a\n  symlink, information for the symlink will be returned.\n  \n        const fileInfo = await Deno.lstat(\"hello.txt\");\n        assert(fileInfo.isFile());\n  \n  Requires `allow-read` permission. ",
           "functionDef": {
             "params": [
               {
@@ -3434,7 +3434,7 @@
             "line": 1272,
             "col": 2
           },
-          "jsDoc": "/** Synchronously returns a `Deno.FileInfo` for the specified `path`. If\n   * `path` is a symlink, information for the symlink will be returned.\n   *\n   *       const fileInfo = Deno.lstatSync(\"hello.txt\");\n   *       assert(fileInfo.isFile());\n   *\n   * Requires `allow-read` permission. */",
+          "jsDoc": "Synchronously returns a `Deno.FileInfo` for the specified `path`. If\n  `path` is a symlink, information for the symlink will be returned.\n  \n        const fileInfo = Deno.lstatSync(\"hello.txt\");\n        assert(fileInfo.isFile());\n  \n  Requires `allow-read` permission. ",
           "functionDef": {
             "params": [
               {
@@ -3460,7 +3460,7 @@
             "line": 1281,
             "col": 2
           },
-          "jsDoc": "/** Resolves to a `Deno.FileInfo` for the specified `path`. Will always\n   * follow symlinks.\n   *\n   *       const fileInfo = await Deno.stat(\"hello.txt\");\n   *       assert(fileInfo.isFile());\n   *\n   * Requires `allow-read` permission. */",
+          "jsDoc": "Resolves to a `Deno.FileInfo` for the specified `path`. Will always\n  follow symlinks.\n  \n        const fileInfo = await Deno.stat(\"hello.txt\");\n        assert(fileInfo.isFile());\n  \n  Requires `allow-read` permission. ",
           "functionDef": {
             "params": [
               {
@@ -3486,7 +3486,7 @@
             "line": 1290,
             "col": 2
           },
-          "jsDoc": "/** Synchronously returns a `Deno.FileInfo` for the specified `path`. Will\n   * always follow symlinks.\n   *\n   *       const fileInfo = Deno.statSync(\"hello.txt\");\n   *       assert(fileInfo.isFile());\n   *\n   * Requires `allow-read` permission. */",
+          "jsDoc": "Synchronously returns a `Deno.FileInfo` for the specified `path`. Will\n  always follow symlinks.\n  \n        const fileInfo = Deno.statSync(\"hello.txt\");\n        assert(fileInfo.isFile());\n  \n  Requires `allow-read` permission. ",
           "functionDef": {
             "params": [
               {
@@ -3512,7 +3512,7 @@
             "line": 1299,
             "col": 2
           },
-          "jsDoc": "/** Creates `newpath` as a hard link to `oldpath`.\n   *\n   *       Deno.linkSync(\"old/name\", \"new/name\");\n   *\n   * Requires `allow-read` and `allow-write` permissions. */",
+          "jsDoc": "Creates `newpath` as a hard link to `oldpath`.\n  \n        Deno.linkSync(\"old/name\", \"new/name\");\n  \n  Requires `allow-read` and `allow-write` permissions. ",
           "functionDef": {
             "params": [
               {
@@ -3544,7 +3544,7 @@
             "line": 1306,
             "col": 2
           },
-          "jsDoc": "/** Creates `newpath` as a hard link to `oldpath`.\n   *\n   *       await Deno.link(\"old/name\", \"new/name\");\n   *\n   * Requires `allow-read` and `allow-write` permissions. */",
+          "jsDoc": "Creates `newpath` as a hard link to `oldpath`.\n  \n        await Deno.link(\"old/name\", \"new/name\");\n  \n  Requires `allow-read` and `allow-write` permissions. ",
           "functionDef": {
             "params": [
               {
@@ -3576,7 +3576,7 @@
             "line": 1319,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: `type` argument type may be changed to `\"dir\" | \"file\"`.\n   *\n   * Creates `newpath` as a symbolic link to `oldpath`. The type argument can be\n   * set to `dir` or `file`. Is only available on Windows and ignored on other\n   * platforms.\n   *\n   *       Deno.symlinkSync(\"old/name\", \"new/name\");\n   *\n   * Requires `allow-read` and `allow-write` permissions. */",
+          "jsDoc": "**UNSTABLE**: `type` argument type may be changed to `\"dir\" | \"file\"`.\n  \n  Creates `newpath` as a symbolic link to `oldpath`. The type argument can be\n  set to `dir` or `file`. Is only available on Windows and ignored on other\n  platforms.\n  \n        Deno.symlinkSync(\"old/name\", \"new/name\");\n  \n  Requires `allow-read` and `allow-write` permissions. ",
           "functionDef": {
             "params": [
               {
@@ -3614,7 +3614,7 @@
             "line": 1334,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: `type` argument may be changed to \"dir\" | \"file\"\n   *\n   * Creates `newpath` as a symbolic link to `oldpath`. The type argument can be\n   * set to `dir` or `file`. Is only available on Windows and ignored on other\n   * platforms.\n   *\n   *       await Deno.symlink(\"old/name\", \"new/name\");\n   *\n   * Requires `allow-read` and `allow-write` permissions. */",
+          "jsDoc": "**UNSTABLE**: `type` argument may be changed to \"dir\" | \"file\"\n  \n  Creates `newpath` as a symbolic link to `oldpath`. The type argument can be\n  set to `dir` or `file`. Is only available on Windows and ignored on other\n  platforms.\n  \n        await Deno.symlink(\"old/name\", \"new/name\");\n  \n  Requires `allow-read` and `allow-write` permissions. ",
           "functionDef": {
             "params": [
               {
@@ -3652,7 +3652,7 @@
             "line": 1343,
             "col": 2
           },
-          "jsDoc": "/** Options for writing to a file. */",
+          "jsDoc": "Options for writing to a file. ",
           "interfaceDef": {
             "methods": []
           }
@@ -3666,7 +3666,7 @@
             "line": 1363,
             "col": 2
           },
-          "jsDoc": "/** Synchronously write data to the given path, by default creating a new\n   * file if needed, else overwriting.\n   *\n   *       const encoder = new TextEncoder();\n   *       const data = encoder.encode(\"Hello world\\n\");\n   *       Deno.writeFileSync(\"hello.txt\", data);\n   *\n   * Requires `allow-write` permission, and `allow-read` if create is `false`.\n   */",
+          "jsDoc": "Synchronously write data to the given path, by default creating a new\n  file if needed, else overwriting.\n  \n        const encoder = new TextEncoder();\n        const data = encoder.encode(\"Hello world\\n\");\n        Deno.writeFileSync(\"hello.txt\", data);\n  \n  Requires `allow-write` permission, and `allow-read` if create is `false`.\n   ",
           "functionDef": {
             "params": [
               {
@@ -3704,7 +3704,7 @@
             "line": 1378,
             "col": 2
           },
-          "jsDoc": "/** Write data to the given path, by default creating a new file if needed,\n   * else overwriting.\n   *\n   *       const encoder = new TextEncoder();\n   *       const data = encoder.encode(\"Hello world\\n\");\n   *       await Deno.writeFile(\"hello.txt\", data);\n   *\n   * Requires `allow-write` permission, and `allow-read` if create is `false`.\n   */",
+          "jsDoc": "Write data to the given path, by default creating a new file if needed,\n  else overwriting.\n  \n        const encoder = new TextEncoder();\n        const data = encoder.encode(\"Hello world\\n\");\n        await Deno.writeFile(\"hello.txt\", data);\n  \n  Requires `allow-write` permission, and `allow-read` if create is `false`.\n   ",
           "functionDef": {
             "params": [
               {
@@ -3742,7 +3742,7 @@
             "line": 1418,
             "col": 2
           },
-          "jsDoc": "/** UNSTABLE: new API, yet to be vetted.\n   *\n   * Given a current location in a module, lookup the source location and return\n   * it.\n   *\n   * When Deno transpiles code, it keep source maps of the transpiled code. This\n   * function can be used to lookup the original location. This is\n   * automatically done when accessing the `.stack` of an error, or when an\n   * uncaught error is logged. This function can be used to perform the lookup\n   * for creating better error handling.\n   *\n   * **Note:** `line` and `column` are 1 indexed, which matches display\n   * expectations, but is not typical of most index numbers in Deno.\n   *\n   * An example:\n   *\n   *       const orig = Deno.applySourceMap({\n   *         location: \"file://my/module.ts\",\n   *         line: 5,\n   *         column: 15\n   *       });\n   *       console.log(`${orig.filename}:${orig.line}:${orig.column}`);\n   */",
+          "jsDoc": "UNSTABLE: new API, yet to be vetted.\n  \n  Given a current location in a module, lookup the source location and return\n  it.\n  \n  When Deno transpiles code, it keep source maps of the transpiled code. This\n  function can be used to lookup the original location. This is\n  automatically done when accessing the `.stack` of an error, or when an\n  uncaught error is logged. This function can be used to perform the lookup\n  for creating better error handling.\n  \n  **Note:** `line` and `column` are 1 indexed, which matches display\n  expectations, but is not typical of most index numbers in Deno.\n  \n  An example:\n  \n        const orig = Deno.applySourceMap({\n          location: \"file://my/module.ts\",\n          line: 5,\n          column: 15\n        });\n        console.log(`${orig.filename}:${orig.line}:${orig.column}`);\n   ",
           "functionDef": {
             "params": [
               {
@@ -3768,7 +3768,7 @@
             "line": 1421,
             "col": 2
           },
-          "jsDoc": "/** A set of error constructors that are raised by Deno APIs. */"
+          "jsDoc": "A set of error constructors that are raised by Deno APIs. "
         },
         {
           "kind": "typeAlias",
@@ -3779,7 +3779,7 @@
             "line": 1446,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: potentially want names to overlap more with browser.\n   *\n   * The permissions as granted by the caller.\n   *\n   * See: https://w3c.github.io/permissions/#permission-registry */",
+          "jsDoc": "**UNSTABLE**: potentially want names to overlap more with browser.\n  \n  The permissions as granted by the caller.\n  \n  See: https://w3c.github.io/permissions/#permission-registry ",
           "typeAliasDef": {
             "tsType": {
               "repr": "type PermissionName =\n    | \"run\"\n    | \"read\"\n    | \"write\"\n    | \"net\"\n    | \"env\"\n    | \"plugin\"\n    | \"hrtime\";"
@@ -3795,7 +3795,7 @@
             "line": 1458,
             "col": 2
           },
-          "jsDoc": "/** The current status of the permission.\n   *\n   * See: https://w3c.github.io/permissions/#status-of-a-permission */",
+          "jsDoc": "The current status of the permission.\n  \n  See: https://w3c.github.io/permissions/#status-of-a-permission ",
           "typeAliasDef": {
             "tsType": {
               "repr": "type PermissionState = \"granted\" | \"denied\" | \"prompt\";"
@@ -3818,7 +3818,7 @@
             "properties": [],
             "methods": [
               {
-                "jsDoc": "/** Resolves to the current status of a permission.\n     *\n     *       const status = await Deno.permissions.query({ name: \"read\", path: \"/etc\" });\n     *       if (status.state === \"granted\") {\n     *         data = await Deno.readFile(\"/etc/passwd\");\n     *       }\n     */",
+                "jsDoc": "Resolves to the current status of a permission.\n    \n          const status = await Deno.permissions.query({ name: \"read\", path: \"/etc\" });\n          if (status.state === \"granted\") {\n            data = await Deno.readFile(\"/etc/passwd\");\n          }\n     ",
                 "snippet": "query(desc: PermissionDescriptor): Promise<PermissionStatus>;",
                 "accessibility": null,
                 "isAbstract": false,
@@ -3847,7 +3847,7 @@
                 }
               },
               {
-                "jsDoc": "/** Revokes a permission, and resolves to the state of the permission.\n     *\n     *       const status = await Deno.permissions.revoke({ name: \"run\" });\n     *       assert(status.state !== \"granted\")\n     */",
+                "jsDoc": "Revokes a permission, and resolves to the state of the permission.\n    \n          const status = await Deno.permissions.revoke({ name: \"run\" });\n          assert(status.state !== \"granted\")\n     ",
                 "snippet": "revoke(desc: PermissionDescriptor): Promise<PermissionStatus>;",
                 "accessibility": null,
                 "isAbstract": false,
@@ -3876,7 +3876,7 @@
                 }
               },
               {
-                "jsDoc": "/** Requests the permission, and resolves to the state of the permission.\n     *\n     *       const status = await Deno.permissions.request({ name: \"env\" });\n     *       if (status.state === \"granted\") {\n     *         console.log(Deno.homeDir());\n     *       } else {\n     *         console.log(\"'env' permission is denied.\");\n     *       }\n     */",
+                "jsDoc": "Requests the permission, and resolves to the state of the permission.\n    \n          const status = await Deno.permissions.request({ name: \"env\" });\n          if (status.state === \"granted\") {\n            console.log(Deno.homeDir());\n          } else {\n            console.log(\"'env' permission is denied.\");\n          }\n     ",
                 "snippet": "request(desc: PermissionDescriptor): Promise<PermissionStatus>;",
                 "accessibility": null,
                 "isAbstract": false,
@@ -3916,7 +3916,7 @@
             "line": 1528,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: maybe move to `navigator.permissions` to match web API. */"
+          "jsDoc": "**UNSTABLE**: maybe move to `navigator.permissions` to match web API. "
         },
         {
           "kind": "class",
@@ -3927,7 +3927,7 @@
             "line": 1531,
             "col": 2
           },
-          "jsDoc": "/** see: https://w3c.github.io/permissions/#permissionstatus */",
+          "jsDoc": "see: https://w3c.github.io/permissions/#permissionstatus ",
           "classDef": {
             "isAbstract": false,
             "constructors": [
@@ -3982,7 +3982,7 @@
             "line": 1544,
             "col": 2
           },
-          "jsDoc": "/** Synchronously truncates or extends the specified file, to reach the\n   * specified `len`.\n   *\n   *       Deno.truncateSync(\"hello.txt\", 10);\n   *\n   * Requires `allow-write` permission. */",
+          "jsDoc": "Synchronously truncates or extends the specified file, to reach the\n  specified `len`.\n  \n        Deno.truncateSync(\"hello.txt\", 10);\n  \n  Requires `allow-write` permission. ",
           "functionDef": {
             "params": [
               {
@@ -4014,7 +4014,7 @@
             "line": 1551,
             "col": 2
           },
-          "jsDoc": "/** Truncates or extends the specified file, to reach the specified `len`.\n   *\n   *       await Deno.truncate(\"hello.txt\", 10);\n   *\n   * Requires `allow-write` permission. */",
+          "jsDoc": "Truncates or extends the specified file, to reach the specified `len`.\n  \n        await Deno.truncate(\"hello.txt\", 10);\n  \n  Requires `allow-write` permission. ",
           "functionDef": {
             "params": [
               {
@@ -4135,7 +4135,7 @@
             "line": 1581,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: new API, yet to be vetted.\n   *\n   * Open and initalize a plugin.\n   *\n   *        const plugin = Deno.openPlugin(\"./path/to/some/plugin.so\");\n   *        const some_op = plugin.ops.some_op;\n   *        const response = some_op.dispatch(new Uint8Array([1,2,3,4]));\n   *        console.log(`Response from plugin ${response}`);\n   *\n   * Requires `allow-plugin` permission. */",
+          "jsDoc": "**UNSTABLE**: new API, yet to be vetted.\n  \n  Open and initalize a plugin.\n  \n         const plugin = Deno.openPlugin(\"./path/to/some/plugin.so\");\n         const some_op = plugin.ops.some_op;\n         const response = some_op.dispatch(new Uint8Array([1,2,3,4]));\n         console.log(`Response from plugin ${response}`);\n  \n  Requires `allow-plugin` permission. ",
           "functionDef": {
             "params": [
               {
@@ -4205,7 +4205,7 @@
             "line": 1602,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: Maybe remove `ShutdownMode` entirely.\n   *\n   * Corresponds to `SHUT_RD`, `SHUT_WR`, `SHUT_RDWR` on POSIX-like systems.\n   *\n   * See: http://man7.org/linux/man-pages/man2/shutdown.2.html */",
+          "jsDoc": "**UNSTABLE**: Maybe remove `ShutdownMode` entirely.\n  \n  Corresponds to `SHUT_RD`, `SHUT_WR`, `SHUT_RDWR` on POSIX-like systems.\n  \n  See: http://man7.org/linux/man-pages/man2/shutdown.2.html ",
           "enumDef": {
             "members": [
               {
@@ -4229,7 +4229,7 @@
             "line": 1619,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: Maybe should remove `how` parameter maybe remove\n   * `ShutdownMode` entirely.\n   *\n   * Shutdown socket send and receive operations.\n   *\n   * Matches behavior of POSIX shutdown(3).\n   *\n   *       const listener = Deno.listen({ port: 80 });\n   *       const conn = await listener.accept();\n   *       Deno.shutdown(conn.rid, Deno.ShutdownMode.Write);\n   */",
+          "jsDoc": "**UNSTABLE**: Maybe should remove `how` parameter maybe remove\n  `ShutdownMode` entirely.\n  \n  Shutdown socket send and receive operations.\n  \n  Matches behavior of POSIX shutdown(3).\n  \n        const listener = Deno.listen({ port: 80 });\n        const conn = await listener.accept();\n        Deno.shutdown(conn.rid, Deno.ShutdownMode.Write);\n   ",
           "functionDef": {
             "params": [
               {
@@ -4261,7 +4261,7 @@
             "line": 1627,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: new API, yet to be vetted.\n   *\n   * Waits for the next message to the passed `rid` and writes it on the passed\n   * `Uint8Array`.\n   *\n   * Resolves to the number of bytes written and the remote address. */",
+          "jsDoc": "**UNSTABLE**: new API, yet to be vetted.\n  \n  Waits for the next message to the passed `rid` and writes it on the passed\n  `Uint8Array`.\n  \n  Resolves to the number of bytes written and the remote address. ",
           "functionDef": {
             "params": [
               {
@@ -4293,7 +4293,7 @@
             "line": 1632,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: new API, yet to be vetted.\n   *\n   * A generic transport listener for message-oriented protocols. */",
+          "jsDoc": "**UNSTABLE**: new API, yet to be vetted.\n  \n  A generic transport listener for message-oriented protocols. ",
           "interfaceDef": {
             "methods": [
               {
@@ -4303,7 +4303,7 @@
                   "line": 1636,
                   "col": 4
                 },
-                "jsDoc": "/** **UNSTABLE**: new API, yet to be vetted.\n     *\n     * Waits for and resolves to the next message to the `UDPConn`. */",
+                "jsDoc": "**UNSTABLE**: new API, yet to be vetted.\n    \n    Waits for and resolves to the next message to the `UDPConn`. ",
                 "params": [
                   {
                     "name": "p",
@@ -4323,7 +4323,7 @@
                   "line": 1640,
                   "col": 4
                 },
-                "jsDoc": "/** UNSTABLE: new API, yet to be vetted.\n     *\n     * Sends a message to the target. */",
+                "jsDoc": "UNSTABLE: new API, yet to be vetted.\n    \n    Sends a message to the target. ",
                 "params": [
                   {
                     "name": "p",
@@ -4349,7 +4349,7 @@
                   "line": 1645,
                   "col": 4
                 },
-                "jsDoc": "/** UNSTABLE: new API, yet to be vetted.\n     *\n     * Close closes the socket. Any pending message promises will be rejected\n     * with errors. */",
+                "jsDoc": "UNSTABLE: new API, yet to be vetted.\n    \n    Close closes the socket. Any pending message promises will be rejected\n    with errors. ",
                 "params": [],
                 "returnType": {
                   "repr": "void"
@@ -4380,7 +4380,7 @@
             "line": 1652,
             "col": 2
           },
-          "jsDoc": "/** A generic network listener for stream-oriented protocols. */",
+          "jsDoc": "A generic network listener for stream-oriented protocols. ",
           "interfaceDef": {
             "methods": [
               {
@@ -4390,7 +4390,7 @@
                   "line": 1654,
                   "col": 4
                 },
-                "jsDoc": "/** Waits for and resolves to the next connection to the `Listener`. */",
+                "jsDoc": "Waits for and resolves to the next connection to the `Listener`. ",
                 "params": [],
                 "returnType": {
                   "repr": "Promise<Conn>"
@@ -4403,7 +4403,7 @@
                   "line": 1657,
                   "col": 4
                 },
-                "jsDoc": "/** Close closes the listener. Any pending accept promises will be rejected\n     * with errors. */",
+                "jsDoc": "Close closes the listener. Any pending accept promises will be rejected\n    with errors. ",
                 "params": [],
                 "returnType": {
                   "repr": "void"
@@ -4444,7 +4444,7 @@
                   "line": 1672,
                   "col": 4
                 },
-                "jsDoc": "/** Shuts down (`shutdown(2)`) the reading side of the TCP connection. Most\n     * callers should just use `close()`. */",
+                "jsDoc": "Shuts down (`shutdown(2)`) the reading side of the TCP connection. Most\n    callers should just use `close()`. ",
                 "params": [],
                 "returnType": {
                   "repr": "void"
@@ -4457,7 +4457,7 @@
                   "line": 1675,
                   "col": 4
                 },
-                "jsDoc": "/** Shuts down (`shutdown(2)`) the writing side of the TCP connection. Most\n     * callers should just use `close()`. */",
+                "jsDoc": "Shuts down (`shutdown(2)`) the writing side of the TCP connection. Most\n    callers should just use `close()`. ",
                 "params": [],
                 "returnType": {
                   "repr": "void"
@@ -4489,7 +4489,7 @@
             "line": 1701,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: new API\n   *\n   * Listen announces on the local transport address.\n   *\n   *      Deno.listen({ port: 80 })\n   *      Deno.listen({ hostname: \"192.0.2.1\", port: 80 })\n   *      Deno.listen({ hostname: \"[2001:db8::1]\", port: 80 });\n   *      Deno.listen({ hostname: \"golang.org\", port: 80, transport: \"tcp\" });\n   *\n   * Requires `allow-net` permission. */",
+          "jsDoc": "**UNSTABLE**: new API\n  \n  Listen announces on the local transport address.\n  \n       Deno.listen({ port: 80 })\n       Deno.listen({ hostname: \"192.0.2.1\", port: 80 })\n       Deno.listen({ hostname: \"[2001:db8::1]\", port: 80 });\n       Deno.listen({ hostname: \"golang.org\", port: 80, transport: \"tcp\" });\n  \n  Requires `allow-net` permission. ",
           "functionDef": {
             "params": [
               {
@@ -4515,7 +4515,7 @@
             "line": 1714,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: new API\n   *\n   * Listen announces on the local transport address.\n   *\n   *      Deno.listen({ port: 80 })\n   *      Deno.listen({ hostname: \"192.0.2.1\", port: 80 })\n   *      Deno.listen({ hostname: \"[2001:db8::1]\", port: 80 });\n   *      Deno.listen({ hostname: \"golang.org\", port: 80, transport: \"tcp\" });\n   *\n   * Requires `allow-net` permission. */",
+          "jsDoc": "**UNSTABLE**: new API\n  \n  Listen announces on the local transport address.\n  \n       Deno.listen({ port: 80 })\n       Deno.listen({ hostname: \"192.0.2.1\", port: 80 })\n       Deno.listen({ hostname: \"[2001:db8::1]\", port: 80 });\n       Deno.listen({ hostname: \"golang.org\", port: 80, transport: \"tcp\" });\n  \n  Requires `allow-net` permission. ",
           "functionDef": {
             "params": [
               {
@@ -4541,7 +4541,7 @@
             "line": 1727,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: new API\n   *\n   * Listen announces on the local transport address.\n   *\n   *      Deno.listen({ port: 80 })\n   *      Deno.listen({ hostname: \"192.0.2.1\", port: 80 })\n   *      Deno.listen({ hostname: \"[2001:db8::1]\", port: 80 });\n   *      Deno.listen({ hostname: \"golang.org\", port: 80, transport: \"tcp\" });\n   *\n   * Requires `allow-net` permission. */",
+          "jsDoc": "**UNSTABLE**: new API\n  \n  Listen announces on the local transport address.\n  \n       Deno.listen({ port: 80 })\n       Deno.listen({ hostname: \"192.0.2.1\", port: 80 })\n       Deno.listen({ hostname: \"[2001:db8::1]\", port: 80 });\n       Deno.listen({ hostname: \"golang.org\", port: 80, transport: \"tcp\" });\n  \n  Requires `allow-net` permission. ",
           "functionDef": {
             "params": [
               {
@@ -4581,7 +4581,7 @@
             "line": 1742,
             "col": 2
           },
-          "jsDoc": "/** Listen announces on the local transport address over TLS (transport layer\n   * security).\n   *\n   *      Deno.listenTLS({ port: 443, certFile: \"./my_server.crt\", keyFile: \"./my_server.key\" });\n   *\n   * Requires `allow-net` permission. */",
+          "jsDoc": "Listen announces on the local transport address over TLS (transport layer\n  security).\n  \n       Deno.listenTLS({ port: 443, certFile: \"./my_server.crt\", keyFile: \"./my_server.key\" });\n  \n  Requires `allow-net` permission. ",
           "functionDef": {
             "params": [
               {
@@ -4621,7 +4621,7 @@
             "line": 1766,
             "col": 2
           },
-          "jsDoc": "/**\n   * Connects to the address on the named transport.\n   *\n   *     Deno.connect({ port: 80 })\n   *     Deno.connect({ hostname: \"192.0.2.1\", port: 80 })\n   *     Deno.connect({ hostname: \"[2001:db8::1]\", port: 80 });\n   *     Deno.connect({ hostname: \"golang.org\", port: 80, transport: \"tcp\" })\n   *\n   * Requires `allow-net` permission. */",
+          "jsDoc": "\n  Connects to the address on the named transport.\n  \n      Deno.connect({ port: 80 })\n      Deno.connect({ hostname: \"192.0.2.1\", port: 80 })\n      Deno.connect({ hostname: \"[2001:db8::1]\", port: 80 });\n      Deno.connect({ hostname: \"golang.org\", port: 80, transport: \"tcp\" })\n  \n  Requires `allow-net` permission. ",
           "functionDef": {
             "params": [
               {
@@ -4661,7 +4661,7 @@
             "line": 1781,
             "col": 2
           },
-          "jsDoc": "/** Establishes a secure connection over TLS (transport layer security).\n   *\n   * Requires `allow-net` permission. */",
+          "jsDoc": "Establishes a secure connection over TLS (transport layer security).\n  \n  Requires `allow-net` permission. ",
           "functionDef": {
             "params": [
               {
@@ -4687,7 +4687,7 @@
             "line": 1784,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: not sure if broken or not */",
+          "jsDoc": "**UNSTABLE**: not sure if broken or not ",
           "interfaceDef": {
             "methods": []
           }
@@ -4701,7 +4701,7 @@
             "line": 1819,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: potentially broken.\n   *\n   * Receive metrics from the privileged side of Deno.\n   *\n   *      > console.table(Deno.metrics())\n   *      ┌─────────────────────────┬────────┐\n   *      │         (index)         │ Values │\n   *      ├─────────────────────────┼────────┤\n   *      │      opsDispatched      │   3    │\n   *      │    opsDispatchedSync    │   2    │\n   *      │   opsDispatchedAsync    │   1    │\n   *      │ opsDispatchedAsyncUnref │   0    │\n   *      │      opsCompleted       │   3    │\n   *      │    opsCompletedSync     │   2    │\n   *      │    opsCompletedAsync    │   1    │\n   *      │ opsCompletedAsyncUnref  │   0    │\n   *      │    bytesSentControl     │   73   │\n   *      │      bytesSentData      │   0    │\n   *      │      bytesReceived      │  375   │\n   *      └─────────────────────────┴────────┘\n   */",
+          "jsDoc": "**UNSTABLE**: potentially broken.\n  \n  Receive metrics from the privileged side of Deno.\n  \n       > console.table(Deno.metrics())\n       ┌─────────────────────────┬────────┐\n       │         (index)         │ Values │\n       ├─────────────────────────┼────────┤\n       │      opsDispatched      │   3    │\n       │    opsDispatchedSync    │   2    │\n       │   opsDispatchedAsync    │   1    │\n       │ opsDispatchedAsyncUnref │   0    │\n       │      opsCompleted       │   3    │\n       │    opsCompletedSync     │   2    │\n       │    opsCompletedAsync    │   1    │\n       │ opsCompletedAsyncUnref  │   0    │\n       │    bytesSentControl     │   73   │\n       │      bytesSentData      │   0    │\n       │      bytesReceived      │  375   │\n       └─────────────────────────┴────────┘\n   ",
           "functionDef": {
             "params": [],
             "returnType": {
@@ -4720,7 +4720,7 @@
             "line": 1830,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: reconsider return type.\n   *\n   * Returns a map of open _file like_ resource ids along with their string\n   * representations. */",
+          "jsDoc": "**UNSTABLE**: reconsider return type.\n  \n  Returns a map of open _file like_ resource ids along with their string\n  representations. ",
           "functionDef": {
             "params": [],
             "returnType": {
@@ -4739,7 +4739,7 @@
             "line": 1833,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: new API. Needs docs. */",
+          "jsDoc": "**UNSTABLE**: new API. Needs docs. ",
           "interfaceDef": {
             "methods": []
           }
@@ -4753,7 +4753,7 @@
             "line": 1841,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: new API. Needs docs.\n   *\n   * Recursive option is `true` by default. */",
+          "jsDoc": "**UNSTABLE**: new API. Needs docs.\n  \n  Recursive option is `true` by default. ",
           "functionDef": {
             "params": [
               {
@@ -4785,7 +4785,7 @@
             "line": 1869,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: the `signo` argument maybe shouldn't be number. Should throw\n   * on Windows instead of silently succeeding.\n   *\n   * Send a signal to process under given `pid`. Linux/Mac OS only currently.\n   *\n   * If `pid` is negative, the signal will be sent to the process group\n   * identified by `pid`.\n   *\n   * Currently no-op on Windows.\n   *\n   * Requires `allow-run` permission. */",
+          "jsDoc": "**UNSTABLE**: the `signo` argument maybe shouldn't be number. Should throw\n  on Windows instead of silently succeeding.\n  \n  Send a signal to process under given `pid`. Linux/Mac OS only currently.\n  \n  If `pid` is negative, the signal will be sent to the process group\n  identified by `pid`.\n  \n  Currently no-op on Windows.\n  \n  Requires `allow-run` permission. ",
           "functionDef": {
             "params": [
               {
@@ -4817,7 +4817,7 @@
             "line": 1873,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: There are some issues to work out with respect to when and\n   * how the process should be closed. */",
+          "jsDoc": "**UNSTABLE**: There are some issues to work out with respect to when and\n  how the process should be closed. ",
           "classDef": {
             "isAbstract": false,
             "constructors": [],
@@ -4910,7 +4910,7 @@
             ],
             "methods": [
               {
-                "jsDoc": "/** Resolves to the current status of the process. */",
+                "jsDoc": "Resolves to the current status of the process. ",
                 "snippet": "status(): Promise<ProcessStatus>;",
                 "accessibility": null,
                 "isAbstract": false,
@@ -4932,7 +4932,7 @@
                 }
               },
               {
-                "jsDoc": "/** Buffer the stdout and return it as `Uint8Array` after `Deno.EOF`.\n     *\n     * You must set stdout to `\"piped\"` when creating the process.\n     *\n     * This calls `close()` on stdout after its done. */",
+                "jsDoc": "Buffer the stdout and return it as `Uint8Array` after `Deno.EOF`.\n    \n    You must set stdout to `\"piped\"` when creating the process.\n    \n    This calls `close()` on stdout after its done. ",
                 "snippet": "output(): Promise<Uint8Array>;",
                 "accessibility": null,
                 "isAbstract": false,
@@ -4954,7 +4954,7 @@
                 }
               },
               {
-                "jsDoc": "/** Buffer the stderr and return it as `Uint8Array` after `Deno.EOF`.\n     *\n     * You must set stderr to `\"piped\"` when creating the process.\n     *\n     * This calls `close()` on stderr after its done. */",
+                "jsDoc": "Buffer the stderr and return it as `Uint8Array` after `Deno.EOF`.\n    \n    You must set stderr to `\"piped\"` when creating the process.\n    \n    This calls `close()` on stderr after its done. ",
                 "snippet": "stderrOutput(): Promise<Uint8Array>;",
                 "accessibility": null,
                 "isAbstract": false,
@@ -5052,7 +5052,7 @@
             "line": 1905,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**:  Maybe rename `args` to `argv` to differentiate from\n   * `Deno.args`. */",
+          "jsDoc": "**UNSTABLE**:  Maybe rename `args` to `argv` to differentiate from\n  `Deno.args`. ",
           "interfaceDef": {
             "methods": []
           }
@@ -5066,7 +5066,7 @@
             "line": 1931,
             "col": 2
           },
-          "jsDoc": "/** Spawns new subprocess.\n   *\n   * Subprocess uses same working directory as parent process unless `opt.cwd`\n   * is specified.\n   *\n   * Environmental variables for subprocess can be specified using `opt.env`\n   * mapping.\n   *\n   * By default subprocess inherits stdio of parent process. To change that\n   * `opt.stdout`, `opt.stderr` and `opt.stdin` can be specified independently -\n   * they can be set to either `ProcessStdio` or `rid` of open file.\n   *\n   * Requires `allow-run` permission. */",
+          "jsDoc": "Spawns new subprocess.\n  \n  Subprocess uses same working directory as parent process unless `opt.cwd`\n  is specified.\n  \n  Environmental variables for subprocess can be specified using `opt.env`\n  mapping.\n  \n  By default subprocess inherits stdio of parent process. To change that\n  `opt.stdout`, `opt.stderr` and `opt.stdin` can be specified independently -\n  they can be set to either `ProcessStdio` or `rid` of open file.\n  \n  Requires `allow-run` permission. ",
           "functionDef": {
             "params": [
               {
@@ -5092,7 +5092,7 @@
             "line": 2003,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: make platform independent.\n   *\n   * Signals numbers. This is platform dependent. */"
+          "jsDoc": "**UNSTABLE**: make platform independent.\n  \n  Signals numbers. This is platform dependent. "
         },
         {
           "kind": "function",
@@ -5103,7 +5103,7 @@
             "line": 2018,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: `ConsoleOptions` rename to `InspectOptions`. Also the exact\n   * form of string output subject to change.\n   *\n   * Converts input into string that has the same format as printed by\n   * `console.log()`. */",
+          "jsDoc": "**UNSTABLE**: `ConsoleOptions` rename to `InspectOptions`. Also the exact\n  form of string output subject to change.\n  \n  Converts input into string that has the same format as printed by\n  `console.log()`. ",
           "functionDef": {
             "params": [
               {
@@ -5167,7 +5167,7 @@
             "line": 2032,
             "col": 2
           },
-          "jsDoc": "/** Build related information. */"
+          "jsDoc": "Build related information. "
         },
         {
           "kind": "variable",
@@ -5178,7 +5178,7 @@
             "line": 2040,
             "col": 2
           },
-          "jsDoc": "/** Version related information. */"
+          "jsDoc": "Version related information. "
         },
         {
           "kind": "enum",
@@ -5189,7 +5189,7 @@
             "line": 2043,
             "col": 2
           },
-          "jsDoc": "/** The log category for a diagnostic message. */",
+          "jsDoc": "The log category for a diagnostic message. ",
           "enumDef": {
             "members": [
               {
@@ -5264,7 +5264,7 @@
             "line": 2097,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: new API, yet to be vetted.\n   *\n   * Format an array of diagnostic items and return them as a single string.\n   * @param items An array of diagnostic items to format\n   */",
+          "jsDoc": "**UNSTABLE**: new API, yet to be vetted.\n  \n  Format an array of diagnostic items and return them as a single string.\n  @param items An array of diagnostic items to format\n   ",
           "functionDef": {
             "params": [
               {
@@ -5290,7 +5290,7 @@
             "line": 2103,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: new API, yet to be vetted.\n   *\n   * A specific subset TypeScript compiler options that can be supported by the\n   * Deno TypeScript compiler. */",
+          "jsDoc": "**UNSTABLE**: new API, yet to be vetted.\n  \n  A specific subset TypeScript compiler options that can be supported by the\n  Deno TypeScript compiler. ",
           "interfaceDef": {
             "methods": []
           }
@@ -5304,7 +5304,7 @@
             "line": 2307,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: new API, yet to be vetted.\n   *\n   * The results of a transpile only command, where the `source` contains the\n   * emitted source, and `map` optionally contains the source map. */",
+          "jsDoc": "**UNSTABLE**: new API, yet to be vetted.\n  \n  The results of a transpile only command, where the `source` contains the\n  emitted source, and `map` optionally contains the source map. ",
           "interfaceDef": {
             "methods": []
           }
@@ -5318,7 +5318,7 @@
             "line": 2333,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: new API, yet to be vetted.\n   *\n   * Takes a set of TypeScript sources and resolves to a map where the key was\n   * the original file name provided in sources and the result contains the\n   * `source` and optionally the `map` from the transpile operation. This does no\n   * type checking and validation, it effectively \"strips\" the types from the\n   * file.\n   *\n   *      const results =  await Deno.transpileOnly({\n   *        \"foo.ts\": `const foo: string = \"foo\";`\n   *      });\n   *\n   * @param sources A map where the key is the filename and the value is the text\n   *                to transpile. The filename is only used in the transpile and\n   *                not resolved, for example to fill in the source name in the\n   *                source map.\n   * @param options An option object of options to send to the compiler. This is\n   *                a subset of ts.CompilerOptions which can be supported by Deno.\n   *                Many of the options related to type checking and emitting\n   *                type declaration files will have no impact on the output.\n   */",
+          "jsDoc": "**UNSTABLE**: new API, yet to be vetted.\n  \n  Takes a set of TypeScript sources and resolves to a map where the key was\n  the original file name provided in sources and the result contains the\n  `source` and optionally the `map` from the transpile operation. This does no\n  type checking and validation, it effectively \"strips\" the types from the\n  file.\n  \n       const results =  await Deno.transpileOnly({\n         \"foo.ts\": `const foo: string = \"foo\";`\n       });\n  \n  @param sources A map where the key is the filename and the value is the text\n                 to transpile. The filename is only used in the transpile and\n                 not resolved, for example to fill in the source name in the\n                 source map.\n  @param options An option object of options to send to the compiler. This is\n                 a subset of ts.CompilerOptions which can be supported by Deno.\n                 Many of the options related to type checking and emitting\n                 type declaration files will have no impact on the output.\n   ",
           "functionDef": {
             "params": [
               {
@@ -5350,7 +5350,7 @@
             "line": 2367,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: new API, yet to be vetted.\n   *\n   * Takes a root module name, any optionally a record set of sources. Resolves\n   * with a compiled set of modules. If just a root name is provided, the modules\n   * will be resolved as if the root module had been passed on the command line.\n   *\n   * If sources are passed, all modules will be resolved out of this object, where\n   * the key is the module name and the value is the content. The extension of\n   * the module name will be used to determine the media type of the module.\n   *\n   *      const [ maybeDiagnostics1, output1 ] = await Deno.compile(\"foo.ts\");\n   *\n   *      const [ maybeDiagnostics2, output2 ] = await Deno.compile(\"/foo.ts\", {\n   *        \"/foo.ts\": `export * from \"./bar.ts\";`,\n   *        \"/bar.ts\": `export const bar = \"bar\";`\n   *      });\n   *\n   * @param rootName The root name of the module which will be used as the\n   *                 \"starting point\". If no `sources` is specified, Deno will\n   *                 resolve the module externally as if the `rootName` had been\n   *                 specified on the command line.\n   * @param sources An optional key/value map of sources to be used when resolving\n   *                modules, where the key is the module name, and the value is\n   *                the source content. The extension of the key will determine\n   *                the media type of the file when processing. If supplied,\n   *                Deno will not attempt to resolve any modules externally.\n   * @param options An optional object of options to send to the compiler. This is\n   *                a subset of ts.CompilerOptions which can be supported by Deno.\n   */",
+          "jsDoc": "**UNSTABLE**: new API, yet to be vetted.\n  \n  Takes a root module name, any optionally a record set of sources. Resolves\n  with a compiled set of modules. If just a root name is provided, the modules\n  will be resolved as if the root module had been passed on the command line.\n  \n  If sources are passed, all modules will be resolved out of this object, where\n  the key is the module name and the value is the content. The extension of\n  the module name will be used to determine the media type of the module.\n  \n       const [ maybeDiagnostics1, output1 ] = await Deno.compile(\"foo.ts\");\n  \n       const [ maybeDiagnostics2, output2 ] = await Deno.compile(\"/foo.ts\", {\n         \"/foo.ts\": `export * from \"./bar.ts\";`,\n         \"/bar.ts\": `export const bar = \"bar\";`\n       });\n  \n  @param rootName The root name of the module which will be used as the\n                  \"starting point\". If no `sources` is specified, Deno will\n                  resolve the module externally as if the `rootName` had been\n                  specified on the command line.\n  @param sources An optional key/value map of sources to be used when resolving\n                 modules, where the key is the module name, and the value is\n                 the source content. The extension of the key will determine\n                 the media type of the file when processing. If supplied,\n                 Deno will not attempt to resolve any modules externally.\n  @param options An optional object of options to send to the compiler. This is\n                 a subset of ts.CompilerOptions which can be supported by Deno.\n   ",
           "functionDef": {
             "params": [
               {
@@ -5388,7 +5388,7 @@
             "line": 2408,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: new API, yet to be vetted.\n   *\n   * `bundle()` is part the compiler API.  A full description of this functionality\n   * can be found in the [manual](https://deno.land/std/manual.md#denobundle).\n   *\n   * Takes a root module name, and optionally a record set of sources. Resolves\n   * with a single JavaScript string (and bundle diagnostics if issues arise with\n   * the bundling) that is like the output of a `deno bundle` command. If just\n   * a root name is provided, the modules will be resolved as if the root module\n   * had been passed on the command line.\n   *\n   * If sources are passed, all modules will be resolved out of this object, where\n   * the key is the module name and the value is the content. The extension of the\n   * module name will be used to determine the media type of the module.\n   *\n   *      //equivalent to \"deno bundle foo.ts\" from the command line\n   *      const [ maybeDiagnostics1, output1 ] = await Deno.bundle(\"foo.ts\");\n   *\n   *      const [ maybeDiagnostics2, output2 ] = await Deno.bundle(\"/foo.ts\", {\n   *        \"/foo.ts\": `export * from \"./bar.ts\";`,\n   *        \"/bar.ts\": `export const bar = \"bar\";`\n   *      });\n   *\n   * @param rootName The root name of the module which will be used as the\n   *                 \"starting point\". If no `sources` is specified, Deno will\n   *                 resolve the module externally as if the `rootName` had been\n   *                 specified on the command line.\n   * @param sources An optional key/value map of sources to be used when resolving\n   *                modules, where the key is the module name, and the value is\n   *                the source content. The extension of the key will determine\n   *                the media type of the file when processing. If supplied,\n   *                Deno will not attempt to resolve any modules externally.\n   * @param options An optional object of options to send to the compiler. This is\n   *                a subset of ts.CompilerOptions which can be supported by Deno.\n   */",
+          "jsDoc": "**UNSTABLE**: new API, yet to be vetted.\n  \n  `bundle()` is part the compiler API.  A full description of this functionality\n  can be found in the [manual](https://deno.land/std/manual.md#denobundle).\n  \n  Takes a root module name, and optionally a record set of sources. Resolves\n  with a single JavaScript string (and bundle diagnostics if issues arise with\n  the bundling) that is like the output of a `deno bundle` command. If just\n  a root name is provided, the modules will be resolved as if the root module\n  had been passed on the command line.\n  \n  If sources are passed, all modules will be resolved out of this object, where\n  the key is the module name and the value is the content. The extension of the\n  module name will be used to determine the media type of the module.\n  \n       //equivalent to \"deno bundle foo.ts\" from the command line\n       const [ maybeDiagnostics1, output1 ] = await Deno.bundle(\"foo.ts\");\n  \n       const [ maybeDiagnostics2, output2 ] = await Deno.bundle(\"/foo.ts\", {\n         \"/foo.ts\": `export * from \"./bar.ts\";`,\n         \"/bar.ts\": `export const bar = \"bar\";`\n       });\n  \n  @param rootName The root name of the module which will be used as the\n                  \"starting point\". If no `sources` is specified, Deno will\n                  resolve the module externally as if the `rootName` had been\n                  specified on the command line.\n  @param sources An optional key/value map of sources to be used when resolving\n                 modules, where the key is the module name, and the value is\n                 the source content. The extension of the key will determine\n                 the media type of the file when processing. If supplied,\n                 Deno will not attempt to resolve any modules externally.\n  @param options An optional object of options to send to the compiler. This is\n                 a subset of ts.CompilerOptions which can be supported by Deno.\n   ",
           "functionDef": {
             "params": [
               {
@@ -5426,7 +5426,7 @@
             "line": 2423,
             "col": 2
           },
-          "jsDoc": "/** Returns the script arguments to the program. If for example we run a\n   * program:\n   *\n   *      deno --allow-read https://deno.land/std/examples/cat.ts /etc/passwd\n   *\n   * Then `Deno.args` will contain:\n   *\n   *      [ \"/etc/passwd\" ]\n   */"
+          "jsDoc": "Returns the script arguments to the program. If for example we run a\n  program:\n  \n       deno --allow-read https://deno.land/std/examples/cat.ts /etc/passwd\n  \n  Then `Deno.args` will contain:\n  \n       [ \"/etc/passwd\" ]\n   "
         },
         {
           "kind": "class",
@@ -5437,7 +5437,7 @@
             "line": 2429,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: new API, yet to be vetted.\n   *\n   * Represents the stream of signals, implements both `AsyncIterator` and\n   * `PromiseLike`. */",
+          "jsDoc": "**UNSTABLE**: new API, yet to be vetted.\n  \n  Represents the stream of signals, implements both `AsyncIterator` and\n  `PromiseLike`. ",
           "classDef": {
             "isAbstract": false,
             "constructors": [
@@ -5576,7 +5576,7 @@
             "line": 2467,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: new API, yet to be vetted.\n   *\n   * Returns the stream of the given signal number. You can use it as an async\n   * iterator.\n   *\n   *      for await (const _ of Deno.signal(Deno.Signal.SIGTERM)) {\n   *        console.log(\"got SIGTERM!\");\n   *      }\n   *\n   * You can also use it as a promise. In this case you can only receive the\n   * first one.\n   *\n   *      await Deno.signal(Deno.Signal.SIGTERM);\n   *      console.log(\"SIGTERM received!\")\n   *\n   * If you want to stop receiving the signals, you can use `.dispose()` method\n   * of the signal stream object.\n   *\n   *      const sig = Deno.signal(Deno.Signal.SIGTERM);\n   *      setTimeout(() => { sig.dispose(); }, 5000);\n   *      for await (const _ of sig) {\n   *        console.log(\"SIGTERM!\")\n   *      }\n   *\n   * The above for-await loop exits after 5 seconds when `sig.dispose()` is\n   * called. */",
+          "jsDoc": "**UNSTABLE**: new API, yet to be vetted.\n  \n  Returns the stream of the given signal number. You can use it as an async\n  iterator.\n  \n       for await (const _ of Deno.signal(Deno.Signal.SIGTERM)) {\n         console.log(\"got SIGTERM!\");\n       }\n  \n  You can also use it as a promise. In this case you can only receive the\n  first one.\n  \n       await Deno.signal(Deno.Signal.SIGTERM);\n       console.log(\"SIGTERM received!\")\n  \n  If you want to stop receiving the signals, you can use `.dispose()` method\n  of the signal stream object.\n  \n       const sig = Deno.signal(Deno.Signal.SIGTERM);\n       setTimeout(() => { sig.dispose(); }, 5000);\n       for await (const _ of sig) {\n         console.log(\"SIGTERM!\")\n       }\n  \n  The above for-await loop exits after 5 seconds when `sig.dispose()` is\n  called. ",
           "functionDef": {
             "params": [
               {
@@ -5602,7 +5602,7 @@
             "line": 2470,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: new API, yet to be vetted. */"
+          "jsDoc": "**UNSTABLE**: new API, yet to be vetted. "
         },
         {
           "kind": "variable",
@@ -5613,7 +5613,7 @@
             "line": 2520,
             "col": 2
           },
-          "jsDoc": "/** **UNSTABLE**: new API. Maybe move `Deno.EOF` here.\n   *\n   * Special Deno related symbols. */"
+          "jsDoc": "**UNSTABLE**: new API. Maybe move `Deno.EOF` here.\n  \n  Special Deno related symbols. "
         }
       ]
     }
