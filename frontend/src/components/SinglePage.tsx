@@ -4,6 +4,7 @@ import { groupNodes, DocNodeShared, ParamDef, TsTypeDef } from "../util/docs";
 import { Page } from "./Page";
 import { JSDoc, CodeBlock } from "./JSDoc";
 import { ClassCard } from "./Class";
+import { TsType } from "./TsType";
 
 export function SinglePage() {
   const nodes = useNodes();
@@ -178,6 +179,7 @@ export function SimpleSubCard({
           <span className="text-gray-600">
             {" → "}
             {returnType?.repr}
+            {returnType ? <TsType tsType={returnType}></TsType> : null}
           </span>
         ) : null}
       </div>
