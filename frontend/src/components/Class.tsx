@@ -1,30 +1,30 @@
 import React from "react";
 import { Page } from "./Page";
 import {
-  cleanJSDoc,
   DocNodeClass,
   ClassConstructorDef,
   ClassPropertyDef,
-  ClassMethodDef,
+  ClassMethodDef
 } from "../util/docs";
 import { FunctionLink } from "./Function";
 import { VariableLink } from "./Variable";
+import { JSDoc, CodeBlock } from "./JSDoc";
 
 export const Class = ({ class: class_ }: { class: DocNodeClass }) => {
   const constructors = class_.classDef.constructors;
   const properties = class_.classDef.properties.filter(
-    (node) => node.accessibility !== "private"
+    node => node.accessibility !== "private"
   );
-  const realProperties = properties.filter((node) => !node.isStatic);
-  const staticProperties = properties.filter((node) => node.isStatic);
+  const realProperties = properties.filter(node => !node.isStatic);
+  const staticProperties = properties.filter(node => node.isStatic);
   const methods = class_.classDef.methods.filter(
-    (node) => node.accessibility !== "private"
+    node => node.accessibility !== "private"
   );
-  const realMethods = methods.filter((node) => !node.isStatic);
-  const staticMethods = methods.filter((node) => node.isStatic);
+  const realMethods = methods.filter(node => !node.isStatic);
+  const staticMethods = methods.filter(node => node.isStatic);
 
   return (
-    <Page>
+    <Page mode="multipage">
       <div className="p-8 pt-4">
         <div className="pb-4">
           <div className="text-gray-900 text-3xl font-medium">
@@ -33,9 +33,7 @@ export const Class = ({ class: class_ }: { class: DocNodeClass }) => {
           {class_.classDef.isAbstract ? (
             <p className="text-gray-500 italic font-light mb-1">abstract</p>
           ) : null}
-          {class_.jsDoc ? (
-            <p className="text-gray-700">{cleanJSDoc(class_.jsDoc)}</p>
-          ) : null}
+          {class_.jsDoc ? <JSDoc jsdoc={class_.jsDoc} /> : null}
         </div>
         {constructors.length > 0 ? (
           <div className="py-4">
@@ -43,14 +41,13 @@ export const Class = ({ class: class_ }: { class: DocNodeClass }) => {
               Constructors
             </div>
             <div>
-              {constructors.map((node) => (
-                // TODO(lucacasonato): https://github.com/bartlomieju/deno_doc/issues/4
+              {constructors.map(node => (
                 <FunctionLink
                   key={node.name}
                   name={node.name}
                   jsDoc={node.jsDoc}
                   type="constructor"
-                  params={[]}
+                  params={node.params}
                   accessibility={node.accessibility}
                 />
               ))}
@@ -63,7 +60,7 @@ export const Class = ({ class: class_ }: { class: DocNodeClass }) => {
               Properties
             </div>
             <div>
-              {realProperties.map((node) => (
+              {realProperties.map(node => (
                 <VariableLink
                   key={node.name}
                   name={node.name}
@@ -84,14 +81,14 @@ export const Class = ({ class: class_ }: { class: DocNodeClass }) => {
               Methods
             </div>
             <div>
-              {realMethods.map((node) => (
-                // TODO(lucacasonato): https://github.com/bartlomieju/deno_doc/issues/4
+              {realMethods.map(node => (
                 <FunctionLink
                   key={node.name}
                   name={node.name}
                   jsDoc={node.jsDoc}
                   type="method"
-                  params={[]}
+                  params={node.functionDef?.params}
+                  returnType={node.functionDef?.returnType}
                   accessibility={node.accessibility}
                   isAbstract={node.isAbstract}
                 />
@@ -105,7 +102,7 @@ export const Class = ({ class: class_ }: { class: DocNodeClass }) => {
               Static Properties
             </div>
             <div>
-              {staticProperties.map((node) => (
+              {staticProperties.map(node => (
                 <VariableLink
                   key={node.name}
                   name={node.name}
@@ -126,14 +123,14 @@ export const Class = ({ class: class_ }: { class: DocNodeClass }) => {
               Static Methods
             </div>
             <div>
-              {staticMethods.map((node) => (
-                // TODO(lucacasonato): https://github.com/bartlomieju/deno_doc/issues/4
+              {staticMethods.map(node => (
                 <FunctionLink
                   key={node.name}
                   name={node.name}
                   jsDoc={node.jsDoc}
                   type="method"
-                  params={[]}
+                  params={node.functionDef?.params}
+                  returnType={node.functionDef?.returnType}
                   accessibility={node.accessibility}
                   isAbstract={node.isAbstract}
                 />
@@ -141,18 +138,22 @@ export const Class = ({ class: class_ }: { class: DocNodeClass }) => {
             </div>
           </div>
         ) : null}
+        <div className="text-sm">
+          Defined in {class_.location.filename}:{class_.location.line}:
+          {class_.location.col}
+        </div>
       </div>
     </Page>
   );
 };
 
 export const ClassConstructor = ({
-  constructor_,
+  constructor_
 }: {
   constructor_: ClassConstructorDef;
 }) => {
   return (
-    <Page>
+    <Page mode="multipage">
       <div className="p-8 pt-4">
         <div className="pb-4">
           <div className="text-gray-900 text-3xl font-medium">
@@ -162,16 +163,23 @@ export const ClassConstructor = ({
             {constructor_.name}
             <span className="text-gray-600 font-light">
               (
-              {/* TODO(lucacasonato): https://github.com/bartlomieju/deno_doc/issues/4
-              constructor_.params
+              {constructor_.params
                 .map(p => `${p.name}${p.tsType ? ": " + p.tsType.repr : ""}`)
-              .join(", ")*/}
+                .join(", ")}
               )
             </span>
           </div>
-          {constructor_.jsDoc ? (
-            <p className="text-gray-700">{cleanJSDoc(constructor_.jsDoc)}</p>
-          ) : null}
+          {constructor_.jsDoc ? <JSDoc jsdoc={constructor_.jsDoc} /> : null}
+          <div className="py-4">
+            <div className="text-gray-900 text-2xl font-medium mb-1">
+              Implementation
+            </div>
+            <CodeBlock value={constructor_.snippet} />
+          </div>
+        </div>
+        <div className="text-sm">
+          Defined in {constructor_.location.filename}:
+          {constructor_.location.line}:{constructor_.location.col}
         </div>
       </div>
     </Page>
@@ -180,7 +188,7 @@ export const ClassConstructor = ({
 
 export const ClassProperty = ({ property }: { property: ClassPropertyDef }) => {
   return (
-    <Page>
+    <Page mode="multipage">
       <div className="p-8 pt-4">
         <div className="pb-4">
           <div className="text-gray-900 text-3xl font-medium">
@@ -209,9 +217,17 @@ export const ClassProperty = ({ property }: { property: ClassPropertyDef }) => {
                 .join(", ")}
             </p>
           </div>
-          {property.jsDoc ? (
-            <p className="text-gray-700">{cleanJSDoc(property.jsDoc)}</p>
-          ) : null}
+          {property.jsDoc ? <JSDoc jsdoc={property.jsDoc} /> : null}
+          <div className="py-4">
+            <div className="text-gray-900 text-2xl font-medium mb-1">
+              Implementation
+            </div>
+            <CodeBlock value={property.snippet} />
+          </div>{" "}
+        </div>
+        <div className="text-sm">
+          Defined in {property.location.filename}:{property.location.line}:
+          {property.location.col}
         </div>
       </div>
     </Page>
@@ -220,7 +236,7 @@ export const ClassProperty = ({ property }: { property: ClassPropertyDef }) => {
 
 export const ClassMethod = ({ method }: { method: ClassMethodDef }) => {
   return (
-    <Page>
+    <Page mode="multipage">
       <div className="p-8 pt-4">
         <div className="pb-4">
           <div className="text-gray-900 text-3xl font-medium">
@@ -230,16 +246,20 @@ export const ClassMethod = ({ method }: { method: ClassMethodDef }) => {
             {method.name}
             <span className="text-gray-600 font-light">
               (
-              {/* TODO(lucacasonato): https://github.com/bartlomieju/deno_doc/issues/4
-              constructor_.params
+              {method.functionDef?.params
                 .map(p => `${p.name}${p.tsType ? ": " + p.tsType.repr : ""}`)
-              .join(", ")*/}
+                .join(", ")}
               )
             </span>
+            {method.functionDef?.returnType?.repr ? (
+              <>
+                <span className="text-gray-600 font-light">
+                  {" → "}
+                  {method.functionDef?.returnType?.repr}
+                </span>
+              </>
+            ) : null}
           </div>
-          {method.jsDoc ? (
-            <p className="text-gray-700">{cleanJSDoc(method.jsDoc)}</p>
-          ) : null}
           <p className="text-gray-500 italic font-light">
             {([] as string[])
               .concat(
@@ -251,6 +271,17 @@ export const ClassMethod = ({ method }: { method: ClassMethodDef }) => {
               .concat(...(method.isAbstract ? ["abstract"] : []))
               .join(", ")}
           </p>
+          {method.jsDoc ? <JSDoc jsdoc={method.jsDoc} /> : null}
+          <div className="py-4">
+            <div className="text-gray-900 text-2xl font-medium mb-1">
+              Implementation
+            </div>
+            <CodeBlock value={method.snippet} />
+          </div>
+        </div>
+        <div className="text-sm">
+          Defined in {method.location.filename}:{method.location.line}:
+          {method.location.col}
         </div>
       </div>
     </Page>

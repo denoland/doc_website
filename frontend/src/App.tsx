@@ -15,7 +15,10 @@ function App() {
 
   return nodes ? (
     <Switch>
-      <Route path="/singlepage" render={() => <SinglePageRoute nodes={nodes}/>} />
+      <Route
+        path="/singlepage"
+        render={() => <SinglePageRoute nodes={nodes} />}
+      />
       <Route
         render={() => (
           <NodesProvider value={nodes}>

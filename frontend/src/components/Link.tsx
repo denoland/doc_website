@@ -16,7 +16,7 @@ export function Link(
               ? props.href.replace("$", prefix.node)
               : props.href)
       }
-      {...props}
+      {...{ ...props, unmanaged: undefined }}
     />
   );
 }

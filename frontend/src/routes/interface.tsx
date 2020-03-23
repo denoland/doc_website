@@ -11,7 +11,7 @@ export function InterfaceRoute(props: { name: string }) {
   const nodes = useNodes();
 
   const interface_ = (nodes.find(
-    (node) => node.kind === DocNodeKind.Interface && node.name === props.name
+    node => node.kind === DocNodeKind.Interface && node.name === props.name
   ) as any) as DocNodeInterface;
 
   return interface_ ? (

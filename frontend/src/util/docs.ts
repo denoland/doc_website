@@ -37,30 +37,23 @@ export interface VariableDef {
   kind: "var" | "let" | "const";
 }
 export type Accessibility = "public" | "protected" | "private";
-export interface ClassConstructorDef {
-  jsDoc?: string;
-  snippet: string;
+export interface ClassConstructorDef extends DocNodeShared {
   accessibility?: Accessibility;
-  name: string;
+  params: ParamDef[];
 }
-export interface ClassPropertyDef {
-  jsDoc?: string;
-  snippet: string;
+export interface ClassPropertyDef extends DocNodeShared {
   tsType: TsTypeDef;
   readonly: boolean;
   accessibility?: Accessibility;
   isAbstract: boolean;
   isStatic: boolean;
-  name: string;
 }
-export interface ClassMethodDef {
-  jsDoc?: string;
-  snippet: string;
+export interface ClassMethodDef extends DocNodeShared {
   accessibility?: Accessibility;
   isAbstract: boolean;
   isStatic: boolean;
-  name: string;
   kind: "method" | "getter" | "setter";
+  functionDef: FunctionDef;
 }
 export interface ClassDef {
   isAbstract: boolean;
@@ -74,7 +67,7 @@ export interface EnumMemberDef {
 export interface EnumDef {
   members: EnumMemberDef[];
 }
-export interface InterfaceDef {}
+export interface InterfaceDef { }
 export interface TypeAliasDef {
   tsType: TsTypeDef;
 }
@@ -121,7 +114,7 @@ export type DocNode =
   | DocNodeNamespace;
 
 export async function getDocs(): Promise<DocNode[]> {
-  const req = await fetch("/data1.json");
+  const req = await fetch("/docs.json");
   if (!req.ok) throw new Error("Failed to fetch docs.");
   return await req.json();
 }
@@ -174,11 +167,4 @@ export function groupNodes(docs: DocNode[]): GroupedNodes {
   });
 
   return groupedNodes;
-}
-
-export function cleanJSDoc(jsDoc: string): string {
-  if (jsDoc.startsWith("/**")) jsDoc = jsDoc.substr(3);
-  if (jsDoc.endsWith("*/")) jsDoc = jsDoc.substr(0, jsDoc.length - 2);
-  jsDoc = jsDoc.replace(/\n( *)\*/g, "");
-  return jsDoc.trim();
 }

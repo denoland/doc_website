@@ -1,9 +1,10 @@
 import React from "react";
 import { Page } from "./Page";
-import { groupNodes, cleanJSDoc, DocNodeNamespace } from "../util/docs";
+import { groupNodes, DocNodeNamespace } from "../util/docs";
 import { FunctionLink } from "./Function";
 import { VariableLink } from "./Variable";
 import { SimpleLink } from "./SimpleLink";
+import { JSDoc } from "./JSDoc";
 
 export const Namespace = (props: {
   namespace: DocNodeNamespace;
@@ -12,14 +13,14 @@ export const Namespace = (props: {
   const groups = groupNodes(props.namespace.namespaceDef.elements);
 
   return (
-    <Page namespacesOnlySidebar>
+    <Page namespacesOnlySidebar mode="multipage">
       <div className="p-8 pt-4">
         <div className="pb-4">
           <div className="text-gray-900 text-3xl font-medium">
             {props.namespace.name} namespace
           </div>
           {props.namespace.jsDoc ? (
-            <p className="text-gray-700">{cleanJSDoc(props.namespace.jsDoc)}</p>
+            <JSDoc jsdoc={props.namespace.jsDoc} />
           ) : null}
         </div>
         {groups.classes.length > 0 ? (
@@ -28,7 +29,7 @@ export const Namespace = (props: {
               Classes
             </div>
             <div>
-              {groups.classes.map((node) => (
+              {groups.classes.map(node => (
                 <SimpleLink name={node.name} type="class" jsDoc={node.jsDoc} />
               ))}
             </div>
@@ -40,7 +41,7 @@ export const Namespace = (props: {
               Variables
             </div>
             <div>
-              {groups.variables.map((node) => (
+              {groups.variables.map(node => (
                 <VariableLink
                   key={node.name}
                   name={node.name}
@@ -59,7 +60,7 @@ export const Namespace = (props: {
               Functions
             </div>
             <div>
-              {groups.functions.map((node) => (
+              {groups.functions.map(node => (
                 <FunctionLink
                   key={node.name}
                   name={node.name}
@@ -76,7 +77,7 @@ export const Namespace = (props: {
           <div className="py-4">
             <div className="text-gray-900 text-2xl font-medium mb-1">Enums</div>
             <div>
-              {groups.enums.map((node) => (
+              {groups.enums.map(node => (
                 <SimpleLink name={node.name} type="enum" jsDoc={node.jsDoc} />
               ))}
             </div>
@@ -88,7 +89,7 @@ export const Namespace = (props: {
               Interfaces
             </div>
             <div>
-              {groups.interfaces.map((node) => (
+              {groups.interfaces.map(node => (
                 <SimpleLink
                   name={node.name}
                   type="interface"
@@ -104,7 +105,7 @@ export const Namespace = (props: {
               Type Aliases
             </div>
             <div>
-              {groups.typeAliases.map((node) => (
+              {groups.typeAliases.map(node => (
                 <SimpleLink
                   name={node.name}
                   type="typealias"
@@ -120,7 +121,7 @@ export const Namespace = (props: {
               Namespaces
             </div>
             <div>
-              {groups.namespaces.map((node) => (
+              {groups.namespaces.map(node => (
                 <SimpleLink
                   name={node.name}
                   type="namespace"
@@ -130,6 +131,10 @@ export const Namespace = (props: {
             </div>
           </div>
         ) : null}
+        <div className="text-sm">
+          Defined in {props.namespace.location.filename}:
+          {props.namespace.location.line}:{props.namespace.location.col}
+        </div>
       </div>
     </Page>
   );

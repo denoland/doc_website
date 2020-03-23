@@ -14,11 +14,11 @@ export function RootNamespace() {
         location: {
           filename: "",
           col: 0,
-          line: 0,
+          line: 0
         },
         namespaceDef: {
-          elements: nodes,
-        },
+          elements: nodes
+        }
       }}
       isRootNamespace
     />
