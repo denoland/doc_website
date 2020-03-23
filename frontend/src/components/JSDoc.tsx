@@ -39,7 +39,11 @@ export function CodeBlock(props: { value: string }) {
     <SyntaxHighlighter
       language="typescript"
       style={atomOneLight}
-      customStyle={{ padding: "0.5rem 0.75rem", margin: "0.5rem 0" }}
+      customStyle={{
+        fontSize: "0.75rem",
+        padding: "0.5rem 0.75rem",
+        margin: "0.5rem 0"
+      }}
     >
       {props.value}
     </SyntaxHighlighter>

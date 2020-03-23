@@ -134,13 +134,13 @@ function DocNodeCard(props: { node: DocNode }) {
 
       <CodeBlock value={node.snippet} />
 
-      <div className="text-sm mt-2 text-gray-600">
+      <div className="text-xs mt-2 text-gray-600">
         Defined in file '{node.location.filename}' on line {node.location.line},
         column {node.location.col}.
       </div>
 
       {node.jsDoc ? (
-        <div className="mt-2">
+        <div className="text-xs mt-2">
           <JSDoc jsdoc={node.jsDoc} />
         </div>
       ) : null}
