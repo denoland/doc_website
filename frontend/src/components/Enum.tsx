@@ -27,6 +27,10 @@ export const Enum = ({ enum: enum_ }: { enum: DocNodeEnum }) => {
             </div>
           </div>
         ) : null}
+        <div className="text-sm">
+          Defined in {enum_.location.filename}:{enum_.location.line}:
+          {enum_.location.col}
+        </div>
       </div>
     </Page>
   );

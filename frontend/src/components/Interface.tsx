@@ -17,6 +17,10 @@ export const Interface = ({
           </div>
           {interface_.jsDoc ? <JSDoc jsdoc={interface_.jsDoc} /> : null}
         </div>
+        <div className="text-sm">
+          Defined in {interface_.location.filename}:{interface_.location.line}:
+          {interface_.location.col}
+        </div>
       </div>
     </Page>
   );

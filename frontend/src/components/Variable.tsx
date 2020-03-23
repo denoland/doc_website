@@ -28,6 +28,10 @@ export const Variable = ({ variable }: { variable: DocNodeVariable }) => {
           </div>
           {variable.jsDoc ? <JSDoc jsdoc={variable.jsDoc} /> : null}
         </div>
+        <div className="text-sm">
+          Defined in {variable.location.filename}:{variable.location.line}:
+          {variable.location.col}
+        </div>
       </div>
     </Page>
   );

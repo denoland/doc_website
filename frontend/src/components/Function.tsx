@@ -40,6 +40,10 @@ export const Function = ({
           </div>
           <CodeBlock value={function_.snippet} />
         </div>
+        <div className="text-sm">
+          Defined in {function_.location.filename}:{function_.location.line}:
+          {function_.location.col}
+        </div>
       </div>
     </Page>
   );

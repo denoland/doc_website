@@ -139,6 +139,10 @@ export const Class = ({ class: class_ }: { class: DocNodeClass }) => {
             </div>
           </div>
         ) : null}
+        <div className="text-sm">
+          Defined in {class_.location.filename}:{class_.location.line}:
+          {class_.location.col}
+        </div>
       </div>
     </Page>
   );

@@ -23,6 +23,10 @@ export const TypeAlias = ({
           </div>
           <CodeBlock value={typealias_.typeAliasDef.tsType?.repr} />
         </div>
+        <div className="text-sm">
+          Defined in {typealias_.location.filename}:{typealias_.location.line}:
+          {typealias_.location.col}
+        </div>
       </div>
     </Page>
   );

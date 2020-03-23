@@ -131,6 +131,10 @@ export const Namespace = (props: {
             </div>
           </div>
         ) : null}
+        <div className="text-sm">
+          Defined in {props.namespace.location.filename}:
+          {props.namespace.location.line}:{props.namespace.location.col}
+        </div>
       </div>
     </Page>
   );
