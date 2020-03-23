@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "./Link";
-import { cleanJSDoc } from "../util/docs";
+import { JSDoc } from "./JSDoc";
 
 export function SimpleLink(props: {
   name: string;
@@ -17,9 +17,7 @@ export function SimpleLink(props: {
         </Link>
         {props.afterName}
       </p>
-      {props.jsDoc ? (
-        <p className="text-gray-700">{cleanJSDoc(props.jsDoc)}</p>
-      ) : null}
+      {props.jsDoc ? <JSDoc jsdoc={props.jsDoc} short /> : null}
       {props.afterJsDoc}
     </div>
   );

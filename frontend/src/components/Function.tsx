@@ -1,7 +1,8 @@
 import React from "react";
-import { ParamDef, TsTypeDef, cleanJSDoc, DocNodeFunction } from "../util/docs";
+import { ParamDef, TsTypeDef, DocNodeFunction } from "../util/docs";
 import { SimpleLink } from "./SimpleLink";
 import { Page } from "./Page";
+import { JSDoc, CodeBlock } from "./JSDoc";
 
 export const Function = ({
   function: function_
@@ -31,9 +32,13 @@ export const Function = ({
               </span>
             ) : null}
           </div>
-          {function_.jsDoc ? (
-            <p className="text-gray-700">{cleanJSDoc(function_.jsDoc)}</p>
-          ) : null}
+          {function_.jsDoc ? <JSDoc jsdoc={function_.jsDoc} /> : null}
+        </div>
+        <div className="py-4">
+          <div className="text-gray-900 text-2xl font-medium">
+            Implementation
+          </div>
+          <CodeBlock value={function_.snippet} />
         </div>
       </div>
     </Page>

@@ -1,9 +1,10 @@
 import React from "react";
 import { Page } from "./Page";
-import { groupNodes, cleanJSDoc, DocNodeNamespace } from "../util/docs";
+import { groupNodes, DocNodeNamespace } from "../util/docs";
 import { FunctionLink } from "./Function";
 import { VariableLink } from "./Variable";
 import { SimpleLink } from "./SimpleLink";
+import { JSDoc } from "./JSDoc";
 
 export const Namespace = (props: {
   namespace: DocNodeNamespace;
@@ -19,7 +20,7 @@ export const Namespace = (props: {
             {props.namespace.name} namespace
           </div>
           {props.namespace.jsDoc ? (
-            <p className="text-gray-700">{cleanJSDoc(props.namespace.jsDoc)}</p>
+            <JSDoc jsdoc={props.namespace.jsDoc} />
           ) : null}
         </div>
         {groups.classes.length > 0 ? (

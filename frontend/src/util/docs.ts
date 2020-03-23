@@ -179,6 +179,6 @@ export function groupNodes(docs: DocNode[]): GroupedNodes {
 export function cleanJSDoc(jsDoc: string): string {
   if (jsDoc.startsWith("/**")) jsDoc = jsDoc.substr(3);
   if (jsDoc.endsWith("*/")) jsDoc = jsDoc.substr(0, jsDoc.length - 2);
-  jsDoc = jsDoc.replace(/\n( *)\*/g, "");
+  jsDoc = jsDoc.replace(/\n( *)\*/g, "\n");
   return jsDoc.trim();
 }

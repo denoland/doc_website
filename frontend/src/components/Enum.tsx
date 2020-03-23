@@ -1,6 +1,7 @@
 import React from "react";
 import { Page } from "./Page";
-import { cleanJSDoc, DocNodeEnum } from "../util/docs";
+import { DocNodeEnum } from "../util/docs";
+import { JSDoc } from "./JSDoc";
 
 export const Enum = ({ enum: enum_ }: { enum: DocNodeEnum }) => {
   return (
@@ -10,9 +11,7 @@ export const Enum = ({ enum: enum_ }: { enum: DocNodeEnum }) => {
           <div className="text-gray-900 text-3xl font-medium">
             {enum_.name} enum
           </div>
-          {enum_.jsDoc ? (
-            <p className="text-gray-700">{cleanJSDoc(enum_.jsDoc)}</p>
-          ) : null}
+          {enum_.jsDoc ? <JSDoc jsdoc={enum_.jsDoc} /> : null}
         </div>
         {enum_.enumDef.members.length > 0 ? (
           <div className="py-4">

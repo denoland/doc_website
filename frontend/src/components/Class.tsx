@@ -1,7 +1,6 @@
 import React from "react";
 import { Page } from "./Page";
 import {
-  cleanJSDoc,
   DocNodeClass,
   ClassConstructorDef,
   ClassPropertyDef,
@@ -9,6 +8,7 @@ import {
 } from "../util/docs";
 import { FunctionLink } from "./Function";
 import { VariableLink } from "./Variable";
+import { JSDoc, CodeBlock } from "./JSDoc";
 
 export const Class = ({ class: class_ }: { class: DocNodeClass }) => {
   const constructors = class_.classDef.constructors;
@@ -33,9 +33,7 @@ export const Class = ({ class: class_ }: { class: DocNodeClass }) => {
           {class_.classDef.isAbstract ? (
             <p className="text-gray-500 italic font-light mb-1">abstract</p>
           ) : null}
-          {class_.jsDoc ? (
-            <p className="text-gray-700">{cleanJSDoc(class_.jsDoc)}</p>
-          ) : null}
+          {class_.jsDoc ? <JSDoc jsdoc={class_.jsDoc} /> : null}
         </div>
         {constructors.length > 0 ? (
           <div className="py-4">
@@ -169,9 +167,13 @@ export const ClassConstructor = ({
               )
             </span>
           </div>
-          {constructor_.jsDoc ? (
-            <p className="text-gray-700">{cleanJSDoc(constructor_.jsDoc)}</p>
-          ) : null}
+          {constructor_.jsDoc ? <JSDoc jsdoc={constructor_.jsDoc} /> : null}
+          <div className="py-4">
+            <div className="text-gray-900 text-2xl font-medium mb-1">
+              Implementation
+            </div>
+            <CodeBlock value={constructor_.snippet} />
+          </div>
         </div>
       </div>
     </Page>
@@ -209,9 +211,13 @@ export const ClassProperty = ({ property }: { property: ClassPropertyDef }) => {
                 .join(", ")}
             </p>
           </div>
-          {property.jsDoc ? (
-            <p className="text-gray-700">{cleanJSDoc(property.jsDoc)}</p>
-          ) : null}
+          {property.jsDoc ? <JSDoc jsdoc={property.jsDoc} /> : null}
+          <div className="py-4">
+            <div className="text-gray-900 text-2xl font-medium mb-1">
+              Implementation
+            </div>
+            <CodeBlock value={property.snippet} />
+          </div>{" "}
         </div>
       </div>
     </Page>
@@ -237,9 +243,6 @@ export const ClassMethod = ({ method }: { method: ClassMethodDef }) => {
               )
             </span>
           </div>
-          {method.jsDoc ? (
-            <p className="text-gray-700">{cleanJSDoc(method.jsDoc)}</p>
-          ) : null}
           <p className="text-gray-500 italic font-light">
             {([] as string[])
               .concat(
@@ -251,6 +254,13 @@ export const ClassMethod = ({ method }: { method: ClassMethodDef }) => {
               .concat(...(method.isAbstract ? ["abstract"] : []))
               .join(", ")}
           </p>
+          {method.jsDoc ? <JSDoc jsdoc={method.jsDoc} /> : null}
+          <div className="py-4">
+            <div className="text-gray-900 text-2xl font-medium mb-1">
+              Implementation
+            </div>
+            <CodeBlock value={method.snippet} />
+          </div>
         </div>
       </div>
     </Page>

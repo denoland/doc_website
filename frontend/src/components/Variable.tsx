@@ -1,7 +1,8 @@
 import React from "react";
-import { TsTypeDef, cleanJSDoc, DocNodeVariable } from "../util/docs";
+import { TsTypeDef, DocNodeVariable } from "../util/docs";
 import { SimpleLink } from "./SimpleLink";
 import { Page } from "./Page";
+import { JSDoc } from "./JSDoc";
 
 export const Variable = ({ variable }: { variable: DocNodeVariable }) => {
   return (
@@ -25,9 +26,7 @@ export const Variable = ({ variable }: { variable: DocNodeVariable }) => {
                 : "read / write"}
             </p>
           </div>
-          {variable.jsDoc ? (
-            <p className="text-gray-700">{cleanJSDoc(variable.jsDoc)}</p>
-          ) : null}
+          {variable.jsDoc ? <JSDoc jsdoc={variable.jsDoc} /> : null}
         </div>
       </div>
     </Page>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Page } from "./Page";
-import { cleanJSDoc, DocNodeInterface } from "../util/docs";
+import { DocNodeInterface } from "../util/docs";
+import { JSDoc } from "./JSDoc";
 
 export const Interface = ({
   interface: interface_
@@ -14,9 +15,7 @@ export const Interface = ({
           <div className="text-gray-900 text-3xl font-medium">
             {interface_.name} interface
           </div>
-          {interface_.jsDoc ? (
-            <p className="text-gray-700">{cleanJSDoc(interface_.jsDoc)}</p>
-          ) : null}
+          {interface_.jsDoc ? <JSDoc jsdoc={interface_.jsDoc} /> : null}
         </div>
       </div>
     </Page>
