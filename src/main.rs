@@ -390,6 +390,70 @@ fn get_doc_for_ts_interface_decl(
 
   let interface_name = interface_decl.id.sym.to_string();
 
+  let mut methods = vec![];
+  for type_element in &interface_decl.body.body {
+    use swc_ecma_ast::TsTypeElement::*;
+
+    match &type_element {
+      TsMethodSignature(ts_method_sig) => {
+        let method_js_doc = doc_parser.js_doc_for_span(ts_method_sig.span);
+        let method_snippet = doc_parser
+          .source_map
+          .span_to_snippet(ts_method_sig.span)
+          .unwrap();
+
+        let mut params = vec![];
+
+        for param in &ts_method_sig.params {
+          use swc_ecma_ast::TsFnParam::*;
+
+          let param_def = match param {
+            Ident(ident) => {
+              let ts_type = ident
+                .type_ann
+                .as_ref()
+                .map(|rt| ts_type_ann_to_def(&doc_parser.source_map, rt));
+
+              doc::ParamDef {
+                name: ident.sym.to_string(),
+                ts_type,
+              }
+            }
+            _ => doc::ParamDef {
+              name: "<TODO>".to_string(),
+              ts_type: None,
+            },
+          };
+
+          params.push(param_def);
+        }
+
+        let maybe_return_type = ts_method_sig
+          .type_ann
+          .as_ref()
+          .map(|rt| ts_type_ann_to_def(&doc_parser.source_map, rt));
+
+        let method_def = doc::InterfaceMethodDef {
+          js_doc: method_js_doc,
+          snippet: method_snippet,
+          location: doc_parser
+            .source_map
+            .lookup_char_pos(ts_method_sig.span.lo())
+            .into(),
+          params,
+          return_type: maybe_return_type,
+        };
+        methods.push(method_def);
+      }
+      TsPropertySignature(ts_prop_sig) => {}
+      TsCallSignatureDecl(_) => {}
+      TsConstructSignatureDecl(_) => {}
+      TsIndexSignature(_) => {}
+    }
+  }
+
+  let interface_def = doc::InterfaceDef { methods };
+
   doc::DocNode {
     kind: doc::DocNodeKind::Interface,
     name: interface_name,
@@ -405,7 +469,7 @@ fn get_doc_for_ts_interface_decl(
     class_def: None,
     type_alias_def: None,
     namespace_def: None,
-    interface_def: Some(doc::InterfaceDef {}),
+    interface_def: Some(interface_def),
   }
 }
 
