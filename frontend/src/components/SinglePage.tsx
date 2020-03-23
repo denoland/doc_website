@@ -5,6 +5,7 @@ import { Page } from "./Page";
 import { JSDoc, CodeBlock } from "./JSDoc";
 import { ClassCard } from "./Class";
 import { TsType } from "./TsType";
+import { FunctionCard } from "./Function";
 
 export function SinglePage() {
   const nodes = useNodes();
@@ -35,6 +36,7 @@ export function SinglePage() {
                 <SimpleCard
                   node={node}
                   key={`${node.kind}.${node.name}+${i}`}
+                  showSnippet
                 />
               ))}
             </div>
@@ -47,7 +49,7 @@ export function SinglePage() {
             </div>
             <div>
               {groups.functions.map((node, i) => (
-                <SimpleCard
+                <FunctionCard
                   node={node}
                   key={`${node.kind}.${node.name}+${i}`}
                 />
@@ -63,6 +65,7 @@ export function SinglePage() {
                 <SimpleCard
                   node={node}
                   key={`${node.kind}.${node.name}+${i}`}
+                  showSnippet
                 />
               ))}
             </div>
@@ -78,6 +81,7 @@ export function SinglePage() {
                 <SimpleCard
                   node={node}
                   key={`${node.kind}.${node.name}+${i}`}
+                  showSnippet
                 />
               ))}
             </div>
@@ -93,6 +97,7 @@ export function SinglePage() {
                 <SimpleCard
                   node={node}
                   key={`${node.kind}.${node.name}+${i}`}
+                  showSnippet
                 />
               ))}
             </div>
@@ -108,6 +113,7 @@ export function SinglePage() {
                 <SimpleCard
                   node={node}
                   key={`${node.kind}.${node.name}+${i}`}
+                  showSnippet
                 />
               ))}
             </div>
@@ -118,23 +124,56 @@ export function SinglePage() {
   );
 }
 
-export function SimpleCard(props: {
+export function SimpleCard({
+  node,
+  details,
+  params,
+  returnType,
+  showSnippet
+}: {
   node: DocNodeShared & { kind?: string };
   details?: React.ReactNode;
+  params?: ParamDef[];
+  returnType?: TsTypeDef;
+  showSnippet?: boolean;
 }) {
-  const { node, details } = props;
+  const paramElements = (params ?? []).flatMap(p => [
+    <>
+      {p.name}
+      {p.tsType ? (
+        <>
+          : <TsType tsType={p.tsType} />
+        </>
+      ) : null}
+    </>,
+    ", "
+  ]);
+  paramElements.pop();
 
   return (
     <div
       className="shadow rounded-md my-3 bg-white p-2"
       id={`${node.kind}.${node.name}`}
     >
-      <div className="text-lg font-bold mb-2">
+      <div className="text-lg">
         {node.kind ? <span className="text-pink-800">{node.kind} </span> : null}
-        <span>{node.name}</span>
+        <span className="font-bold">{node.name}</span>
+        {params ? (
+          <span className="text-gray-600">({paramElements})</span>
+        ) : null}
+        {returnType ? (
+          <span className="text-gray-600">
+            {" → "}
+            <TsType tsType={returnType}></TsType>
+          </span>
+        ) : null}
       </div>
 
-      <CodeBlock value={node.snippet} />
+      {showSnippet ? (
+        <div className="mt-2">
+          <CodeBlock value={node.snippet} />
+        </div>
+      ) : null}
 
       <div className="text-xs mt-2 text-gray-600">
         Defined in file '{node.location.filename}' on line {node.location.line},
@@ -161,25 +200,31 @@ export function SimpleSubCard({
   params?: ParamDef[];
   returnType?: TsTypeDef;
 }) {
+  const paramElements = (params ?? []).flatMap(p => [
+    <>
+      {p.name}
+      {p.tsType ? (
+        <>
+          : <TsType tsType={p.tsType} />
+        </>
+      ) : null}
+    </>,
+    ", "
+  ]);
+  paramElements.pop();
+
   return (
     <div className="mt-2 py-1 px-2 rounded bg-gray-100">
       <div className="text-sm">
         {node.kind ? <span className="text-pink-800">{node.kind} </span> : null}
         <span>{node.name}</span>
         {params ? (
-          <span className="text-gray-600">
-            (
-            {params
-              .map(p => `${p.name}${p.tsType ? ": " + p.tsType.repr : ""}`)
-              .join(", ")}
-            )
-          </span>
+          <span className="text-gray-600">({paramElements})</span>
         ) : null}
         {returnType ? (
           <span className="text-gray-600">
             {" → "}
-            {returnType?.repr}
-            {returnType ? <TsType tsType={returnType}></TsType> : null}
+            <TsType tsType={returnType}></TsType>
           </span>
         ) : null}
       </div>
