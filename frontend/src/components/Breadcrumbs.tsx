@@ -16,7 +16,7 @@ export function Breadcrumbs() {
               Root namespace
             </Link>
             {" > "}
-          </>,
+          </>
         ]
       : [];
 

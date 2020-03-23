@@ -11,7 +11,7 @@ export function EnumRoute(props: { name: string }) {
   const nodes = useNodes();
 
   const enum_ = (nodes.find(
-    (node) => node.kind === DocNodeKind.Enum && node.name === props.name
+    node => node.kind === DocNodeKind.Enum && node.name === props.name
   ) as any) as DocNodeEnum;
 
   return enum_ ? (
