@@ -80,7 +80,7 @@ impl DocParser {
         if line.starts_with(&margin_pat) {
           line[margin_pat.len()..].to_string()
         } else {
-          line.to_string()
+          line
         }
       })
       .collect::<Vec<String>>()
