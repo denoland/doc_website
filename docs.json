@@ -20,7 +20,14 @@
             "line": 8,
             "col": 2
           },
-          "jsDoc": "The current process id of the runtime."
+          "jsDoc": "The current process id of the runtime.",
+          "variableDef": {
+            "tsType": {
+              "repr": "number",
+              "keyword": "number"
+            },
+            "kind": "let"
+          }
         },
         {
           "kind": "variable",
@@ -31,7 +38,14 @@
             "line": 13,
             "col": 2
           },
-          "jsDoc": "Reflects the NO_COLOR environment variable.\n\nSee: https://no-color.org/"
+          "jsDoc": "Reflects the NO_COLOR environment variable.\n\nSee: https://no-color.org/",
+          "variableDef": {
+            "tsType": {
+              "repr": "boolean",
+              "keyword": "boolean"
+            },
+            "kind": "let"
+          }
         },
         {
           "kind": "typeAlias",
@@ -42,12 +56,7 @@
             "line": 15,
             "col": 2
           },
-          "jsDoc": null,
-          "typeAliasDef": {
-            "tsType": {
-              "repr": "type TestFunction = () => void | Promise<void>;"
-            }
-          }
+          "jsDoc": null
         },
         {
           "kind": "interface",
@@ -75,7 +84,10 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "TestFunction"
+                  "repr": "TestFunction",
+                  "typeRef": {
+                    "typeName": "TestFunction"
+                  }
                 }
               },
               {
@@ -91,7 +103,8 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
@@ -107,7 +120,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -123,7 +137,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -139,7 +154,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               }
             ],
@@ -161,12 +177,16 @@
               {
                 "name": "t",
                 "tsType": {
-                  "repr": "TestDefinition"
+                  "repr": "TestDefinition",
+                  "typeRef": {
+                    "typeName": "TestDefinition"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "void"
+              "repr": "void",
+              "keyword": "void"
             },
             "isAsync": false,
             "isGenerator": false
@@ -187,12 +207,16 @@
               {
                 "name": "fn",
                 "tsType": {
-                  "repr": "TestFunction"
+                  "repr": "TestFunction",
+                  "typeRef": {
+                    "typeName": "TestFunction"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "void"
+              "repr": "void",
+              "keyword": "void"
             },
             "isAsync": false,
             "isGenerator": false
@@ -213,18 +237,23 @@
               {
                 "name": "name",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "fn",
                 "tsType": {
-                  "repr": "TestFunction"
+                  "repr": "TestFunction",
+                  "typeRef": {
+                    "typeName": "TestFunction"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "void"
+              "repr": "void",
+              "keyword": "void"
             },
             "isAsync": false,
             "isGenerator": false
@@ -298,12 +327,18 @@
                     {
                       "name": "event",
                       "tsType": {
-                        "repr": "TestEventStart"
+                        "repr": "TestEventStart",
+                        "typeRef": {
+                          "typeName": "TestEventStart"
+                        }
                       }
                     }
                   ],
                   "returnType": {
-                    "repr": "Promise<void>"
+                    "repr": "Promise",
+                    "typeRef": {
+                      "typeName": "Promise"
+                    }
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -327,12 +362,18 @@
                     {
                       "name": "msg",
                       "tsType": {
-                        "repr": "TestEventTestStart"
+                        "repr": "TestEventTestStart",
+                        "typeRef": {
+                          "typeName": "TestEventTestStart"
+                        }
                       }
                     }
                   ],
                   "returnType": {
-                    "repr": "Promise<void>"
+                    "repr": "Promise",
+                    "typeRef": {
+                      "typeName": "Promise"
+                    }
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -356,12 +397,18 @@
                     {
                       "name": "msg",
                       "tsType": {
-                        "repr": "TestEventTestEnd"
+                        "repr": "TestEventTestEnd",
+                        "typeRef": {
+                          "typeName": "TestEventTestEnd"
+                        }
                       }
                     }
                   ],
                   "returnType": {
-                    "repr": "Promise<void>"
+                    "repr": "Promise",
+                    "typeRef": {
+                      "typeName": "Promise"
+                    }
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -385,12 +432,18 @@
                     {
                       "name": "event",
                       "tsType": {
-                        "repr": "TestEventEnd"
+                        "repr": "TestEventEnd",
+                        "typeRef": {
+                          "typeName": "TestEventEnd"
+                        }
                       }
                     }
                   ],
                   "returnType": {
-                    "repr": "Promise<void>"
+                    "repr": "Promise",
+                    "typeRef": {
+                      "typeName": "Promise"
+                    }
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -430,7 +483,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -446,7 +500,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -494,7 +549,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -510,7 +566,10 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "TestReporter"
+                  "repr": "TestReporter",
+                  "typeRef": {
+                    "typeName": "TestReporter"
+                  }
                 }
               }
             ],
@@ -532,12 +591,18 @@
               {
                 "name": "opts",
                 "tsType": {
-                  "repr": "RunTestsOptions"
+                  "repr": "RunTestsOptions",
+                  "typeRef": {
+                    "typeName": "RunTestsOptions"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<{\n    results: TestResult[];\n    stats: TestStats;\n    duration: number;\n  }>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -575,7 +640,8 @@
           "functionDef": {
             "params": [],
             "returnType": {
-              "repr": "string"
+              "repr": "string",
+              "keyword": "string"
             },
             "isAsync": false,
             "isGenerator": false
@@ -594,7 +660,8 @@
           "functionDef": {
             "params": [],
             "returnType": {
-              "repr": "string"
+              "repr": "string",
+              "keyword": "string"
             },
             "isAsync": false,
             "isGenerator": false
@@ -615,12 +682,14 @@
               {
                 "name": "code",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               }
             ],
             "returnType": {
-              "repr": "never"
+              "repr": "never",
+              "keyword": "never"
             },
             "isAsync": false,
             "isGenerator": false
@@ -660,7 +729,8 @@
               {
                 "name": "key",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               }
             ],
@@ -680,12 +750,7 @@
             "line": 180,
             "col": 2
           },
-          "jsDoc": "**UNSTABLE**",
-          "typeAliasDef": {
-            "tsType": {
-              "repr": "type DirKind =\n    | \"home\"\n    | \"cache\"\n    | \"config\"\n    | \"executable\"\n    | \"data\"\n    | \"data_local\"\n    | \"audio\"\n    | \"desktop\"\n    | \"document\"\n    | \"download\"\n    | \"font\"\n    | \"picture\"\n    | \"public\"\n    | \"template\"\n    | \"tmp\"\n    | \"video\";"
-            }
-          }
+          "jsDoc": "**UNSTABLE**"
         },
         {
           "kind": "function",
@@ -702,7 +767,10 @@
               {
                 "name": "kind",
                 "tsType": {
-                  "repr": "DirKind"
+                  "repr": "DirKind",
+                  "typeRef": {
+                    "typeName": "DirKind"
+                  }
                 }
               }
             ],
@@ -726,7 +794,8 @@
           "functionDef": {
             "params": [],
             "returnType": {
-              "repr": "string"
+              "repr": "string",
+              "keyword": "string"
             },
             "isAsync": false,
             "isGenerator": false
@@ -745,7 +814,8 @@
           "functionDef": {
             "params": [],
             "returnType": {
-              "repr": "string"
+              "repr": "string",
+              "keyword": "string"
             },
             "isAsync": false,
             "isGenerator": false
@@ -766,12 +836,14 @@
               {
                 "name": "directory",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               }
             ],
             "returnType": {
-              "repr": "void"
+              "repr": "void",
+              "keyword": "void"
             },
             "isAsync": false,
             "isGenerator": false
@@ -792,12 +864,14 @@
               {
                 "name": "mask",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               }
             ],
             "returnType": {
-              "repr": "number"
+              "repr": "number",
+              "keyword": "number"
             },
             "isAsync": false,
             "isGenerator": false
@@ -812,7 +886,13 @@
             "line": 382,
             "col": 2
           },
-          "jsDoc": "**UNSTABLE**: might move to `Deno.symbols`."
+          "jsDoc": "**UNSTABLE**: might move to `Deno.symbols`.",
+          "variableDef": {
+            "tsType": {
+              "repr": "unique symbol"
+            },
+            "kind": "const"
+          }
         },
         {
           "kind": "typeAlias",
@@ -823,12 +903,7 @@
             "line": 383,
             "col": 2
           },
-          "jsDoc": null,
-          "typeAliasDef": {
-            "tsType": {
-              "repr": "type EOF = typeof EOF;"
-            }
-          }
+          "jsDoc": null
         },
         {
           "kind": "enum",
@@ -878,12 +953,18 @@
                   {
                     "name": "p",
                     "tsType": {
-                      "repr": "Uint8Array"
+                      "repr": "Uint8Array",
+                      "typeRef": {
+                        "typeName": "Uint8Array"
+                      }
                     }
                   }
                 ],
                 "returnType": {
-                  "repr": "Promise<number | EOF>"
+                  "repr": "Promise",
+                  "typeRef": {
+                    "typeName": "Promise"
+                  }
                 }
               }
             ],
@@ -915,7 +996,10 @@
                   {
                     "name": "p",
                     "tsType": {
-                      "repr": "Uint8Array"
+                      "repr": "Uint8Array",
+                      "typeRef": {
+                        "typeName": "Uint8Array"
+                      }
                     }
                   }
                 ],
@@ -952,12 +1036,18 @@
                   {
                     "name": "p",
                     "tsType": {
-                      "repr": "Uint8Array"
+                      "repr": "Uint8Array",
+                      "typeRef": {
+                        "typeName": "Uint8Array"
+                      }
                     }
                   }
                 ],
                 "returnType": {
-                  "repr": "Promise<number>"
+                  "repr": "Promise",
+                  "typeRef": {
+                    "typeName": "Promise"
+                  }
                 }
               }
             ],
@@ -989,12 +1079,16 @@
                   {
                     "name": "p",
                     "tsType": {
-                      "repr": "Uint8Array"
+                      "repr": "Uint8Array",
+                      "typeRef": {
+                        "typeName": "Uint8Array"
+                      }
                     }
                   }
                 ],
                 "returnType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               }
             ],
@@ -1024,7 +1118,8 @@
                 "jsDoc": null,
                 "params": [],
                 "returnType": {
-                  "repr": "void"
+                  "repr": "void",
+                  "keyword": "void"
                 }
               }
             ],
@@ -1056,18 +1151,25 @@
                   {
                     "name": "offset",
                     "tsType": {
-                      "repr": "number"
+                      "repr": "number",
+                      "keyword": "number"
                     }
                   },
                   {
                     "name": "whence",
                     "tsType": {
-                      "repr": "SeekMode"
+                      "repr": "SeekMode",
+                      "typeRef": {
+                        "typeName": "SeekMode"
+                      }
                     }
                   }
                 ],
                 "returnType": {
-                  "repr": "Promise<number>"
+                  "repr": "Promise",
+                  "typeRef": {
+                    "typeName": "Promise"
+                  }
                 }
               }
             ],
@@ -1099,18 +1201,23 @@
                   {
                     "name": "offset",
                     "tsType": {
-                      "repr": "number"
+                      "repr": "number",
+                      "keyword": "number"
                     }
                   },
                   {
                     "name": "whence",
                     "tsType": {
-                      "repr": "SeekMode"
+                      "repr": "SeekMode",
+                      "typeRef": {
+                        "typeName": "SeekMode"
+                      }
                     }
                   }
                 ],
                 "returnType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               }
             ],
@@ -1229,18 +1336,27 @@
               {
                 "name": "dst",
                 "tsType": {
-                  "repr": "Writer"
+                  "repr": "Writer",
+                  "typeRef": {
+                    "typeName": "Writer"
+                  }
                 }
               },
               {
                 "name": "src",
                 "tsType": {
-                  "repr": "Reader"
+                  "repr": "Reader",
+                  "typeRef": {
+                    "typeName": "Reader"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<number>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -1261,12 +1377,18 @@
               {
                 "name": "r",
                 "tsType": {
-                  "repr": "Reader"
+                  "repr": "Reader",
+                  "typeRef": {
+                    "typeName": "Reader"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "AsyncIterableIterator<Uint8Array>"
+              "repr": "AsyncIterableIterator",
+              "typeRef": {
+                "typeName": "AsyncIterableIterator"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -1287,18 +1409,25 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "options",
                 "tsType": {
-                  "repr": "OpenOptions"
+                  "repr": "OpenOptions",
+                  "typeRef": {
+                    "typeName": "OpenOptions"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "File"
+              "repr": "File",
+              "typeRef": {
+                "typeName": "File"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -1319,18 +1448,25 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "openMode",
                 "tsType": {
-                  "repr": "OpenMode"
+                  "repr": "OpenMode",
+                  "typeRef": {
+                    "typeName": "OpenMode"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "File"
+              "repr": "File",
+              "typeRef": {
+                "typeName": "File"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -1351,18 +1487,25 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "options",
                 "tsType": {
-                  "repr": "OpenOptions"
+                  "repr": "OpenOptions",
+                  "typeRef": {
+                    "typeName": "OpenOptions"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<File>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -1383,18 +1526,25 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "openMode",
                 "tsType": {
-                  "repr": "OpenMode"
+                  "repr": "OpenMode",
+                  "typeRef": {
+                    "typeName": "OpenMode"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<File>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -1415,12 +1565,16 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               }
             ],
             "returnType": {
-              "repr": "File"
+              "repr": "File",
+              "typeRef": {
+                "typeName": "File"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -1441,12 +1595,16 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<File>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -1467,13 +1625,17 @@
               {
                 "name": "rid",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
                 "name": "p",
                 "tsType": {
-                  "repr": "Uint8Array"
+                  "repr": "Uint8Array",
+                  "typeRef": {
+                    "typeName": "Uint8Array"
+                  }
                 }
               }
             ],
@@ -1499,18 +1661,25 @@
               {
                 "name": "rid",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
                 "name": "p",
                 "tsType": {
-                  "repr": "Uint8Array"
+                  "repr": "Uint8Array",
+                  "typeRef": {
+                    "typeName": "Uint8Array"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<number | EOF>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -1531,18 +1700,23 @@
               {
                 "name": "rid",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
                 "name": "p",
                 "tsType": {
-                  "repr": "Uint8Array"
+                  "repr": "Uint8Array",
+                  "typeRef": {
+                    "typeName": "Uint8Array"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "number"
+              "repr": "number",
+              "keyword": "number"
             },
             "isAsync": false,
             "isGenerator": false
@@ -1563,18 +1737,25 @@
               {
                 "name": "rid",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
                 "name": "p",
                 "tsType": {
-                  "repr": "Uint8Array"
+                  "repr": "Uint8Array",
+                  "typeRef": {
+                    "typeName": "Uint8Array"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<number>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -1595,24 +1776,30 @@
               {
                 "name": "rid",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
                 "name": "offset",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
                 "name": "whence",
                 "tsType": {
-                  "repr": "SeekMode"
+                  "repr": "SeekMode",
+                  "typeRef": {
+                    "typeName": "SeekMode"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "number"
+              "repr": "number",
+              "keyword": "number"
             },
             "isAsync": false,
             "isGenerator": false
@@ -1633,24 +1820,32 @@
               {
                 "name": "rid",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
                 "name": "offset",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
                 "name": "whence",
                 "tsType": {
-                  "repr": "SeekMode"
+                  "repr": "SeekMode",
+                  "typeRef": {
+                    "typeName": "SeekMode"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<number>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -1671,12 +1866,14 @@
               {
                 "name": "rid",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               }
             ],
             "returnType": {
-              "repr": "void"
+              "repr": "void",
+              "keyword": "void"
             },
             "isAsync": false,
             "isGenerator": false
@@ -1704,7 +1901,8 @@
                   {
                     "name": "rid",
                     "tsType": {
-                      "repr": "number"
+                      "repr": "number",
+                      "keyword": "number"
                     }
                   }
                 ],
@@ -1720,7 +1918,8 @@
                 "jsDoc": null,
                 "snippet": "readonly rid: number;",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 },
                 "readonly": true,
                 "accessibility": null,
@@ -1748,12 +1947,18 @@
                     {
                       "name": "p",
                       "tsType": {
-                        "repr": "Uint8Array"
+                        "repr": "Uint8Array",
+                        "typeRef": {
+                          "typeName": "Uint8Array"
+                        }
                       }
                     }
                   ],
                   "returnType": {
-                    "repr": "Promise<number>"
+                    "repr": "Promise",
+                    "typeRef": {
+                      "typeName": "Promise"
+                    }
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -1777,12 +1982,16 @@
                     {
                       "name": "p",
                       "tsType": {
-                        "repr": "Uint8Array"
+                        "repr": "Uint8Array",
+                        "typeRef": {
+                          "typeName": "Uint8Array"
+                        }
                       }
                     }
                   ],
                   "returnType": {
-                    "repr": "number"
+                    "repr": "number",
+                    "keyword": "number"
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -1806,12 +2015,18 @@
                     {
                       "name": "p",
                       "tsType": {
-                        "repr": "Uint8Array"
+                        "repr": "Uint8Array",
+                        "typeRef": {
+                          "typeName": "Uint8Array"
+                        }
                       }
                     }
                   ],
                   "returnType": {
-                    "repr": "Promise<number | EOF>"
+                    "repr": "Promise",
+                    "typeRef": {
+                      "typeName": "Promise"
+                    }
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -1835,7 +2050,10 @@
                     {
                       "name": "p",
                       "tsType": {
-                        "repr": "Uint8Array"
+                        "repr": "Uint8Array",
+                        "typeRef": {
+                          "typeName": "Uint8Array"
+                        }
                       }
                     }
                   ],
@@ -1864,18 +2082,25 @@
                     {
                       "name": "offset",
                       "tsType": {
-                        "repr": "number"
+                        "repr": "number",
+                        "keyword": "number"
                       }
                     },
                     {
                       "name": "whence",
                       "tsType": {
-                        "repr": "SeekMode"
+                        "repr": "SeekMode",
+                        "typeRef": {
+                          "typeName": "SeekMode"
+                        }
                       }
                     }
                   ],
                   "returnType": {
-                    "repr": "Promise<number>"
+                    "repr": "Promise",
+                    "typeRef": {
+                      "typeName": "Promise"
+                    }
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -1899,18 +2124,23 @@
                     {
                       "name": "offset",
                       "tsType": {
-                        "repr": "number"
+                        "repr": "number",
+                        "keyword": "number"
                       }
                     },
                     {
                       "name": "whence",
                       "tsType": {
-                        "repr": "SeekMode"
+                        "repr": "SeekMode",
+                        "typeRef": {
+                          "typeName": "SeekMode"
+                        }
                       }
                     }
                   ],
                   "returnType": {
-                    "repr": "number"
+                    "repr": "number",
+                    "keyword": "number"
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -1932,7 +2162,8 @@
                 "functionDef": {
                   "params": [],
                   "returnType": {
-                    "repr": "void"
+                    "repr": "void",
+                    "keyword": "void"
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -1955,7 +2186,16 @@
             "line": 664,
             "col": 2
           },
-          "jsDoc": "An instance of `Deno.File` for `stdin`."
+          "jsDoc": "An instance of `Deno.File` for `stdin`.",
+          "variableDef": {
+            "tsType": {
+              "repr": "File",
+              "typeRef": {
+                "typeName": "File"
+              }
+            },
+            "kind": "const"
+          }
         },
         {
           "kind": "variable",
@@ -1966,7 +2206,16 @@
             "line": 666,
             "col": 2
           },
-          "jsDoc": "An instance of `Deno.File` for `stdout`."
+          "jsDoc": "An instance of `Deno.File` for `stdout`.",
+          "variableDef": {
+            "tsType": {
+              "repr": "File",
+              "typeRef": {
+                "typeName": "File"
+              }
+            },
+            "kind": "const"
+          }
         },
         {
           "kind": "variable",
@@ -1977,7 +2226,16 @@
             "line": 668,
             "col": 2
           },
-          "jsDoc": "An instance of `Deno.File` for `stderr`."
+          "jsDoc": "An instance of `Deno.File` for `stderr`.",
+          "variableDef": {
+            "tsType": {
+              "repr": "File",
+              "typeRef": {
+                "typeName": "File"
+              }
+            },
+            "kind": "const"
+          }
         },
         {
           "kind": "interface",
@@ -2005,7 +2263,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -2021,7 +2280,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -2037,7 +2297,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -2053,7 +2314,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -2069,7 +2331,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -2085,7 +2348,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -2101,7 +2365,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               }
             ],
@@ -2117,12 +2382,7 @@
             "line": 717,
             "col": 2
           },
-          "jsDoc": "A set of string literals which specify how to open a file.\n\n|Value |Description                                                                                       |\n|------|--------------------------------------------------------------------------------------------------|\n|`\"r\"` |Read-only. Default. Starts at beginning of file.                                                  |\n|`\"r+\"`|Read-write. Start at beginning of file.                                                           |\n|`\"w\"` |Write-only. Opens and truncates existing file or creates new one for writing only.                |\n|`\"w+\"`|Read-write. Opens and truncates existing file or creates new one for writing and reading.         |\n|`\"a\"` |Write-only. Opens existing file or creates new one. Each write appends content to the end of file.|\n|`\"a+\"`|Read-write. Behaves like `\"a\"` and allows to read from file.                                      |\n|`\"x\"` |Write-only. Exclusive create - creates new file only if one doesn't exist already.                |\n|`\"x+\"`|Read-write. Behaves like `x` and allows reading from file.                                        |",
-          "typeAliasDef": {
-            "tsType": {
-              "repr": "type OpenMode = \"r\" | \"r+\" | \"w\" | \"w+\" | \"a\" | \"a+\" | \"x\" | \"x+\";"
-            }
-          }
+          "jsDoc": "A set of string literals which specify how to open a file.\n\n|Value |Description                                                                                       |\n|------|--------------------------------------------------------------------------------------------------|\n|`\"r\"` |Read-only. Default. Starts at beginning of file.                                                  |\n|`\"r+\"`|Read-write. Start at beginning of file.                                                           |\n|`\"w\"` |Write-only. Opens and truncates existing file or creates new one for writing only.                |\n|`\"w+\"`|Read-write. Opens and truncates existing file or creates new one for writing and reading.         |\n|`\"a\"` |Write-only. Opens existing file or creates new one. Each write appends content to the end of file.|\n|`\"a+\"`|Read-write. Behaves like `\"a\"` and allows to read from file.                                      |\n|`\"x\"` |Write-only. Exclusive create - creates new file only if one doesn't exist already.                |\n|`\"x+\"`|Read-write. Behaves like `x` and allows reading from file.                                        |"
         },
         {
           "kind": "function",
@@ -2139,12 +2399,14 @@
               {
                 "name": "rid",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               }
             ],
             "returnType": {
-              "repr": "boolean"
+              "repr": "boolean",
+              "keyword": "boolean"
             },
             "isAsync": false,
             "isGenerator": false
@@ -2165,18 +2427,21 @@
               {
                 "name": "rid",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
                 "name": "mode",
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               }
             ],
             "returnType": {
-              "repr": "void"
+              "repr": "void",
+              "keyword": "void"
             },
             "isAsync": false,
             "isGenerator": false
@@ -2204,7 +2469,10 @@
                   {
                     "name": "ab",
                     "tsType": {
-                      "repr": "ArrayBuffer"
+                      "repr": "ArrayBuffer",
+                      "typeRef": {
+                        "typeName": "ArrayBuffer"
+                      }
                     }
                   }
                 ],
@@ -2295,7 +2563,8 @@
                 "jsDoc": "A read only number of bytes of the unread portion of the buffer.",
                 "snippet": "readonly length: number;",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 },
                 "readonly": true,
                 "accessibility": null,
@@ -2312,7 +2581,8 @@
                 "jsDoc": "The read only capacity of the buffer's underlying byte slice, that is,\nthe total space allocated for the buffer's data.",
                 "snippet": "readonly capacity: number;",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 },
                 "readonly": true,
                 "accessibility": null,
@@ -2338,7 +2608,10 @@
                 "functionDef": {
                   "params": [],
                   "returnType": {
-                    "repr": "Uint8Array"
+                    "repr": "Uint8Array",
+                    "typeRef": {
+                      "typeName": "Uint8Array"
+                    }
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -2360,7 +2633,8 @@
                 "functionDef": {
                   "params": [],
                   "returnType": {
-                    "repr": "string"
+                    "repr": "string",
+                    "keyword": "string"
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -2382,7 +2656,8 @@
                 "functionDef": {
                   "params": [],
                   "returnType": {
-                    "repr": "boolean"
+                    "repr": "boolean",
+                    "keyword": "boolean"
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -2406,12 +2681,14 @@
                     {
                       "name": "n",
                       "tsType": {
-                        "repr": "number"
+                        "repr": "number",
+                        "keyword": "number"
                       }
                     }
                   ],
                   "returnType": {
-                    "repr": "void"
+                    "repr": "void",
+                    "keyword": "void"
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -2433,7 +2710,8 @@
                 "functionDef": {
                   "params": [],
                   "returnType": {
-                    "repr": "void"
+                    "repr": "void",
+                    "keyword": "void"
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -2457,7 +2735,10 @@
                     {
                       "name": "p",
                       "tsType": {
-                        "repr": "Uint8Array"
+                        "repr": "Uint8Array",
+                        "typeRef": {
+                          "typeName": "Uint8Array"
+                        }
                       }
                     }
                   ],
@@ -2486,12 +2767,18 @@
                     {
                       "name": "p",
                       "tsType": {
-                        "repr": "Uint8Array"
+                        "repr": "Uint8Array",
+                        "typeRef": {
+                          "typeName": "Uint8Array"
+                        }
                       }
                     }
                   ],
                   "returnType": {
-                    "repr": "Promise<number | EOF>"
+                    "repr": "Promise",
+                    "typeRef": {
+                      "typeName": "Promise"
+                    }
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -2515,12 +2802,16 @@
                     {
                       "name": "p",
                       "tsType": {
-                        "repr": "Uint8Array"
+                        "repr": "Uint8Array",
+                        "typeRef": {
+                          "typeName": "Uint8Array"
+                        }
                       }
                     }
                   ],
                   "returnType": {
-                    "repr": "number"
+                    "repr": "number",
+                    "keyword": "number"
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -2544,12 +2835,18 @@
                     {
                       "name": "p",
                       "tsType": {
-                        "repr": "Uint8Array"
+                        "repr": "Uint8Array",
+                        "typeRef": {
+                          "typeName": "Uint8Array"
+                        }
                       }
                     }
                   ],
                   "returnType": {
-                    "repr": "Promise<number>"
+                    "repr": "Promise",
+                    "typeRef": {
+                      "typeName": "Promise"
+                    }
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -2573,12 +2870,14 @@
                     {
                       "name": "n",
                       "tsType": {
-                        "repr": "number"
+                        "repr": "number",
+                        "keyword": "number"
                       }
                     }
                   ],
                   "returnType": {
-                    "repr": "void"
+                    "repr": "void",
+                    "keyword": "void"
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -2602,12 +2901,18 @@
                     {
                       "name": "r",
                       "tsType": {
-                        "repr": "Reader"
+                        "repr": "Reader",
+                        "typeRef": {
+                          "typeName": "Reader"
+                        }
                       }
                     }
                   ],
                   "returnType": {
-                    "repr": "Promise<number>"
+                    "repr": "Promise",
+                    "typeRef": {
+                      "typeName": "Promise"
+                    }
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -2631,12 +2936,16 @@
                     {
                       "name": "r",
                       "tsType": {
-                        "repr": "SyncReader"
+                        "repr": "SyncReader",
+                        "typeRef": {
+                          "typeName": "SyncReader"
+                        }
                       }
                     }
                   ],
                   "returnType": {
-                    "repr": "number"
+                    "repr": "number",
+                    "keyword": "number"
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -2665,12 +2974,18 @@
               {
                 "name": "r",
                 "tsType": {
-                  "repr": "Reader"
+                  "repr": "Reader",
+                  "typeRef": {
+                    "typeName": "Reader"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<Uint8Array>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -2691,12 +3006,18 @@
               {
                 "name": "r",
                 "tsType": {
-                  "repr": "SyncReader"
+                  "repr": "SyncReader",
+                  "typeRef": {
+                    "typeName": "SyncReader"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "Uint8Array"
+              "repr": "Uint8Array",
+              "typeRef": {
+                "typeName": "Uint8Array"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -2717,18 +3038,27 @@
               {
                 "name": "w",
                 "tsType": {
-                  "repr": "Writer"
+                  "repr": "Writer",
+                  "typeRef": {
+                    "typeName": "Writer"
+                  }
                 }
               },
               {
                 "name": "arr",
                 "tsType": {
-                  "repr": "Uint8Array"
+                  "repr": "Uint8Array",
+                  "typeRef": {
+                    "typeName": "Uint8Array"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<void>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -2749,18 +3079,25 @@
               {
                 "name": "w",
                 "tsType": {
-                  "repr": "SyncWriter"
+                  "repr": "SyncWriter",
+                  "typeRef": {
+                    "typeName": "SyncWriter"
+                  }
                 }
               },
               {
                 "name": "arr",
                 "tsType": {
-                  "repr": "Uint8Array"
+                  "repr": "Uint8Array",
+                  "typeRef": {
+                    "typeName": "Uint8Array"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "void"
+              "repr": "void",
+              "keyword": "void"
             },
             "isAsync": false,
             "isGenerator": false
@@ -2792,7 +3129,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -2808,7 +3146,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               }
             ],
@@ -2830,18 +3169,23 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "options",
                 "tsType": {
-                  "repr": "MkdirOptions"
+                  "repr": "MkdirOptions",
+                  "typeRef": {
+                    "typeName": "MkdirOptions"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "void"
+              "repr": "void",
+              "keyword": "void"
             },
             "isAsync": false,
             "isGenerator": false
@@ -2862,24 +3206,28 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "recursive",
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
                 "name": "mode",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               }
             ],
             "returnType": {
-              "repr": "void"
+              "repr": "void",
+              "keyword": "void"
             },
             "isAsync": false,
             "isGenerator": false
@@ -2900,18 +3248,25 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "options",
                 "tsType": {
-                  "repr": "MkdirOptions"
+                  "repr": "MkdirOptions",
+                  "typeRef": {
+                    "typeName": "MkdirOptions"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<void>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -2932,24 +3287,30 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "recursive",
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
                 "name": "mode",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<void>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -2981,7 +3342,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
@@ -2997,7 +3359,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
@@ -3013,7 +3376,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               }
             ],
@@ -3035,12 +3399,16 @@
               {
                 "name": "options",
                 "tsType": {
-                  "repr": "MakeTempOptions"
+                  "repr": "MakeTempOptions",
+                  "typeRef": {
+                    "typeName": "MakeTempOptions"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "string"
+              "repr": "string",
+              "keyword": "string"
             },
             "isAsync": false,
             "isGenerator": false
@@ -3061,12 +3429,18 @@
               {
                 "name": "options",
                 "tsType": {
-                  "repr": "MakeTempOptions"
+                  "repr": "MakeTempOptions",
+                  "typeRef": {
+                    "typeName": "MakeTempOptions"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<string>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -3087,12 +3461,16 @@
               {
                 "name": "options",
                 "tsType": {
-                  "repr": "MakeTempOptions"
+                  "repr": "MakeTempOptions",
+                  "typeRef": {
+                    "typeName": "MakeTempOptions"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "string"
+              "repr": "string",
+              "keyword": "string"
             },
             "isAsync": false,
             "isGenerator": false
@@ -3113,12 +3491,18 @@
               {
                 "name": "options",
                 "tsType": {
-                  "repr": "MakeTempOptions"
+                  "repr": "MakeTempOptions",
+                  "typeRef": {
+                    "typeName": "MakeTempOptions"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<string>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -3139,18 +3523,21 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "mode",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               }
             ],
             "returnType": {
-              "repr": "void"
+              "repr": "void",
+              "keyword": "void"
             },
             "isAsync": false,
             "isGenerator": false
@@ -3171,18 +3558,23 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "mode",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<void>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -3203,24 +3595,28 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "uid",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
                 "name": "gid",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               }
             ],
             "returnType": {
-              "repr": "void"
+              "repr": "void",
+              "keyword": "void"
             },
             "isAsync": false,
             "isGenerator": false
@@ -3241,24 +3637,30 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "uid",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
                 "name": "gid",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<void>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -3279,7 +3681,8 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
@@ -3296,7 +3699,8 @@
               }
             ],
             "returnType": {
-              "repr": "void"
+              "repr": "void",
+              "keyword": "void"
             },
             "isAsync": false,
             "isGenerator": false
@@ -3317,7 +3721,8 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
@@ -3334,7 +3739,10 @@
               }
             ],
             "returnType": {
-              "repr": "Promise<void>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -3366,7 +3774,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               }
             ],
@@ -3388,18 +3797,23 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "options",
                 "tsType": {
-                  "repr": "RemoveOptions"
+                  "repr": "RemoveOptions",
+                  "typeRef": {
+                    "typeName": "RemoveOptions"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "void"
+              "repr": "void",
+              "keyword": "void"
             },
             "isAsync": false,
             "isGenerator": false
@@ -3420,18 +3834,25 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "options",
                 "tsType": {
-                  "repr": "RemoveOptions"
+                  "repr": "RemoveOptions",
+                  "typeRef": {
+                    "typeName": "RemoveOptions"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<void>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -3452,18 +3873,21 @@
               {
                 "name": "oldpath",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "newpath",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               }
             ],
             "returnType": {
-              "repr": "void"
+              "repr": "void",
+              "keyword": "void"
             },
             "isAsync": false,
             "isGenerator": false
@@ -3484,18 +3908,23 @@
               {
                 "name": "oldpath",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "newpath",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<void>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -3516,12 +3945,16 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               }
             ],
             "returnType": {
-              "repr": "Uint8Array"
+              "repr": "Uint8Array",
+              "typeRef": {
+                "typeName": "Uint8Array"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -3542,12 +3975,16 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<Uint8Array>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -3575,7 +4012,8 @@
                 "jsDoc": "Returns whether this is info for a regular file. This result is mutually\nexclusive to `FileInfo.isDirectory` and `FileInfo.isSymlink`.",
                 "params": [],
                 "returnType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -3588,7 +4026,8 @@
                 "jsDoc": "Returns whether this is info for a regular directory. This result is\nmutually exclusive to `FileInfo.isFile` and `FileInfo.isSymlink`.",
                 "params": [],
                 "returnType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -3601,7 +4040,8 @@
                 "jsDoc": "Returns whether this is info for a symlink. This result is\nmutually exclusive to `FileInfo.isFile` and `FileInfo.isDirectory`.",
                 "params": [],
                 "returnType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               }
             ],
@@ -3619,7 +4059,8 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
@@ -3849,12 +4290,14 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               }
             ],
             "returnType": {
-              "repr": "string"
+              "repr": "string",
+              "keyword": "string"
             },
             "isAsync": false,
             "isGenerator": false
@@ -3875,12 +4318,16 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<string>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -3901,7 +4348,8 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               }
             ],
@@ -3927,12 +4375,16 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<FileInfo[]>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -3953,18 +4405,21 @@
               {
                 "name": "fromPath",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "toPath",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               }
             ],
             "returnType": {
-              "repr": "void"
+              "repr": "void",
+              "keyword": "void"
             },
             "isAsync": false,
             "isGenerator": false
@@ -3985,18 +4440,23 @@
               {
                 "name": "fromPath",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "toPath",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<void>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -4017,12 +4477,14 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               }
             ],
             "returnType": {
-              "repr": "string"
+              "repr": "string",
+              "keyword": "string"
             },
             "isAsync": false,
             "isGenerator": false
@@ -4043,12 +4505,16 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<string>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -4069,12 +4535,16 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<FileInfo>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -4095,12 +4565,16 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               }
             ],
             "returnType": {
-              "repr": "FileInfo"
+              "repr": "FileInfo",
+              "typeRef": {
+                "typeName": "FileInfo"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -4121,12 +4595,16 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<FileInfo>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -4147,12 +4625,16 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               }
             ],
             "returnType": {
-              "repr": "FileInfo"
+              "repr": "FileInfo",
+              "typeRef": {
+                "typeName": "FileInfo"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -4173,18 +4655,21 @@
               {
                 "name": "oldpath",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "newpath",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               }
             ],
             "returnType": {
-              "repr": "void"
+              "repr": "void",
+              "keyword": "void"
             },
             "isAsync": false,
             "isGenerator": false
@@ -4205,18 +4690,23 @@
               {
                 "name": "oldpath",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "newpath",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<void>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -4237,24 +4727,28 @@
               {
                 "name": "oldpath",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "newpath",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "type",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               }
             ],
             "returnType": {
-              "repr": "void"
+              "repr": "void",
+              "keyword": "void"
             },
             "isAsync": false,
             "isGenerator": false
@@ -4275,24 +4769,30 @@
               {
                 "name": "oldpath",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "newpath",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "type",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<void>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -4324,7 +4824,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -4340,7 +4841,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -4356,7 +4858,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               }
             ],
@@ -4378,24 +4881,32 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "data",
                 "tsType": {
-                  "repr": "Uint8Array"
+                  "repr": "Uint8Array",
+                  "typeRef": {
+                    "typeName": "Uint8Array"
+                  }
                 }
               },
               {
                 "name": "options",
                 "tsType": {
-                  "repr": "WriteFileOptions"
+                  "repr": "WriteFileOptions",
+                  "typeRef": {
+                    "typeName": "WriteFileOptions"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "void"
+              "repr": "void",
+              "keyword": "void"
             },
             "isAsync": false,
             "isGenerator": false
@@ -4416,24 +4927,34 @@
               {
                 "name": "path",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "data",
                 "tsType": {
-                  "repr": "Uint8Array"
+                  "repr": "Uint8Array",
+                  "typeRef": {
+                    "typeName": "Uint8Array"
+                  }
                 }
               },
               {
                 "name": "options",
                 "tsType": {
-                  "repr": "WriteFileOptions"
+                  "repr": "WriteFileOptions",
+                  "typeRef": {
+                    "typeName": "WriteFileOptions"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<void>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -4454,12 +4975,18 @@
               {
                 "name": "location",
                 "tsType": {
-                  "repr": "Location"
+                  "repr": "Location",
+                  "typeRef": {
+                    "typeName": "Location"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "Location"
+              "repr": "Location",
+              "typeRef": {
+                "typeName": "Location"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -4474,7 +5001,13 @@
             "line": 1421,
             "col": 2
           },
-          "jsDoc": "A set of error constructors that are raised by Deno APIs."
+          "jsDoc": "A set of error constructors that are raised by Deno APIs.",
+          "variableDef": {
+            "tsType": {
+              "repr": "{\n    NotFound: ErrorConstructor;\n    PermissionDenied: ErrorConstructor;\n    ConnectionRefused: ErrorConstructor;\n    ConnectionReset: ErrorConstructor;\n    ConnectionAborted: ErrorConstructor;\n    NotConnected: ErrorConstructor;\n    AddrInUse: ErrorConstructor;\n    AddrNotAvailable: ErrorConstructor;\n    BrokenPipe: ErrorConstructor;\n    AlreadyExists: ErrorConstructor;\n    InvalidData: ErrorConstructor;\n    TimedOut: ErrorConstructor;\n    Interrupted: ErrorConstructor;\n    WriteZero: ErrorConstructor;\n    UnexpectedEof: ErrorConstructor;\n    BadResource: ErrorConstructor;\n    Http: ErrorConstructor;\n  }"
+            },
+            "kind": "const"
+          }
         },
         {
           "kind": "typeAlias",
@@ -4485,12 +5018,7 @@
             "line": 1446,
             "col": 2
           },
-          "jsDoc": "**UNSTABLE**: potentially want names to overlap more with browser.\n\nThe permissions as granted by the caller.\n\nSee: https://w3c.github.io/permissions/#permission-registry",
-          "typeAliasDef": {
-            "tsType": {
-              "repr": "type PermissionName =\n    | \"run\"\n    | \"read\"\n    | \"write\"\n    | \"net\"\n    | \"env\"\n    | \"plugin\"\n    | \"hrtime\";"
-            }
-          }
+          "jsDoc": "**UNSTABLE**: potentially want names to overlap more with browser.\n\nThe permissions as granted by the caller.\n\nSee: https://w3c.github.io/permissions/#permission-registry"
         },
         {
           "kind": "typeAlias",
@@ -4501,12 +5029,7 @@
             "line": 1458,
             "col": 2
           },
-          "jsDoc": "The current status of the permission.\n\nSee: https://w3c.github.io/permissions/#status-of-a-permission",
-          "typeAliasDef": {
-            "tsType": {
-              "repr": "type PermissionState = \"granted\" | \"denied\" | \"prompt\";"
-            }
-          }
+          "jsDoc": "The current status of the permission.\n\nSee: https://w3c.github.io/permissions/#status-of-a-permission"
         },
         {
           "kind": "class",
@@ -4536,12 +5059,18 @@
                     {
                       "name": "desc",
                       "tsType": {
-                        "repr": "PermissionDescriptor"
+                        "repr": "PermissionDescriptor",
+                        "typeRef": {
+                          "typeName": "PermissionDescriptor"
+                        }
                       }
                     }
                   ],
                   "returnType": {
-                    "repr": "Promise<PermissionStatus>"
+                    "repr": "Promise",
+                    "typeRef": {
+                      "typeName": "Promise"
+                    }
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -4565,12 +5094,18 @@
                     {
                       "name": "desc",
                       "tsType": {
-                        "repr": "PermissionDescriptor"
+                        "repr": "PermissionDescriptor",
+                        "typeRef": {
+                          "typeName": "PermissionDescriptor"
+                        }
                       }
                     }
                   ],
                   "returnType": {
-                    "repr": "Promise<PermissionStatus>"
+                    "repr": "Promise",
+                    "typeRef": {
+                      "typeName": "Promise"
+                    }
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -4594,12 +5129,18 @@
                     {
                       "name": "desc",
                       "tsType": {
-                        "repr": "PermissionDescriptor"
+                        "repr": "PermissionDescriptor",
+                        "typeRef": {
+                          "typeName": "PermissionDescriptor"
+                        }
                       }
                     }
                   ],
                   "returnType": {
-                    "repr": "Promise<PermissionStatus>"
+                    "repr": "Promise",
+                    "typeRef": {
+                      "typeName": "Promise"
+                    }
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -4622,7 +5163,16 @@
             "line": 1528,
             "col": 2
           },
-          "jsDoc": "**UNSTABLE**: maybe move to `navigator.permissions` to match web API."
+          "jsDoc": "**UNSTABLE**: maybe move to `navigator.permissions` to match web API.",
+          "variableDef": {
+            "tsType": {
+              "repr": "Permissions",
+              "typeRef": {
+                "typeName": "Permissions"
+              }
+            },
+            "kind": "const"
+          }
         },
         {
           "kind": "class",
@@ -4646,7 +5196,10 @@
                   {
                     "name": "state",
                     "tsType": {
-                      "repr": "PermissionState"
+                      "repr": "PermissionState",
+                      "typeRef": {
+                        "typeName": "PermissionState"
+                      }
                     }
                   }
                 ],
@@ -4662,7 +5215,10 @@
                 "jsDoc": null,
                 "snippet": "state: PermissionState;",
                 "tsType": {
-                  "repr": "PermissionState"
+                  "repr": "PermissionState",
+                  "typeRef": {
+                    "typeName": "PermissionState"
+                  }
                 },
                 "readonly": false,
                 "accessibility": null,
@@ -4694,18 +5250,21 @@
               {
                 "name": "name",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "len",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               }
             ],
             "returnType": {
-              "repr": "void"
+              "repr": "void",
+              "keyword": "void"
             },
             "isAsync": false,
             "isGenerator": false
@@ -4726,18 +5285,23 @@
               {
                 "name": "name",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "len",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<void>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -4769,12 +5333,16 @@
                   {
                     "name": "msg",
                     "tsType": {
-                      "repr": "Uint8Array"
+                      "repr": "Uint8Array",
+                      "typeRef": {
+                        "typeName": "Uint8Array"
+                      }
                     }
                   }
                 ],
                 "tsType": {
-                  "repr": "void"
+                  "repr": "void",
+                  "keyword": "void"
                 }
               }
             ]
@@ -4804,7 +5372,10 @@
                   {
                     "name": "control",
                     "tsType": {
-                      "repr": "Uint8Array"
+                      "repr": "Uint8Array",
+                      "typeRef": {
+                        "typeName": "Uint8Array"
+                      }
                     }
                   },
                   {
@@ -4830,12 +5401,16 @@
                   {
                     "name": "handler",
                     "tsType": {
-                      "repr": "AsyncHandler"
+                      "repr": "AsyncHandler",
+                      "typeRef": {
+                        "typeName": "AsyncHandler"
+                      }
                     }
                   }
                 ],
                 "returnType": {
-                  "repr": "void"
+                  "repr": "void",
+                  "keyword": "void"
                 }
               }
             ],
@@ -4891,12 +5466,16 @@
               {
                 "name": "filename",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               }
             ],
             "returnType": {
-              "repr": "Plugin"
+              "repr": "Plugin",
+              "typeRef": {
+                "typeName": "Plugin"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -4911,12 +5490,7 @@
             "line": 1583,
             "col": 2
           },
-          "jsDoc": null,
-          "typeAliasDef": {
-            "tsType": {
-              "repr": "type Transport = \"tcp\" | \"udp\";"
-            }
-          }
+          "jsDoc": null
         },
         {
           "kind": "interface",
@@ -4944,7 +5518,10 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "Transport"
+                  "repr": "Transport",
+                  "typeRef": {
+                    "typeName": "Transport"
+                  }
                 }
               },
               {
@@ -4960,7 +5537,8 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
@@ -4976,7 +5554,8 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               }
             ],
@@ -5009,7 +5588,8 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
@@ -5025,7 +5605,10 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "Transport"
+                  "repr": "Transport",
+                  "typeRef": {
+                    "typeName": "Transport"
+                  }
                 }
               },
               {
@@ -5041,7 +5624,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               }
             ],
@@ -5087,18 +5671,23 @@
               {
                 "name": "rid",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
                 "name": "how",
                 "tsType": {
-                  "repr": "ShutdownMode"
+                  "repr": "ShutdownMode",
+                  "typeRef": {
+                    "typeName": "ShutdownMode"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "void"
+              "repr": "void",
+              "keyword": "void"
             },
             "isAsync": false,
             "isGenerator": false
@@ -5119,18 +5708,25 @@
               {
                 "name": "rid",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
                 "name": "p",
                 "tsType": {
-                  "repr": "Uint8Array"
+                  "repr": "Uint8Array",
+                  "typeRef": {
+                    "typeName": "Uint8Array"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<[number, Addr]>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -5160,12 +5756,18 @@
                   {
                     "name": "p",
                     "tsType": {
-                      "repr": "Uint8Array"
+                      "repr": "Uint8Array",
+                      "typeRef": {
+                        "typeName": "Uint8Array"
+                      }
                     }
                   }
                 ],
                 "returnType": {
-                  "repr": "Promise<[Uint8Array, Addr]>"
+                  "repr": "Promise",
+                  "typeRef": {
+                    "typeName": "Promise"
+                  }
                 }
               },
               {
@@ -5180,18 +5782,27 @@
                   {
                     "name": "p",
                     "tsType": {
-                      "repr": "Uint8Array"
+                      "repr": "Uint8Array",
+                      "typeRef": {
+                        "typeName": "Uint8Array"
+                      }
                     }
                   },
                   {
                     "name": "addr",
                     "tsType": {
-                      "repr": "UDPAddr"
+                      "repr": "UDPAddr",
+                      "typeRef": {
+                        "typeName": "UDPAddr"
+                      }
                     }
                   }
                 ],
                 "returnType": {
-                  "repr": "Promise<void>"
+                  "repr": "Promise",
+                  "typeRef": {
+                    "typeName": "Promise"
+                  }
                 }
               },
               {
@@ -5204,7 +5815,8 @@
                 "jsDoc": "UNSTABLE: new API, yet to be vetted.\n\nClose closes the socket. Any pending message promises will be rejected\nwith errors.",
                 "params": [],
                 "returnType": {
-                  "repr": "void"
+                  "repr": "void",
+                  "keyword": "void"
                 }
               },
               {
@@ -5217,7 +5829,10 @@
                 "jsDoc": null,
                 "params": [],
                 "returnType": {
-                  "repr": "AsyncIterator<[Uint8Array, Addr]>"
+                  "repr": "AsyncIterator",
+                  "typeRef": {
+                    "typeName": "AsyncIterator"
+                  }
                 }
               }
             ],
@@ -5235,7 +5850,10 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "Addr"
+                  "repr": "Addr",
+                  "typeRef": {
+                    "typeName": "Addr"
+                  }
                 }
               }
             ],
@@ -5264,7 +5882,10 @@
                 "jsDoc": "Waits for and resolves to the next connection to the `Listener`.",
                 "params": [],
                 "returnType": {
-                  "repr": "Promise<Conn>"
+                  "repr": "Promise",
+                  "typeRef": {
+                    "typeName": "Promise"
+                  }
                 }
               },
               {
@@ -5277,7 +5898,8 @@
                 "jsDoc": "Close closes the listener. Any pending accept promises will be rejected\nwith errors.",
                 "params": [],
                 "returnType": {
-                  "repr": "void"
+                  "repr": "void",
+                  "keyword": "void"
                 }
               },
               {
@@ -5290,7 +5912,10 @@
                 "jsDoc": null,
                 "params": [],
                 "returnType": {
-                  "repr": "AsyncIterator<Conn>"
+                  "repr": "AsyncIterator",
+                  "typeRef": {
+                    "typeName": "AsyncIterator"
+                  }
                 }
               }
             ],
@@ -5308,7 +5933,10 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "Addr"
+                  "repr": "Addr",
+                  "typeRef": {
+                    "typeName": "Addr"
+                  }
                 }
               }
             ],
@@ -5337,7 +5965,8 @@
                 "jsDoc": "Shuts down (`shutdown(2)`) the reading side of the TCP connection. Most\ncallers should just use `close()`.",
                 "params": [],
                 "returnType": {
-                  "repr": "void"
+                  "repr": "void",
+                  "keyword": "void"
                 }
               },
               {
@@ -5350,7 +5979,8 @@
                 "jsDoc": "Shuts down (`shutdown(2)`) the writing side of the TCP connection. Most\ncallers should just use `close()`.",
                 "params": [],
                 "returnType": {
-                  "repr": "void"
+                  "repr": "void",
+                  "keyword": "void"
                 }
               }
             ],
@@ -5368,7 +5998,10 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "Addr"
+                  "repr": "Addr",
+                  "typeRef": {
+                    "typeName": "Addr"
+                  }
                 }
               },
               {
@@ -5384,7 +6017,10 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "Addr"
+                  "repr": "Addr",
+                  "typeRef": {
+                    "typeName": "Addr"
+                  }
                 }
               },
               {
@@ -5400,7 +6036,8 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               }
             ],
@@ -5433,7 +6070,8 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
@@ -5449,7 +6087,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
@@ -5465,7 +6104,10 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "Transport"
+                  "repr": "Transport",
+                  "typeRef": {
+                    "typeName": "Transport"
+                  }
                 }
               }
             ],
@@ -5492,7 +6134,10 @@
               }
             ],
             "returnType": {
-              "repr": "Listener"
+              "repr": "Listener",
+              "typeRef": {
+                "typeName": "Listener"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -5518,7 +6163,10 @@
               }
             ],
             "returnType": {
-              "repr": "UDPConn"
+              "repr": "UDPConn",
+              "typeRef": {
+                "typeName": "UDPConn"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -5539,7 +6187,10 @@
               {
                 "name": "options",
                 "tsType": {
-                  "repr": "ListenOptions"
+                  "repr": "ListenOptions",
+                  "typeRef": {
+                    "typeName": "ListenOptions"
+                  }
                 }
               }
             ],
@@ -5576,7 +6227,8 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
@@ -5592,7 +6244,8 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               }
             ],
@@ -5614,12 +6267,18 @@
               {
                 "name": "options",
                 "tsType": {
-                  "repr": "ListenTLSOptions"
+                  "repr": "ListenTLSOptions",
+                  "typeRef": {
+                    "typeName": "ListenTLSOptions"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "Listener"
+              "repr": "Listener",
+              "typeRef": {
+                "typeName": "Listener"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -5651,7 +6310,8 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
@@ -5667,7 +6327,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
@@ -5683,7 +6344,10 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "Transport"
+                  "repr": "Transport",
+                  "typeRef": {
+                    "typeName": "Transport"
+                  }
                 }
               }
             ],
@@ -5705,12 +6369,18 @@
               {
                 "name": "options",
                 "tsType": {
-                  "repr": "ConnectOptions"
+                  "repr": "ConnectOptions",
+                  "typeRef": {
+                    "typeName": "ConnectOptions"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<Conn>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -5742,7 +6412,8 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
@@ -5758,7 +6429,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
@@ -5774,7 +6446,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               }
             ],
@@ -5796,12 +6469,18 @@
               {
                 "name": "options",
                 "tsType": {
-                  "repr": "ConnectTLSOptions"
+                  "repr": "ConnectTLSOptions",
+                  "typeRef": {
+                    "typeName": "ConnectTLSOptions"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<Conn>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -5833,7 +6512,8 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
@@ -5849,7 +6529,8 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
@@ -5865,7 +6546,8 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
@@ -5881,7 +6563,8 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
@@ -5897,7 +6580,8 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
@@ -5913,7 +6597,8 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
@@ -5929,7 +6614,8 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
@@ -5945,7 +6631,8 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
@@ -5961,7 +6648,8 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
@@ -5977,7 +6665,8 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
@@ -5993,7 +6682,8 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               }
             ],
@@ -6013,7 +6703,10 @@
           "functionDef": {
             "params": [],
             "returnType": {
-              "repr": "Metrics"
+              "repr": "Metrics",
+              "typeRef": {
+                "typeName": "Metrics"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -6032,7 +6725,10 @@
           "functionDef": {
             "params": [],
             "returnType": {
-              "repr": "ResourceMap"
+              "repr": "ResourceMap",
+              "typeRef": {
+                "typeName": "ResourceMap"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -6113,7 +6809,10 @@
               }
             ],
             "returnType": {
-              "repr": "AsyncIterableIterator<FsEvent>"
+              "repr": "AsyncIterableIterator",
+              "typeRef": {
+                "typeName": "AsyncIterableIterator"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -6134,18 +6833,21 @@
               {
                 "name": "pid",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
                 "name": "signo",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               }
             ],
             "returnType": {
-              "repr": "void"
+              "repr": "void",
+              "keyword": "void"
             },
             "isAsync": false,
             "isGenerator": false
@@ -6169,7 +6871,8 @@
                 "jsDoc": null,
                 "snippet": "readonly rid: number;",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 },
                 "readonly": true,
                 "accessibility": null,
@@ -6186,7 +6889,8 @@
                 "jsDoc": null,
                 "snippet": "readonly pid: number;",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 },
                 "readonly": true,
                 "accessibility": null,
@@ -6203,7 +6907,10 @@
                 "jsDoc": null,
                 "snippet": "readonly stdin?: WriteCloser;",
                 "tsType": {
-                  "repr": "WriteCloser"
+                  "repr": "WriteCloser",
+                  "typeRef": {
+                    "typeName": "WriteCloser"
+                  }
                 },
                 "readonly": true,
                 "accessibility": null,
@@ -6220,7 +6927,10 @@
                 "jsDoc": null,
                 "snippet": "readonly stdout?: ReadCloser;",
                 "tsType": {
-                  "repr": "ReadCloser"
+                  "repr": "ReadCloser",
+                  "typeRef": {
+                    "typeName": "ReadCloser"
+                  }
                 },
                 "readonly": true,
                 "accessibility": null,
@@ -6237,7 +6947,10 @@
                 "jsDoc": null,
                 "snippet": "readonly stderr?: ReadCloser;",
                 "tsType": {
-                  "repr": "ReadCloser"
+                  "repr": "ReadCloser",
+                  "typeRef": {
+                    "typeName": "ReadCloser"
+                  }
                 },
                 "readonly": true,
                 "accessibility": null,
@@ -6263,7 +6976,10 @@
                 "functionDef": {
                   "params": [],
                   "returnType": {
-                    "repr": "Promise<ProcessStatus>"
+                    "repr": "Promise",
+                    "typeRef": {
+                      "typeName": "Promise"
+                    }
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -6285,7 +7001,10 @@
                 "functionDef": {
                   "params": [],
                   "returnType": {
-                    "repr": "Promise<Uint8Array>"
+                    "repr": "Promise",
+                    "typeRef": {
+                      "typeName": "Promise"
+                    }
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -6307,7 +7026,10 @@
                 "functionDef": {
                   "params": [],
                   "returnType": {
-                    "repr": "Promise<Uint8Array>"
+                    "repr": "Promise",
+                    "typeRef": {
+                      "typeName": "Promise"
+                    }
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -6329,7 +7051,8 @@
                 "functionDef": {
                   "params": [],
                   "returnType": {
-                    "repr": "void"
+                    "repr": "void",
+                    "keyword": "void"
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -6353,12 +7076,14 @@
                     {
                       "name": "signo",
                       "tsType": {
-                        "repr": "number"
+                        "repr": "number",
+                        "keyword": "number"
                       }
                     }
                   ],
                   "returnType": {
-                    "repr": "void"
+                    "repr": "void",
+                    "keyword": "void"
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -6398,7 +7123,8 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -6414,7 +7140,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
@@ -6430,7 +7157,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               }
             ],
@@ -6479,7 +7207,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
@@ -6565,12 +7294,18 @@
               {
                 "name": "opt",
                 "tsType": {
-                  "repr": "RunOptions"
+                  "repr": "RunOptions",
+                  "typeRef": {
+                    "typeName": "RunOptions"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "Process"
+              "repr": "Process",
+              "typeRef": {
+                "typeName": "Process"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -6585,7 +7320,13 @@
             "line": 2003,
             "col": 2
           },
-          "jsDoc": "**UNSTABLE**: make platform independent.\n\nSignals numbers. This is platform dependent."
+          "jsDoc": "**UNSTABLE**: make platform independent.\n\nSignals numbers. This is platform dependent.",
+          "variableDef": {
+            "tsType": {
+              "repr": "typeof MacOSSignal | typeof LinuxSignal"
+            },
+            "kind": "const"
+          }
         },
         {
           "kind": "function",
@@ -6602,18 +7343,23 @@
               {
                 "name": "value",
                 "tsType": {
-                  "repr": "unknown"
+                  "repr": "unknown",
+                  "keyword": "unknown"
                 }
               },
               {
                 "name": "options",
                 "tsType": {
-                  "repr": "ConsoleOptions"
+                  "repr": "ConsoleOptions",
+                  "typeRef": {
+                    "typeName": "ConsoleOptions"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "string"
+              "repr": "string",
+              "keyword": "string"
             },
             "isAsync": false,
             "isGenerator": false
@@ -6628,12 +7374,7 @@
             "line": 2020,
             "col": 2
           },
-          "jsDoc": null,
-          "typeAliasDef": {
-            "tsType": {
-              "repr": "type OperatingSystem = \"mac\" | \"win\" | \"linux\";"
-            }
-          }
+          "jsDoc": null
         },
         {
           "kind": "typeAlias",
@@ -6644,12 +7385,7 @@
             "line": 2022,
             "col": 2
           },
-          "jsDoc": null,
-          "typeAliasDef": {
-            "tsType": {
-              "repr": "type Arch = \"x64\" | \"arm64\";"
-            }
-          }
+          "jsDoc": null
         },
         {
           "kind": "variable",
@@ -6660,7 +7396,16 @@
             "line": 2032,
             "col": 2
           },
-          "jsDoc": "Build related information."
+          "jsDoc": "Build related information.",
+          "variableDef": {
+            "tsType": {
+              "repr": "BuildInfo",
+              "typeRef": {
+                "typeName": "BuildInfo"
+              }
+            },
+            "kind": "const"
+          }
         },
         {
           "kind": "variable",
@@ -6671,7 +7416,16 @@
             "line": 2040,
             "col": 2
           },
-          "jsDoc": "Version related information."
+          "jsDoc": "Version related information.",
+          "variableDef": {
+            "tsType": {
+              "repr": "Version",
+              "typeRef": {
+                "typeName": "Version"
+              }
+            },
+            "kind": "const"
+          }
         },
         {
           "kind": "enum",
@@ -6732,7 +7486,8 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
@@ -6748,7 +7503,10 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "DiagnosticCategory"
+                  "repr": "DiagnosticCategory",
+                  "typeRef": {
+                    "typeName": "DiagnosticCategory"
+                  }
                 }
               },
               {
@@ -6764,7 +7522,8 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
@@ -6813,7 +7572,8 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
@@ -6829,7 +7589,10 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "DiagnosticMessageChain"
+                  "repr": "DiagnosticMessageChain",
+                  "typeRef": {
+                    "typeName": "DiagnosticMessageChain"
+                  }
                 }
               },
               {
@@ -6861,7 +7624,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
@@ -6877,7 +7641,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
@@ -6893,7 +7658,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
@@ -6909,7 +7675,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
@@ -6925,7 +7692,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
@@ -6941,7 +7709,10 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "DiagnosticCategory"
+                  "repr": "DiagnosticCategory",
+                  "typeRef": {
+                    "typeName": "DiagnosticCategory"
+                  }
                 }
               },
               {
@@ -6957,7 +7728,8 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
@@ -6973,7 +7745,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               },
               {
@@ -6989,7 +7762,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               }
             ],
@@ -7049,7 +7823,8 @@
               }
             ],
             "returnType": {
-              "repr": "string"
+              "repr": "string",
+              "keyword": "string"
             },
             "isAsync": false,
             "isGenerator": false
@@ -7081,7 +7856,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7097,7 +7873,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7113,7 +7890,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7129,7 +7907,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7145,7 +7924,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7161,7 +7941,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7177,7 +7958,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
@@ -7193,7 +7975,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7209,7 +7992,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7225,7 +8009,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
@@ -7241,7 +8026,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7257,7 +8043,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7273,7 +8060,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7289,7 +8077,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7305,7 +8094,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7321,7 +8111,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7337,7 +8128,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7353,7 +8145,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7369,7 +8162,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7385,7 +8179,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7417,7 +8212,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
@@ -7433,7 +8229,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
@@ -7449,7 +8246,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7481,7 +8279,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
@@ -7497,7 +8296,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
@@ -7529,7 +8329,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7545,7 +8346,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7561,7 +8363,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7577,7 +8380,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7593,7 +8397,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7609,7 +8414,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7625,7 +8431,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7641,7 +8448,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7657,7 +8465,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7673,7 +8482,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7689,7 +8499,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
@@ -7705,7 +8516,10 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "Record<string, string[]>"
+                  "repr": "Record",
+                  "typeRef": {
+                    "typeName": "Record"
+                  }
                 }
               },
               {
@@ -7721,7 +8535,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7737,7 +8552,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7753,7 +8569,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7769,7 +8586,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
@@ -7801,7 +8619,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7817,7 +8636,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
@@ -7833,7 +8653,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7849,7 +8670,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7865,7 +8687,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7881,7 +8704,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7897,7 +8721,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7913,7 +8738,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7929,7 +8755,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "boolean"
+                  "repr": "boolean",
+                  "keyword": "boolean"
                 }
               },
               {
@@ -7994,7 +8821,8 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
@@ -8010,7 +8838,8 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               }
             ],
@@ -8032,18 +8861,27 @@
               {
                 "name": "sources",
                 "tsType": {
-                  "repr": "Record<string, string>"
+                  "repr": "Record",
+                  "typeRef": {
+                    "typeName": "Record"
+                  }
                 }
               },
               {
                 "name": "options",
                 "tsType": {
-                  "repr": "CompilerOptions"
+                  "repr": "CompilerOptions",
+                  "typeRef": {
+                    "typeName": "CompilerOptions"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<Record<string, TranspileOnlyResult>>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -8064,24 +8902,34 @@
               {
                 "name": "rootName",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "sources",
                 "tsType": {
-                  "repr": "Record<string, string>"
+                  "repr": "Record",
+                  "typeRef": {
+                    "typeName": "Record"
+                  }
                 }
               },
               {
                 "name": "options",
                 "tsType": {
-                  "repr": "CompilerOptions"
+                  "repr": "CompilerOptions",
+                  "typeRef": {
+                    "typeName": "CompilerOptions"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<[DiagnosticItem[] | undefined, Record<string, string>]>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -8102,24 +8950,34 @@
               {
                 "name": "rootName",
                 "tsType": {
-                  "repr": "string"
+                  "repr": "string",
+                  "keyword": "string"
                 }
               },
               {
                 "name": "sources",
                 "tsType": {
-                  "repr": "Record<string, string>"
+                  "repr": "Record",
+                  "typeRef": {
+                    "typeName": "Record"
+                  }
                 }
               },
               {
                 "name": "options",
                 "tsType": {
-                  "repr": "CompilerOptions"
+                  "repr": "CompilerOptions",
+                  "typeRef": {
+                    "typeName": "CompilerOptions"
+                  }
                 }
               }
             ],
             "returnType": {
-              "repr": "Promise<[DiagnosticItem[] | undefined, string]>"
+              "repr": "Promise",
+              "typeRef": {
+                "typeName": "Promise"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -8134,7 +8992,13 @@
             "line": 2423,
             "col": 2
           },
-          "jsDoc": "Returns the script arguments to the program. If for example we run a\nprogram:\n\n     deno --allow-read https://deno.land/std/examples/cat.ts /etc/passwd\n\nThen `Deno.args` will contain:\n\n     [ \"/etc/passwd\" ]"
+          "jsDoc": "Returns the script arguments to the program. If for example we run a\nprogram:\n\n     deno --allow-read https://deno.land/std/examples/cat.ts /etc/passwd\n\nThen `Deno.args` will contain:\n\n     [ \"/etc/passwd\" ]",
+          "variableDef": {
+            "tsType": {
+              "repr": "string[]"
+            },
+            "kind": "const"
+          }
         },
         {
           "kind": "class",
@@ -8195,7 +9059,10 @@
                     }
                   ],
                   "returnType": {
-                    "repr": "Promise<T | S>"
+                    "repr": "Promise",
+                    "typeRef": {
+                      "typeName": "Promise"
+                    }
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -8217,7 +9084,10 @@
                 "functionDef": {
                   "params": [],
                   "returnType": {
-                    "repr": "Promise<IteratorResult<void>>"
+                    "repr": "Promise",
+                    "typeRef": {
+                      "typeName": "Promise"
+                    }
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -8239,7 +9109,10 @@
                 "functionDef": {
                   "params": [],
                   "returnType": {
-                    "repr": "AsyncIterableIterator<void>"
+                    "repr": "AsyncIterableIterator",
+                    "typeRef": {
+                      "typeName": "AsyncIterableIterator"
+                    }
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -8261,7 +9134,8 @@
                 "functionDef": {
                   "params": [],
                   "returnType": {
-                    "repr": "void"
+                    "repr": "void",
+                    "keyword": "void"
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -8290,12 +9164,16 @@
               {
                 "name": "signo",
                 "tsType": {
-                  "repr": "number"
+                  "repr": "number",
+                  "keyword": "number"
                 }
               }
             ],
             "returnType": {
-              "repr": "SignalStream"
+              "repr": "SignalStream",
+              "typeRef": {
+                "typeName": "SignalStream"
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -8310,7 +9188,13 @@
             "line": 2470,
             "col": 2
           },
-          "jsDoc": "**UNSTABLE**: new API, yet to be vetted."
+          "jsDoc": "**UNSTABLE**: new API, yet to be vetted.",
+          "variableDef": {
+            "tsType": {
+              "repr": "{\n    /** Returns the stream of SIGALRM signals.\n     *\n     * This method is the shorthand for `Deno.signal(Deno.Signal.SIGALRM)`. */\n    alarm: () => SignalStream;\n    /** Returns the stream of SIGCHLD signals.\n     *\n     * This method is the shorthand for `Deno.signal(Deno.Signal.SIGCHLD)`. */\n    child: () => SignalStream;\n    /** Returns the stream of SIGHUP signals.\n     *\n     * This method is the shorthand for `Deno.signal(Deno.Signal.SIGHUP)`. */\n    hungup: () => SignalStream;\n    /** Returns the stream of SIGINT signals.\n     *\n     * This method is the shorthand for `Deno.signal(Deno.Signal.SIGINT)`. */\n    interrupt: () => SignalStream;\n    /** Returns the stream of SIGIO signals.\n     *\n     * This method is the shorthand for `Deno.signal(Deno.Signal.SIGIO)`. */\n    io: () => SignalStream;\n    /** Returns the stream of SIGPIPE signals.\n     *\n     * This method is the shorthand for `Deno.signal(Deno.Signal.SIGPIPE)`. */\n    pipe: () => SignalStream;\n    /** Returns the stream of SIGQUIT signals.\n     *\n     * This method is the shorthand for `Deno.signal(Deno.Signal.SIGQUIT)`. */\n    quit: () => SignalStream;\n    /** Returns the stream of SIGTERM signals.\n     *\n     * This method is the shorthand for `Deno.signal(Deno.Signal.SIGTERM)`. */\n    terminate: () => SignalStream;\n    /** Returns the stream of SIGUSR1 signals.\n     *\n     * This method is the shorthand for `Deno.signal(Deno.Signal.SIGUSR1)`. */\n    userDefined1: () => SignalStream;\n    /** Returns the stream of SIGUSR2 signals.\n     *\n     * This method is the shorthand for `Deno.signal(Deno.Signal.SIGUSR2)`. */\n    userDefined2: () => SignalStream;\n    /** Returns the stream of SIGWINCH signals.\n     *\n     * This method is the shorthand for `Deno.signal(Deno.Signal.SIGWINCH)`. */\n    windowChange: () => SignalStream;\n  }"
+            },
+            "kind": "const"
+          }
         },
         {
           "kind": "variable",
@@ -8321,7 +9205,13 @@
             "line": 2520,
             "col": 2
           },
-          "jsDoc": "**UNSTABLE**: new API. Maybe move `Deno.EOF` here.\n\nSpecial Deno related symbols."
+          "jsDoc": "**UNSTABLE**: new API. Maybe move `Deno.EOF` here.\n\nSpecial Deno related symbols.",
+          "variableDef": {
+            "tsType": {
+              "repr": "{\n    /** Symbol to access exposed internal Deno API */\n    readonly internal: unique symbol;\n    /** A symbol which can be used as a key for a custom method which will be\n     * called when `Deno.inspect()` is called, or when the object is logged to\n     * the console. */\n    readonly customInspect: unique symbol;\n    // TODO(ry) move EOF here?\n  }"
+            },
+            "kind": "const"
+          }
         }
       ]
     }

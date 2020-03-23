@@ -37,17 +37,20 @@ pub struct FunctionDef {
 }
 
 #[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
 pub struct VariableDef {
-  type_: TsTypeDef,
-  kind: swc_ecma_ast::VarDeclKind,
+  pub ts_type: Option<TsTypeDef>,
+  pub kind: swc_ecma_ast::VarDeclKind,
 }
 
 #[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
 pub struct EnumMemberDef {
   pub name: String,
 }
 
 #[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
 pub struct EnumDef {
   pub members: Vec<EnumMemberDef>,
 }

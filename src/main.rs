@@ -134,6 +134,7 @@ fn get_doc_for_var_decl(
     .trim_end()
     .to_string();
 
+  // eprintln!("var def {:#?}", var_decl);
   assert!(!var_decl.decls.is_empty());
   // TODO: support multiple declarators
   let var_declarator = var_decl.decls.get(0).unwrap();
@@ -141,6 +142,19 @@ fn get_doc_for_var_decl(
   let var_name = match &var_declarator.name {
     swc_ecma_ast::Pat::Ident(ident) => ident.sym.to_string(),
     _ => "<TODO>".to_string(),
+  };
+
+  let maybe_ts_type = match &var_declarator.name {
+    swc_ecma_ast::Pat::Ident(ident) => ident
+      .type_ann
+      .as_ref()
+      .map(|rt| ts_type_ann_to_def(&doc_parser.source_map, rt)),
+    _ => None,
+  };
+
+  let variable_def = doc::VariableDef {
+    ts_type: maybe_ts_type,
+    kind: var_decl.kind,
   };
 
   doc::DocNode {
@@ -153,7 +167,7 @@ fn get_doc_for_var_decl(
       .into(),
     js_doc,
     function_def: None,
-    variable_def: None,
+    variable_def: Some(variable_def),
     enum_def: None,
     class_def: None,
     type_alias_def: None,
@@ -177,15 +191,11 @@ fn get_doc_for_ts_type_alias_decl(
 
   let alias_name = type_alias_decl.id.sym.to_string();
   // TODO:
-  let repr = doc_parser
-    .source_map
-    .span_to_snippet(type_alias_decl.span)
-    .expect("Class prop type not found");
-  let repr = repr.trim_start_matches(':').trim_start().to_string();
-
-  let type_alias_def = doc::TypeAliasDef {
-    ts_type: doc::ts_type::TsTypeDef { repr },
-  };
+  //   let repr = doc_parser
+  //     .source_map
+  //     .span_to_snippet(type_alias_decl.span)
+  //     .expect("Class prop type not found");
+  //   let repr = repr.trim_start_matches(':').trim_start().to_string();
 
   doc::DocNode {
     kind: doc::DocNodeKind::TypeAlias,
@@ -200,7 +210,7 @@ fn get_doc_for_ts_type_alias_decl(
     variable_def: None,
     enum_def: None,
     class_def: None,
-    type_alias_def: Some(type_alias_def),
+    type_alias_def: None,
     namespace_def: None,
     interface_def: None,
   }
