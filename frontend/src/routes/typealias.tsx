@@ -11,7 +11,7 @@ export function TypeAliasRoute(props: { name: string }) {
   const nodes = useNodes();
 
   const typealias_ = (nodes.find(
-    node => node.kind === DocNodeKind.TypeAlias && node.name === props.name
+    (node) => node.kind === DocNodeKind.TypeAlias && node.name === props.name
   ) as any) as DocNodeTypeAlias;
 
   return typealias_ ? (

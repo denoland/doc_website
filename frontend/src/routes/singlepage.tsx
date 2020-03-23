@@ -5,66 +5,238 @@ import {
   ParamDef,
   TsTypeDef,
   groupNodes,
-  cleanJSDoc
+  cleanJSDoc,
+  DocNodeNamespace,
 } from "../util/docs";
+import { Page } from "../components/Page";
 
-export function SinglePageRoute(props: { nodes: DocNode[] }) {
-  const simpleNodes = unfirl(props.nodes);
+function DocNodeCard(props: { node: DocNode }) {
+  const { node } = props;
 
   return (
-    <div className="bg-gray-100 py-3 px-6 h-full">
-      {simpleNodes.map(node => {
-        return (
-          <div className="shadow rounded my-3 bg-white p-2">
-            <div className="text-lg font-bold">
-              {node.prefix ? (
-                <span className="text-gray-600">{node.prefix} </span>
-              ) : null}
-              <span className="font">{node.name}</span>
-              {node.params ? (
-                <span className="text-gray-600">
-                  (
-                  {node.params
-                    .map(
-                      p => `${p.name}${p.tsType ? ": " + p.tsType.repr : ""}`
-                    )
-                    .join(", ")}
-                  )
-                </span>
-              ) : null}
-            </div>
-            <pre className="font-mono">{node.snippet}</pre>
-            {node.jsDoc ? (
-              <p className="text-gray-700 mt-2">{cleanJSDoc(node.jsDoc)}</p>
-            ) : null}
-            {node.params && node.params.length > 0 ? (
-              <div className="mt-2">
-                <p className="font-bold">Parameters</p>
-                <ul>
-                  {node.params.map(param => (
-                    <li className="font-mono">
-                      {param.name}
-                      {param.tsType?.repr ? ": " + param.tsType.repr : null}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
-            {node.returnType ? (
-              <div className="mt-2">
-                <span className="font-bold">Returns: </span>
-                <span className="font-mono">{node.returnType.repr}</span>
-              </div>
-            ) : null}
+    <div className="shadow rounded my-3 bg-white p-2">
+      <div className="text-lg font-bold">
+        {node.kind ? <span className="text-gray-600">{node.kind} </span> : null}
+        <span className="font">{node.name}</span>
+        {/* {node.params ? (
+          <span className="text-gray-600">
+            (
+            {node.params
+              .map(
+                p => `${p.name}${p.tsType ? ": " + p.tsType.repr : ""}`
+              )
+              .join(", ")}
+            )
+          </span>
+        ) : null} */}
+      </div>
+      <pre className="font-mono">{node.snippet}</pre>
+      {node.jsDoc ? (
+        <pre className="text-gray-700 mt-2">{node.jsDoc}</pre>
+      ) : null}
+      {/* {node.params && node.params.length > 0 ? (
+        <div className="mt-2">
+          <p className="font-bold">Parameters</p>
+          <ul>
+            {node.params.map(param => (
+              <li className="font-mono">
+                {param.name}
+                {param.tsType?.repr ? ": " + param.tsType.repr : null}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+      {node.returnType ? (
+        <div className="mt-2">
+          <span className="font-bold">Returns: </span>
+          <span className="font-mono">{node.returnType.repr}</span>
+        </div>
+      ) : null} */}
 
-            <div className="text-sm mt-2">
-              Defined in file '{node.location.filename}' on line{" "}
-              {node.location.line}, column {node.location.col}.
+      <div className="text-sm mt-2">
+        Defined in file '{node.location.filename}' on line {node.location.line},
+        column {node.location.col}.
+      </div>
+    </div>
+  );
+}
+
+export function SinglePageRoute(props: { nodes: DocNode[] }) {
+  const ns = props.nodes[0] as DocNodeNamespace;
+  const elemens = ns.namespaceDef.elements;
+  const groups = groupNodes(elemens);
+
+  return (
+    <Page>
+      <div className="bg-gray-100 py-3 px-6 h-full">
+        {groups.classes.length > 0 ? (
+          <div className="py-4">
+            <div className="text-gray-900 text-2xl font-medium mb-1">
+              Classes
+            </div>
+            <ul>
+              {groups.classes.map((node) => (
+                <li>{node.name}</li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+        {groups.variables.length > 0 ? (
+          <div className="py-4">
+            <div className="text-gray-900 text-2xl font-medium mb-1">
+              Variables
+            </div>
+            <ul>
+              {groups.variables.map((node) => (
+                <li>{node.name}</li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+        {groups.functions.length > 0 ? (
+          <div className="py-4">
+            <div className="text-gray-900 text-2xl font-medium mb-1">
+              Functions
+            </div>
+            <ul>
+              {groups.functions.map((node) => (
+                <li>{node.name}</li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+        {groups.enums.length > 0 ? (
+          <div className="py-4">
+            <div className="text-gray-900 text-2xl font-medium mb-1">Enums</div>
+            <ul>
+              {groups.enums.map((node) => (
+                <li>{node.name}</li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+        {groups.interfaces.length > 0 ? (
+          <div className="py-4">
+            <div className="text-gray-900 text-2xl font-medium mb-1">
+              Interfaces
+            </div>
+            <ul>
+              {groups.interfaces.map((node) => (
+                <li>{node.name}</li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+        {groups.typeAliases.length > 0 ? (
+          <div className="py-4">
+            <div className="text-gray-900 text-2xl font-medium mb-1">
+              Type Aliases
+            </div>
+            <ul>
+              {groups.typeAliases.map((node) => (
+                <li>{node.name}</li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+        {groups.namespaces.length > 0 ? (
+          <div className="py-4">
+            <div className="text-gray-900 text-2xl font-medium mb-1">
+              Namespaces
+            </div>
+            <ul>
+              {groups.namespaces.map((node) => (
+                <li>{node.name}</li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+
+        {groups.classes.length > 0 ? (
+          <div className="py-4">
+            <div className="text-gray-900 text-2xl font-medium mb-1">
+              Classes
+            </div>
+            <div>
+              {groups.classes.map((node) => (
+                <DocNodeCard node={node} />
+              ))}
             </div>
           </div>
-        );
-      })}
-    </div>
+        ) : null}
+        {groups.variables.length > 0 ? (
+          <div className="py-4">
+            <div className="text-gray-900 text-2xl font-medium mb-1">
+              Variables
+            </div>
+            <div>
+              {groups.variables.map((node) => (
+                <DocNodeCard node={node} />
+              ))}
+            </div>
+          </div>
+        ) : null}
+        {groups.functions.length > 0 ? (
+          <div className="py-4">
+            <div className="text-gray-900 text-2xl font-medium mb-1">
+              Functions
+            </div>
+            <div>
+              {groups.functions.map((node) => (
+                <DocNodeCard node={node} />
+              ))}
+            </div>
+          </div>
+        ) : null}
+        {groups.enums.length > 0 ? (
+          <div className="py-4">
+            <div className="text-gray-900 text-2xl font-medium mb-1">Enums</div>
+            <div>
+              {groups.enums.map((node) => (
+                <DocNodeCard node={node} />
+              ))}
+            </div>
+          </div>
+        ) : null}
+        {groups.interfaces.length > 0 ? (
+          <div className="py-4">
+            <div className="text-gray-900 text-2xl font-medium mb-1">
+              Interfaces
+            </div>
+            <div>
+              {groups.interfaces.map((node) => (
+                <DocNodeCard node={node} />
+              ))}
+            </div>
+          </div>
+        ) : null}
+        {groups.typeAliases.length > 0 ? (
+          <div className="py-4">
+            <div className="text-gray-900 text-2xl font-medium mb-1">
+              Type Aliases
+            </div>
+            <div>
+              {groups.typeAliases.map((node) => (
+                <DocNodeCard node={node} />
+              ))}
+            </div>
+          </div>
+        ) : null}
+        {groups.namespaces.length > 0 ? (
+          <div className="py-4">
+            <div className="text-gray-900 text-2xl font-medium mb-1">
+              Namespaces
+            </div>
+            <div>
+              {groups.namespaces.map((node) => (
+                <DocNodeCard node={node} />
+              ))}
+            </div>
+          </div>
+        ) : null}
+      </div>
+    </Page>
   );
 }
 
@@ -83,7 +255,7 @@ function unfirl(nodes: DocNode[]): SimpleDocNode[] {
 
   const grouped = groupNodes(nodes);
 
-  grouped.functions.forEach(function_ => {
+  grouped.functions.forEach((function_) => {
     simpleNodes.push({
       name: function_.name,
       location: function_.location,
@@ -91,11 +263,11 @@ function unfirl(nodes: DocNode[]): SimpleDocNode[] {
       jsDoc: function_.jsDoc,
       params: function_.functionDef?.params,
       returnType: function_.functionDef?.returnType,
-      prefix: ""
+      prefix: "",
     });
   });
 
-  grouped.variables.forEach(variable => {
+  grouped.variables.forEach((variable) => {
     simpleNodes.push({
       name: `${variable.name}`,
       // TODO(lucacasonato): https://github.com/bartlomieju/deno_doc/issues/6
@@ -104,20 +276,20 @@ function unfirl(nodes: DocNode[]): SimpleDocNode[] {
       jsDoc: variable.jsDoc,
       // TODO(lucacasonato): https://github.com/bartlomieju/deno_doc/issues/4
       returnType: variable.variableDef?.type_,
-      prefix: variable.variableDef?.kind
+      prefix: variable.variableDef?.kind,
     });
   });
 
-  grouped.classes.forEach(class_ => {
+  grouped.classes.forEach((class_) => {
     simpleNodes.push({
       name: class_.name,
       location: class_.location,
       snippet: class_.snippet,
       jsDoc: class_.jsDoc,
-      prefix: "class"
+      prefix: "class",
     });
 
-    class_.classDef.constructors.forEach(constructor_ => {
+    class_.classDef.constructors.forEach((constructor_) => {
       const name =
         constructor_.name === "constructor"
           ? class_.name
@@ -131,11 +303,11 @@ function unfirl(nodes: DocNode[]): SimpleDocNode[] {
         jsDoc: constructor_.jsDoc,
         // TODO(lucacasonato): https://github.com/bartlomieju/deno_doc/issues/4
         params: [],
-        prefix: "new"
+        prefix: "new",
       });
     });
 
-    class_.classDef.methods.forEach(method => {
+    class_.classDef.methods.forEach((method) => {
       simpleNodes.push({
         name: `${class_.name}.${method.name}`,
         // TODO(lucacasonato): https://github.com/bartlomieju/deno_doc/issues/6
@@ -146,11 +318,11 @@ function unfirl(nodes: DocNode[]): SimpleDocNode[] {
         params: [],
         // TODO(lucacasonato): https://github.com/bartlomieju/deno_doc/issues/4
         returnType: undefined,
-        prefix: ""
+        prefix: "",
       });
     });
 
-    class_.classDef.properties.forEach(property => {
+    class_.classDef.properties.forEach((property) => {
       simpleNodes.push({
         name: `${class_.name}.${property.name}`,
         // TODO(lucacasonato): https://github.com/bartlomieju/deno_doc/issues/6
@@ -159,45 +331,45 @@ function unfirl(nodes: DocNode[]): SimpleDocNode[] {
         jsDoc: property.jsDoc,
         // TODO(lucacasonato): https://github.com/bartlomieju/deno_doc/issues/4
         returnType: property.tsType,
-        prefix: ""
+        prefix: "",
       });
     });
   });
 
-  grouped.enums.forEach(enums => {
-    enums.enumDef.members.forEach(val => {
+  grouped.enums.forEach((enums) => {
+    enums.enumDef.members.forEach((val) => {
       simpleNodes.push({
         name: `${enums.name}.${val.name}`,
         location: enums.location,
         snippet: enums.snippet,
         jsDoc: enums.jsDoc,
-        prefix: ""
+        prefix: "",
       });
     });
   });
 
-  grouped.interfaces.forEach(interface_ => {
+  grouped.interfaces.forEach((interface_) => {
     simpleNodes.push({
       name: interface_.name,
       location: interface_.location,
       snippet: interface_.snippet,
       jsDoc: interface_.jsDoc,
-      prefix: "interface"
+      prefix: "interface",
     });
   });
 
-  grouped.typeAliases.forEach(typeAlias => {
+  grouped.typeAliases.forEach((typeAlias) => {
     simpleNodes.push({
       name: typeAlias.name,
       location: typeAlias.location,
       snippet: typeAlias.snippet,
       jsDoc: typeAlias.jsDoc,
-      prefix: "type"
+      prefix: "type",
     });
   });
 
-  grouped.namespaces.forEach(ns => {
-    ns.namespaceDef.elements.forEach(el => {
+  grouped.namespaces.forEach((ns) => {
+    ns.namespaceDef.elements.forEach((el) => {
       simpleNodes.push({
         name: el.name,
         location: el.location,
