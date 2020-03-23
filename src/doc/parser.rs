@@ -1,3 +1,4 @@
+use regex::Regex;
 use std::sync::Arc;
 use std::sync::RwLock;
 use swc_common;
@@ -63,8 +64,16 @@ impl DocParser {
       comment.kind == CommentKind::Block && comment.text.starts_with('*')
     })?;
 
-    // SWC strips leading and trailing markers, add them back, so we're working
-    // on "raw" JSDoc later.
-    Some(format!("/*{}*/", js_doc_comment.text))
+    let js_doc_re = Regex::new(r#" ?\* ?"#).unwrap();
+    let txt = js_doc_comment
+      .text
+      .split('\n')
+      .map(|line| js_doc_re.replace(line, "").to_string())
+      .collect::<Vec<String>>()
+      .join("\n");
+    // TODO: strip leading spaces (based on first line space count?)
+    // TODO: strip leading and trailing newline
+
+    Some(txt)
   }
 }
