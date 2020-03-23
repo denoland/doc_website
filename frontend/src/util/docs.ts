@@ -37,30 +37,23 @@ export interface VariableDef {
   kind: "var" | "let" | "const";
 }
 export type Accessibility = "public" | "protected" | "private";
-export interface ClassConstructorDef {
-  jsDoc?: string;
-  snippet: string;
+export interface ClassConstructorDef extends DocNodeShared {
   accessibility?: Accessibility;
-  name: string;
+  params: ParamDef[];
 }
-export interface ClassPropertyDef {
-  jsDoc?: string;
-  snippet: string;
+export interface ClassPropertyDef extends DocNodeShared {
   tsType: TsTypeDef;
   readonly: boolean;
   accessibility?: Accessibility;
   isAbstract: boolean;
   isStatic: boolean;
-  name: string;
 }
-export interface ClassMethodDef {
-  jsDoc?: string;
-  snippet: string;
+export interface ClassMethodDef extends DocNodeShared {
   accessibility?: Accessibility;
   isAbstract: boolean;
   isStatic: boolean;
-  name: string;
   kind: "method" | "getter" | "setter";
+  functionDef: FunctionDef;
 }
 export interface ClassDef {
   isAbstract: boolean;

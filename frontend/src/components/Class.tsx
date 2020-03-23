@@ -42,13 +42,12 @@ export const Class = ({ class: class_ }: { class: DocNodeClass }) => {
             </div>
             <div>
               {constructors.map(node => (
-                // TODO(lucacasonato): https://github.com/bartlomieju/deno_doc/issues/4
                 <FunctionLink
                   key={node.name}
                   name={node.name}
                   jsDoc={node.jsDoc}
                   type="constructor"
-                  params={[]}
+                  params={node.params}
                   accessibility={node.accessibility}
                 />
               ))}
@@ -83,13 +82,13 @@ export const Class = ({ class: class_ }: { class: DocNodeClass }) => {
             </div>
             <div>
               {realMethods.map(node => (
-                // TODO(lucacasonato): https://github.com/bartlomieju/deno_doc/issues/4
                 <FunctionLink
                   key={node.name}
                   name={node.name}
                   jsDoc={node.jsDoc}
                   type="method"
-                  params={[]}
+                  params={node.functionDef?.params}
+                  returnType={node.functionDef?.returnType}
                   accessibility={node.accessibility}
                   isAbstract={node.isAbstract}
                 />
@@ -125,13 +124,13 @@ export const Class = ({ class: class_ }: { class: DocNodeClass }) => {
             </div>
             <div>
               {staticMethods.map(node => (
-                // TODO(lucacasonato): https://github.com/bartlomieju/deno_doc/issues/4
                 <FunctionLink
                   key={node.name}
                   name={node.name}
                   jsDoc={node.jsDoc}
                   type="method"
-                  params={[]}
+                  params={node.functionDef?.params}
+                  returnType={node.functionDef?.returnType}
                   accessibility={node.accessibility}
                   isAbstract={node.isAbstract}
                 />
@@ -164,10 +163,9 @@ export const ClassConstructor = ({
             {constructor_.name}
             <span className="text-gray-600 font-light">
               (
-              {/* TODO(lucacasonato): https://github.com/bartlomieju/deno_doc/issues/4
-              constructor_.params
+              {constructor_.params
                 .map(p => `${p.name}${p.tsType ? ": " + p.tsType.repr : ""}`)
-              .join(", ")*/}
+                .join(", ")}
               )
             </span>
           </div>
@@ -178,6 +176,10 @@ export const ClassConstructor = ({
             </div>
             <CodeBlock value={constructor_.snippet} />
           </div>
+        </div>
+        <div className="text-sm">
+          Defined in {constructor_.location.filename}:
+          {constructor_.location.line}:{constructor_.location.col}
         </div>
       </div>
     </Page>
@@ -223,6 +225,10 @@ export const ClassProperty = ({ property }: { property: ClassPropertyDef }) => {
             <CodeBlock value={property.snippet} />
           </div>{" "}
         </div>
+        <div className="text-sm">
+          Defined in {property.location.filename}:{property.location.line}:
+          {property.location.col}
+        </div>
       </div>
     </Page>
   );
@@ -240,12 +246,19 @@ export const ClassMethod = ({ method }: { method: ClassMethodDef }) => {
             {method.name}
             <span className="text-gray-600 font-light">
               (
-              {/* TODO(lucacasonato): https://github.com/bartlomieju/deno_doc/issues/4
-              constructor_.params
+              {method.functionDef?.params
                 .map(p => `${p.name}${p.tsType ? ": " + p.tsType.repr : ""}`)
-              .join(", ")*/}
+                .join(", ")}
               )
             </span>
+            {method.functionDef?.returnType?.repr ? (
+              <>
+                <span className="text-gray-600 font-light">
+                  {" → "}
+                  {method.functionDef?.returnType?.repr}
+                </span>
+              </>
+            ) : null}
           </div>
           <p className="text-gray-500 italic font-light">
             {([] as string[])
@@ -265,6 +278,10 @@ export const ClassMethod = ({ method }: { method: ClassMethodDef }) => {
             </div>
             <CodeBlock value={method.snippet} />
           </div>
+        </div>
+        <div className="text-sm">
+          Defined in {method.location.filename}:{method.location.line}:
+          {method.location.col}
         </div>
       </div>
     </Page>

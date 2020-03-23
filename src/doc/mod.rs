@@ -59,6 +59,8 @@ pub struct ClassConstructorDef {
   pub snippet: String,
   pub accessibility: Option<swc_ecma_ast::Accessibility>,
   pub name: String,
+  pub params: Vec<ParamDef>,
+  pub location: Location,
 }
 
 #[derive(Debug, Serialize)]
@@ -72,6 +74,7 @@ pub struct ClassPropertyDef {
   pub is_abstract: bool,
   pub is_static: bool,
   pub name: String,
+  pub location: Location,
 }
 
 #[derive(Debug, Serialize)]
@@ -86,6 +89,8 @@ pub struct ClassMethodDef {
   pub is_static: bool,
   pub name: String,
   pub kind: swc_ecma_ast::MethodKind,
+  pub function_def: FunctionDef,
+  pub location: Location,
 }
 
 #[derive(Debug, Serialize)]
@@ -112,9 +117,22 @@ pub struct NamespaceDef {
 }
 
 #[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct InterfaceMethodDef {
+  // TODO: type_params
+  // pub name: String,
+  pub snippet: String,
+  pub location: Location,
+  pub js_doc: Option<String>,
+  pub params: Vec<ParamDef>,
+  pub return_type: Option<TsTypeDef>,
+}
+
+#[derive(Debug, Serialize)]
 pub struct InterfaceDef {
   // TODO: extends, type params
-// TODO: elements https://docs.rs/swc_ecma_ast/0.18.1/swc_ecma_ast/enum.TsTypeElement.html
+  // TODO: elements https://docs.rs/swc_ecma_ast/0.18.1/swc_ecma_ast/enum.TsTypeElement.html
+  pub methods: Vec<InterfaceMethodDef>,
 }
 
 #[derive(Debug, Serialize)]

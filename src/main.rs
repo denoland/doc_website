@@ -33,6 +33,49 @@ fn prop_name_to_string(
   }
 }
 
+fn function_to_function_def(
+  doc_parser: &DocParser,
+  function: &swc_ecma_ast::Function,
+) -> doc::FunctionDef {
+  let mut params = vec![];
+
+  for param in &function.params {
+    use swc_ecma_ast::Pat;
+
+    let param_def = match param {
+      Pat::Ident(ident) => {
+        let ts_type = ident
+          .type_ann
+          .as_ref()
+          .map(|rt| ts_type_ann_to_def(&doc_parser.source_map, rt));
+
+        doc::ParamDef {
+          name: ident.sym.to_string(),
+          ts_type,
+        }
+      }
+      _ => doc::ParamDef {
+        name: "<TODO>".to_string(),
+        ts_type: None,
+      },
+    };
+
+    params.push(param_def);
+  }
+
+  let maybe_return_type = function
+    .return_type
+    .as_ref()
+    .map(|rt| ts_type_ann_to_def(&doc_parser.source_map, rt));
+
+  doc::FunctionDef {
+    params,
+    return_type: maybe_return_type,
+    is_async: function.is_async,
+    is_generator: function.is_generator,
+  }
+}
+
 fn get_doc_for_fn_decl(
   doc_parser: &DocParser,
   parent_span: Span,
@@ -57,45 +100,7 @@ fn get_doc_for_fn_decl(
   }
 
   let snippet = snippet.trim_end().to_string();
-
-  let mut params = vec![];
-
-  for param in &fn_decl.function.params {
-    use swc_ecma_ast::Pat;
-
-    let param_def = match param {
-      Pat::Ident(ident) => {
-        let ts_type = ident
-          .type_ann
-          .as_ref()
-          .map(|rt| ts_type_ann_to_def(&doc_parser.source_map, rt));
-
-        doc::ParamDef {
-          name: ident.sym.to_string(),
-          ts_type,
-        }
-      }
-      _ => doc::ParamDef {
-        name: "<TODO>".to_string(),
-        ts_type: None,
-      },
-    };
-
-    params.push(param_def);
-  }
-
-  let maybe_return_type = fn_decl
-    .function
-    .return_type
-    .as_ref()
-    .map(|rt| ts_type_ann_to_def(&doc_parser.source_map, rt));
-
-  let fn_def = doc::FunctionDef {
-    params,
-    return_type: maybe_return_type,
-    is_async: fn_decl.function.is_async,
-    is_generator: fn_decl.function.is_generator,
-  };
+  let fn_def = function_to_function_def(doc_parser, &fn_decl.function);
 
   doc::DocNode {
     kind: doc::DocNodeKind::Function,
@@ -264,11 +269,48 @@ fn get_doc_for_class_decl(
         let constructor_name =
           prop_name_to_string(&doc_parser.source_map, &ctor.key);
 
+        let mut params = vec![];
+
+        for param in &ctor.params {
+          use swc_ecma_ast::Pat;
+          use swc_ecma_ast::PatOrTsParamProp::*;
+
+          let param_def = match param {
+            Pat(pat) => match pat {
+              Pat::Ident(ident) => {
+                let ts_type = ident
+                  .type_ann
+                  .as_ref()
+                  .map(|rt| ts_type_ann_to_def(&doc_parser.source_map, rt));
+
+                doc::ParamDef {
+                  name: ident.sym.to_string(),
+                  ts_type,
+                }
+              }
+              _ => doc::ParamDef {
+                name: "<TODO>".to_string(),
+                ts_type: None,
+              },
+            },
+            TsParamProp(_) => doc::ParamDef {
+              name: "<TODO>".to_string(),
+              ts_type: None,
+            },
+          };
+          params.push(param_def);
+        }
+
         let constructor_def = doc::ClassConstructorDef {
           js_doc: ctor_js_doc,
           snippet: ctor_snippet,
           accessibility: ctor.accessibility,
           name: constructor_name,
+          params,
+          location: doc_parser
+            .source_map
+            .lookup_char_pos(ctor.span.lo())
+            .into(),
         };
         constructors.push(constructor_def);
       }
@@ -294,7 +336,8 @@ fn get_doc_for_class_decl(
 
         let method_name =
           prop_name_to_string(&doc_parser.source_map, &class_method.key);
-
+        let fn_def =
+          function_to_function_def(doc_parser, &class_method.function);
         let method_def = doc::ClassMethodDef {
           js_doc: method_js_doc,
           snippet: method_snippet,
@@ -303,6 +346,11 @@ fn get_doc_for_class_decl(
           is_static: class_method.is_static,
           name: method_name,
           kind: class_method.kind,
+          function_def: fn_def,
+          location: doc_parser
+            .source_map
+            .lookup_char_pos(class_method.span.lo())
+            .into(),
         };
         methods.push(method_def);
       }
@@ -333,6 +381,10 @@ fn get_doc_for_class_decl(
           is_static: class_prop.is_static,
           accessibility: class_prop.accessibility,
           name: prop_name,
+          location: doc_parser
+            .source_map
+            .lookup_char_pos(class_prop.span.lo())
+            .into(),
         };
         properties.push(prop_def);
       }
@@ -383,6 +435,70 @@ fn get_doc_for_ts_interface_decl(
 
   let interface_name = interface_decl.id.sym.to_string();
 
+  let mut methods = vec![];
+  for type_element in &interface_decl.body.body {
+    use swc_ecma_ast::TsTypeElement::*;
+
+    match &type_element {
+      TsMethodSignature(ts_method_sig) => {
+        let method_js_doc = doc_parser.js_doc_for_span(ts_method_sig.span);
+        let method_snippet = doc_parser
+          .source_map
+          .span_to_snippet(ts_method_sig.span)
+          .unwrap();
+
+        let mut params = vec![];
+
+        for param in &ts_method_sig.params {
+          use swc_ecma_ast::TsFnParam::*;
+
+          let param_def = match param {
+            Ident(ident) => {
+              let ts_type = ident
+                .type_ann
+                .as_ref()
+                .map(|rt| ts_type_ann_to_def(&doc_parser.source_map, rt));
+
+              doc::ParamDef {
+                name: ident.sym.to_string(),
+                ts_type,
+              }
+            }
+            _ => doc::ParamDef {
+              name: "<TODO>".to_string(),
+              ts_type: None,
+            },
+          };
+
+          params.push(param_def);
+        }
+
+        let maybe_return_type = ts_method_sig
+          .type_ann
+          .as_ref()
+          .map(|rt| ts_type_ann_to_def(&doc_parser.source_map, rt));
+
+        let method_def = doc::InterfaceMethodDef {
+          js_doc: method_js_doc,
+          snippet: method_snippet,
+          location: doc_parser
+            .source_map
+            .lookup_char_pos(ts_method_sig.span.lo())
+            .into(),
+          params,
+          return_type: maybe_return_type,
+        };
+        methods.push(method_def);
+      }
+      TsPropertySignature(_) => {}
+      TsCallSignatureDecl(_) => {}
+      TsConstructSignatureDecl(_) => {}
+      TsIndexSignature(_) => {}
+    }
+  }
+
+  let interface_def = doc::InterfaceDef { methods };
+
   doc::DocNode {
     kind: doc::DocNodeKind::Interface,
     name: interface_name,
@@ -398,7 +514,7 @@ fn get_doc_for_ts_interface_decl(
     class_def: None,
     type_alias_def: None,
     namespace_def: None,
-    interface_def: Some(doc::InterfaceDef {}),
+    interface_def: Some(interface_def),
   }
 }
 

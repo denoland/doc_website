@@ -6,7 +6,7 @@ import {
   DocNodeClass,
   ClassConstructorDef,
   ClassPropertyDef,
-  ClassMethodDef
+  ClassMethodDef,
 } from "../util/docs";
 import { NotFound } from "../components/NotFound";
 import { usePrefix, PrefixProvider } from "../util/prefix";
@@ -14,7 +14,7 @@ import {
   Class,
   ClassConstructor,
   ClassProperty,
-  ClassMethod
+  ClassMethod,
 } from "../components/Class";
 
 export function ClassRoute(props: { name: string }) {
@@ -22,7 +22,7 @@ export function ClassRoute(props: { name: string }) {
   const nodes = useNodes();
 
   const class_ = (nodes.find(
-    node => node.kind === DocNodeKind.Class && node.name === props.name
+    (node) => node.kind === DocNodeKind.Class && node.name === props.name
   ) as any) as DocNodeClass;
 
   return class_ ? (
@@ -33,7 +33,7 @@ export function ClassRoute(props: { name: string }) {
           <PrefixProvider
             value={{
               namespace: prefix.namespace,
-              node: `${prefix.node}/constructor/${params.constructor}`
+              node: `${prefix.node}/constructor/${params.constructor}`,
             }}
           >
             <ClassConstructorRoute name={params.constructor} class={class_} />
@@ -46,7 +46,7 @@ export function ClassRoute(props: { name: string }) {
           <PrefixProvider
             value={{
               namespace: prefix.namespace,
-              node: `${prefix.node}/property/${params.property}`
+              node: `${prefix.node}/property/${params.property}`,
             }}
           >
             <ClassPropertyRoute name={params.property} class={class_} />
@@ -59,7 +59,7 @@ export function ClassRoute(props: { name: string }) {
           <PrefixProvider
             value={{
               namespace: prefix.namespace,
-              node: `${prefix.node}/method/${params.method}`
+              node: `${prefix.node}/method/${params.method}`,
             }}
           >
             <ClassMethodRoute name={params.method} class={class_} />
@@ -89,7 +89,7 @@ export function ClassConstructorRoute(props: {
   const prefix = usePrefix();
 
   const constructor_ = (props.class.classDef.constructors.find(
-    node => node.name === props.name
+    (node) => node.name === props.name
   ) as any) as ClassConstructorDef;
 
   return constructor_ ? (
@@ -117,7 +117,7 @@ export function ClassPropertyRoute(props: {
   const prefix = usePrefix();
 
   const property = (props.class.classDef.properties.find(
-    node => node.name === props.name
+    (node) => node.name === props.name
   ) as any) as ClassPropertyDef;
 
   return property ? (
@@ -142,7 +142,7 @@ export function ClassMethodRoute(props: { name: string; class: DocNodeClass }) {
   const prefix = usePrefix();
 
   const method = (props.class.classDef.methods.find(
-    node => node.name === props.name
+    (node) => node.name === props.name
   ) as any) as ClassMethodDef;
 
   return method ? (

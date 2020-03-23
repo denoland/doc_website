@@ -67,9 +67,10 @@ export function FunctionLink(props: {
         <>
           <span className="text-gray-600 font-light">
             (
-            {props.params
-              .map(p => `${p.name}${p.tsType ? ": " + p.tsType.repr : ""}`)
-              .join(", ")}
+            {props.params &&
+              props.params
+                .map(p => `${p.name}${p.tsType ? ": " + p.tsType.repr : ""}`)
+                .join(", ")}
             )
           </span>
           {props.returnType?.repr ? (

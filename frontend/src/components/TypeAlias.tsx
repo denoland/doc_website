@@ -4,7 +4,7 @@ import { DocNodeTypeAlias } from "../util/docs";
 import { JSDoc, CodeBlock } from "./JSDoc";
 
 export const TypeAlias = ({
-  typealias: typealias_
+  typealias: typealias_,
 }: {
   typealias: DocNodeTypeAlias;
 }) => {

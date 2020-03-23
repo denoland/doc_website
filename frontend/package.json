@@ -24,7 +24,7 @@
     "postcss-cli": "^7.1.0"
   },
   "scripts": {
-    "format": "prettier src/**/*.tsx public/**.html",
+    "format": "prettier src/**/*.tsx public/**.html --write",
     "tailwind:build": "postcss ./src/index.tailwind.css -o ./src/index.css",
     "prestart": "yarn tailwind:build",
     "start": "react-scripts start",

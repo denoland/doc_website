@@ -4,7 +4,7 @@ import { DocNodeInterface } from "../util/docs";
 import { JSDoc } from "./JSDoc";
 
 export const Interface = ({
-  interface: interface_
+  interface: interface_,
 }: {
   interface: DocNodeInterface;
 }) => {
