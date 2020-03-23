@@ -269,11 +269,48 @@ fn get_doc_for_class_decl(
         let constructor_name =
           prop_name_to_string(&doc_parser.source_map, &ctor.key);
 
+        let mut params = vec![];
+
+        for param in &ctor.params {
+          use swc_ecma_ast::Pat;
+          use swc_ecma_ast::PatOrTsParamProp::*;
+
+          let param_def = match param {
+            Pat(pat) => match pat {
+              Pat::Ident(ident) => {
+                let ts_type = ident
+                  .type_ann
+                  .as_ref()
+                  .map(|rt| ts_type_ann_to_def(&doc_parser.source_map, rt));
+
+                doc::ParamDef {
+                  name: ident.sym.to_string(),
+                  ts_type,
+                }
+              }
+              _ => doc::ParamDef {
+                name: "<TODO>".to_string(),
+                ts_type: None,
+              },
+            },
+            TsParamProp(_) => doc::ParamDef {
+              name: "<TODO>".to_string(),
+              ts_type: None,
+            },
+          };
+          params.push(param_def);
+        }
+
         let constructor_def = doc::ClassConstructorDef {
           js_doc: ctor_js_doc,
           snippet: ctor_snippet,
           accessibility: ctor.accessibility,
           name: constructor_name,
+          params,
+          location: doc_parser
+            .source_map
+            .lookup_char_pos(ctor.span.lo())
+            .into(),
         };
         constructors.push(constructor_def);
       }
@@ -310,6 +347,10 @@ fn get_doc_for_class_decl(
           name: method_name,
           kind: class_method.kind,
           function_def: fn_def,
+          location: doc_parser
+            .source_map
+            .lookup_char_pos(class_method.span.lo())
+            .into(),
         };
         methods.push(method_def);
       }
@@ -340,6 +381,10 @@ fn get_doc_for_class_decl(
           is_static: class_prop.is_static,
           accessibility: class_prop.accessibility,
           name: prop_name,
+          location: doc_parser
+            .source_map
+            .lookup_char_pos(class_prop.span.lo())
+            .into(),
         };
         properties.push(prop_def);
       }
@@ -445,7 +490,7 @@ fn get_doc_for_ts_interface_decl(
         };
         methods.push(method_def);
       }
-      TsPropertySignature(ts_prop_sig) => {}
+      TsPropertySignature(_) => {}
       TsCallSignatureDecl(_) => {}
       TsConstructSignatureDecl(_) => {}
       TsIndexSignature(_) => {}

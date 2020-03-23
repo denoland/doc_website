@@ -59,6 +59,8 @@ pub struct ClassConstructorDef {
   pub snippet: String,
   pub accessibility: Option<swc_ecma_ast::Accessibility>,
   pub name: String,
+  pub params: Vec<ParamDef>,
+  pub location: Location,
 }
 
 #[derive(Debug, Serialize)]
@@ -72,6 +74,7 @@ pub struct ClassPropertyDef {
   pub is_abstract: bool,
   pub is_static: bool,
   pub name: String,
+  pub location: Location,
 }
 
 #[derive(Debug, Serialize)]
@@ -87,6 +90,7 @@ pub struct ClassMethodDef {
   pub name: String,
   pub kind: swc_ecma_ast::MethodKind,
   pub function_def: FunctionDef,
+  pub location: Location,
 }
 
 #[derive(Debug, Serialize)]
