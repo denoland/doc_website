@@ -329,7 +329,7 @@ export function ClassCard({ node }: { node: DocNodeClass }) {
               {realMethods.map(node => {
                 return (
                   <SimpleSubCard
-                    node={{ ...node, kind: undefined }}
+                    node={node}
                     params={node.functionDef.params}
                     returnType={node.functionDef.returnType}
                   />
@@ -351,7 +351,7 @@ export function ClassCard({ node }: { node: DocNodeClass }) {
               {realMethods.map(node => {
                 return (
                   <SimpleSubCard
-                    node={{ ...node, kind: undefined }}
+                    node={node}
                     params={node.functionDef.params}
                     returnType={node.functionDef.returnType}
                   />
