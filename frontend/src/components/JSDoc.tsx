@@ -19,7 +19,16 @@ export function JSDoc(props: { jsdoc: string; short?: boolean }) {
         inlineCode: (props: { children: string }) => (
           <code className="font-mono bg-gray-200 px-1 ">{props.children}</code>
         ),
-        code: CodeBlock
+        code: CodeBlock,
+        table: props => (
+          <table
+            {...props}
+            className="border-collapse border-2 border-gray-400 my-2"
+          />
+        ),
+        tableCell: props => (
+          <td {...props} className="border border-gray-400 px-4 py-2" />
+        )
       }}
     />
   );
@@ -30,7 +39,7 @@ export function CodeBlock(props: { value: string }) {
     <SyntaxHighlighter
       language="typescript"
       style={atomOneLight}
-      customStyle={{ padding: "0.5rem 0", margin: "0.5rem 0" }}
+      customStyle={{ padding: "0.5rem 0.75rem", margin: "0.5rem 0" }}
     >
       {props.value}
     </SyntaxHighlighter>

@@ -86,7 +86,7 @@ export const Sidebar = (props: {
             />
             <SidebarSection
               title="Type Aliases"
-              type="typealias"
+              type="typeAlias"
               nodes={groups.typeAliases}
               mode={props.mode}
             />
