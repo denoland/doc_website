@@ -33,6 +33,49 @@ fn prop_name_to_string(
   }
 }
 
+fn function_to_function_def(
+  doc_parser: &DocParser,
+  function: &swc_ecma_ast::Function,
+) -> doc::FunctionDef {
+  let mut params = vec![];
+
+  for param in &function.params {
+    use swc_ecma_ast::Pat;
+
+    let param_def = match param {
+      Pat::Ident(ident) => {
+        let ts_type = ident
+          .type_ann
+          .as_ref()
+          .map(|rt| ts_type_ann_to_def(&doc_parser.source_map, rt));
+
+        doc::ParamDef {
+          name: ident.sym.to_string(),
+          ts_type,
+        }
+      }
+      _ => doc::ParamDef {
+        name: "<TODO>".to_string(),
+        ts_type: None,
+      },
+    };
+
+    params.push(param_def);
+  }
+
+  let maybe_return_type = function
+    .return_type
+    .as_ref()
+    .map(|rt| ts_type_ann_to_def(&doc_parser.source_map, rt));
+
+  doc::FunctionDef {
+    params,
+    return_type: maybe_return_type,
+    is_async: function.is_async,
+    is_generator: function.is_generator,
+  }
+}
+
 fn get_doc_for_fn_decl(
   doc_parser: &DocParser,
   parent_span: Span,
@@ -57,45 +100,7 @@ fn get_doc_for_fn_decl(
   }
 
   let snippet = snippet.trim_end().to_string();
-
-  let mut params = vec![];
-
-  for param in &fn_decl.function.params {
-    use swc_ecma_ast::Pat;
-
-    let param_def = match param {
-      Pat::Ident(ident) => {
-        let ts_type = ident
-          .type_ann
-          .as_ref()
-          .map(|rt| ts_type_ann_to_def(&doc_parser.source_map, rt));
-
-        doc::ParamDef {
-          name: ident.sym.to_string(),
-          ts_type,
-        }
-      }
-      _ => doc::ParamDef {
-        name: "<TODO>".to_string(),
-        ts_type: None,
-      },
-    };
-
-    params.push(param_def);
-  }
-
-  let maybe_return_type = fn_decl
-    .function
-    .return_type
-    .as_ref()
-    .map(|rt| ts_type_ann_to_def(&doc_parser.source_map, rt));
-
-  let fn_def = doc::FunctionDef {
-    params,
-    return_type: maybe_return_type,
-    is_async: fn_decl.function.is_async,
-    is_generator: fn_decl.function.is_generator,
-  };
+  let fn_def = function_to_function_def(doc_parser, &fn_decl.function);
 
   doc::DocNode {
     kind: doc::DocNodeKind::Function,
@@ -294,7 +299,8 @@ fn get_doc_for_class_decl(
 
         let method_name =
           prop_name_to_string(&doc_parser.source_map, &class_method.key);
-
+        let fn_def =
+          function_to_function_def(doc_parser, &class_method.function);
         let method_def = doc::ClassMethodDef {
           js_doc: method_js_doc,
           snippet: method_snippet,
@@ -303,6 +309,7 @@ fn get_doc_for_class_decl(
           is_static: class_method.is_static,
           name: method_name,
           kind: class_method.kind,
+          function_def: fn_def,
         };
         methods.push(method_def);
       }

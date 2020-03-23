@@ -86,6 +86,7 @@ pub struct ClassMethodDef {
   pub is_static: bool,
   pub name: String,
   pub kind: swc_ecma_ast::MethodKind,
+  pub function_def: FunctionDef,
 }
 
 #[derive(Debug, Serialize)]
