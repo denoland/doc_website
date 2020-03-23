@@ -4,7 +4,6 @@ import { useNodes } from "../util/nodes";
 import { DocNodeKind, DocNodeTypeAlias } from "../util/docs";
 import { NotFound } from "../components/NotFound";
 import { usePrefix } from "../util/prefix";
-import { Interface } from "../components/Interface";
 import { TypeAlias } from "../components/TypeAlias";
 
 export function TypeAliasRoute(props: { name: string }) {
