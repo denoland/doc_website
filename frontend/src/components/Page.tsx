@@ -11,7 +11,7 @@ export function Page(props: {
     <div className="grid grid-cols-5 h-full w-full">
       <div className="col-span-1 max-h-screen overflow-y-scroll">
         <Sidebar
-          mode="singlepage"
+          mode={props.mode}
           generationDate={new Date()}
           namespacesOnly={props.namespacesOnlySidebar}
         />
