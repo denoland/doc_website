@@ -18,7 +18,10 @@ export function SinglePage() {
             </div>
             <div>
               {groups.classes.map((node, i) => (
-                <DocNodeCard node={node} key={`${node.kind}.${node.name}+${i}`} />
+                <DocNodeCard
+                  node={node}
+                  key={`${node.kind}.${node.name}+${i}`}
+                />
               ))}
             </div>
           </div>
@@ -30,7 +33,10 @@ export function SinglePage() {
             </div>
             <div>
               {groups.variables.map((node, i) => (
-                <DocNodeCard node={node} key={`${node.kind}.${node.name}+${i}`} />
+                <DocNodeCard
+                  node={node}
+                  key={`${node.kind}.${node.name}+${i}`}
+                />
               ))}
             </div>
           </div>
@@ -42,7 +48,10 @@ export function SinglePage() {
             </div>
             <div>
               {groups.functions.map((node, i) => (
-                <DocNodeCard node={node} key={`${node.kind}.${node.name}+${i}`} />
+                <DocNodeCard
+                  node={node}
+                  key={`${node.kind}.${node.name}+${i}`}
+                />
               ))}
             </div>
           </div>
@@ -52,7 +61,10 @@ export function SinglePage() {
             <div className="text-gray-900 text-2xl font-medium mb-1">Enums</div>
             <div>
               {groups.enums.map((node, i) => (
-                <DocNodeCard node={node} key={`${node.kind}.${node.name}+${i}`} />
+                <DocNodeCard
+                  node={node}
+                  key={`${node.kind}.${node.name}+${i}`}
+                />
               ))}
             </div>
           </div>
@@ -64,7 +76,10 @@ export function SinglePage() {
             </div>
             <div>
               {groups.interfaces.map((node, i) => (
-                <DocNodeCard node={node} key={`${node.kind}.${node.name}+${i}`} />
+                <DocNodeCard
+                  node={node}
+                  key={`${node.kind}.${node.name}+${i}`}
+                />
               ))}
             </div>
           </div>
@@ -76,7 +91,10 @@ export function SinglePage() {
             </div>
             <div>
               {groups.typeAliases.map((node, i) => (
-                <DocNodeCard node={node} key={`${node.kind}.${node.name}+${i}`} />
+                <DocNodeCard
+                  node={node}
+                  key={`${node.kind}.${node.name}+${i}`}
+                />
               ))}
             </div>
           </div>
@@ -88,7 +106,10 @@ export function SinglePage() {
             </div>
             <div>
               {groups.namespaces.map((node, i) => (
-                <DocNodeCard node={node} key={`${node.kind}.${node.name}+${i}`} />
+                <DocNodeCard
+                  node={node}
+                  key={`${node.kind}.${node.name}+${i}`}
+                />
               ))}
             </div>
           </div>

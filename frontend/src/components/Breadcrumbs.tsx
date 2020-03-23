@@ -11,13 +11,13 @@ export function Breadcrumbs() {
   const items: React.ReactNode[] =
     location.pathname !== "/"
       ? [
-        <React.Fragment key={`namespace.root-1`}>
-          <Link href="/" unmanaged className="text-blue-500">
-            Root namespace
+          <React.Fragment key={`namespace.root-1`}>
+            <Link href="/" unmanaged className="text-blue-500">
+              Root namespace
             </Link>
-          {" > "}
-        </React.Fragment>
-      ]
+            {" > "}
+          </React.Fragment>
+        ]
       : [];
 
   for (let i = 0; i < segments.length / 2 - 2; i++) {
@@ -26,7 +26,7 @@ export function Breadcrumbs() {
     currentPath += `/${type}/${name}`;
     items.push(
       <React.Fragment key={`${type}.${name}+${i}`}>
-        <Link href={currentPath} unmanaged className="text-blue-500" >
+        <Link href={currentPath} unmanaged className="text-blue-500">
           {name} {type}
         </Link>
         {" > "}

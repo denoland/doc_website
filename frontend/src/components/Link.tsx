@@ -12,9 +12,9 @@ export function Link(
         props.unmanaged
           ? props.href
           : prefix.namespace +
-          (props.href.startsWith("$")
-            ? props.href.replace("$", prefix.node)
-            : props.href)
+            (props.href.startsWith("$")
+              ? props.href.replace("$", prefix.node)
+              : props.href)
       }
       {...{ ...props, unmanaged: undefined }}
     />

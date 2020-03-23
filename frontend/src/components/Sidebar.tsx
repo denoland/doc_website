@@ -22,13 +22,13 @@ const SidebarSection = (props: {
                 {node.name}
               </a>
             ) : (
-                <Link
-                  href={`/${props.type}/${node.name}`}
-                  className="text-blue-500"
-                >
-                  {node.name}
-                </Link>
-              )}
+              <Link
+                href={`/${props.type}/${node.name}`}
+                className="text-blue-500"
+              >
+                {node.name}
+              </Link>
+            )}
           </p>
         ))}
       </div>
