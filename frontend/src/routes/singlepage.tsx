@@ -30,8 +30,8 @@ function DocNodeCard(props: { node: DocNode }) {
 
 export function SinglePageRoute(props: { nodes: DocNode[] }) {
   const ns = props.nodes[0] as DocNodeNamespace;
-  const elemens = ns.namespaceDef.elements;
-  const groups = groupNodes(elemens);
+  const elements = ns.namespaceDef.elements;
+  const groups = groupNodes(elements);
 
   return (
     <Page>
