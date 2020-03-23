@@ -14,7 +14,7 @@ function DocNodeCard(props: { node: DocNode }) {
   const { node } = props;
 
   return (
-    <div className="shadow rounded my-3 bg-white p-2">
+    <div className="shadow rounded my-3 bg-white p-2" id={`${node.kind}.${node.name}`}>
       <div className="text-lg font-bold mb-2">
         {node.kind ? <span className="text-gray-600">{node.kind} </span> : null}
         <span className="font">{node.name}</span>
@@ -49,7 +49,7 @@ export function SinglePageRoute(props: { nodes: DocNode[] }) {
             </div>
             <ul>
               {groups.classes.map((node) => (
-                <li>{node.name}</li>
+                <li><a href={`#${node.kind}.${node.name}`}>{node.name}</a></li>
               ))}
             </ul>
           </div>
@@ -61,7 +61,7 @@ export function SinglePageRoute(props: { nodes: DocNode[] }) {
             </div>
             <ul>
               {groups.variables.map((node) => (
-                <li>{node.name}</li>
+                <li><a href={`#${node.kind}.${node.name}`}>{node.name}</a></li>
               ))}
             </ul>
           </div>
@@ -73,7 +73,7 @@ export function SinglePageRoute(props: { nodes: DocNode[] }) {
             </div>
             <ul>
               {groups.functions.map((node) => (
-                <li>{node.name}</li>
+                <li><a href={`#${node.kind}.${node.name}`}>{node.name}</a></li>
               ))}
             </ul>
           </div>
@@ -83,7 +83,7 @@ export function SinglePageRoute(props: { nodes: DocNode[] }) {
             <div className="text-gray-900 text-2xl font-medium mb-1">Enums</div>
             <ul>
               {groups.enums.map((node) => (
-                <li>{node.name}</li>
+                <li><a href={`#${node.kind}.${node.name}`}>{node.name}</a></li>
               ))}
             </ul>
           </div>
@@ -95,7 +95,7 @@ export function SinglePageRoute(props: { nodes: DocNode[] }) {
             </div>
             <ul>
               {groups.interfaces.map((node) => (
-                <li>{node.name}</li>
+                <li><a href={`#${node.kind}.${node.name}`}>{node.name}</a></li>
               ))}
             </ul>
           </div>
@@ -107,7 +107,7 @@ export function SinglePageRoute(props: { nodes: DocNode[] }) {
             </div>
             <ul>
               {groups.typeAliases.map((node) => (
-                <li>{node.name}</li>
+                <li><a href={`#${node.kind}.${node.name}`}>{node.name}</a></li>
               ))}
             </ul>
           </div>
@@ -119,7 +119,7 @@ export function SinglePageRoute(props: { nodes: DocNode[] }) {
             </div>
             <ul>
               {groups.namespaces.map((node) => (
-                <li>{node.name}</li>
+                <li><a href={`#${node.kind}.${node.name}`}>{node.name}</a></li>
               ))}
             </ul>
           </div>
