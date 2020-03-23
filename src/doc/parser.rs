@@ -64,15 +64,23 @@ impl DocParser {
       comment.kind == CommentKind::Block && comment.text.starts_with('*')
     })?;
 
+    let mut margin_pat = String::from("");
+    if let Some(margin) = self.source_map.span_to_margin(span) {
+      for _ in 0..margin {
+        margin_pat.push(' ');
+      }
+    }
+
     let js_doc_re = Regex::new(r#" ?\* ?"#).unwrap();
     let txt = js_doc_comment
       .text
       .split('\n')
       .map(|line| js_doc_re.replace(line, "").to_string())
+      .map(|line| line.trim_start_matches(&margin_pat).to_string())
       .collect::<Vec<String>>()
       .join("\n");
-    // TODO: strip leading spaces (based on first line space count?)
-    // TODO: strip leading and trailing newline
+
+    let txt = txt.trim_start().trim_end().to_string();
 
     Some(txt)
   }
