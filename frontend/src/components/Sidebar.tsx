@@ -7,6 +7,7 @@ const SidebarSection = (props: {
   title: string;
   type: string;
   nodes: DocNodeShared[];
+  mode: "singlepage" | "multipage";
 }) => {
   return props.nodes.length > 0 ? (
     <div className="py-4">
@@ -16,12 +17,18 @@ const SidebarSection = (props: {
       <div>
         {props.nodes.map(node => (
           <p key={node.name}>
-            <Link
-              href={`/${props.type}/${node.name}`}
-              className="text-blue-500"
-            >
-              {node.name}
-            </Link>
+            {props.mode === "singlepage" ? (
+              <a href={`#${props.type}.${node.name}`} className="text-blue-500">
+                {node.name}
+              </a>
+            ) : (
+              <Link
+                href={`/${props.type}/${node.name}`}
+                className="text-blue-500"
+              >
+                {node.name}
+              </Link>
+            )}
           </p>
         ))}
       </div>
@@ -32,6 +39,7 @@ const SidebarSection = (props: {
 export const Sidebar = (props: {
   generationDate: Date;
   namespacesOnly?: boolean;
+  mode: "singlepage" | "multipage";
 }) => {
   const nodes = useNodes();
   const groups = groupNodes(nodes);
@@ -50,34 +58,45 @@ export const Sidebar = (props: {
               title="Classes"
               type="class"
               nodes={groups.classes}
+              mode={props.mode}
             />
             <SidebarSection
               title="Variables"
               type="variable"
               nodes={groups.variables}
+              mode={props.mode}
             />
             <SidebarSection
               title="Functions"
               type="function"
               nodes={groups.functions}
+              mode={props.mode}
             />
-            <SidebarSection title="Enums" type="enum" nodes={groups.enums} />
+            <SidebarSection
+              title="Enums"
+              type="enum"
+              nodes={groups.enums}
+              mode={props.mode}
+            />
             <SidebarSection
               title="Interfaces"
               type="interface"
               nodes={groups.interfaces}
+              mode={props.mode}
             />
             <SidebarSection
               title="Type Aliases"
               type="typealias"
               nodes={groups.typeAliases}
-            />{" "}
+              mode={props.mode}
+            />
           </>
         ) : null}
         <SidebarSection
           title="Namespaces"
           type="namespace"
           nodes={groups.namespaces}
+          mode={props.mode}
         />
       </nav>
     </>

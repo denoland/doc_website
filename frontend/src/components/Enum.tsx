@@ -5,7 +5,7 @@ import { JSDoc } from "./JSDoc";
 
 export const Enum = ({ enum: enum_ }: { enum: DocNodeEnum }) => {
   return (
-    <Page>
+    <Page mode="multipage">
       <div className="p-8 pt-4">
         <div className="pb-4">
           <div className="text-gray-900 text-3xl font-medium">

@@ -1,28 +1,16 @@
 import React from "react";
+import { useNodes } from "../util/nodes";
+import { groupNodes, DocNode } from "../util/docs";
 import { Page } from "./Page";
-import { groupNodes, DocNodeNamespace } from "../util/docs";
-import { FunctionLink } from "./Function";
-import { VariableLink } from "./Variable";
-import { SimpleLink } from "./SimpleLink";
 import { JSDoc } from "./JSDoc";
 
-export const Namespace = (props: {
-  namespace: DocNodeNamespace;
-  isRootNamespace?: boolean;
-}) => {
-  const groups = groupNodes(props.namespace.namespaceDef.elements);
+export function SinglePage() {
+  const nodes = useNodes();
+  const groups = groupNodes(nodes);
 
   return (
-    <Page namespacesOnlySidebar mode="multipage">
-      <div className="p-8 pt-4">
-        <div className="pb-4">
-          <div className="text-gray-900 text-3xl font-medium">
-            {props.namespace.name} namespace
-          </div>
-          {props.namespace.jsDoc ? (
-            <JSDoc jsdoc={props.namespace.jsDoc} />
-          ) : null}
-        </div>
+    <Page mode="singlepage">
+      <div className="bg-gray-100 py-3 px-6 h-full">
         {groups.classes.length > 0 ? (
           <div className="py-4">
             <div className="text-gray-900 text-2xl font-medium mb-1">
@@ -30,7 +18,7 @@ export const Namespace = (props: {
             </div>
             <div>
               {groups.classes.map(node => (
-                <SimpleLink name={node.name} type="class" jsDoc={node.jsDoc} />
+                <DocNodeCard node={node} />
               ))}
             </div>
           </div>
@@ -42,14 +30,7 @@ export const Namespace = (props: {
             </div>
             <div>
               {groups.variables.map(node => (
-                <VariableLink
-                  key={node.name}
-                  name={node.name}
-                  jsDoc={node.jsDoc}
-                  type="variable"
-                  returnType={node.variableDef?.type_}
-                  readonly={node.variableDef?.kind === "const"}
-                />
+                <DocNodeCard node={node} />
               ))}
             </div>
           </div>
@@ -61,14 +42,7 @@ export const Namespace = (props: {
             </div>
             <div>
               {groups.functions.map(node => (
-                <FunctionLink
-                  key={node.name}
-                  name={node.name}
-                  jsDoc={node.jsDoc}
-                  type="function"
-                  params={node.functionDef.params}
-                  returnType={node.functionDef.returnType}
-                />
+                <DocNodeCard node={node} />
               ))}
             </div>
           </div>
@@ -78,7 +52,7 @@ export const Namespace = (props: {
             <div className="text-gray-900 text-2xl font-medium mb-1">Enums</div>
             <div>
               {groups.enums.map(node => (
-                <SimpleLink name={node.name} type="enum" jsDoc={node.jsDoc} />
+                <DocNodeCard node={node} />
               ))}
             </div>
           </div>
@@ -90,11 +64,7 @@ export const Namespace = (props: {
             </div>
             <div>
               {groups.interfaces.map(node => (
-                <SimpleLink
-                  name={node.name}
-                  type="interface"
-                  jsDoc={node.jsDoc}
-                />
+                <DocNodeCard node={node} />
               ))}
             </div>
           </div>
@@ -106,11 +76,7 @@ export const Namespace = (props: {
             </div>
             <div>
               {groups.typeAliases.map(node => (
-                <SimpleLink
-                  name={node.name}
-                  type="typealias"
-                  jsDoc={node.jsDoc}
-                />
+                <DocNodeCard node={node} />
               ))}
             </div>
           </div>
@@ -122,20 +88,37 @@ export const Namespace = (props: {
             </div>
             <div>
               {groups.namespaces.map(node => (
-                <SimpleLink
-                  name={node.name}
-                  type="namespace"
-                  jsDoc={node.jsDoc}
-                />
+                <DocNodeCard node={node} />
               ))}
             </div>
           </div>
         ) : null}
-        <div className="text-sm">
-          Defined in {props.namespace.location.filename}:
-          {props.namespace.location.line}:{props.namespace.location.col}
-        </div>
       </div>
     </Page>
   );
-};
+}
+
+function DocNodeCard(props: { node: DocNode }) {
+  const { node } = props;
+
+  return (
+    <div
+      className="shadow rounded my-3 bg-white p-2"
+      id={`${node.kind}.${node.name}`}
+    >
+      <div className="text-lg font-bold mb-2">
+        {node.kind ? <span className="text-gray-600">{node.kind} </span> : null}
+        <span className="font">{node.name}</span>
+      </div>
+
+      <pre className="text-sm font-mono">{node.snippet}</pre>
+
+      <div className="text-sm mt-2 text-gray-600">
+        Defined in file '{node.location.filename}' on line {node.location.line},
+        column {node.location.col}.
+      </div>
+
+      {node.jsDoc ? <JSDoc jsdoc={node.jsDoc} /> : null}
+    </div>
+  );
+}

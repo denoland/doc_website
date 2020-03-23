@@ -5,11 +5,13 @@ import { Breadcrumbs } from "./Breadcrumbs";
 export function Page(props: {
   children: React.ReactNode;
   namespacesOnlySidebar?: boolean;
+  mode: "singlepage" | "multipage";
 }) {
   return (
     <div className="grid grid-cols-5 h-full w-full">
       <div className="col-span-1">
         <Sidebar
+          mode="singlepage"
           generationDate={new Date()}
           namespacesOnly={props.namespacesOnlySidebar}
         />

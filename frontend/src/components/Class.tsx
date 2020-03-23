@@ -24,7 +24,7 @@ export const Class = ({ class: class_ }: { class: DocNodeClass }) => {
   const staticMethods = methods.filter(node => node.isStatic);
 
   return (
-    <Page>
+    <Page mode="multipage">
       <div className="p-8 pt-4">
         <div className="pb-4">
           <div className="text-gray-900 text-3xl font-medium">
@@ -153,7 +153,7 @@ export const ClassConstructor = ({
   constructor_: ClassConstructorDef;
 }) => {
   return (
-    <Page>
+    <Page mode="multipage">
       <div className="p-8 pt-4">
         <div className="pb-4">
           <div className="text-gray-900 text-3xl font-medium">
@@ -188,7 +188,7 @@ export const ClassConstructor = ({
 
 export const ClassProperty = ({ property }: { property: ClassPropertyDef }) => {
   return (
-    <Page>
+    <Page mode="multipage">
       <div className="p-8 pt-4">
         <div className="pb-4">
           <div className="text-gray-900 text-3xl font-medium">
@@ -236,7 +236,7 @@ export const ClassProperty = ({ property }: { property: ClassPropertyDef }) => {
 
 export const ClassMethod = ({ method }: { method: ClassMethodDef }) => {
   return (
-    <Page>
+    <Page mode="multipage">
       <div className="p-8 pt-4">
         <div className="pb-4">
           <div className="text-gray-900 text-3xl font-medium">
