@@ -17,7 +17,7 @@ export function Page(props: {
         />
       </div>
       <div className="col-span-4 bg-gray-100 max-h-screen overflow-y-scroll">
-        <Breadcrumbs />
+        {props.mode === "multipage" ? <Breadcrumbs /> : null}
         {props.children}
       </div>
     </div>
