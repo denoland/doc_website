@@ -33,7 +33,7 @@ export function SinglePageRoute(props: { nodes: DocNode[] }) {
                 </span>
               ) : null}
             </div>
-            <div className="font-mono">{node.snippet}</div>
+            <pre className="font-mono">{node.snippet}</pre>
             {node.jsDoc ? (
               <p className="text-gray-700 mt-2">{cleanJSDoc(node.jsDoc)}</p>
             ) : null}
@@ -193,6 +193,18 @@ function unfirl(nodes: DocNode[]): SimpleDocNode[] {
       snippet: typeAlias.snippet,
       jsDoc: typeAlias.jsDoc,
       prefix: "type"
+    });
+  });
+
+  grouped.namespaces.forEach(ns => {
+    ns.namespaceDef.elements.forEach(el => {
+      simpleNodes.push({
+        name: el.name,
+        location: el.location,
+        snippet: el.snippet,
+        jsDoc: el.jsDoc,
+        prefix: el.kind,
+      });
     });
   });
 

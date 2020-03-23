@@ -121,7 +121,7 @@ export type DocNode =
   | DocNodeNamespace;
 
 export async function getDocs(): Promise<DocNode[]> {
-  const req = await fetch("/docs.json");
+  const req = await fetch("/data1.json");
   if (!req.ok) throw new Error("Failed to fetch docs.");
   return await req.json();
 }
