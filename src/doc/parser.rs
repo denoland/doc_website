@@ -76,7 +76,13 @@ impl DocParser {
       .text
       .split('\n')
       .map(|line| js_doc_re.replace(line, "").to_string())
-      .map(|line| line.trim_start_matches(&margin_pat).to_string())
+      .map(|line| {
+        if line.starts_with(&margin_pat) {
+          line[margin_pat.len()..].to_string()
+        } else {
+          line.to_string()
+        }
+      })
       .collect::<Vec<String>>()
       .join("\n");
 

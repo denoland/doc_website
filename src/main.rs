@@ -428,10 +428,30 @@ fn get_doc_for_ts_interface_decl(
   interface_decl: &swc_ecma_ast::TsInterfaceDecl,
 ) -> doc::DocNode {
   let js_doc = doc_parser.js_doc_for_span(parent_span);
-  let snippet = doc_parser
+
+  let mut snippet = doc_parser
     .source_map
     .span_to_snippet(parent_span)
     .expect("Snippet not found");
+
+  if let Some(margin) = doc_parser.source_map.span_to_margin(parent_span) {
+    let mut margin_pat = String::from("");
+    for _ in 0..margin {
+      margin_pat.push(' ');
+    }
+
+    snippet = snippet
+      .split('\n')
+      .map(|line| {
+        if line.starts_with(&margin_pat) {
+          line[margin_pat.len()..].to_string()
+        } else {
+          line.to_string()
+        }
+      })
+      .collect::<Vec<String>>()
+      .join("\n");
+  }
 
   let interface_name = interface_decl.id.sym.to_string();
 
