@@ -456,6 +456,9 @@ fn get_doc_for_ts_interface_decl(
   let interface_name = interface_decl.id.sym.to_string();
 
   let mut methods = vec![];
+  let mut properties = vec![];
+  let mut call_signatures = vec![];
+
   for type_element in &interface_decl.body.body {
     use swc_ecma_ast::TsTypeElement::*;
 
@@ -510,14 +513,124 @@ fn get_doc_for_ts_interface_decl(
         };
         methods.push(method_def);
       }
-      TsPropertySignature(_) => {}
-      TsCallSignatureDecl(_) => {}
+      TsPropertySignature(ts_prop_sig) => {
+        let prop_js_doc = doc_parser.js_doc_for_span(ts_prop_sig.span);
+        let prop_snippet = doc_parser
+          .source_map
+          .span_to_snippet(ts_prop_sig.span)
+          .unwrap();
+
+        let name = match &*ts_prop_sig.key {
+          swc_ecma_ast::Expr::Ident(ident) => ident.sym.to_string(),
+          _ => "TODO".to_string(),
+        };
+
+        let mut params = vec![];
+
+        for param in &ts_prop_sig.params {
+          use swc_ecma_ast::TsFnParam::*;
+
+          let param_def = match param {
+            Ident(ident) => {
+              let ts_type = ident
+                .type_ann
+                .as_ref()
+                .map(|rt| ts_type_ann_to_def(&doc_parser.source_map, rt));
+
+              doc::ParamDef {
+                name: ident.sym.to_string(),
+                ts_type,
+              }
+            }
+            _ => doc::ParamDef {
+              name: "<TODO>".to_string(),
+              ts_type: None,
+            },
+          };
+
+          params.push(param_def);
+        }
+
+        let ts_type = ts_prop_sig
+          .type_ann
+          .as_ref()
+          .map(|rt| ts_type_ann_to_def(&doc_parser.source_map, rt));
+
+        let prop_def = doc::InterfacePropertyDef {
+          name,
+          js_doc: prop_js_doc,
+          snippet: prop_snippet,
+          location: doc_parser
+            .source_map
+            .lookup_char_pos(ts_prop_sig.span.lo())
+            .into(),
+          params,
+          ts_type,
+          computed: ts_prop_sig.computed,
+          optional: ts_prop_sig.optional,
+        };
+        properties.push(prop_def);
+      }
+      TsCallSignatureDecl(ts_call_sig) => {
+        let call_sig_js_doc = doc_parser.js_doc_for_span(ts_call_sig.span);
+        let call_sig_snippet = doc_parser
+          .source_map
+          .span_to_snippet(ts_call_sig.span)
+          .unwrap();
+
+        let mut params = vec![];
+        for param in &ts_call_sig.params {
+          use swc_ecma_ast::TsFnParam::*;
+
+          let param_def = match param {
+            Ident(ident) => {
+              let ts_type = ident
+                .type_ann
+                .as_ref()
+                .map(|rt| ts_type_ann_to_def(&doc_parser.source_map, rt));
+
+              doc::ParamDef {
+                name: ident.sym.to_string(),
+                ts_type,
+              }
+            }
+            _ => doc::ParamDef {
+              name: "<TODO>".to_string(),
+              ts_type: None,
+            },
+          };
+
+          params.push(param_def);
+        }
+
+        let ts_type = ts_call_sig
+          .type_ann
+          .as_ref()
+          .map(|rt| ts_type_ann_to_def(&doc_parser.source_map, rt));
+
+        let call_sig_def = doc::InterfaceCallSignatureDef {
+          js_doc: call_sig_js_doc,
+          snippet: call_sig_snippet,
+          location: doc_parser
+            .source_map
+            .lookup_char_pos(ts_call_sig.span.lo())
+            .into(),
+          params,
+          ts_type,
+        };
+        call_signatures.push(call_sig_def);
+      }
+      // TODO:
       TsConstructSignatureDecl(_) => {}
       TsIndexSignature(_) => {}
     }
   }
 
-  let interface_def = doc::InterfaceDef { methods };
+  let interface_def = doc::InterfaceDef {
+    methods,
+    properties,
+    call_signatures,
+  };
 
   doc::DocNode {
     kind: doc::DocNodeKind::Interface,

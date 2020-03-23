@@ -129,10 +129,37 @@ pub struct InterfaceMethodDef {
 }
 
 #[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct InterfacePropertyDef {
+  // TODO: type_params
+  pub name: String,
+  pub snippet: String,
+  pub location: Location,
+  pub js_doc: Option<String>,
+  pub params: Vec<ParamDef>,
+  pub computed: bool,
+  pub optional: bool,
+  pub ts_type: Option<TsTypeDef>,
+}
+
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct InterfaceCallSignatureDef {
+  // TODO: type_params
+  pub snippet: String,
+  pub location: Location,
+  pub js_doc: Option<String>,
+  pub params: Vec<ParamDef>,
+  pub ts_type: Option<TsTypeDef>,
+}
+
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
 pub struct InterfaceDef {
   // TODO: extends, type params
-  // TODO: elements https://docs.rs/swc_ecma_ast/0.18.1/swc_ecma_ast/enum.TsTypeElement.html
   pub methods: Vec<InterfaceMethodDef>,
+  pub properties: Vec<InterfacePropertyDef>,
+  pub call_signatures: Vec<InterfaceCallSignatureDef>,
 }
 
 #[derive(Debug, Serialize)]

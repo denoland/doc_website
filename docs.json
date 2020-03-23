@@ -60,7 +60,90 @@
           },
           "jsDoc": null,
           "interfaceDef": {
-            "methods": []
+            "methods": [],
+            "properties": [
+              {
+                "name": "fn",
+                "snippet": "fn: TestFunction;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 18,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "TestFunction"
+                }
+              },
+              {
+                "name": "name",
+                "snippet": "name: string;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 19,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "string"
+                }
+              },
+              {
+                "name": "ignore",
+                "snippet": "ignore?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 20,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "disableOpSanitizer",
+                "snippet": "disableOpSanitizer?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 21,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "disableResourceSanitizer",
+                "snippet": "disableResourceSanitizer?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 22,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              }
+            ],
+            "callSignatures": []
           }
         },
         {
@@ -332,7 +415,106 @@
           },
           "jsDoc": null,
           "interfaceDef": {
-            "methods": []
+            "methods": [],
+            "properties": [
+              {
+                "name": "exitOnFail",
+                "snippet": "exitOnFail?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 106,
+                  "col": 4
+                },
+                "jsDoc": "If `true`, Deno will exit with status code 1 if there was\ntest failure. Defaults to `true`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "failFast",
+                "snippet": "failFast?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 108,
+                  "col": 4
+                },
+                "jsDoc": "If `true`, Deno will exit upon first test failure Defaults to `false`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "only",
+                "snippet": "only?: string | RegExp;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 111,
+                  "col": 4
+                },
+                "jsDoc": "String or RegExp used to filter test to run. Only test with names\nmatching provided `String` or `RegExp` will be run.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "string | RegExp"
+                }
+              },
+              {
+                "name": "skip",
+                "snippet": "skip?: string | RegExp;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 114,
+                  "col": 4
+                },
+                "jsDoc": "String or RegExp used to skip tests to run. Tests with names\nmatching provided `String` or `RegExp` will not be run.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "string | RegExp"
+                }
+              },
+              {
+                "name": "disableLog",
+                "snippet": "disableLog?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 116,
+                  "col": 4
+                },
+                "jsDoc": "Disable logging of the results. Defaults to `false`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "reporter",
+                "snippet": "reporter?: TestReporter;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 118,
+                  "col": 4
+                },
+                "jsDoc": "Custom reporter class. If not provided uses console reporter.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "TestReporter"
+                }
+              }
+            ],
+            "callSignatures": []
           }
         },
         {
@@ -704,7 +886,9 @@
                   "repr": "Promise<number | EOF>"
                 }
               }
-            ]
+            ],
+            "properties": [],
+            "callSignatures": []
           }
         },
         {
@@ -739,7 +923,9 @@
                   "repr": "number | EOF"
                 }
               }
-            ]
+            ],
+            "properties": [],
+            "callSignatures": []
           }
         },
         {
@@ -774,7 +960,9 @@
                   "repr": "Promise<number>"
                 }
               }
-            ]
+            ],
+            "properties": [],
+            "callSignatures": []
           }
         },
         {
@@ -809,7 +997,9 @@
                   "repr": "number"
                 }
               }
-            ]
+            ],
+            "properties": [],
+            "callSignatures": []
           }
         },
         {
@@ -837,7 +1027,9 @@
                   "repr": "void"
                 }
               }
-            ]
+            ],
+            "properties": [],
+            "callSignatures": []
           }
         },
         {
@@ -878,7 +1070,9 @@
                   "repr": "Promise<number>"
                 }
               }
-            ]
+            ],
+            "properties": [],
+            "callSignatures": []
           }
         },
         {
@@ -919,7 +1113,9 @@
                   "repr": "number"
                 }
               }
-            ]
+            ],
+            "properties": [],
+            "callSignatures": []
           }
         },
         {
@@ -933,7 +1129,9 @@
           },
           "jsDoc": null,
           "interfaceDef": {
-            "methods": []
+            "methods": [],
+            "properties": [],
+            "callSignatures": []
           }
         },
         {
@@ -947,7 +1145,9 @@
           },
           "jsDoc": null,
           "interfaceDef": {
-            "methods": []
+            "methods": [],
+            "properties": [],
+            "callSignatures": []
           }
         },
         {
@@ -961,7 +1161,9 @@
           },
           "jsDoc": null,
           "interfaceDef": {
-            "methods": []
+            "methods": [],
+            "properties": [],
+            "callSignatures": []
           }
         },
         {
@@ -975,7 +1177,9 @@
           },
           "jsDoc": null,
           "interfaceDef": {
-            "methods": []
+            "methods": [],
+            "properties": [],
+            "callSignatures": []
           }
         },
         {
@@ -989,7 +1193,9 @@
           },
           "jsDoc": null,
           "interfaceDef": {
-            "methods": []
+            "methods": [],
+            "properties": [],
+            "callSignatures": []
           }
         },
         {
@@ -1003,7 +1209,9 @@
           },
           "jsDoc": null,
           "interfaceDef": {
-            "methods": []
+            "methods": [],
+            "properties": [],
+            "callSignatures": []
           }
         },
         {
@@ -1782,7 +1990,122 @@
           },
           "jsDoc": null,
           "interfaceDef": {
-            "methods": []
+            "methods": [],
+            "properties": [
+              {
+                "name": "read",
+                "snippet": "read?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 673,
+                  "col": 4
+                },
+                "jsDoc": "Sets the option for read access. This option, when `true`, means that the\nfile should be read-able if opened.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "write",
+                "snippet": "write?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 678,
+                  "col": 4
+                },
+                "jsDoc": "Sets the option for write access. This option, when `true`, means that\nthe file should be write-able if opened. If the file already exists,\nany write calls on it will overwrite its contents, by default without\ntruncating it.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "append",
+                "snippet": "append?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 683,
+                  "col": 4
+                },
+                "jsDoc": "Sets the option for the append mode. This option, when `true`, means that\nwrites will append to a file instead of overwriting previous contents.\nNote that setting `{ write: true, append: true }` has the same effect as\nsetting only `{ append: true }`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "truncate",
+                "snippet": "truncate?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 688,
+                  "col": 4
+                },
+                "jsDoc": "Sets the option for truncating a previous file. If a file is\nsuccessfully opened with this option set it will truncate the file to `0`\nsize if it already exists. The file must be opened with write access\nfor truncate to work.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "create",
+                "snippet": "create?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 692,
+                  "col": 4
+                },
+                "jsDoc": "Sets the option to allow creating a new file, if one doesn't already\nexist at the specified path. Requires write or append access to be\nused.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "createNew",
+                "snippet": "createNew?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 697,
+                  "col": 4
+                },
+                "jsDoc": "Defaults to `false`. If set to `true`, no file, directory, or symlink is\nallowed to exist at the target location. Requires write or append\naccess to be used. When createNew is set to `true`, create and truncate\nare ignored.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "mode",
+                "snippet": "mode?: number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 701,
+                  "col": 4
+                },
+                "jsDoc": "Permissions to use if creating the file (defaults to `0o666`, before\nthe process's umask).\nIgnored on Windows.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "number"
+                }
+              }
+            ],
+            "callSignatures": []
           }
         },
         {
@@ -2454,7 +2777,42 @@
           },
           "jsDoc": null,
           "interfaceDef": {
-            "methods": []
+            "methods": [],
+            "properties": [
+              {
+                "name": "recursive",
+                "snippet": "recursive?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 827,
+                  "col": 4
+                },
+                "jsDoc": "Defaults to `false`. If set to `true`, means that any intermediate\ndirectories will also be created (as with the shell command `mkdir -p`).\nIntermediate directories are created with the same permissions.\nWhen recursive is set to `true`, succeeds silently (without changing any\npermissions) if a directory already exists at the path.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "mode",
+                "snippet": "mode?: number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 831,
+                  "col": 4
+                },
+                "jsDoc": "Permissions to use when creating the directory (defaults to `0o777`,\nbefore the process's umask).\nIgnored on Windows.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "number"
+                }
+              }
+            ],
+            "callSignatures": []
           }
         },
         {
@@ -2608,7 +2966,58 @@
           },
           "jsDoc": null,
           "interfaceDef": {
-            "methods": []
+            "methods": [],
+            "properties": [
+              {
+                "name": "dir",
+                "snippet": "dir?: string;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 869,
+                  "col": 4
+                },
+                "jsDoc": "Directory where the temporary directory should be created (defaults to\nthe env variable TMPDIR, or the system's default, usually /tmp).",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "string"
+                }
+              },
+              {
+                "name": "prefix",
+                "snippet": "prefix?: string;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 872,
+                  "col": 4
+                },
+                "jsDoc": "String that should precede the random portion of the temporary\ndirectory's name.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "string"
+                }
+              },
+              {
+                "name": "suffix",
+                "snippet": "suffix?: string;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 875,
+                  "col": 4
+                },
+                "jsDoc": "String that should follow the random portion of the temporary\ndirectory's name.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "string"
+                }
+              }
+            ],
+            "callSignatures": []
           }
         },
         {
@@ -2942,7 +3351,26 @@
           },
           "jsDoc": null,
           "interfaceDef": {
-            "methods": []
+            "methods": [],
+            "properties": [
+              {
+                "name": "recursive",
+                "snippet": "recursive?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1047,
+                  "col": 4
+                },
+                "jsDoc": "Defaults to `false`. If set to `true`, path will be removed even if\nit's a non-empty directory.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              }
+            ],
+            "callSignatures": []
           }
         },
         {
@@ -3176,7 +3604,234 @@
                   "repr": "boolean"
                 }
               }
-            ]
+            ],
+            "properties": [
+              {
+                "name": "size",
+                "snippet": "size: number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1116,
+                  "col": 4
+                },
+                "jsDoc": "The size of the file, in bytes.",
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number"
+                }
+              },
+              {
+                "name": "modified",
+                "snippet": "modified: number | null;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1120,
+                  "col": 4
+                },
+                "jsDoc": "The last modification time of the file. This corresponds to the `mtime`\nfield from `stat` on Linux/Mac OS and `ftLastWriteTime` on Windows. This\nmay not be available on all platforms.",
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number | null"
+                }
+              },
+              {
+                "name": "accessed",
+                "snippet": "accessed: number | null;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1124,
+                  "col": 4
+                },
+                "jsDoc": "The last access time of the file. This corresponds to the `atime`\nfield from `stat` on Unix and `ftLastAccessTime` on Windows. This may not\nbe available on all platforms.",
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number | null"
+                }
+              },
+              {
+                "name": "created",
+                "snippet": "created: number | null;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1128,
+                  "col": 4
+                },
+                "jsDoc": "The last access time of the file. This corresponds to the `birthtime`\nfield from `stat` on Mac/BSD and `ftCreationTime` on Windows. This may not\nbe available on all platforms.",
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number | null"
+                }
+              },
+              {
+                "name": "name",
+                "snippet": "name: string | null;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1130,
+                  "col": 4
+                },
+                "jsDoc": "The file or directory name.",
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "string | null"
+                }
+              },
+              {
+                "name": "dev",
+                "snippet": "dev: number | null;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1134,
+                  "col": 4
+                },
+                "jsDoc": "ID of the device containing the file.\n\n_Linux/Mac OS only._",
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number | null"
+                }
+              },
+              {
+                "name": "ino",
+                "snippet": "ino: number | null;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1138,
+                  "col": 4
+                },
+                "jsDoc": "Inode number.\n\n_Linux/Mac OS only._",
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number | null"
+                }
+              },
+              {
+                "name": "mode",
+                "snippet": "mode: number | null;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1143,
+                  "col": 4
+                },
+                "jsDoc": "**UNSTABLE**: Match behavior with Go on Windows for `mode`.\n\nThe underlying raw `st_mode` bits that contain the standard Unix\npermissions for this file/directory.",
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number | null"
+                }
+              },
+              {
+                "name": "nlink",
+                "snippet": "nlink: number | null;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1147,
+                  "col": 4
+                },
+                "jsDoc": "Number of hard links pointing to this file.\n\n_Linux/Mac OS only._",
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number | null"
+                }
+              },
+              {
+                "name": "uid",
+                "snippet": "uid: number | null;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1151,
+                  "col": 4
+                },
+                "jsDoc": "User ID of the owner of this file.\n\n_Linux/Mac OS only._",
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number | null"
+                }
+              },
+              {
+                "name": "gid",
+                "snippet": "gid: number | null;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1155,
+                  "col": 4
+                },
+                "jsDoc": "User ID of the owner of this file.\n\n_Linux/Mac OS only._",
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number | null"
+                }
+              },
+              {
+                "name": "rdev",
+                "snippet": "rdev: number | null;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1159,
+                  "col": 4
+                },
+                "jsDoc": "Device ID of this file.\n\n_Linux/Mac OS only._",
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number | null"
+                }
+              },
+              {
+                "name": "blksize",
+                "snippet": "blksize: number | null;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1163,
+                  "col": 4
+                },
+                "jsDoc": "Blocksize for filesystem I/O.\n\n_Linux/Mac OS only._",
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number | null"
+                }
+              },
+              {
+                "name": "blocks",
+                "snippet": "blocks: number | null;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1167,
+                  "col": 4
+                },
+                "jsDoc": "Number of blocks allocated to the file, in 512-byte units.\n\n_Linux/Mac OS only._",
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number | null"
+                }
+              }
+            ],
+            "callSignatures": []
           }
         },
         {
@@ -3654,7 +4309,58 @@
           },
           "jsDoc": "Options for writing to a file.",
           "interfaceDef": {
-            "methods": []
+            "methods": [],
+            "properties": [
+              {
+                "name": "append",
+                "snippet": "append?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1346,
+                  "col": 4
+                },
+                "jsDoc": "Defaults to `false`. If set to `true`, will append to a file instead of\noverwriting previous contents.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "create",
+                "snippet": "create?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1349,
+                  "col": 4
+                },
+                "jsDoc": "Sets the option to allow creating a new file, if one doesn't already\nexist at the specified path (defaults to `true`).",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "mode",
+                "snippet": "mode?: number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1351,
+                  "col": 4
+                },
+                "jsDoc": "Permissions always applied to file.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "number"
+                }
+              }
+            ],
+            "callSignatures": []
           }
         },
         {
@@ -4048,7 +4754,30 @@
           },
           "jsDoc": null,
           "interfaceDef": {
-            "methods": []
+            "methods": [],
+            "properties": [],
+            "callSignatures": [
+              {
+                "snippet": "(msg: Uint8Array): void;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1554,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [
+                  {
+                    "name": "msg",
+                    "tsType": {
+                      "repr": "Uint8Array"
+                    }
+                  }
+                ],
+                "tsType": {
+                  "repr": "void"
+                }
+              }
+            ]
           }
         },
         {
@@ -4109,7 +4838,9 @@
                   "repr": "void"
                 }
               }
-            ]
+            ],
+            "properties": [],
+            "callSignatures": []
           }
         },
         {
@@ -4123,7 +4854,26 @@
           },
           "jsDoc": null,
           "interfaceDef": {
-            "methods": []
+            "methods": [],
+            "properties": [
+              {
+                "name": "ops",
+                "snippet": "ops: {\n      [name: string]: PluginOp;\n    };",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1566,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "{\n      [name: string]: PluginOp;\n    }"
+                }
+              }
+            ],
+            "callSignatures": []
           }
         },
         {
@@ -4179,7 +4929,58 @@
           },
           "jsDoc": null,
           "interfaceDef": {
-            "methods": []
+            "methods": [],
+            "properties": [
+              {
+                "name": "transport",
+                "snippet": "transport: Transport;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1586,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "Transport"
+                }
+              },
+              {
+                "name": "hostname",
+                "snippet": "hostname: string;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1587,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "string"
+                }
+              },
+              {
+                "name": "port",
+                "snippet": "port: number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1588,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number"
+                }
+              }
+            ],
+            "callSignatures": []
           }
         },
         {
@@ -4193,7 +4994,58 @@
           },
           "jsDoc": null,
           "interfaceDef": {
-            "methods": []
+            "methods": [],
+            "properties": [
+              {
+                "name": "port",
+                "snippet": "port: number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1592,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number"
+                }
+              },
+              {
+                "name": "transport",
+                "snippet": "transport?: Transport;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1593,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "Transport"
+                }
+              },
+              {
+                "name": "hostname",
+                "snippet": "hostname?: string;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1594,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "string"
+                }
+              }
+            ],
+            "callSignatures": []
           }
         },
         {
@@ -4368,7 +5220,26 @@
                   "repr": "AsyncIterator<[Uint8Array, Addr]>"
                 }
               }
-            ]
+            ],
+            "properties": [
+              {
+                "name": "addr",
+                "snippet": "readonly addr: Addr;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1647,
+                  "col": 4
+                },
+                "jsDoc": "Return the address of the `UDPConn`.",
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "Addr"
+                }
+              }
+            ],
+            "callSignatures": []
           }
         },
         {
@@ -4422,7 +5293,26 @@
                   "repr": "AsyncIterator<Conn>"
                 }
               }
-            ]
+            ],
+            "properties": [
+              {
+                "name": "addr",
+                "snippet": "readonly addr: Addr;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1659,
+                  "col": 4
+                },
+                "jsDoc": "Return the address of the `Listener`.",
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "Addr"
+                }
+              }
+            ],
+            "callSignatures": []
           }
         },
         {
@@ -4463,7 +5353,58 @@
                   "repr": "void"
                 }
               }
-            ]
+            ],
+            "properties": [
+              {
+                "name": "localAddr",
+                "snippet": "readonly localAddr: Addr;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1665,
+                  "col": 4
+                },
+                "jsDoc": "The local address of the connection.",
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "Addr"
+                }
+              },
+              {
+                "name": "remoteAddr",
+                "snippet": "readonly remoteAddr: Addr;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1667,
+                  "col": 4
+                },
+                "jsDoc": "The remote address of the connection.",
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "Addr"
+                }
+              },
+              {
+                "name": "rid",
+                "snippet": "readonly rid: number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1669,
+                  "col": 4
+                },
+                "jsDoc": "The resource ID of the connection.",
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number"
+                }
+              }
+            ],
+            "callSignatures": []
           }
         },
         {
@@ -4477,7 +5418,58 @@
           },
           "jsDoc": null,
           "interfaceDef": {
-            "methods": []
+            "methods": [],
+            "properties": [
+              {
+                "name": "port",
+                "snippet": "port: number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1680,
+                  "col": 4
+                },
+                "jsDoc": "The port to listen on.",
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number"
+                }
+              },
+              {
+                "name": "hostname",
+                "snippet": "hostname?: string;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1683,
+                  "col": 4
+                },
+                "jsDoc": "A literal IP address or host name that can be resolved to an IP address.\nIf not specified, defaults to `0.0.0.0`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "string"
+                }
+              },
+              {
+                "name": "transport",
+                "snippet": "transport?: Transport;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1688,
+                  "col": 4
+                },
+                "jsDoc": "Either `\"tcp\"` or `\"udp\"`. Defaults to `\"tcp\"`.\n\nIn the future: `\"tcp4\"`, `\"tcp6\"`, `\"udp4\"`, `\"udp6\"`, `\"ip\"`, `\"ip4\"`,\n`\"ip6\"`, `\"unix\"`, `\"unixgram\"`, and `\"unixpacket\"`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "Transport"
+                }
+              }
+            ],
+            "callSignatures": []
           }
         },
         {
@@ -4569,7 +5561,42 @@
           },
           "jsDoc": null,
           "interfaceDef": {
-            "methods": []
+            "methods": [],
+            "properties": [
+              {
+                "name": "certFile",
+                "snippet": "certFile: string;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1731,
+                  "col": 4
+                },
+                "jsDoc": "Server certificate file.",
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "string"
+                }
+              },
+              {
+                "name": "keyFile",
+                "snippet": "keyFile: string;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1733,
+                  "col": 4
+                },
+                "jsDoc": "Server public key file.",
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "string"
+                }
+              }
+            ],
+            "callSignatures": []
           }
         },
         {
@@ -4609,7 +5636,58 @@
           },
           "jsDoc": null,
           "interfaceDef": {
-            "methods": []
+            "methods": [],
+            "properties": [
+              {
+                "name": "port",
+                "snippet": "port: number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1746,
+                  "col": 4
+                },
+                "jsDoc": "The port to connect to.",
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number"
+                }
+              },
+              {
+                "name": "hostname",
+                "snippet": "hostname?: string;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1749,
+                  "col": 4
+                },
+                "jsDoc": "A literal IP address or host name that can be resolved to an IP address.\nIf not specified, defaults to `127.0.0.1`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "string"
+                }
+              },
+              {
+                "name": "transport",
+                "snippet": "transport?: Transport;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1754,
+                  "col": 4
+                },
+                "jsDoc": "Either `\"tcp\"` or `\"udp\"`. Defaults to `\"tcp\"`.\n\nIn the future: `\"tcp4\"`, `\"tcp6\"`, `\"udp4\"`, `\"udp6\"`, `\"ip\"`, `\"ip4\"`,\n`\"ip6\"`, `\"unix\"`, `\"unixgram\"`, and `\"unixpacket\"`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "Transport"
+                }
+              }
+            ],
+            "callSignatures": []
           }
         },
         {
@@ -4649,7 +5727,58 @@
           },
           "jsDoc": null,
           "interfaceDef": {
-            "methods": []
+            "methods": [],
+            "properties": [
+              {
+                "name": "port",
+                "snippet": "port: number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1770,
+                  "col": 4
+                },
+                "jsDoc": "The port to connect to.",
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number"
+                }
+              },
+              {
+                "name": "hostname",
+                "snippet": "hostname?: string;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1773,
+                  "col": 4
+                },
+                "jsDoc": "A literal IP address or host name that can be resolved to an IP address.\nIf not specified, defaults to `127.0.0.1`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "string"
+                }
+              },
+              {
+                "name": "certFile",
+                "snippet": "certFile?: string;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1775,
+                  "col": 4
+                },
+                "jsDoc": "Server certificate file.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "string"
+                }
+              }
+            ],
+            "callSignatures": []
           }
         },
         {
@@ -4689,7 +5818,186 @@
           },
           "jsDoc": "**UNSTABLE**: not sure if broken or not",
           "interfaceDef": {
-            "methods": []
+            "methods": [],
+            "properties": [
+              {
+                "name": "opsDispatched",
+                "snippet": "opsDispatched: number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1785,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number"
+                }
+              },
+              {
+                "name": "opsDispatchedSync",
+                "snippet": "opsDispatchedSync: number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1786,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number"
+                }
+              },
+              {
+                "name": "opsDispatchedAsync",
+                "snippet": "opsDispatchedAsync: number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1787,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number"
+                }
+              },
+              {
+                "name": "opsDispatchedAsyncUnref",
+                "snippet": "opsDispatchedAsyncUnref: number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1788,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number"
+                }
+              },
+              {
+                "name": "opsCompleted",
+                "snippet": "opsCompleted: number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1789,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number"
+                }
+              },
+              {
+                "name": "opsCompletedSync",
+                "snippet": "opsCompletedSync: number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1790,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number"
+                }
+              },
+              {
+                "name": "opsCompletedAsync",
+                "snippet": "opsCompletedAsync: number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1791,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number"
+                }
+              },
+              {
+                "name": "opsCompletedAsyncUnref",
+                "snippet": "opsCompletedAsyncUnref: number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1792,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number"
+                }
+              },
+              {
+                "name": "bytesSentControl",
+                "snippet": "bytesSentControl: number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1793,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number"
+                }
+              },
+              {
+                "name": "bytesSentData",
+                "snippet": "bytesSentData: number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1794,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number"
+                }
+              },
+              {
+                "name": "bytesReceived",
+                "snippet": "bytesReceived: number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1795,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number"
+                }
+              }
+            ],
+            "callSignatures": []
           }
         },
         {
@@ -4741,7 +6049,42 @@
           },
           "jsDoc": "**UNSTABLE**: new API. Needs docs.",
           "interfaceDef": {
-            "methods": []
+            "methods": [],
+            "properties": [
+              {
+                "name": "kind",
+                "snippet": "kind: \"any\" | \"access\" | \"create\" | \"modify\" | \"remove\";",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1834,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "\"any\" | \"access\" | \"create\" | \"modify\" | \"remove\""
+                }
+              },
+              {
+                "name": "paths",
+                "snippet": "paths: string[];",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1835,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "string[]"
+                }
+              }
+            ],
+            "callSignatures": []
           }
         },
         {
@@ -5040,7 +6383,58 @@
           },
           "jsDoc": null,
           "interfaceDef": {
-            "methods": []
+            "methods": [],
+            "properties": [
+              {
+                "name": "success",
+                "snippet": "success: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1898,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "code",
+                "snippet": "code?: number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1899,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "number"
+                }
+              },
+              {
+                "name": "signal",
+                "snippet": "signal?: number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1900,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "number"
+                }
+              }
+            ],
+            "callSignatures": []
           }
         },
         {
@@ -5054,7 +6448,106 @@
           },
           "jsDoc": "**UNSTABLE**:  Maybe rename `args` to `argv` to differentiate from\n`Deno.args`.",
           "interfaceDef": {
-            "methods": []
+            "methods": [],
+            "properties": [
+              {
+                "name": "args",
+                "snippet": "args: string[];",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1908,
+                  "col": 4
+                },
+                "jsDoc": "Arguments to pass. Note, the first element needs to be a path to the\nbinary",
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "string[]"
+                }
+              },
+              {
+                "name": "cwd",
+                "snippet": "cwd?: string;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1909,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "string"
+                }
+              },
+              {
+                "name": "env",
+                "snippet": "env?: {\n      [key: string]: string;\n    };",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1910,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "{\n      [key: string]: string;\n    }"
+                }
+              },
+              {
+                "name": "stdout",
+                "snippet": "stdout?: ProcessStdio | number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1913,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "ProcessStdio | number"
+                }
+              },
+              {
+                "name": "stderr",
+                "snippet": "stderr?: ProcessStdio | number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1914,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "ProcessStdio | number"
+                }
+              },
+              {
+                "name": "stdin",
+                "snippet": "stdin?: ProcessStdio | number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 1915,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "ProcessStdio | number"
+                }
+              }
+            ],
+            "callSignatures": []
           }
         },
         {
@@ -5224,7 +6717,74 @@
           },
           "jsDoc": null,
           "interfaceDef": {
-            "methods": []
+            "methods": [],
+            "properties": [
+              {
+                "name": "message",
+                "snippet": "message: string;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2053,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "string"
+                }
+              },
+              {
+                "name": "category",
+                "snippet": "category: DiagnosticCategory;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2054,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "DiagnosticCategory"
+                }
+              },
+              {
+                "name": "code",
+                "snippet": "code: number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2055,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number"
+                }
+              },
+              {
+                "name": "next",
+                "snippet": "next?: DiagnosticMessageChain[];",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2056,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "DiagnosticMessageChain[]"
+                }
+              }
+            ],
+            "callSignatures": []
           }
         },
         {
@@ -5238,7 +6798,202 @@
           },
           "jsDoc": null,
           "interfaceDef": {
-            "methods": []
+            "methods": [],
+            "properties": [
+              {
+                "name": "message",
+                "snippet": "message: string;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2061,
+                  "col": 4
+                },
+                "jsDoc": "A string message summarizing the diagnostic.",
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "string"
+                }
+              },
+              {
+                "name": "messageChain",
+                "snippet": "messageChain?: DiagnosticMessageChain;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2063,
+                  "col": 4
+                },
+                "jsDoc": "An ordered array of further diagnostics.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "DiagnosticMessageChain"
+                }
+              },
+              {
+                "name": "relatedInformation",
+                "snippet": "relatedInformation?: DiagnosticItem[];",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2066,
+                  "col": 4
+                },
+                "jsDoc": "Information related to the diagnostic. This is present when there is a\nsuggestion or other additional diagnostic information",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "DiagnosticItem[]"
+                }
+              },
+              {
+                "name": "sourceLine",
+                "snippet": "sourceLine?: string;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2068,
+                  "col": 4
+                },
+                "jsDoc": "The text of the source line related to the diagnostic.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "string"
+                }
+              },
+              {
+                "name": "lineNumber",
+                "snippet": "lineNumber?: number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2070,
+                  "col": 4
+                },
+                "jsDoc": "The line number that is related to the diagnostic.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "number"
+                }
+              },
+              {
+                "name": "scriptResourceName",
+                "snippet": "scriptResourceName?: string;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2072,
+                  "col": 4
+                },
+                "jsDoc": "The name of the script resource related to the diagnostic.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "string"
+                }
+              },
+              {
+                "name": "startPosition",
+                "snippet": "startPosition?: number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2074,
+                  "col": 4
+                },
+                "jsDoc": "The start position related to the diagnostic.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "number"
+                }
+              },
+              {
+                "name": "endPosition",
+                "snippet": "endPosition?: number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2076,
+                  "col": 4
+                },
+                "jsDoc": "The end position related to the diagnostic.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "number"
+                }
+              },
+              {
+                "name": "category",
+                "snippet": "category: DiagnosticCategory;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2078,
+                  "col": 4
+                },
+                "jsDoc": "The category of the diagnostic.",
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "DiagnosticCategory"
+                }
+              },
+              {
+                "name": "code",
+                "snippet": "code: number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2080,
+                  "col": 4
+                },
+                "jsDoc": "A number identifier.",
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "number"
+                }
+              },
+              {
+                "name": "startColumn",
+                "snippet": "startColumn?: number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2082,
+                  "col": 4
+                },
+                "jsDoc": "The the start column of the sourceLine related to the diagnostic.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "number"
+                }
+              },
+              {
+                "name": "endColumn",
+                "snippet": "endColumn?: number;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2084,
+                  "col": 4
+                },
+                "jsDoc": "The end column of the sourceLine related to the diagnostic.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "number"
+                }
+              }
+            ],
+            "callSignatures": []
           }
         },
         {
@@ -5252,7 +7007,26 @@
           },
           "jsDoc": null,
           "interfaceDef": {
-            "methods": []
+            "methods": [],
+            "properties": [
+              {
+                "name": "items",
+                "snippet": "items: DiagnosticItem[];",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2089,
+                  "col": 4
+                },
+                "jsDoc": "An array of diagnostic items.",
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "DiagnosticItem[]"
+                }
+              }
+            ],
+            "callSignatures": []
           }
         },
         {
@@ -5292,7 +7066,906 @@
           },
           "jsDoc": "**UNSTABLE**: new API, yet to be vetted.\n\nA specific subset TypeScript compiler options that can be supported by the\nDeno TypeScript compiler.",
           "interfaceDef": {
-            "methods": []
+            "methods": [],
+            "properties": [
+              {
+                "name": "allowJs",
+                "snippet": "allowJs?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2105,
+                  "col": 4
+                },
+                "jsDoc": "Allow JavaScript files to be compiled. Defaults to `true`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "allowSyntheticDefaultImports",
+                "snippet": "allowSyntheticDefaultImports?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2108,
+                  "col": 4
+                },
+                "jsDoc": "Allow default imports from modules with no default export. This does not\naffect code emit, just typechecking. Defaults to `false`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "allowUmdGlobalAccess",
+                "snippet": "allowUmdGlobalAccess?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2110,
+                  "col": 4
+                },
+                "jsDoc": "Allow accessing UMD globals from modules. Defaults to `false`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "allowUnreachableCode",
+                "snippet": "allowUnreachableCode?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2112,
+                  "col": 4
+                },
+                "jsDoc": "Do not report errors on unreachable code. Defaults to `false`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "allowUnusedLabels",
+                "snippet": "allowUnusedLabels?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2114,
+                  "col": 4
+                },
+                "jsDoc": "Do not report errors on unused labels. Defaults to `false`",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "alwaysStrict",
+                "snippet": "alwaysStrict?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2117,
+                  "col": 4
+                },
+                "jsDoc": "Parse in strict mode and emit `\"use strict\"` for each source file.\nDefaults to `true`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "baseUrl",
+                "snippet": "baseUrl?: string;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2120,
+                  "col": 4
+                },
+                "jsDoc": "Base directory to resolve non-relative module names. Defaults to\n`undefined`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "string"
+                }
+              },
+              {
+                "name": "checkJs",
+                "snippet": "checkJs?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2123,
+                  "col": 4
+                },
+                "jsDoc": "Report errors in `.js` files. Use in conjunction with `allowJs`. Defaults\nto `false`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "declaration",
+                "snippet": "declaration?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2125,
+                  "col": 4
+                },
+                "jsDoc": "Generates corresponding `.d.ts` file. Defaults to `false`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "declarationDir",
+                "snippet": "declarationDir?: string;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2127,
+                  "col": 4
+                },
+                "jsDoc": "Output directory for generated declaration files.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "string"
+                }
+              },
+              {
+                "name": "declarationMap",
+                "snippet": "declarationMap?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2130,
+                  "col": 4
+                },
+                "jsDoc": "Generates a source map for each corresponding `.d.ts` file. Defaults to\n`false`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "downlevelIteration",
+                "snippet": "downlevelIteration?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2133,
+                  "col": 4
+                },
+                "jsDoc": "Provide full support for iterables in `for..of`, spread and\ndestructuring when targeting ES5 or ES3. Defaults to `false`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "emitBOM",
+                "snippet": "emitBOM?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2136,
+                  "col": 4
+                },
+                "jsDoc": "Emit a UTF-8 Byte Order Mark (BOM) in the beginning of output files.\nDefaults to `false`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "emitDeclarationOnly",
+                "snippet": "emitDeclarationOnly?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2138,
+                  "col": 4
+                },
+                "jsDoc": "Only emit `.d.ts` declaration files. Defaults to `false`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "emitDecoratorMetadata",
+                "snippet": "emitDecoratorMetadata?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2142,
+                  "col": 4
+                },
+                "jsDoc": "Emit design-type metadata for decorated declarations in source. See issue\n[microsoft/TypeScript#2577](https://github.com/Microsoft/TypeScript/issues/2577)\nfor details. Defaults to `false`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "esModuleInterop",
+                "snippet": "esModuleInterop?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2146,
+                  "col": 4
+                },
+                "jsDoc": "Emit `__importStar` and `__importDefault` helpers for runtime babel\necosystem compatibility and enable `allowSyntheticDefaultImports` for type\nsystem compatibility. Defaults to `true`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "experimentalDecorators",
+                "snippet": "experimentalDecorators?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2148,
+                  "col": 4
+                },
+                "jsDoc": "Enables experimental support for ES decorators. Defaults to `false`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "inlineSourceMap",
+                "snippet": "inlineSourceMap?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2151,
+                  "col": 4
+                },
+                "jsDoc": "Emit a single file with source maps instead of having a separate file.\nDefaults to `false`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "inlineSources",
+                "snippet": "inlineSources?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2154,
+                  "col": 4
+                },
+                "jsDoc": "Emit the source alongside the source maps within a single file; requires\n`inlineSourceMap` or `sourceMap` to be set. Defaults to `false`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "isolatedModules",
+                "snippet": "isolatedModules?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2157,
+                  "col": 4
+                },
+                "jsDoc": "Perform additional checks to ensure that transpile only would be safe.\nDefaults to `false`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "jsx",
+                "snippet": "jsx?: \"react\" | \"preserve\" | \"react-native\";",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2160,
+                  "col": 4
+                },
+                "jsDoc": "Support JSX in `.tsx` files: `\"react\"`, `\"preserve\"`, `\"react-native\"`.\nDefaults to `\"react\"`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "\"react\" | \"preserve\" | \"react-native\""
+                }
+              },
+              {
+                "name": "jsxFactory",
+                "snippet": "jsxFactory?: string;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2163,
+                  "col": 4
+                },
+                "jsDoc": "Specify the JSX factory function to use when targeting react JSX emit,\ne.g. `React.createElement` or `h`. Defaults to `React.createElement`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "string"
+                }
+              },
+              {
+                "name": "keyofStringsOnly",
+                "snippet": "keyofStringsOnly?: string;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2166,
+                  "col": 4
+                },
+                "jsDoc": "Resolve keyof to string valued property names only (no numbers or\nsymbols). Defaults to `false`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "string"
+                }
+              },
+              {
+                "name": "useDefineForClassFields",
+                "snippet": "useDefineForClassFields?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2169,
+                  "col": 4
+                },
+                "jsDoc": "Emit class fields with ECMAScript-standard semantics. Defaults to `false`.\nDoes not apply to `\"esnext\"` target.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "lib",
+                "snippet": "lib?: string[];",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2172,
+                  "col": 4
+                },
+                "jsDoc": "List of library files to be included in the compilation. If omitted,\nthen the Deno main runtime libs are used.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "string[]"
+                }
+              },
+              {
+                "name": "locale",
+                "snippet": "locale?: string;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2174,
+                  "col": 4
+                },
+                "jsDoc": "The locale to use to show error messages.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "string"
+                }
+              },
+              {
+                "name": "mapRoot",
+                "snippet": "mapRoot?: string;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2180,
+                  "col": 4
+                },
+                "jsDoc": "Specifies the location where debugger should locate map files instead of\ngenerated locations. Use this flag if the `.map` files will be located at\nrun-time in a different location than the `.js` files. The location\nspecified will be embedded in the source map to direct the debugger where\nthe map files will be located. Defaults to `undefined`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "string"
+                }
+              },
+              {
+                "name": "module",
+                "snippet": "module?:\n      | \"none\"\n      | \"commonjs\"\n      | \"amd\"\n      | \"system\"\n      | \"umd\"\n      | \"es6\"\n      | \"es2015\"\n      | \"esnext\";",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2183,
+                  "col": 4
+                },
+                "jsDoc": "Specify the module format for the emitted code. Defaults to\n`\"esnext\"`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "| \"none\"\n      | \"commonjs\"\n      | \"amd\"\n      | \"system\"\n      | \"umd\"\n      | \"es6\"\n      | \"es2015\"\n      | \"esnext\""
+                }
+              },
+              {
+                "name": "noEmitHelpers",
+                "snippet": "noEmitHelpers?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2194,
+                  "col": 4
+                },
+                "jsDoc": "Do not generate custom helper functions like `__extends` in compiled\noutput. Defaults to `false`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "noFallthroughCasesInSwitch",
+                "snippet": "noFallthroughCasesInSwitch?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2197,
+                  "col": 4
+                },
+                "jsDoc": "Report errors for fallthrough cases in switch statement. Defaults to\n`false`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "noImplicitAny",
+                "snippet": "noImplicitAny?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2200,
+                  "col": 4
+                },
+                "jsDoc": "Raise error on expressions and declarations with an implied any type.\nDefaults to `true`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "noImplicitReturns",
+                "snippet": "noImplicitReturns?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2203,
+                  "col": 4
+                },
+                "jsDoc": "Report an error when not all code paths in function return a value.\nDefaults to `false`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "noImplicitThis",
+                "snippet": "noImplicitThis?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2206,
+                  "col": 4
+                },
+                "jsDoc": "Raise error on `this` expressions with an implied `any` type. Defaults to\n`true`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "noImplicitUseStrict",
+                "snippet": "noImplicitUseStrict?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2209,
+                  "col": 4
+                },
+                "jsDoc": "Do not emit `\"use strict\"` directives in module output. Defaults to\n`false`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "noResolve",
+                "snippet": "noResolve?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2212,
+                  "col": 4
+                },
+                "jsDoc": "Do not add triple-slash references or module import targets to the list of\ncompiled files. Defaults to `false`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "noStrictGenericChecks",
+                "snippet": "noStrictGenericChecks?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2215,
+                  "col": 4
+                },
+                "jsDoc": "Disable strict checking of generic signatures in function types. Defaults\nto `false`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "noUnusedLocals",
+                "snippet": "noUnusedLocals?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2217,
+                  "col": 4
+                },
+                "jsDoc": "Report errors on unused locals. Defaults to `false`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "noUnusedParameters",
+                "snippet": "noUnusedParameters?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2219,
+                  "col": 4
+                },
+                "jsDoc": "Report errors on unused parameters. Defaults to `false`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "outDir",
+                "snippet": "outDir?: string;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2223,
+                  "col": 4
+                },
+                "jsDoc": "Redirect output structure to the directory. This only impacts\n`Deno.compile` and only changes the emitted file names. Defaults to\n`undefined`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "string"
+                }
+              },
+              {
+                "name": "paths",
+                "snippet": "paths?: Record<string, string[]>;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2226,
+                  "col": 4
+                },
+                "jsDoc": "List of path mapping entries for module names to locations relative to the\n`baseUrl`. Defaults to `undefined`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "Record<string, string[]>"
+                }
+              },
+              {
+                "name": "preserveConstEnums",
+                "snippet": "preserveConstEnums?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2229,
+                  "col": 4
+                },
+                "jsDoc": "Do not erase const enum declarations in generated code. Defaults to\n`false`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "removeComments",
+                "snippet": "removeComments?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2232,
+                  "col": 4
+                },
+                "jsDoc": "Remove all comments except copy-right header comments beginning with\n`/*!`. Defaults to `true`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "resolveJsonModule",
+                "snippet": "resolveJsonModule?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2234,
+                  "col": 4
+                },
+                "jsDoc": "Include modules imported with `.json` extension. Defaults to `true`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "rootDir",
+                "snippet": "rootDir?: string;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2237,
+                  "col": 4
+                },
+                "jsDoc": "Specifies the root directory of input files. Only use to control the\noutput directory structure with `outDir`. Defaults to `undefined`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "string"
+                }
+              },
+              {
+                "name": "rootDirs",
+                "snippet": "rootDirs?: string[];",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2240,
+                  "col": 4
+                },
+                "jsDoc": "List of _root_ folders whose combined content represent the structure of\nthe project at runtime. Defaults to `undefined`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "string[]"
+                }
+              },
+              {
+                "name": "sourceMap",
+                "snippet": "sourceMap?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2242,
+                  "col": 4
+                },
+                "jsDoc": "Generates corresponding `.map` file. Defaults to `false`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "sourceRoot",
+                "snippet": "sourceRoot?: string;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2248,
+                  "col": 4
+                },
+                "jsDoc": "Specifies the location where debugger should locate TypeScript files\ninstead of source locations. Use this flag if the sources will be located\nat run-time in a different location than that at design-time. The location\nspecified will be embedded in the sourceMap to direct the debugger where\nthe source files will be located. Defaults to `undefined`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "string"
+                }
+              },
+              {
+                "name": "strict",
+                "snippet": "strict?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2253,
+                  "col": 4
+                },
+                "jsDoc": "Enable all strict type checking options. Enabling `strict` enables\n`noImplicitAny`, `noImplicitThis`, `alwaysStrict`, `strictBindCallApply`,\n`strictNullChecks`, `strictFunctionTypes` and\n`strictPropertyInitialization`. Defaults to `true`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "strictBindCallApply",
+                "snippet": "strictBindCallApply?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2256,
+                  "col": 4
+                },
+                "jsDoc": "Enable stricter checking of the `bind`, `call`, and `apply` methods on\nfunctions. Defaults to `true`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "strictFunctionTypes",
+                "snippet": "strictFunctionTypes?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2259,
+                  "col": 4
+                },
+                "jsDoc": "Disable bivariant parameter checking for function types. Defaults to\n`true`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "strictPropertyInitialization",
+                "snippet": "strictPropertyInitialization?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2263,
+                  "col": 4
+                },
+                "jsDoc": "Ensure non-undefined class properties are initialized in the constructor.\nThis option requires `strictNullChecks` be enabled in order to take effect.\nDefaults to `true`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "strictNullChecks",
+                "snippet": "strictNullChecks?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2267,
+                  "col": 4
+                },
+                "jsDoc": "In strict null checking mode, the `null` and `undefined` values are not in\nthe domain of every type and are only assignable to themselves and `any`\n(the one exception being that `undefined` is also assignable to `void`).",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "suppressExcessPropertyErrors",
+                "snippet": "suppressExcessPropertyErrors?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2270,
+                  "col": 4
+                },
+                "jsDoc": "Suppress excess property checks for object literals. Defaults to\n`false`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "suppressImplicitAnyIndexErrors",
+                "snippet": "suppressImplicitAnyIndexErrors?: boolean;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2273,
+                  "col": 4
+                },
+                "jsDoc": "Suppress `noImplicitAny` errors for indexing objects lacking index\nsignatures.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "boolean"
+                }
+              },
+              {
+                "name": "target",
+                "snippet": "target?:\n      | \"es3\"\n      | \"es5\"\n      | \"es6\"\n      | \"es2015\"\n      | \"es2016\"\n      | \"es2017\"\n      | \"es2018\"\n      | \"es2019\"\n      | \"es2020\"\n      | \"esnext\";",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2275,
+                  "col": 4
+                },
+                "jsDoc": "Specify ECMAScript target version. Defaults to `esnext`.",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "| \"es3\"\n      | \"es5\"\n      | \"es6\"\n      | \"es2015\"\n      | \"es2016\"\n      | \"es2017\"\n      | \"es2018\"\n      | \"es2019\"\n      | \"es2020\"\n      | \"esnext\""
+                }
+              },
+              {
+                "name": "types",
+                "snippet": "types?: string[];",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2300,
+                  "col": 4
+                },
+                "jsDoc": "List of names of type definitions to include. Defaults to `undefined`.\n\nThe type definitions are resolved according to the normal Deno resolution\nirrespective of if sources are provided on the call. Like other Deno\nmodules, there is no \"magical\" resolution. For example:\n\n     Deno.compile(\n       \"./foo.js\",\n       undefined,\n       {\n         types: [ \"./foo.d.ts\", \"https://deno.land/x/example/types.d.ts\" ]\n       }\n     );",
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "string[]"
+                }
+              }
+            ],
+            "callSignatures": []
           }
         },
         {
@@ -5306,7 +7979,42 @@
           },
           "jsDoc": "**UNSTABLE**: new API, yet to be vetted.\n\nThe results of a transpile only command, where the `source` contains the\nemitted source, and `map` optionally contains the source map.",
           "interfaceDef": {
-            "methods": []
+            "methods": [],
+            "properties": [
+              {
+                "name": "source",
+                "snippet": "source: string;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2308,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": false,
+                "tsType": {
+                  "repr": "string"
+                }
+              },
+              {
+                "name": "map",
+                "snippet": "map?: string;",
+                "location": {
+                  "filename": "./deno.ts",
+                  "line": 2309,
+                  "col": 4
+                },
+                "jsDoc": null,
+                "params": [],
+                "computed": false,
+                "optional": true,
+                "tsType": {
+                  "repr": "string"
+                }
+              }
+            ],
+            "callSignatures": []
           }
         },
         {
