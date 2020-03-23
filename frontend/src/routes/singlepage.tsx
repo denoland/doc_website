@@ -15,49 +15,21 @@ function DocNodeCard(props: { node: DocNode }) {
 
   return (
     <div className="shadow rounded my-3 bg-white p-2">
-      <div className="text-lg font-bold">
+      <div className="text-lg font-bold mb-2">
         {node.kind ? <span className="text-gray-600">{node.kind} </span> : null}
         <span className="font">{node.name}</span>
-        {/* {node.params ? (
-          <span className="text-gray-600">
-            (
-            {node.params
-              .map(
-                p => `${p.name}${p.tsType ? ": " + p.tsType.repr : ""}`
-              )
-              .join(", ")}
-            )
-          </span>
-        ) : null} */}
       </div>
-      <pre className="font-mono">{node.snippet}</pre>
-      {node.jsDoc ? (
-        <pre className="text-gray-700 mt-2">{node.jsDoc}</pre>
-      ) : null}
-      {/* {node.params && node.params.length > 0 ? (
-        <div className="mt-2">
-          <p className="font-bold">Parameters</p>
-          <ul>
-            {node.params.map(param => (
-              <li className="font-mono">
-                {param.name}
-                {param.tsType?.repr ? ": " + param.tsType.repr : null}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : null}
-      {node.returnType ? (
-        <div className="mt-2">
-          <span className="font-bold">Returns: </span>
-          <span className="font-mono">{node.returnType.repr}</span>
-        </div>
-      ) : null} */}
-
-      <div className="text-sm mt-2">
+      
+      <pre className="text-sm font-mono">{node.snippet}</pre>
+      
+      <div className="text-sm mt-2 text-gray-600">
         Defined in file '{node.location.filename}' on line {node.location.line},
         column {node.location.col}.
       </div>
+
+      {node.jsDoc ? (
+        <pre className="text-sm text-gray-700 mt-2">{node.jsDoc}</pre>
+      ) : null}
     </div>
   );
 }
