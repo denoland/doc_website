@@ -13,7 +13,11 @@ export function JSDoc(props: { jsdoc: string; short?: boolean }) {
     <ReactMarkdown
       source={props.short ? firstline : jsdoc}
       renderers={{
-        link: (props: any) => <a className="text-blue-400" {...props}></a>,
+        link: (props: any) => (
+          <a className="text-blue-400" {...props}>
+            {props.children}
+          </a>
+        ),
         inlineCode: (props: { children: string }) => (
           <code className="font-mono bg-gray-200 px-1 ">{props.children}</code>
         ),
