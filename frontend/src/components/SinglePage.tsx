@@ -14,14 +14,17 @@ export function SinglePage() {
   return (
     <Page mode="singlepage">
       <div className="bg-gray-100 py-3 px-6 h-full max-w-4xl">
-        {groups.classes.length > 0 ? (
+        {groups.functions.length > 0 ? (
           <div className="py-4">
             <div className="text-gray-900 text-2xl font-medium mb-1">
-              Classes
+              Functions
             </div>
             <div>
-              {groups.classes.map((node, i) => (
-                <ClassCard node={node} key={`${node.kind}.${node.name}+${i}`} />
+              {groups.functions.map((node, i) => (
+                <FunctionCard
+                  node={node}
+                  key={`${node.kind}.${node.name}+${i}`}
+                />
               ))}
             </div>
           </div>
@@ -42,17 +45,14 @@ export function SinglePage() {
             </div>
           </div>
         ) : null}
-        {groups.functions.length > 0 ? (
+        {groups.classes.length > 0 ? (
           <div className="py-4">
             <div className="text-gray-900 text-2xl font-medium mb-1">
-              Functions
+              Classes
             </div>
             <div>
-              {groups.functions.map((node, i) => (
-                <FunctionCard
-                  node={node}
-                  key={`${node.kind}.${node.name}+${i}`}
-                />
+              {groups.classes.map((node, i) => (
+                <ClassCard node={node} key={`${node.kind}.${node.name}+${i}`} />
               ))}
             </div>
           </div>

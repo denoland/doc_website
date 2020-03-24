@@ -5,6 +5,16 @@ import { Page } from "./Page";
 import { JSDoc, CodeBlock } from "./JSDoc";
 import { SimpleCard } from "./SinglePage";
 
+export function FunctionCard({ node }: { node: DocNodeFunction }) {
+  return (
+    <SimpleCard
+      node={node}
+      params={node.functionDef?.params}
+      returnType={node.functionDef.returnType}
+    />
+  );
+}
+
 export const Function = ({
   function: function_
 }: {
@@ -95,16 +105,6 @@ export function FunctionLink(props: {
             .join(", ")}
         </p>
       }
-    />
-  );
-}
-
-export function FunctionCard({ node }: { node: DocNodeFunction }) {
-  return (
-    <SimpleCard
-      node={node}
-      params={node.functionDef?.params}
-      returnType={node.functionDef.returnType}
     />
   );
 }

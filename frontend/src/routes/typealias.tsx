@@ -17,7 +17,7 @@ export function TypeAliasRoute(props: { name: string }) {
   return typealias_ ? (
     <Switch>
       <Route
-        path={prefix.namespace + prefix.node}
+        path={prefix.global + prefix.namespace + prefix.node}
         exact
         render={() => <TypeAlias typealias={typealias_} />}
       />

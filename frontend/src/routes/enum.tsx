@@ -17,7 +17,7 @@ export function EnumRoute(props: { name: string }) {
   return enum_ ? (
     <Switch>
       <Route
-        path={prefix.namespace + prefix.node}
+        path={prefix.global + prefix.namespace + prefix.node}
         exact
         render={() => <Enum enum={enum_} />}
       />

@@ -28,10 +28,13 @@ export function ClassRoute(props: { name: string }) {
   return class_ ? (
     <Switch>
       <Route
-        path={`${prefix.namespace + prefix.node}/constructor/:constructor`}
+        path={`${prefix.global +
+          prefix.namespace +
+          prefix.node}/constructor/:constructor`}
         render={({ match: { params } }) => (
           <PrefixProvider
             value={{
+              global: prefix.global,
               namespace: prefix.namespace,
               node: `${prefix.node}/constructor/${params.constructor}`
             }}
@@ -41,10 +44,13 @@ export function ClassRoute(props: { name: string }) {
         )}
       />
       <Route
-        path={`${prefix.namespace + prefix.node}/property/:property`}
+        path={`${prefix.global +
+          prefix.namespace +
+          prefix.node}/property/:property`}
         render={({ match: { params } }) => (
           <PrefixProvider
             value={{
+              global: prefix.global,
               namespace: prefix.namespace,
               node: `${prefix.node}/property/${params.property}`
             }}
@@ -54,10 +60,13 @@ export function ClassRoute(props: { name: string }) {
         )}
       />
       <Route
-        path={`${prefix.namespace + prefix.node}/method/:method`}
+        path={`${prefix.global +
+          prefix.namespace +
+          prefix.node}/method/:method`}
         render={({ match: { params } }) => (
           <PrefixProvider
             value={{
+              global: prefix.global,
               namespace: prefix.namespace,
               node: `${prefix.node}/method/${params.method}`
             }}
@@ -67,7 +76,7 @@ export function ClassRoute(props: { name: string }) {
         )}
       />
       <Route
-        path={prefix.namespace + prefix.node}
+        path={prefix.global + prefix.namespace + prefix.node}
         exact
         render={() => <Class class={class_} />}
       />
@@ -95,7 +104,7 @@ export function ClassConstructorRoute(props: {
   return constructor_ ? (
     <Switch>
       <Route
-        path={prefix.namespace + prefix.node}
+        path={prefix.global + prefix.namespace + prefix.node}
         exact
         render={() => <ClassConstructor constructor_={constructor_} />}
       />
@@ -123,7 +132,7 @@ export function ClassPropertyRoute(props: {
   return property ? (
     <Switch>
       <Route
-        path={prefix.namespace + prefix.node}
+        path={prefix.global + prefix.namespace + prefix.node}
         exact
         render={() => <ClassProperty property={property} />}
       />
@@ -148,7 +157,7 @@ export function ClassMethodRoute(props: { name: string; class: DocNodeClass }) {
   return method ? (
     <Switch>
       <Route
-        path={prefix.namespace + prefix.node}
+        path={prefix.global + prefix.namespace + prefix.node}
         exact
         render={() => <ClassMethod method={method} />}
       />

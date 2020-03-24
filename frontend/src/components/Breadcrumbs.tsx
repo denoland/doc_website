@@ -1,18 +1,28 @@
 import React from "react";
 import { Link } from "./Link";
 import { useLocation } from "react-router-dom";
+import { usePrefix } from "../util/prefix";
 
 export function Breadcrumbs() {
   const location = useLocation();
+  const prefix = usePrefix();
 
-  const segments = location.pathname.split("/");
+  const pathname = location.pathname.startsWith("/multi")
+    ? location.pathname.substring(6)
+    : location.pathname;
+
+  const segments = pathname.split("/");
 
   let currentPath = "";
   const items: React.ReactNode[] =
-    location.pathname !== "/"
+    pathname !== "/"
       ? [
           <React.Fragment key={`namespace.root-1`}>
-            <Link href="/" unmanaged className="text-blue-500">
+            <Link
+              href={prefix.global + "/"}
+              unmanaged
+              className="text-blue-500"
+            >
               Root namespace
             </Link>
             {" > "}
@@ -26,7 +36,11 @@ export function Breadcrumbs() {
     currentPath += `/${type}/${name}`;
     items.push(
       <React.Fragment key={`${type}.${name}+${i}`}>
-        <Link href={currentPath} unmanaged className="text-blue-500">
+        <Link
+          href={prefix.global + currentPath}
+          unmanaged
+          className="text-blue-500"
+        >
           {name} {type}
         </Link>
         {" > "}
