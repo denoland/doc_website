@@ -62,6 +62,7 @@ impl Into<TsTypeDef> for &TsLitType {
 
     TsTypeDef {
       repr,
+      kind: Some(TsTypeDefKind::Literal),
       literal: Some(lit),
       ..Default::default()
     }
@@ -74,6 +75,7 @@ impl Into<TsTypeDef> for &TsArrayType {
 
     TsTypeDef {
       array: Some(Box::new(ts_type_def)),
+      kind: Some(TsTypeDefKind::Array),
       ..Default::default()
     }
   }
@@ -91,6 +93,7 @@ impl Into<TsTypeDef> for &TsTupleType {
 
     TsTypeDef {
       tuple: Some(type_defs),
+      kind: Some(TsTypeDefKind::Tuple),
       ..Default::default()
     }
   }
@@ -112,6 +115,7 @@ impl Into<TsTypeDef> for &TsUnionOrIntersectionType {
 
         TsTypeDef {
           union: Some(types_union),
+          kind: Some(TsTypeDefKind::Union),
           ..Default::default()
         }
       }
@@ -126,6 +130,7 @@ impl Into<TsTypeDef> for &TsUnionOrIntersectionType {
 
         TsTypeDef {
           intersection: Some(types_intersection),
+          kind: Some(TsTypeDefKind::Intersection),
           ..Default::default()
         }
       }
@@ -154,6 +159,7 @@ impl Into<TsTypeDef> for &TsKeywordType {
 
     TsTypeDef {
       repr: keyword_str.to_string(),
+      kind: Some(TsTypeDefKind::Keyword),
       keyword: Some(keyword_str.to_string()),
       ..Default::default()
     }
@@ -170,6 +176,7 @@ impl Into<TsTypeDef> for &TsTypeOperator {
 
     TsTypeDef {
       type_operator: Some(Box::new(type_operator_def)),
+      kind: Some(TsTypeDefKind::TypeOperator),
       ..Default::default()
     }
   }
@@ -181,6 +188,7 @@ impl Into<TsTypeDef> for &TsParenthesizedType {
 
     TsTypeDef {
       parenthesized: Some(Box::new(ts_type)),
+      kind: Some(TsTypeDefKind::Parenthesized),
       ..Default::default()
     }
   }
@@ -192,6 +200,7 @@ impl Into<TsTypeDef> for &TsRestType {
 
     TsTypeDef {
       rest: Some(Box::new(ts_type)),
+      kind: Some(TsTypeDefKind::Rest),
       ..Default::default()
     }
   }
@@ -203,6 +212,7 @@ impl Into<TsTypeDef> for &TsOptionalType {
 
     TsTypeDef {
       optional: Some(Box::new(ts_type)),
+      kind: Some(TsTypeDefKind::Optional),
       ..Default::default()
     }
   }
@@ -213,6 +223,7 @@ impl Into<TsTypeDef> for &TsThisType {
     TsTypeDef {
       repr: "this".to_string(),
       this: Some(true),
+      kind: Some(TsTypeDefKind::This),
       ..Default::default()
     }
   }
@@ -234,6 +245,7 @@ impl Into<TsTypeDef> for &TsTypeQuery {
     TsTypeDef {
       repr: type_name.to_string(),
       type_query: Some(type_name),
+      kind: Some(TsTypeDefKind::TypeQuery),
       ..Default::default()
     }
   }
@@ -251,6 +263,7 @@ impl Into<TsTypeDef> for &TsTypeRef {
     TsTypeDef {
       repr: type_name.to_string(),
       type_ref: Some(TsTypeRefDef { type_name }),
+      kind: Some(TsTypeDefKind::TypeRef),
       ..Default::default()
     }
   }
@@ -266,6 +279,7 @@ impl Into<TsTypeDef> for &TsIndexedAccessType {
 
     TsTypeDef {
       indexed_access: Some(indexed_access_def),
+      kind: Some(TsTypeDefKind::IndexedAccess),
       ..Default::default()
     }
   }
@@ -406,6 +420,7 @@ impl Into<TsTypeDef> for &TsTypeLit {
     };
 
     TsTypeDef {
+      kind: Some(TsTypeDefKind::TypeLiteral),
       type_literal: Some(type_literal),
       ..Default::default()
     }
@@ -422,6 +437,7 @@ impl Into<TsTypeDef> for &TsConditionalType {
     };
 
     TsTypeDef {
+      kind: Some(TsTypeDefKind::Conditional),
       conditional_type: Some(conditional_type_def),
       ..Default::default()
     }
@@ -504,6 +520,7 @@ impl Into<TsTypeDef> for &TsFnOrConstructorType {
     };
 
     TsTypeDef {
+      kind: Some(TsTypeDefKind::FnOrConstructor),
       fn_or_constructor: Some(Box::new(fn_def)),
       ..Default::default()
     }
@@ -632,10 +649,35 @@ pub struct TsTypeLiteralDef {
   pub call_signatures: Vec<LiteralCallSignatureDef>,
 }
 
+#[derive(Debug, PartialEq, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub enum TsTypeDefKind {
+  Keyword,
+  Literal,
+  TypeRef,
+  Union,
+  Intersection,
+  Array,
+  Tuple,
+  TypeOperator,
+  Parenthesized,
+  Rest,
+  Optional,
+  TypeQuery,
+  This,
+  FnOrConstructor,
+  Conditional,
+  IndexedAccess,
+  TypeLiteral,
+}
+
 #[derive(Debug, Default, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct TsTypeDef {
   pub repr: String,
+
+  pub kind: Option<TsTypeDefKind>,
+
   // TODO: make this struct more conrete
   #[serde(skip_serializing_if = "Option::is_none")]
   pub keyword: Option<String>,
