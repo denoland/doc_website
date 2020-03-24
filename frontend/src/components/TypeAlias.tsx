@@ -2,6 +2,17 @@ import React from "react";
 import { Page } from "./Page";
 import { DocNodeTypeAlias } from "../util/docs";
 import { JSDoc, CodeBlock } from "./JSDoc";
+import { SimpleCard } from "./SinglePage";
+
+export function TypeAliasCard({ node }: { node: DocNodeTypeAlias }) {
+  return (
+    <SimpleCard
+      node={node}
+      prefix="type"
+      returnType={node.typeAliasDef?.tsType}
+    />
+  );
+}
 
 export const TypeAlias = ({
   typealias: typealias_

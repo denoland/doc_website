@@ -1,15 +1,27 @@
 import React from "react";
 import { useNodes } from "../util/nodes";
-import { groupNodes, DocNodeShared, ParamDef, TsTypeDef } from "../util/docs";
+import {
+  groupNodes,
+  DocNodeShared,
+  ParamDef,
+  TsTypeDef,
+  DocNodeLocation,
+  sortByAlphabet
+} from "../util/docs";
 import { Page } from "./Page";
 import { JSDoc, CodeBlock } from "./JSDoc";
 import { ClassCard } from "./Class";
 import { TsType } from "./TsType";
 import { FunctionCard } from "./Function";
+import { EnumCard } from "./Enum";
+import { InterfaceCard } from "./Interface";
+import { VariableCard } from "./Variable";
+import { TypeAliasCard } from "./TypeAlias";
 
 export function SinglePage() {
   const nodes = useNodes();
-  const groups = groupNodes(nodes);
+  const sorted = sortByAlphabet(nodes);
+  const groups = groupNodes(sorted);
 
   return (
     <Page mode="singlepage">
@@ -36,10 +48,9 @@ export function SinglePage() {
             </div>
             <div>
               {groups.variables.map((node, i) => (
-                <SimpleCard
+                <VariableCard
                   node={node}
                   key={`${node.kind}.${node.name}+${i}`}
-                  showSnippet
                 />
               ))}
             </div>
@@ -62,11 +73,7 @@ export function SinglePage() {
             <div className="text-gray-900 text-2xl font-medium mb-1">Enums</div>
             <div>
               {groups.enums.map((node, i) => (
-                <SimpleCard
-                  node={node}
-                  key={`${node.kind}.${node.name}+${i}`}
-                  showSnippet
-                />
+                <EnumCard node={node} key={`${node.kind}.${node.name}+${i}`} />
               ))}
             </div>
           </div>
@@ -78,10 +85,9 @@ export function SinglePage() {
             </div>
             <div>
               {groups.interfaces.map((node, i) => (
-                <SimpleCard
+                <InterfaceCard
                   node={node}
                   key={`${node.kind}.${node.name}+${i}`}
-                  showSnippet
                 />
               ))}
             </div>
@@ -94,10 +100,9 @@ export function SinglePage() {
             </div>
             <div>
               {groups.typeAliases.map((node, i) => (
-                <SimpleCard
+                <TypeAliasCard
                   node={node}
                   key={`${node.kind}.${node.name}+${i}`}
-                  showSnippet
                 />
               ))}
             </div>
@@ -126,12 +131,14 @@ export function SinglePage() {
 
 export function SimpleCard({
   node,
+  prefix,
   details,
   params,
   returnType,
   showSnippet
 }: {
   node: DocNodeShared & { kind?: string };
+  prefix?: string;
   details?: React.ReactNode;
   params?: ParamDef[];
   returnType?: TsTypeDef;
@@ -156,7 +163,7 @@ export function SimpleCard({
       id={`${node.kind}.${node.name}`}
     >
       <div className="text-lg">
-        {node.kind ? <span className="text-pink-800">{node.kind} </span> : null}
+        {prefix ? <span className="text-pink-800">{prefix} </span> : null}
         <span className="font-bold">{node.name}</span>
         {params ? (
           <span className="text-gray-600">({paramElements})</span>
@@ -175,7 +182,7 @@ export function SimpleCard({
         </div>
       ) : null}
 
-      <div className="text-xs mt-2 text-gray-600">
+      <div className="text-xs mt-1 text-gray-600">
         Defined in file '{node.location.filename}' on line {node.location.line},
         column {node.location.col}.
       </div>
@@ -193,10 +200,15 @@ export function SimpleCard({
 
 export function SimpleSubCard({
   node,
+  prefix,
   params,
   returnType
 }: {
-  node: DocNodeShared & { kind?: string };
+  node: Omit<DocNodeShared, "location"> & {
+    kind?: string;
+    location?: DocNodeLocation;
+  };
+  prefix?: string;
   params?: ParamDef[];
   returnType?: TsTypeDef;
 }) {
@@ -216,7 +228,7 @@ export function SimpleSubCard({
   return (
     <div className="mt-2 py-1 px-2 rounded bg-gray-100">
       <div className="text-sm">
-        {node.kind ? <span className="text-pink-800">{node.kind} </span> : null}
+        {prefix ? <span className="text-pink-800">{prefix} </span> : null}
         <span>{node.name}</span>
         {params ? (
           <span className="text-gray-600">({paramElements})</span>
@@ -228,10 +240,12 @@ export function SimpleSubCard({
           </span>
         ) : null}
       </div>
-      <div className="text-xs text-gray-600">
-        Defined in file '{node.location.filename}' on line {node.location.line},
-        column {node.location.col}.
-      </div>
+      {node.location ? (
+        <div className="text-xs text-gray-600">
+          Defined in file '{node.location.filename}' on line{" "}
+          {node.location.line}, column {node.location.col}.
+        </div>
+      ) : null}
       {node.jsDoc ? (
         <div className="text-xs mt-1">
           <JSDoc jsdoc={node.jsDoc} />

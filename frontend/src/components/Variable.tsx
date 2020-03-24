@@ -3,6 +3,17 @@ import { TsTypeDef, DocNodeVariable } from "../util/docs";
 import { SimpleLink } from "./SimpleLink";
 import { Page } from "./Page";
 import { JSDoc } from "./JSDoc";
+import { SimpleCard } from "./SinglePage";
+
+export function VariableCard({ node }: { node: DocNodeVariable }) {
+  return (
+    <SimpleCard
+      node={node}
+      prefix={node.variableDef.kind}
+      returnType={node.variableDef.tsType}
+    />
+  );
+}
 
 export const Variable = ({ variable }: { variable: DocNodeVariable }) => {
   return (
@@ -14,10 +25,10 @@ export const Variable = ({ variable }: { variable: DocNodeVariable }) => {
           </div>
           <div className="py-1">
             {variable.name}
-            {variable.variableDef?.type_?.repr ? (
+            {variable.variableDef?.tsType?.repr ? (
               <span className="text-gray-600 font-light">
                 {" → "}
-                {variable.variableDef?.type_?.repr}
+                {variable.variableDef?.tsType?.repr}
               </span>
             ) : null}
             <p className="text-gray-500 italic font-light">
