@@ -48,16 +48,33 @@ use swc_ecma_ast::TsUnionOrIntersectionType;
 impl Into<TsTypeDef> for &TsLitType {
   fn into(self) -> TsTypeDef {
     let (repr, lit) = match &self.lit {
-      TsLit::Number(num) => {
-        (format!("{}", num.value), LiteralDef::Number(num.value))
-      }
+      TsLit::Number(num) => (
+        format!("{}", num.value),
+        LiteralDef {
+          kind: LiteralDefKind::Number,
+          number: Some(num.value),
+          string: None,
+          boolean: None,
+        },
+      ),
       TsLit::Str(str_) => (
         str_.value.to_string(),
-        LiteralDef::Str(str_.value.to_string()),
+        LiteralDef {
+          kind: LiteralDefKind::String,
+          number: None,
+          string: Some(str_.value.to_string()),
+          boolean: None,
+        },
       ),
-      TsLit::Bool(bool_) => {
-        (bool_.value.to_string(), LiteralDef::Bool(bool_.value))
-      }
+      TsLit::Bool(bool_) => (
+        bool_.value.to_string(),
+        LiteralDef {
+          kind: LiteralDefKind::Boolean,
+          number: None,
+          string: None,
+          boolean: Some(bool_.value),
+        },
+      ),
     };
 
     TsTypeDef {
@@ -562,13 +579,27 @@ pub struct TsTypeRefDef {
   // TODO: type_params
   type_name: String,
 }
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub enum LiteralDefKind {
+  Number,
+  String,
+  Boolean,
+}
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
-pub enum LiteralDef {
-  Number(f64),
-  Str(String),
-  Bool(bool),
+pub struct LiteralDef {
+  pub kind: LiteralDefKind,
+
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub number: Option<f64>,
+
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub string: Option<String>,
+
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub boolean: Option<bool>,
 }
 
 #[derive(Debug, Serialize)]

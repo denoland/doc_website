@@ -7123,7 +7123,8 @@
                               "repr": "tcp",
                               "kind": "literal",
                               "literal": {
-                                "str": "tcp"
+                                "kind": "string",
+                                "string": "tcp"
                               }
                             }
                           }
@@ -7186,7 +7187,8 @@
                               "repr": "udp",
                               "kind": "literal",
                               "literal": {
-                                "str": "udp"
+                                "kind": "string",
+                                "string": "udp"
                               }
                             }
                           }
@@ -7849,35 +7851,40 @@
                       "repr": "any",
                       "kind": "literal",
                       "literal": {
-                        "str": "any"
+                        "kind": "string",
+                        "string": "any"
                       }
                     },
                     {
                       "repr": "access",
                       "kind": "literal",
                       "literal": {
-                        "str": "access"
+                        "kind": "string",
+                        "string": "access"
                       }
                     },
                     {
                       "repr": "create",
                       "kind": "literal",
                       "literal": {
-                        "str": "create"
+                        "kind": "string",
+                        "string": "create"
                       }
                     },
                     {
                       "repr": "modify",
                       "kind": "literal",
                       "literal": {
-                        "str": "modify"
+                        "kind": "string",
+                        "string": "modify"
                       }
                     },
                     {
                       "repr": "remove",
                       "kind": "literal",
                       "literal": {
-                        "str": "remove"
+                        "kind": "string",
+                        "string": "remove"
                       }
                     }
                   ]
@@ -9527,21 +9534,24 @@
                       "repr": "react",
                       "kind": "literal",
                       "literal": {
-                        "str": "react"
+                        "kind": "string",
+                        "string": "react"
                       }
                     },
                     {
                       "repr": "preserve",
                       "kind": "literal",
                       "literal": {
-                        "str": "preserve"
+                        "kind": "string",
+                        "string": "preserve"
                       }
                     },
                     {
                       "repr": "react-native",
                       "kind": "literal",
                       "literal": {
-                        "str": "react-native"
+                        "kind": "string",
+                        "string": "react-native"
                       }
                     }
                   ]
@@ -9679,56 +9689,64 @@
                       "repr": "none",
                       "kind": "literal",
                       "literal": {
-                        "str": "none"
+                        "kind": "string",
+                        "string": "none"
                       }
                     },
                     {
                       "repr": "commonjs",
                       "kind": "literal",
                       "literal": {
-                        "str": "commonjs"
+                        "kind": "string",
+                        "string": "commonjs"
                       }
                     },
                     {
                       "repr": "amd",
                       "kind": "literal",
                       "literal": {
-                        "str": "amd"
+                        "kind": "string",
+                        "string": "amd"
                       }
                     },
                     {
                       "repr": "system",
                       "kind": "literal",
                       "literal": {
-                        "str": "system"
+                        "kind": "string",
+                        "string": "system"
                       }
                     },
                     {
                       "repr": "umd",
                       "kind": "literal",
                       "literal": {
-                        "str": "umd"
+                        "kind": "string",
+                        "string": "umd"
                       }
                     },
                     {
                       "repr": "es6",
                       "kind": "literal",
                       "literal": {
-                        "str": "es6"
+                        "kind": "string",
+                        "string": "es6"
                       }
                     },
                     {
                       "repr": "es2015",
                       "kind": "literal",
                       "literal": {
-                        "str": "es2015"
+                        "kind": "string",
+                        "string": "es2015"
                       }
                     },
                     {
                       "repr": "esnext",
                       "kind": "literal",
                       "literal": {
-                        "str": "esnext"
+                        "kind": "string",
+                        "string": "esnext"
                       }
                     }
                   ]
@@ -10228,70 +10246,80 @@
                       "repr": "es3",
                       "kind": "literal",
                       "literal": {
-                        "str": "es3"
+                        "kind": "string",
+                        "string": "es3"
                       }
                     },
                     {
                       "repr": "es5",
                       "kind": "literal",
                       "literal": {
-                        "str": "es5"
+                        "kind": "string",
+                        "string": "es5"
                       }
                     },
                     {
                       "repr": "es6",
                       "kind": "literal",
                       "literal": {
-                        "str": "es6"
+                        "kind": "string",
+                        "string": "es6"
                       }
                     },
                     {
                       "repr": "es2015",
                       "kind": "literal",
                       "literal": {
-                        "str": "es2015"
+                        "kind": "string",
+                        "string": "es2015"
                       }
                     },
                     {
                       "repr": "es2016",
                       "kind": "literal",
                       "literal": {
-                        "str": "es2016"
+                        "kind": "string",
+                        "string": "es2016"
                       }
                     },
                     {
                       "repr": "es2017",
                       "kind": "literal",
                       "literal": {
-                        "str": "es2017"
+                        "kind": "string",
+                        "string": "es2017"
                       }
                     },
                     {
                       "repr": "es2018",
                       "kind": "literal",
                       "literal": {
-                        "str": "es2018"
+                        "kind": "string",
+                        "string": "es2018"
                       }
                     },
                     {
                       "repr": "es2019",
                       "kind": "literal",
                       "literal": {
-                        "str": "es2019"
+                        "kind": "string",
+                        "string": "es2019"
                       }
                     },
                     {
                       "repr": "es2020",
                       "kind": "literal",
                       "literal": {
-                        "str": "es2020"
+                        "kind": "string",
+                        "string": "es2020"
                       }
                     },
                     {
                       "repr": "esnext",
                       "kind": "literal",
                       "literal": {
-                        "str": "esnext"
+                        "kind": "string",
+                        "string": "esnext"
                       }
                     }
                   ]
