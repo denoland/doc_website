@@ -24,6 +24,7 @@
           "variableDef": {
             "tsType": {
               "repr": "number",
+              "kind": "keyword",
               "keyword": "number"
             },
             "kind": "let"
@@ -42,6 +43,7 @@
           "variableDef": {
             "tsType": {
               "repr": "boolean",
+              "kind": "keyword",
               "keyword": "boolean"
             },
             "kind": "let"
@@ -85,6 +87,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "TestFunction",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "TestFunction"
                   }
@@ -104,6 +107,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -121,6 +125,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -138,6 +143,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -155,6 +161,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               }
@@ -178,6 +185,7 @@
                 "name": "t",
                 "tsType": {
                   "repr": "TestDefinition",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "TestDefinition"
                   }
@@ -186,6 +194,7 @@
             ],
             "returnType": {
               "repr": "void",
+              "kind": "keyword",
               "keyword": "void"
             },
             "isAsync": false,
@@ -208,6 +217,7 @@
                 "name": "fn",
                 "tsType": {
                   "repr": "TestFunction",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "TestFunction"
                   }
@@ -216,6 +226,7 @@
             ],
             "returnType": {
               "repr": "void",
+              "kind": "keyword",
               "keyword": "void"
             },
             "isAsync": false,
@@ -238,6 +249,7 @@
                 "name": "name",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -245,6 +257,7 @@
                 "name": "fn",
                 "tsType": {
                   "repr": "TestFunction",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "TestFunction"
                   }
@@ -253,6 +266,7 @@
             ],
             "returnType": {
               "repr": "void",
+              "kind": "keyword",
               "keyword": "void"
             },
             "isAsync": false,
@@ -328,6 +342,7 @@
                       "name": "event",
                       "tsType": {
                         "repr": "TestEventStart",
+                        "kind": "typeRef",
                         "typeRef": {
                           "typeName": "TestEventStart"
                         }
@@ -336,6 +351,7 @@
                   ],
                   "returnType": {
                     "repr": "Promise",
+                    "kind": "typeRef",
                     "typeRef": {
                       "typeName": "Promise"
                     }
@@ -363,6 +379,7 @@
                       "name": "msg",
                       "tsType": {
                         "repr": "TestEventTestStart",
+                        "kind": "typeRef",
                         "typeRef": {
                           "typeName": "TestEventTestStart"
                         }
@@ -371,6 +388,7 @@
                   ],
                   "returnType": {
                     "repr": "Promise",
+                    "kind": "typeRef",
                     "typeRef": {
                       "typeName": "Promise"
                     }
@@ -398,6 +416,7 @@
                       "name": "msg",
                       "tsType": {
                         "repr": "TestEventTestEnd",
+                        "kind": "typeRef",
                         "typeRef": {
                           "typeName": "TestEventTestEnd"
                         }
@@ -406,6 +425,7 @@
                   ],
                   "returnType": {
                     "repr": "Promise",
+                    "kind": "typeRef",
                     "typeRef": {
                       "typeName": "Promise"
                     }
@@ -433,6 +453,7 @@
                       "name": "event",
                       "tsType": {
                         "repr": "TestEventEnd",
+                        "kind": "typeRef",
                         "typeRef": {
                           "typeName": "TestEventEnd"
                         }
@@ -441,6 +462,7 @@
                   ],
                   "returnType": {
                     "repr": "Promise",
+                    "kind": "typeRef",
                     "typeRef": {
                       "typeName": "Promise"
                     }
@@ -484,6 +506,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -501,6 +524,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -518,13 +542,16 @@
                 "optional": true,
                 "tsType": {
                   "repr": "",
+                  "kind": "union",
                   "union": [
                     {
                       "repr": "string",
+                      "kind": "keyword",
                       "keyword": "string"
                     },
                     {
                       "repr": "RegExp",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "RegExp"
                       }
@@ -546,13 +573,16 @@
                 "optional": true,
                 "tsType": {
                   "repr": "",
+                  "kind": "union",
                   "union": [
                     {
                       "repr": "string",
+                      "kind": "keyword",
                       "keyword": "string"
                     },
                     {
                       "repr": "RegExp",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "RegExp"
                       }
@@ -574,6 +604,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -591,6 +622,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "TestReporter",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "TestReporter"
                   }
@@ -616,6 +648,7 @@
                 "name": "opts",
                 "tsType": {
                   "repr": "RunTestsOptions",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "RunTestsOptions"
                   }
@@ -624,6 +657,7 @@
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -646,8 +680,10 @@
             "params": [],
             "returnType": {
               "repr": "",
+              "kind": "array",
               "array": {
                 "repr": "number",
+                "kind": "keyword",
                 "keyword": "number"
               }
             },
@@ -669,6 +705,7 @@
             "params": [],
             "returnType": {
               "repr": "string",
+              "kind": "keyword",
               "keyword": "string"
             },
             "isAsync": false,
@@ -689,6 +726,7 @@
             "params": [],
             "returnType": {
               "repr": "string",
+              "kind": "keyword",
               "keyword": "string"
             },
             "isAsync": false,
@@ -711,12 +749,14 @@
                 "name": "code",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               }
             ],
             "returnType": {
               "repr": "never",
+              "kind": "keyword",
               "keyword": "never"
             },
             "isAsync": false,
@@ -737,6 +777,7 @@
             "params": [],
             "returnType": {
               "repr": "",
+              "kind": "typeLiteral",
               "typeLiteral": {
                 "methods": [],
                 "properties": [],
@@ -763,19 +804,23 @@
                 "name": "key",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               }
             ],
             "returnType": {
               "repr": "",
+              "kind": "union",
               "union": [
                 {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 },
                 {
                   "repr": "undefined",
+                  "kind": "keyword",
                   "keyword": "undefined"
                 }
               ]
@@ -811,6 +856,7 @@
                 "name": "kind",
                 "tsType": {
                   "repr": "DirKind",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "DirKind"
                   }
@@ -819,13 +865,16 @@
             ],
             "returnType": {
               "repr": "",
+              "kind": "union",
               "union": [
                 {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 },
                 {
                   "repr": "null",
+                  "kind": "keyword",
                   "keyword": "null"
                 }
               ]
@@ -848,6 +897,7 @@
             "params": [],
             "returnType": {
               "repr": "string",
+              "kind": "keyword",
               "keyword": "string"
             },
             "isAsync": false,
@@ -868,6 +918,7 @@
             "params": [],
             "returnType": {
               "repr": "string",
+              "kind": "keyword",
               "keyword": "string"
             },
             "isAsync": false,
@@ -890,12 +941,14 @@
                 "name": "directory",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               }
             ],
             "returnType": {
               "repr": "void",
+              "kind": "keyword",
               "keyword": "void"
             },
             "isAsync": false,
@@ -918,12 +971,14 @@
                 "name": "mask",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               }
             ],
             "returnType": {
               "repr": "number",
+              "kind": "keyword",
               "keyword": "number"
             },
             "isAsync": false,
@@ -943,10 +998,12 @@
           "variableDef": {
             "tsType": {
               "repr": "",
+              "kind": "typeOperator",
               "typeOperator": {
                 "operator": "unique",
                 "tsType": {
                   "repr": "symbol",
+                  "kind": "keyword",
                   "keyword": "symbol"
                 }
               }
@@ -1014,6 +1071,7 @@
                     "name": "p",
                     "tsType": {
                       "repr": "Uint8Array",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "Uint8Array"
                       }
@@ -1022,6 +1080,7 @@
                 ],
                 "returnType": {
                   "repr": "Promise",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Promise"
                   }
@@ -1057,6 +1116,7 @@
                     "name": "p",
                     "tsType": {
                       "repr": "Uint8Array",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "Uint8Array"
                       }
@@ -1065,13 +1125,16 @@
                 ],
                 "returnType": {
                   "repr": "",
+                  "kind": "union",
                   "union": [
                     {
                       "repr": "number",
+                      "kind": "keyword",
                       "keyword": "number"
                     },
                     {
                       "repr": "EOF",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "EOF"
                       }
@@ -1109,6 +1172,7 @@
                     "name": "p",
                     "tsType": {
                       "repr": "Uint8Array",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "Uint8Array"
                       }
@@ -1117,6 +1181,7 @@
                 ],
                 "returnType": {
                   "repr": "Promise",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Promise"
                   }
@@ -1152,6 +1217,7 @@
                     "name": "p",
                     "tsType": {
                       "repr": "Uint8Array",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "Uint8Array"
                       }
@@ -1160,6 +1226,7 @@
                 ],
                 "returnType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               }
@@ -1191,6 +1258,7 @@
                 "params": [],
                 "returnType": {
                   "repr": "void",
+                  "kind": "keyword",
                   "keyword": "void"
                 }
               }
@@ -1224,6 +1292,7 @@
                     "name": "offset",
                     "tsType": {
                       "repr": "number",
+                      "kind": "keyword",
                       "keyword": "number"
                     }
                   },
@@ -1231,6 +1300,7 @@
                     "name": "whence",
                     "tsType": {
                       "repr": "SeekMode",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "SeekMode"
                       }
@@ -1239,6 +1309,7 @@
                 ],
                 "returnType": {
                   "repr": "Promise",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Promise"
                   }
@@ -1274,6 +1345,7 @@
                     "name": "offset",
                     "tsType": {
                       "repr": "number",
+                      "kind": "keyword",
                       "keyword": "number"
                     }
                   },
@@ -1281,6 +1353,7 @@
                     "name": "whence",
                     "tsType": {
                       "repr": "SeekMode",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "SeekMode"
                       }
@@ -1289,6 +1362,7 @@
                 ],
                 "returnType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               }
@@ -1409,6 +1483,7 @@
                 "name": "dst",
                 "tsType": {
                   "repr": "Writer",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Writer"
                   }
@@ -1418,6 +1493,7 @@
                 "name": "src",
                 "tsType": {
                   "repr": "Reader",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Reader"
                   }
@@ -1426,6 +1502,7 @@
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -1450,6 +1527,7 @@
                 "name": "r",
                 "tsType": {
                   "repr": "Reader",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Reader"
                   }
@@ -1458,6 +1536,7 @@
             ],
             "returnType": {
               "repr": "AsyncIterableIterator",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "AsyncIterableIterator"
               }
@@ -1482,6 +1561,7 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -1489,6 +1569,7 @@
                 "name": "options",
                 "tsType": {
                   "repr": "OpenOptions",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "OpenOptions"
                   }
@@ -1497,6 +1578,7 @@
             ],
             "returnType": {
               "repr": "File",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "File"
               }
@@ -1521,6 +1603,7 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -1528,6 +1611,7 @@
                 "name": "openMode",
                 "tsType": {
                   "repr": "OpenMode",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "OpenMode"
                   }
@@ -1536,6 +1620,7 @@
             ],
             "returnType": {
               "repr": "File",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "File"
               }
@@ -1560,6 +1645,7 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -1567,6 +1653,7 @@
                 "name": "options",
                 "tsType": {
                   "repr": "OpenOptions",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "OpenOptions"
                   }
@@ -1575,6 +1662,7 @@
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -1599,6 +1687,7 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -1606,6 +1695,7 @@
                 "name": "openMode",
                 "tsType": {
                   "repr": "OpenMode",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "OpenMode"
                   }
@@ -1614,6 +1704,7 @@
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -1638,12 +1729,14 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               }
             ],
             "returnType": {
               "repr": "File",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "File"
               }
@@ -1668,12 +1761,14 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               }
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -1698,6 +1793,7 @@
                 "name": "rid",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -1705,6 +1801,7 @@
                 "name": "p",
                 "tsType": {
                   "repr": "Uint8Array",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Uint8Array"
                   }
@@ -1713,13 +1810,16 @@
             ],
             "returnType": {
               "repr": "",
+              "kind": "union",
               "union": [
                 {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 },
                 {
                   "repr": "EOF",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "EOF"
                   }
@@ -1746,6 +1846,7 @@
                 "name": "rid",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -1753,6 +1854,7 @@
                 "name": "p",
                 "tsType": {
                   "repr": "Uint8Array",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Uint8Array"
                   }
@@ -1761,6 +1863,7 @@
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -1785,6 +1888,7 @@
                 "name": "rid",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -1792,6 +1896,7 @@
                 "name": "p",
                 "tsType": {
                   "repr": "Uint8Array",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Uint8Array"
                   }
@@ -1800,6 +1905,7 @@
             ],
             "returnType": {
               "repr": "number",
+              "kind": "keyword",
               "keyword": "number"
             },
             "isAsync": false,
@@ -1822,6 +1928,7 @@
                 "name": "rid",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -1829,6 +1936,7 @@
                 "name": "p",
                 "tsType": {
                   "repr": "Uint8Array",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Uint8Array"
                   }
@@ -1837,6 +1945,7 @@
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -1861,6 +1970,7 @@
                 "name": "rid",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -1868,6 +1978,7 @@
                 "name": "offset",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -1875,6 +1986,7 @@
                 "name": "whence",
                 "tsType": {
                   "repr": "SeekMode",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "SeekMode"
                   }
@@ -1883,6 +1995,7 @@
             ],
             "returnType": {
               "repr": "number",
+              "kind": "keyword",
               "keyword": "number"
             },
             "isAsync": false,
@@ -1905,6 +2018,7 @@
                 "name": "rid",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -1912,6 +2026,7 @@
                 "name": "offset",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -1919,6 +2034,7 @@
                 "name": "whence",
                 "tsType": {
                   "repr": "SeekMode",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "SeekMode"
                   }
@@ -1927,6 +2043,7 @@
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -1951,12 +2068,14 @@
                 "name": "rid",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               }
             ],
             "returnType": {
               "repr": "void",
+              "kind": "keyword",
               "keyword": "void"
             },
             "isAsync": false,
@@ -1986,6 +2105,7 @@
                     "name": "rid",
                     "tsType": {
                       "repr": "number",
+                      "kind": "keyword",
                       "keyword": "number"
                     }
                   }
@@ -2003,6 +2123,7 @@
                 "snippet": "readonly rid: number;",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 },
                 "readonly": true,
@@ -2032,6 +2153,7 @@
                       "name": "p",
                       "tsType": {
                         "repr": "Uint8Array",
+                        "kind": "typeRef",
                         "typeRef": {
                           "typeName": "Uint8Array"
                         }
@@ -2040,6 +2162,7 @@
                   ],
                   "returnType": {
                     "repr": "Promise",
+                    "kind": "typeRef",
                     "typeRef": {
                       "typeName": "Promise"
                     }
@@ -2067,6 +2190,7 @@
                       "name": "p",
                       "tsType": {
                         "repr": "Uint8Array",
+                        "kind": "typeRef",
                         "typeRef": {
                           "typeName": "Uint8Array"
                         }
@@ -2075,6 +2199,7 @@
                   ],
                   "returnType": {
                     "repr": "number",
+                    "kind": "keyword",
                     "keyword": "number"
                   },
                   "isAsync": false,
@@ -2100,6 +2225,7 @@
                       "name": "p",
                       "tsType": {
                         "repr": "Uint8Array",
+                        "kind": "typeRef",
                         "typeRef": {
                           "typeName": "Uint8Array"
                         }
@@ -2108,6 +2234,7 @@
                   ],
                   "returnType": {
                     "repr": "Promise",
+                    "kind": "typeRef",
                     "typeRef": {
                       "typeName": "Promise"
                     }
@@ -2135,6 +2262,7 @@
                       "name": "p",
                       "tsType": {
                         "repr": "Uint8Array",
+                        "kind": "typeRef",
                         "typeRef": {
                           "typeName": "Uint8Array"
                         }
@@ -2143,13 +2271,16 @@
                   ],
                   "returnType": {
                     "repr": "",
+                    "kind": "union",
                     "union": [
                       {
                         "repr": "number",
+                        "kind": "keyword",
                         "keyword": "number"
                       },
                       {
                         "repr": "EOF",
+                        "kind": "typeRef",
                         "typeRef": {
                           "typeName": "EOF"
                         }
@@ -2179,6 +2310,7 @@
                       "name": "offset",
                       "tsType": {
                         "repr": "number",
+                        "kind": "keyword",
                         "keyword": "number"
                       }
                     },
@@ -2186,6 +2318,7 @@
                       "name": "whence",
                       "tsType": {
                         "repr": "SeekMode",
+                        "kind": "typeRef",
                         "typeRef": {
                           "typeName": "SeekMode"
                         }
@@ -2194,6 +2327,7 @@
                   ],
                   "returnType": {
                     "repr": "Promise",
+                    "kind": "typeRef",
                     "typeRef": {
                       "typeName": "Promise"
                     }
@@ -2221,6 +2355,7 @@
                       "name": "offset",
                       "tsType": {
                         "repr": "number",
+                        "kind": "keyword",
                         "keyword": "number"
                       }
                     },
@@ -2228,6 +2363,7 @@
                       "name": "whence",
                       "tsType": {
                         "repr": "SeekMode",
+                        "kind": "typeRef",
                         "typeRef": {
                           "typeName": "SeekMode"
                         }
@@ -2236,6 +2372,7 @@
                   ],
                   "returnType": {
                     "repr": "number",
+                    "kind": "keyword",
                     "keyword": "number"
                   },
                   "isAsync": false,
@@ -2259,6 +2396,7 @@
                   "params": [],
                   "returnType": {
                     "repr": "void",
+                    "kind": "keyword",
                     "keyword": "void"
                   },
                   "isAsync": false,
@@ -2286,6 +2424,7 @@
           "variableDef": {
             "tsType": {
               "repr": "File",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "File"
               }
@@ -2306,6 +2445,7 @@
           "variableDef": {
             "tsType": {
               "repr": "File",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "File"
               }
@@ -2326,6 +2466,7 @@
           "variableDef": {
             "tsType": {
               "repr": "File",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "File"
               }
@@ -2360,6 +2501,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -2377,6 +2519,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -2394,6 +2537,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -2411,6 +2555,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -2428,6 +2573,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -2445,6 +2591,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -2462,6 +2609,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               }
@@ -2496,12 +2644,14 @@
                 "name": "rid",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               }
             ],
             "returnType": {
               "repr": "boolean",
+              "kind": "keyword",
               "keyword": "boolean"
             },
             "isAsync": false,
@@ -2524,6 +2674,7 @@
                 "name": "rid",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -2531,12 +2682,14 @@
                 "name": "mode",
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               }
             ],
             "returnType": {
               "repr": "void",
+              "kind": "keyword",
               "keyword": "void"
             },
             "isAsync": false,
@@ -2566,6 +2719,7 @@
                     "name": "ab",
                     "tsType": {
                       "repr": "ArrayBuffer",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "ArrayBuffer"
                       }
@@ -2660,6 +2814,7 @@
                 "snippet": "readonly length: number;",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 },
                 "readonly": true,
@@ -2678,6 +2833,7 @@
                 "snippet": "readonly capacity: number;",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 },
                 "readonly": true,
@@ -2705,6 +2861,7 @@
                   "params": [],
                   "returnType": {
                     "repr": "Uint8Array",
+                    "kind": "typeRef",
                     "typeRef": {
                       "typeName": "Uint8Array"
                     }
@@ -2730,6 +2887,7 @@
                   "params": [],
                   "returnType": {
                     "repr": "string",
+                    "kind": "keyword",
                     "keyword": "string"
                   },
                   "isAsync": false,
@@ -2753,6 +2911,7 @@
                   "params": [],
                   "returnType": {
                     "repr": "boolean",
+                    "kind": "keyword",
                     "keyword": "boolean"
                   },
                   "isAsync": false,
@@ -2778,12 +2937,14 @@
                       "name": "n",
                       "tsType": {
                         "repr": "number",
+                        "kind": "keyword",
                         "keyword": "number"
                       }
                     }
                   ],
                   "returnType": {
                     "repr": "void",
+                    "kind": "keyword",
                     "keyword": "void"
                   },
                   "isAsync": false,
@@ -2807,6 +2968,7 @@
                   "params": [],
                   "returnType": {
                     "repr": "void",
+                    "kind": "keyword",
                     "keyword": "void"
                   },
                   "isAsync": false,
@@ -2832,6 +2994,7 @@
                       "name": "p",
                       "tsType": {
                         "repr": "Uint8Array",
+                        "kind": "typeRef",
                         "typeRef": {
                           "typeName": "Uint8Array"
                         }
@@ -2840,13 +3003,16 @@
                   ],
                   "returnType": {
                     "repr": "",
+                    "kind": "union",
                     "union": [
                       {
                         "repr": "number",
+                        "kind": "keyword",
                         "keyword": "number"
                       },
                       {
                         "repr": "EOF",
+                        "kind": "typeRef",
                         "typeRef": {
                           "typeName": "EOF"
                         }
@@ -2876,6 +3042,7 @@
                       "name": "p",
                       "tsType": {
                         "repr": "Uint8Array",
+                        "kind": "typeRef",
                         "typeRef": {
                           "typeName": "Uint8Array"
                         }
@@ -2884,6 +3051,7 @@
                   ],
                   "returnType": {
                     "repr": "Promise",
+                    "kind": "typeRef",
                     "typeRef": {
                       "typeName": "Promise"
                     }
@@ -2911,6 +3079,7 @@
                       "name": "p",
                       "tsType": {
                         "repr": "Uint8Array",
+                        "kind": "typeRef",
                         "typeRef": {
                           "typeName": "Uint8Array"
                         }
@@ -2919,6 +3088,7 @@
                   ],
                   "returnType": {
                     "repr": "number",
+                    "kind": "keyword",
                     "keyword": "number"
                   },
                   "isAsync": false,
@@ -2944,6 +3114,7 @@
                       "name": "p",
                       "tsType": {
                         "repr": "Uint8Array",
+                        "kind": "typeRef",
                         "typeRef": {
                           "typeName": "Uint8Array"
                         }
@@ -2952,6 +3123,7 @@
                   ],
                   "returnType": {
                     "repr": "Promise",
+                    "kind": "typeRef",
                     "typeRef": {
                       "typeName": "Promise"
                     }
@@ -2979,12 +3151,14 @@
                       "name": "n",
                       "tsType": {
                         "repr": "number",
+                        "kind": "keyword",
                         "keyword": "number"
                       }
                     }
                   ],
                   "returnType": {
                     "repr": "void",
+                    "kind": "keyword",
                     "keyword": "void"
                   },
                   "isAsync": false,
@@ -3010,6 +3184,7 @@
                       "name": "r",
                       "tsType": {
                         "repr": "Reader",
+                        "kind": "typeRef",
                         "typeRef": {
                           "typeName": "Reader"
                         }
@@ -3018,6 +3193,7 @@
                   ],
                   "returnType": {
                     "repr": "Promise",
+                    "kind": "typeRef",
                     "typeRef": {
                       "typeName": "Promise"
                     }
@@ -3045,6 +3221,7 @@
                       "name": "r",
                       "tsType": {
                         "repr": "SyncReader",
+                        "kind": "typeRef",
                         "typeRef": {
                           "typeName": "SyncReader"
                         }
@@ -3053,6 +3230,7 @@
                   ],
                   "returnType": {
                     "repr": "number",
+                    "kind": "keyword",
                     "keyword": "number"
                   },
                   "isAsync": false,
@@ -3083,6 +3261,7 @@
                 "name": "r",
                 "tsType": {
                   "repr": "Reader",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Reader"
                   }
@@ -3091,6 +3270,7 @@
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -3115,6 +3295,7 @@
                 "name": "r",
                 "tsType": {
                   "repr": "SyncReader",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "SyncReader"
                   }
@@ -3123,6 +3304,7 @@
             ],
             "returnType": {
               "repr": "Uint8Array",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Uint8Array"
               }
@@ -3147,6 +3329,7 @@
                 "name": "w",
                 "tsType": {
                   "repr": "Writer",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Writer"
                   }
@@ -3156,6 +3339,7 @@
                 "name": "arr",
                 "tsType": {
                   "repr": "Uint8Array",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Uint8Array"
                   }
@@ -3164,6 +3348,7 @@
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -3188,6 +3373,7 @@
                 "name": "w",
                 "tsType": {
                   "repr": "SyncWriter",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "SyncWriter"
                   }
@@ -3197,6 +3383,7 @@
                 "name": "arr",
                 "tsType": {
                   "repr": "Uint8Array",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Uint8Array"
                   }
@@ -3205,6 +3392,7 @@
             ],
             "returnType": {
               "repr": "void",
+              "kind": "keyword",
               "keyword": "void"
             },
             "isAsync": false,
@@ -3238,6 +3426,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -3255,6 +3444,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               }
@@ -3278,6 +3468,7 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -3285,6 +3476,7 @@
                 "name": "options",
                 "tsType": {
                   "repr": "MkdirOptions",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "MkdirOptions"
                   }
@@ -3293,6 +3485,7 @@
             ],
             "returnType": {
               "repr": "void",
+              "kind": "keyword",
               "keyword": "void"
             },
             "isAsync": false,
@@ -3315,6 +3508,7 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -3322,6 +3516,7 @@
                 "name": "recursive",
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -3329,12 +3524,14 @@
                 "name": "mode",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               }
             ],
             "returnType": {
               "repr": "void",
+              "kind": "keyword",
               "keyword": "void"
             },
             "isAsync": false,
@@ -3357,6 +3554,7 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -3364,6 +3562,7 @@
                 "name": "options",
                 "tsType": {
                   "repr": "MkdirOptions",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "MkdirOptions"
                   }
@@ -3372,6 +3571,7 @@
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -3396,6 +3596,7 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -3403,6 +3604,7 @@
                 "name": "recursive",
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -3410,12 +3612,14 @@
                 "name": "mode",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               }
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -3451,6 +3655,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -3468,6 +3673,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -3485,6 +3691,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               }
@@ -3508,6 +3715,7 @@
                 "name": "options",
                 "tsType": {
                   "repr": "MakeTempOptions",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "MakeTempOptions"
                   }
@@ -3516,6 +3724,7 @@
             ],
             "returnType": {
               "repr": "string",
+              "kind": "keyword",
               "keyword": "string"
             },
             "isAsync": false,
@@ -3538,6 +3747,7 @@
                 "name": "options",
                 "tsType": {
                   "repr": "MakeTempOptions",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "MakeTempOptions"
                   }
@@ -3546,6 +3756,7 @@
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -3570,6 +3781,7 @@
                 "name": "options",
                 "tsType": {
                   "repr": "MakeTempOptions",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "MakeTempOptions"
                   }
@@ -3578,6 +3790,7 @@
             ],
             "returnType": {
               "repr": "string",
+              "kind": "keyword",
               "keyword": "string"
             },
             "isAsync": false,
@@ -3600,6 +3813,7 @@
                 "name": "options",
                 "tsType": {
                   "repr": "MakeTempOptions",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "MakeTempOptions"
                   }
@@ -3608,6 +3822,7 @@
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -3632,6 +3847,7 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -3639,12 +3855,14 @@
                 "name": "mode",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               }
             ],
             "returnType": {
               "repr": "void",
+              "kind": "keyword",
               "keyword": "void"
             },
             "isAsync": false,
@@ -3667,6 +3885,7 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -3674,12 +3893,14 @@
                 "name": "mode",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               }
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -3704,6 +3925,7 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -3711,6 +3933,7 @@
                 "name": "uid",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -3718,12 +3941,14 @@
                 "name": "gid",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               }
             ],
             "returnType": {
               "repr": "void",
+              "kind": "keyword",
               "keyword": "void"
             },
             "isAsync": false,
@@ -3746,6 +3971,7 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -3753,6 +3979,7 @@
                 "name": "uid",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -3760,12 +3987,14 @@
                 "name": "gid",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               }
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -3790,6 +4019,7 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -3797,13 +4027,16 @@
                 "name": "atime",
                 "tsType": {
                   "repr": "",
+                  "kind": "union",
                   "union": [
                     {
                       "repr": "number",
+                      "kind": "keyword",
                       "keyword": "number"
                     },
                     {
                       "repr": "Date",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "Date"
                       }
@@ -3815,13 +4048,16 @@
                 "name": "mtime",
                 "tsType": {
                   "repr": "",
+                  "kind": "union",
                   "union": [
                     {
                       "repr": "number",
+                      "kind": "keyword",
                       "keyword": "number"
                     },
                     {
                       "repr": "Date",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "Date"
                       }
@@ -3832,6 +4068,7 @@
             ],
             "returnType": {
               "repr": "void",
+              "kind": "keyword",
               "keyword": "void"
             },
             "isAsync": false,
@@ -3854,6 +4091,7 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -3861,13 +4099,16 @@
                 "name": "atime",
                 "tsType": {
                   "repr": "",
+                  "kind": "union",
                   "union": [
                     {
                       "repr": "number",
+                      "kind": "keyword",
                       "keyword": "number"
                     },
                     {
                       "repr": "Date",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "Date"
                       }
@@ -3879,13 +4120,16 @@
                 "name": "mtime",
                 "tsType": {
                   "repr": "",
+                  "kind": "union",
                   "union": [
                     {
                       "repr": "number",
+                      "kind": "keyword",
                       "keyword": "number"
                     },
                     {
                       "repr": "Date",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "Date"
                       }
@@ -3896,6 +4140,7 @@
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -3931,6 +4176,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               }
@@ -3954,6 +4200,7 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -3961,6 +4208,7 @@
                 "name": "options",
                 "tsType": {
                   "repr": "RemoveOptions",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "RemoveOptions"
                   }
@@ -3969,6 +4217,7 @@
             ],
             "returnType": {
               "repr": "void",
+              "kind": "keyword",
               "keyword": "void"
             },
             "isAsync": false,
@@ -3991,6 +4240,7 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -3998,6 +4248,7 @@
                 "name": "options",
                 "tsType": {
                   "repr": "RemoveOptions",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "RemoveOptions"
                   }
@@ -4006,6 +4257,7 @@
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -4030,6 +4282,7 @@
                 "name": "oldpath",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -4037,12 +4290,14 @@
                 "name": "newpath",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               }
             ],
             "returnType": {
               "repr": "void",
+              "kind": "keyword",
               "keyword": "void"
             },
             "isAsync": false,
@@ -4065,6 +4320,7 @@
                 "name": "oldpath",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -4072,12 +4328,14 @@
                 "name": "newpath",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               }
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -4102,12 +4360,14 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               }
             ],
             "returnType": {
               "repr": "Uint8Array",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Uint8Array"
               }
@@ -4132,12 +4392,14 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               }
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -4169,6 +4431,7 @@
                 "params": [],
                 "returnType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -4183,6 +4446,7 @@
                 "params": [],
                 "returnType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -4197,6 +4461,7 @@
                 "params": [],
                 "returnType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               }
@@ -4216,6 +4481,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -4233,13 +4499,16 @@
                 "optional": false,
                 "tsType": {
                   "repr": "",
+                  "kind": "union",
                   "union": [
                     {
                       "repr": "number",
+                      "kind": "keyword",
                       "keyword": "number"
                     },
                     {
                       "repr": "null",
+                      "kind": "keyword",
                       "keyword": "null"
                     }
                   ]
@@ -4259,13 +4528,16 @@
                 "optional": false,
                 "tsType": {
                   "repr": "",
+                  "kind": "union",
                   "union": [
                     {
                       "repr": "number",
+                      "kind": "keyword",
                       "keyword": "number"
                     },
                     {
                       "repr": "null",
+                      "kind": "keyword",
                       "keyword": "null"
                     }
                   ]
@@ -4285,13 +4557,16 @@
                 "optional": false,
                 "tsType": {
                   "repr": "",
+                  "kind": "union",
                   "union": [
                     {
                       "repr": "number",
+                      "kind": "keyword",
                       "keyword": "number"
                     },
                     {
                       "repr": "null",
+                      "kind": "keyword",
                       "keyword": "null"
                     }
                   ]
@@ -4311,13 +4586,16 @@
                 "optional": false,
                 "tsType": {
                   "repr": "",
+                  "kind": "union",
                   "union": [
                     {
                       "repr": "string",
+                      "kind": "keyword",
                       "keyword": "string"
                     },
                     {
                       "repr": "null",
+                      "kind": "keyword",
                       "keyword": "null"
                     }
                   ]
@@ -4337,13 +4615,16 @@
                 "optional": false,
                 "tsType": {
                   "repr": "",
+                  "kind": "union",
                   "union": [
                     {
                       "repr": "number",
+                      "kind": "keyword",
                       "keyword": "number"
                     },
                     {
                       "repr": "null",
+                      "kind": "keyword",
                       "keyword": "null"
                     }
                   ]
@@ -4363,13 +4644,16 @@
                 "optional": false,
                 "tsType": {
                   "repr": "",
+                  "kind": "union",
                   "union": [
                     {
                       "repr": "number",
+                      "kind": "keyword",
                       "keyword": "number"
                     },
                     {
                       "repr": "null",
+                      "kind": "keyword",
                       "keyword": "null"
                     }
                   ]
@@ -4389,13 +4673,16 @@
                 "optional": false,
                 "tsType": {
                   "repr": "",
+                  "kind": "union",
                   "union": [
                     {
                       "repr": "number",
+                      "kind": "keyword",
                       "keyword": "number"
                     },
                     {
                       "repr": "null",
+                      "kind": "keyword",
                       "keyword": "null"
                     }
                   ]
@@ -4415,13 +4702,16 @@
                 "optional": false,
                 "tsType": {
                   "repr": "",
+                  "kind": "union",
                   "union": [
                     {
                       "repr": "number",
+                      "kind": "keyword",
                       "keyword": "number"
                     },
                     {
                       "repr": "null",
+                      "kind": "keyword",
                       "keyword": "null"
                     }
                   ]
@@ -4441,13 +4731,16 @@
                 "optional": false,
                 "tsType": {
                   "repr": "",
+                  "kind": "union",
                   "union": [
                     {
                       "repr": "number",
+                      "kind": "keyword",
                       "keyword": "number"
                     },
                     {
                       "repr": "null",
+                      "kind": "keyword",
                       "keyword": "null"
                     }
                   ]
@@ -4467,13 +4760,16 @@
                 "optional": false,
                 "tsType": {
                   "repr": "",
+                  "kind": "union",
                   "union": [
                     {
                       "repr": "number",
+                      "kind": "keyword",
                       "keyword": "number"
                     },
                     {
                       "repr": "null",
+                      "kind": "keyword",
                       "keyword": "null"
                     }
                   ]
@@ -4493,13 +4789,16 @@
                 "optional": false,
                 "tsType": {
                   "repr": "",
+                  "kind": "union",
                   "union": [
                     {
                       "repr": "number",
+                      "kind": "keyword",
                       "keyword": "number"
                     },
                     {
                       "repr": "null",
+                      "kind": "keyword",
                       "keyword": "null"
                     }
                   ]
@@ -4519,13 +4818,16 @@
                 "optional": false,
                 "tsType": {
                   "repr": "",
+                  "kind": "union",
                   "union": [
                     {
                       "repr": "number",
+                      "kind": "keyword",
                       "keyword": "number"
                     },
                     {
                       "repr": "null",
+                      "kind": "keyword",
                       "keyword": "null"
                     }
                   ]
@@ -4545,13 +4847,16 @@
                 "optional": false,
                 "tsType": {
                   "repr": "",
+                  "kind": "union",
                   "union": [
                     {
                       "repr": "number",
+                      "kind": "keyword",
                       "keyword": "number"
                     },
                     {
                       "repr": "null",
+                      "kind": "keyword",
                       "keyword": "null"
                     }
                   ]
@@ -4577,12 +4882,14 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               }
             ],
             "returnType": {
               "repr": "string",
+              "kind": "keyword",
               "keyword": "string"
             },
             "isAsync": false,
@@ -4605,12 +4912,14 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               }
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -4635,14 +4944,17 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               }
             ],
             "returnType": {
               "repr": "",
+              "kind": "array",
               "array": {
                 "repr": "FileInfo",
+                "kind": "typeRef",
                 "typeRef": {
                   "typeName": "FileInfo"
                 }
@@ -4668,12 +4980,14 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               }
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -4698,6 +5012,7 @@
                 "name": "fromPath",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -4705,12 +5020,14 @@
                 "name": "toPath",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               }
             ],
             "returnType": {
               "repr": "void",
+              "kind": "keyword",
               "keyword": "void"
             },
             "isAsync": false,
@@ -4733,6 +5050,7 @@
                 "name": "fromPath",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -4740,12 +5058,14 @@
                 "name": "toPath",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               }
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -4770,12 +5090,14 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               }
             ],
             "returnType": {
               "repr": "string",
+              "kind": "keyword",
               "keyword": "string"
             },
             "isAsync": false,
@@ -4798,12 +5120,14 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               }
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -4828,12 +5152,14 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               }
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -4858,12 +5184,14 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               }
             ],
             "returnType": {
               "repr": "FileInfo",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "FileInfo"
               }
@@ -4888,12 +5216,14 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               }
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -4918,12 +5248,14 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               }
             ],
             "returnType": {
               "repr": "FileInfo",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "FileInfo"
               }
@@ -4948,6 +5280,7 @@
                 "name": "oldpath",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -4955,12 +5288,14 @@
                 "name": "newpath",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               }
             ],
             "returnType": {
               "repr": "void",
+              "kind": "keyword",
               "keyword": "void"
             },
             "isAsync": false,
@@ -4983,6 +5318,7 @@
                 "name": "oldpath",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -4990,12 +5326,14 @@
                 "name": "newpath",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               }
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -5020,6 +5358,7 @@
                 "name": "oldpath",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -5027,6 +5366,7 @@
                 "name": "newpath",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -5034,12 +5374,14 @@
                 "name": "type",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               }
             ],
             "returnType": {
               "repr": "void",
+              "kind": "keyword",
               "keyword": "void"
             },
             "isAsync": false,
@@ -5062,6 +5404,7 @@
                 "name": "oldpath",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -5069,6 +5412,7 @@
                 "name": "newpath",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -5076,12 +5420,14 @@
                 "name": "type",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               }
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -5117,6 +5463,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -5134,6 +5481,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -5151,6 +5499,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               }
@@ -5174,6 +5523,7 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -5181,6 +5531,7 @@
                 "name": "data",
                 "tsType": {
                   "repr": "Uint8Array",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Uint8Array"
                   }
@@ -5190,6 +5541,7 @@
                 "name": "options",
                 "tsType": {
                   "repr": "WriteFileOptions",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "WriteFileOptions"
                   }
@@ -5198,6 +5550,7 @@
             ],
             "returnType": {
               "repr": "void",
+              "kind": "keyword",
               "keyword": "void"
             },
             "isAsync": false,
@@ -5220,6 +5573,7 @@
                 "name": "path",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -5227,6 +5581,7 @@
                 "name": "data",
                 "tsType": {
                   "repr": "Uint8Array",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Uint8Array"
                   }
@@ -5236,6 +5591,7 @@
                 "name": "options",
                 "tsType": {
                   "repr": "WriteFileOptions",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "WriteFileOptions"
                   }
@@ -5244,6 +5600,7 @@
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -5268,6 +5625,7 @@
                 "name": "location",
                 "tsType": {
                   "repr": "Location",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Location"
                   }
@@ -5276,6 +5634,7 @@
             ],
             "returnType": {
               "repr": "Location",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Location"
               }
@@ -5297,6 +5656,7 @@
           "variableDef": {
             "tsType": {
               "repr": "",
+              "kind": "typeLiteral",
               "typeLiteral": {
                 "methods": [],
                 "properties": [
@@ -5307,6 +5667,7 @@
                     "optional": false,
                     "tsType": {
                       "repr": "ErrorConstructor",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "ErrorConstructor"
                       }
@@ -5319,6 +5680,7 @@
                     "optional": false,
                     "tsType": {
                       "repr": "ErrorConstructor",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "ErrorConstructor"
                       }
@@ -5331,6 +5693,7 @@
                     "optional": false,
                     "tsType": {
                       "repr": "ErrorConstructor",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "ErrorConstructor"
                       }
@@ -5343,6 +5706,7 @@
                     "optional": false,
                     "tsType": {
                       "repr": "ErrorConstructor",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "ErrorConstructor"
                       }
@@ -5355,6 +5719,7 @@
                     "optional": false,
                     "tsType": {
                       "repr": "ErrorConstructor",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "ErrorConstructor"
                       }
@@ -5367,6 +5732,7 @@
                     "optional": false,
                     "tsType": {
                       "repr": "ErrorConstructor",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "ErrorConstructor"
                       }
@@ -5379,6 +5745,7 @@
                     "optional": false,
                     "tsType": {
                       "repr": "ErrorConstructor",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "ErrorConstructor"
                       }
@@ -5391,6 +5758,7 @@
                     "optional": false,
                     "tsType": {
                       "repr": "ErrorConstructor",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "ErrorConstructor"
                       }
@@ -5403,6 +5771,7 @@
                     "optional": false,
                     "tsType": {
                       "repr": "ErrorConstructor",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "ErrorConstructor"
                       }
@@ -5415,6 +5784,7 @@
                     "optional": false,
                     "tsType": {
                       "repr": "ErrorConstructor",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "ErrorConstructor"
                       }
@@ -5427,6 +5797,7 @@
                     "optional": false,
                     "tsType": {
                       "repr": "ErrorConstructor",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "ErrorConstructor"
                       }
@@ -5439,6 +5810,7 @@
                     "optional": false,
                     "tsType": {
                       "repr": "ErrorConstructor",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "ErrorConstructor"
                       }
@@ -5451,6 +5823,7 @@
                     "optional": false,
                     "tsType": {
                       "repr": "ErrorConstructor",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "ErrorConstructor"
                       }
@@ -5463,6 +5836,7 @@
                     "optional": false,
                     "tsType": {
                       "repr": "ErrorConstructor",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "ErrorConstructor"
                       }
@@ -5475,6 +5849,7 @@
                     "optional": false,
                     "tsType": {
                       "repr": "ErrorConstructor",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "ErrorConstructor"
                       }
@@ -5487,6 +5862,7 @@
                     "optional": false,
                     "tsType": {
                       "repr": "ErrorConstructor",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "ErrorConstructor"
                       }
@@ -5499,6 +5875,7 @@
                     "optional": false,
                     "tsType": {
                       "repr": "ErrorConstructor",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "ErrorConstructor"
                       }
@@ -5562,6 +5939,7 @@
                       "name": "desc",
                       "tsType": {
                         "repr": "PermissionDescriptor",
+                        "kind": "typeRef",
                         "typeRef": {
                           "typeName": "PermissionDescriptor"
                         }
@@ -5570,6 +5948,7 @@
                   ],
                   "returnType": {
                     "repr": "Promise",
+                    "kind": "typeRef",
                     "typeRef": {
                       "typeName": "Promise"
                     }
@@ -5597,6 +5976,7 @@
                       "name": "desc",
                       "tsType": {
                         "repr": "PermissionDescriptor",
+                        "kind": "typeRef",
                         "typeRef": {
                           "typeName": "PermissionDescriptor"
                         }
@@ -5605,6 +5985,7 @@
                   ],
                   "returnType": {
                     "repr": "Promise",
+                    "kind": "typeRef",
                     "typeRef": {
                       "typeName": "Promise"
                     }
@@ -5632,6 +6013,7 @@
                       "name": "desc",
                       "tsType": {
                         "repr": "PermissionDescriptor",
+                        "kind": "typeRef",
                         "typeRef": {
                           "typeName": "PermissionDescriptor"
                         }
@@ -5640,6 +6022,7 @@
                   ],
                   "returnType": {
                     "repr": "Promise",
+                    "kind": "typeRef",
                     "typeRef": {
                       "typeName": "Promise"
                     }
@@ -5669,6 +6052,7 @@
           "variableDef": {
             "tsType": {
               "repr": "Permissions",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Permissions"
               }
@@ -5699,6 +6083,7 @@
                     "name": "state",
                     "tsType": {
                       "repr": "PermissionState",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "PermissionState"
                       }
@@ -5718,6 +6103,7 @@
                 "snippet": "state: PermissionState;",
                 "tsType": {
                   "repr": "PermissionState",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "PermissionState"
                   }
@@ -5753,6 +6139,7 @@
                 "name": "name",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -5760,12 +6147,14 @@
                 "name": "len",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               }
             ],
             "returnType": {
               "repr": "void",
+              "kind": "keyword",
               "keyword": "void"
             },
             "isAsync": false,
@@ -5788,6 +6177,7 @@
                 "name": "name",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -5795,12 +6185,14 @@
                 "name": "len",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               }
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -5836,6 +6228,7 @@
                     "name": "msg",
                     "tsType": {
                       "repr": "Uint8Array",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "Uint8Array"
                       }
@@ -5844,6 +6237,7 @@
                 ],
                 "tsType": {
                   "repr": "void",
+                  "kind": "keyword",
                   "keyword": "void"
                 }
               }
@@ -5875,6 +6269,7 @@
                     "name": "control",
                     "tsType": {
                       "repr": "Uint8Array",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "Uint8Array"
                       }
@@ -5884,15 +6279,18 @@
                     "name": "zeroCopy",
                     "tsType": {
                       "repr": "",
+                      "kind": "union",
                       "union": [
                         {
                           "repr": "ArrayBufferView",
+                          "kind": "typeRef",
                           "typeRef": {
                             "typeName": "ArrayBufferView"
                           }
                         },
                         {
                           "repr": "null",
+                          "kind": "keyword",
                           "keyword": "null"
                         }
                       ]
@@ -5901,15 +6299,18 @@
                 ],
                 "returnType": {
                   "repr": "",
+                  "kind": "union",
                   "union": [
                     {
                       "repr": "Uint8Array",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "Uint8Array"
                       }
                     },
                     {
                       "repr": "null",
+                      "kind": "keyword",
                       "keyword": "null"
                     }
                   ]
@@ -5928,6 +6329,7 @@
                     "name": "handler",
                     "tsType": {
                       "repr": "AsyncHandler",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "AsyncHandler"
                       }
@@ -5936,6 +6338,7 @@
                 ],
                 "returnType": {
                   "repr": "void",
+                  "kind": "keyword",
                   "keyword": "void"
                 }
               }
@@ -5971,6 +6374,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "",
+                  "kind": "typeLiteral",
                   "typeLiteral": {
                     "methods": [],
                     "properties": [],
@@ -5998,12 +6402,14 @@
                 "name": "filename",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               }
             ],
             "returnType": {
               "repr": "Plugin",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Plugin"
               }
@@ -6050,6 +6456,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "Transport",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Transport"
                   }
@@ -6069,6 +6476,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -6086,6 +6494,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               }
@@ -6120,6 +6529,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -6137,6 +6547,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "Transport",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Transport"
                   }
@@ -6156,6 +6567,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               }
@@ -6203,6 +6615,7 @@
                 "name": "rid",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -6210,6 +6623,7 @@
                 "name": "how",
                 "tsType": {
                   "repr": "ShutdownMode",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "ShutdownMode"
                   }
@@ -6218,6 +6632,7 @@
             ],
             "returnType": {
               "repr": "void",
+              "kind": "keyword",
               "keyword": "void"
             },
             "isAsync": false,
@@ -6240,6 +6655,7 @@
                 "name": "rid",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -6247,6 +6663,7 @@
                 "name": "p",
                 "tsType": {
                   "repr": "Uint8Array",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Uint8Array"
                   }
@@ -6255,6 +6672,7 @@
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -6288,6 +6706,7 @@
                     "name": "p",
                     "tsType": {
                       "repr": "Uint8Array",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "Uint8Array"
                       }
@@ -6296,6 +6715,7 @@
                 ],
                 "returnType": {
                   "repr": "Promise",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Promise"
                   }
@@ -6314,6 +6734,7 @@
                     "name": "p",
                     "tsType": {
                       "repr": "Uint8Array",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "Uint8Array"
                       }
@@ -6323,6 +6744,7 @@
                     "name": "addr",
                     "tsType": {
                       "repr": "UDPAddr",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "UDPAddr"
                       }
@@ -6331,6 +6753,7 @@
                 ],
                 "returnType": {
                   "repr": "Promise",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Promise"
                   }
@@ -6347,6 +6770,7 @@
                 "params": [],
                 "returnType": {
                   "repr": "void",
+                  "kind": "keyword",
                   "keyword": "void"
                 }
               },
@@ -6361,6 +6785,7 @@
                 "params": [],
                 "returnType": {
                   "repr": "AsyncIterator",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "AsyncIterator"
                   }
@@ -6382,6 +6807,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "Addr",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Addr"
                   }
@@ -6414,6 +6840,7 @@
                 "params": [],
                 "returnType": {
                   "repr": "Promise",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Promise"
                   }
@@ -6430,6 +6857,7 @@
                 "params": [],
                 "returnType": {
                   "repr": "void",
+                  "kind": "keyword",
                   "keyword": "void"
                 }
               },
@@ -6444,6 +6872,7 @@
                 "params": [],
                 "returnType": {
                   "repr": "AsyncIterator",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "AsyncIterator"
                   }
@@ -6465,6 +6894,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "Addr",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Addr"
                   }
@@ -6497,6 +6927,7 @@
                 "params": [],
                 "returnType": {
                   "repr": "void",
+                  "kind": "keyword",
                   "keyword": "void"
                 }
               },
@@ -6511,6 +6942,7 @@
                 "params": [],
                 "returnType": {
                   "repr": "void",
+                  "kind": "keyword",
                   "keyword": "void"
                 }
               }
@@ -6530,6 +6962,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "Addr",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Addr"
                   }
@@ -6549,6 +6982,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "Addr",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Addr"
                   }
@@ -6568,6 +7002,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               }
@@ -6602,6 +7037,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -6619,6 +7055,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -6636,6 +7073,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "Transport",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Transport"
                   }
@@ -6661,15 +7099,18 @@
                 "name": "options",
                 "tsType": {
                   "repr": "",
+                  "kind": "intersection",
                   "intersection": [
                     {
                       "repr": "ListenOptions",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "ListenOptions"
                       }
                     },
                     {
                       "repr": "",
+                      "kind": "typeLiteral",
                       "typeLiteral": {
                         "methods": [],
                         "properties": [
@@ -6680,6 +7121,7 @@
                             "optional": true,
                             "tsType": {
                               "repr": "tcp",
+                              "kind": "literal",
                               "literal": {
                                 "str": "tcp"
                               }
@@ -6695,6 +7137,7 @@
             ],
             "returnType": {
               "repr": "Listener",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Listener"
               }
@@ -6719,15 +7162,18 @@
                 "name": "options",
                 "tsType": {
                   "repr": "",
+                  "kind": "intersection",
                   "intersection": [
                     {
                       "repr": "ListenOptions",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "ListenOptions"
                       }
                     },
                     {
                       "repr": "",
+                      "kind": "typeLiteral",
                       "typeLiteral": {
                         "methods": [],
                         "properties": [
@@ -6738,6 +7184,7 @@
                             "optional": false,
                             "tsType": {
                               "repr": "udp",
+                              "kind": "literal",
                               "literal": {
                                 "str": "udp"
                               }
@@ -6753,6 +7200,7 @@
             ],
             "returnType": {
               "repr": "UDPConn",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "UDPConn"
               }
@@ -6777,6 +7225,7 @@
                 "name": "options",
                 "tsType": {
                   "repr": "ListenOptions",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "ListenOptions"
                   }
@@ -6785,15 +7234,18 @@
             ],
             "returnType": {
               "repr": "",
+              "kind": "union",
               "union": [
                 {
                   "repr": "Listener",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Listener"
                   }
                 },
                 {
                   "repr": "UDPConn",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "UDPConn"
                   }
@@ -6831,6 +7283,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -6848,6 +7301,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               }
@@ -6871,6 +7325,7 @@
                 "name": "options",
                 "tsType": {
                   "repr": "ListenTLSOptions",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "ListenTLSOptions"
                   }
@@ -6879,6 +7334,7 @@
             ],
             "returnType": {
               "repr": "Listener",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Listener"
               }
@@ -6914,6 +7370,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -6931,6 +7388,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -6948,6 +7406,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "Transport",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Transport"
                   }
@@ -6973,6 +7432,7 @@
                 "name": "options",
                 "tsType": {
                   "repr": "ConnectOptions",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "ConnectOptions"
                   }
@@ -6981,6 +7441,7 @@
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -7016,6 +7477,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -7033,6 +7495,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -7050,6 +7513,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               }
@@ -7073,6 +7537,7 @@
                 "name": "options",
                 "tsType": {
                   "repr": "ConnectTLSOptions",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "ConnectTLSOptions"
                   }
@@ -7081,6 +7546,7 @@
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -7116,6 +7582,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -7133,6 +7600,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -7150,6 +7618,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -7167,6 +7636,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -7184,6 +7654,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -7201,6 +7672,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -7218,6 +7690,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -7235,6 +7708,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -7252,6 +7726,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -7269,6 +7744,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -7286,6 +7762,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               }
@@ -7307,6 +7784,7 @@
             "params": [],
             "returnType": {
               "repr": "Metrics",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Metrics"
               }
@@ -7329,6 +7807,7 @@
             "params": [],
             "returnType": {
               "repr": "ResourceMap",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "ResourceMap"
               }
@@ -7364,33 +7843,39 @@
                 "optional": false,
                 "tsType": {
                   "repr": "",
+                  "kind": "union",
                   "union": [
                     {
                       "repr": "any",
+                      "kind": "literal",
                       "literal": {
                         "str": "any"
                       }
                     },
                     {
                       "repr": "access",
+                      "kind": "literal",
                       "literal": {
                         "str": "access"
                       }
                     },
                     {
                       "repr": "create",
+                      "kind": "literal",
                       "literal": {
                         "str": "create"
                       }
                     },
                     {
                       "repr": "modify",
+                      "kind": "literal",
                       "literal": {
                         "str": "modify"
                       }
                     },
                     {
                       "repr": "remove",
+                      "kind": "literal",
                       "literal": {
                         "str": "remove"
                       }
@@ -7412,8 +7897,10 @@
                 "optional": false,
                 "tsType": {
                   "repr": "",
+                  "kind": "array",
                   "array": {
                     "repr": "string",
+                    "kind": "keyword",
                     "keyword": "string"
                   }
                 }
@@ -7438,15 +7925,19 @@
                 "name": "paths",
                 "tsType": {
                   "repr": "",
+                  "kind": "union",
                   "union": [
                     {
                       "repr": "string",
+                      "kind": "keyword",
                       "keyword": "string"
                     },
                     {
                       "repr": "",
+                      "kind": "array",
                       "array": {
                         "repr": "string",
+                        "kind": "keyword",
                         "keyword": "string"
                       }
                     }
@@ -7457,6 +7948,7 @@
                 "name": "options",
                 "tsType": {
                   "repr": "",
+                  "kind": "typeLiteral",
                   "typeLiteral": {
                     "methods": [],
                     "properties": [
@@ -7467,6 +7959,7 @@
                         "optional": false,
                         "tsType": {
                           "repr": "boolean",
+                          "kind": "keyword",
                           "keyword": "boolean"
                         }
                       }
@@ -7478,6 +7971,7 @@
             ],
             "returnType": {
               "repr": "AsyncIterableIterator",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "AsyncIterableIterator"
               }
@@ -7502,6 +7996,7 @@
                 "name": "pid",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -7509,12 +8004,14 @@
                 "name": "signo",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               }
             ],
             "returnType": {
               "repr": "void",
+              "kind": "keyword",
               "keyword": "void"
             },
             "isAsync": false,
@@ -7540,6 +8037,7 @@
                 "snippet": "readonly rid: number;",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 },
                 "readonly": true,
@@ -7558,6 +8056,7 @@
                 "snippet": "readonly pid: number;",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 },
                 "readonly": true,
@@ -7576,6 +8075,7 @@
                 "snippet": "readonly stdin?: WriteCloser;",
                 "tsType": {
                   "repr": "WriteCloser",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "WriteCloser"
                   }
@@ -7596,6 +8096,7 @@
                 "snippet": "readonly stdout?: ReadCloser;",
                 "tsType": {
                   "repr": "ReadCloser",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "ReadCloser"
                   }
@@ -7616,6 +8117,7 @@
                 "snippet": "readonly stderr?: ReadCloser;",
                 "tsType": {
                   "repr": "ReadCloser",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "ReadCloser"
                   }
@@ -7645,6 +8147,7 @@
                   "params": [],
                   "returnType": {
                     "repr": "Promise",
+                    "kind": "typeRef",
                     "typeRef": {
                       "typeName": "Promise"
                     }
@@ -7670,6 +8173,7 @@
                   "params": [],
                   "returnType": {
                     "repr": "Promise",
+                    "kind": "typeRef",
                     "typeRef": {
                       "typeName": "Promise"
                     }
@@ -7695,6 +8199,7 @@
                   "params": [],
                   "returnType": {
                     "repr": "Promise",
+                    "kind": "typeRef",
                     "typeRef": {
                       "typeName": "Promise"
                     }
@@ -7720,6 +8225,7 @@
                   "params": [],
                   "returnType": {
                     "repr": "void",
+                    "kind": "keyword",
                     "keyword": "void"
                   },
                   "isAsync": false,
@@ -7745,12 +8251,14 @@
                       "name": "signo",
                       "tsType": {
                         "repr": "number",
+                        "kind": "keyword",
                         "keyword": "number"
                       }
                     }
                   ],
                   "returnType": {
                     "repr": "void",
+                    "kind": "keyword",
                     "keyword": "void"
                   },
                   "isAsync": false,
@@ -7792,6 +8300,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -7809,6 +8318,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -7826,6 +8336,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               }
@@ -7860,8 +8371,10 @@
                 "optional": false,
                 "tsType": {
                   "repr": "",
+                  "kind": "array",
                   "array": {
                     "repr": "string",
+                    "kind": "keyword",
                     "keyword": "string"
                   }
                 }
@@ -7880,6 +8393,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -7897,6 +8411,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "",
+                  "kind": "typeLiteral",
                   "typeLiteral": {
                     "methods": [],
                     "properties": [],
@@ -7918,15 +8433,18 @@
                 "optional": true,
                 "tsType": {
                   "repr": "",
+                  "kind": "union",
                   "union": [
                     {
                       "repr": "ProcessStdio",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "ProcessStdio"
                       }
                     },
                     {
                       "repr": "number",
+                      "kind": "keyword",
                       "keyword": "number"
                     }
                   ]
@@ -7946,15 +8464,18 @@
                 "optional": true,
                 "tsType": {
                   "repr": "",
+                  "kind": "union",
                   "union": [
                     {
                       "repr": "ProcessStdio",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "ProcessStdio"
                       }
                     },
                     {
                       "repr": "number",
+                      "kind": "keyword",
                       "keyword": "number"
                     }
                   ]
@@ -7974,15 +8495,18 @@
                 "optional": true,
                 "tsType": {
                   "repr": "",
+                  "kind": "union",
                   "union": [
                     {
                       "repr": "ProcessStdio",
+                      "kind": "typeRef",
                       "typeRef": {
                         "typeName": "ProcessStdio"
                       }
                     },
                     {
                       "repr": "number",
+                      "kind": "keyword",
                       "keyword": "number"
                     }
                   ]
@@ -8008,6 +8532,7 @@
                 "name": "opt",
                 "tsType": {
                   "repr": "RunOptions",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "RunOptions"
                   }
@@ -8016,6 +8541,7 @@
             ],
             "returnType": {
               "repr": "Process",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Process"
               }
@@ -8037,13 +8563,16 @@
           "variableDef": {
             "tsType": {
               "repr": "",
+              "kind": "union",
               "union": [
                 {
                   "repr": "MacOSSignal",
+                  "kind": "typeQuery",
                   "typeQuery": "MacOSSignal"
                 },
                 {
                   "repr": "LinuxSignal",
+                  "kind": "typeQuery",
                   "typeQuery": "LinuxSignal"
                 }
               ]
@@ -8067,6 +8596,7 @@
                 "name": "value",
                 "tsType": {
                   "repr": "unknown",
+                  "kind": "keyword",
                   "keyword": "unknown"
                 }
               },
@@ -8074,6 +8604,7 @@
                 "name": "options",
                 "tsType": {
                   "repr": "ConsoleOptions",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "ConsoleOptions"
                   }
@@ -8082,6 +8613,7 @@
             ],
             "returnType": {
               "repr": "string",
+              "kind": "keyword",
               "keyword": "string"
             },
             "isAsync": false,
@@ -8123,6 +8655,7 @@
           "variableDef": {
             "tsType": {
               "repr": "BuildInfo",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "BuildInfo"
               }
@@ -8143,6 +8676,7 @@
           "variableDef": {
             "tsType": {
               "repr": "Version",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Version"
               }
@@ -8210,6 +8744,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -8227,6 +8762,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "DiagnosticCategory",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "DiagnosticCategory"
                   }
@@ -8246,6 +8782,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -8263,8 +8800,10 @@
                 "optional": true,
                 "tsType": {
                   "repr": "",
+                  "kind": "array",
                   "array": {
                     "repr": "DiagnosticMessageChain",
+                    "kind": "typeRef",
                     "typeRef": {
                       "typeName": "DiagnosticMessageChain"
                     }
@@ -8302,6 +8841,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -8319,6 +8859,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "DiagnosticMessageChain",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "DiagnosticMessageChain"
                   }
@@ -8338,8 +8879,10 @@
                 "optional": true,
                 "tsType": {
                   "repr": "",
+                  "kind": "array",
                   "array": {
                     "repr": "DiagnosticItem",
+                    "kind": "typeRef",
                     "typeRef": {
                       "typeName": "DiagnosticItem"
                     }
@@ -8360,6 +8903,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -8377,6 +8921,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -8394,6 +8939,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -8411,6 +8957,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -8428,6 +8975,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -8445,6 +8993,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "DiagnosticCategory",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "DiagnosticCategory"
                   }
@@ -8464,6 +9013,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -8481,6 +9031,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               },
@@ -8498,6 +9049,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               }
@@ -8532,8 +9084,10 @@
                 "optional": false,
                 "tsType": {
                   "repr": "",
+                  "kind": "array",
                   "array": {
                     "repr": "DiagnosticItem",
+                    "kind": "typeRef",
                     "typeRef": {
                       "typeName": "DiagnosticItem"
                     }
@@ -8560,8 +9114,10 @@
                 "name": "items",
                 "tsType": {
                   "repr": "",
+                  "kind": "array",
                   "array": {
                     "repr": "DiagnosticItem",
+                    "kind": "typeRef",
                     "typeRef": {
                       "typeName": "DiagnosticItem"
                     }
@@ -8571,6 +9127,7 @@
             ],
             "returnType": {
               "repr": "string",
+              "kind": "keyword",
               "keyword": "string"
             },
             "isAsync": false,
@@ -8604,6 +9161,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -8621,6 +9179,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -8638,6 +9197,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -8655,6 +9215,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -8672,6 +9233,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -8689,6 +9251,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -8706,6 +9269,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -8723,6 +9287,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -8740,6 +9305,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -8757,6 +9323,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -8774,6 +9341,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -8791,6 +9359,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -8808,6 +9377,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -8825,6 +9395,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -8842,6 +9413,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -8859,6 +9431,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -8876,6 +9449,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -8893,6 +9467,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -8910,6 +9485,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -8927,6 +9503,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -8944,21 +9521,25 @@
                 "optional": true,
                 "tsType": {
                   "repr": "",
+                  "kind": "union",
                   "union": [
                     {
                       "repr": "react",
+                      "kind": "literal",
                       "literal": {
                         "str": "react"
                       }
                     },
                     {
                       "repr": "preserve",
+                      "kind": "literal",
                       "literal": {
                         "str": "preserve"
                       }
                     },
                     {
                       "repr": "react-native",
+                      "kind": "literal",
                       "literal": {
                         "str": "react-native"
                       }
@@ -8980,6 +9561,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -8997,6 +9579,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -9014,6 +9597,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -9031,8 +9615,10 @@
                 "optional": true,
                 "tsType": {
                   "repr": "",
+                  "kind": "array",
                   "array": {
                     "repr": "string",
+                    "kind": "keyword",
                     "keyword": "string"
                   }
                 }
@@ -9051,6 +9637,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -9068,6 +9655,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -9085,51 +9673,60 @@
                 "optional": true,
                 "tsType": {
                   "repr": "",
+                  "kind": "union",
                   "union": [
                     {
                       "repr": "none",
+                      "kind": "literal",
                       "literal": {
                         "str": "none"
                       }
                     },
                     {
                       "repr": "commonjs",
+                      "kind": "literal",
                       "literal": {
                         "str": "commonjs"
                       }
                     },
                     {
                       "repr": "amd",
+                      "kind": "literal",
                       "literal": {
                         "str": "amd"
                       }
                     },
                     {
                       "repr": "system",
+                      "kind": "literal",
                       "literal": {
                         "str": "system"
                       }
                     },
                     {
                       "repr": "umd",
+                      "kind": "literal",
                       "literal": {
                         "str": "umd"
                       }
                     },
                     {
                       "repr": "es6",
+                      "kind": "literal",
                       "literal": {
                         "str": "es6"
                       }
                     },
                     {
                       "repr": "es2015",
+                      "kind": "literal",
                       "literal": {
                         "str": "es2015"
                       }
                     },
                     {
                       "repr": "esnext",
+                      "kind": "literal",
                       "literal": {
                         "str": "esnext"
                       }
@@ -9151,6 +9748,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -9168,6 +9766,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -9185,6 +9784,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -9202,6 +9802,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -9219,6 +9820,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -9236,6 +9838,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -9253,6 +9856,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -9270,6 +9874,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -9287,6 +9892,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -9304,6 +9910,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -9321,6 +9928,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -9338,6 +9946,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "Record",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Record"
                   }
@@ -9357,6 +9966,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -9374,6 +9984,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -9391,6 +10002,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -9408,6 +10020,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -9425,8 +10038,10 @@
                 "optional": true,
                 "tsType": {
                   "repr": "",
+                  "kind": "array",
                   "array": {
                     "repr": "string",
+                    "kind": "keyword",
                     "keyword": "string"
                   }
                 }
@@ -9445,6 +10060,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -9462,6 +10078,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -9479,6 +10096,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -9496,6 +10114,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -9513,6 +10132,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -9530,6 +10150,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -9547,6 +10168,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -9564,6 +10186,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -9581,6 +10204,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "boolean",
+                  "kind": "keyword",
                   "keyword": "boolean"
                 }
               },
@@ -9598,63 +10222,74 @@
                 "optional": true,
                 "tsType": {
                   "repr": "",
+                  "kind": "union",
                   "union": [
                     {
                       "repr": "es3",
+                      "kind": "literal",
                       "literal": {
                         "str": "es3"
                       }
                     },
                     {
                       "repr": "es5",
+                      "kind": "literal",
                       "literal": {
                         "str": "es5"
                       }
                     },
                     {
                       "repr": "es6",
+                      "kind": "literal",
                       "literal": {
                         "str": "es6"
                       }
                     },
                     {
                       "repr": "es2015",
+                      "kind": "literal",
                       "literal": {
                         "str": "es2015"
                       }
                     },
                     {
                       "repr": "es2016",
+                      "kind": "literal",
                       "literal": {
                         "str": "es2016"
                       }
                     },
                     {
                       "repr": "es2017",
+                      "kind": "literal",
                       "literal": {
                         "str": "es2017"
                       }
                     },
                     {
                       "repr": "es2018",
+                      "kind": "literal",
                       "literal": {
                         "str": "es2018"
                       }
                     },
                     {
                       "repr": "es2019",
+                      "kind": "literal",
                       "literal": {
                         "str": "es2019"
                       }
                     },
                     {
                       "repr": "es2020",
+                      "kind": "literal",
                       "literal": {
                         "str": "es2020"
                       }
                     },
                     {
                       "repr": "esnext",
+                      "kind": "literal",
                       "literal": {
                         "str": "esnext"
                       }
@@ -9676,8 +10311,10 @@
                 "optional": true,
                 "tsType": {
                   "repr": "",
+                  "kind": "array",
                   "array": {
                     "repr": "string",
+                    "kind": "keyword",
                     "keyword": "string"
                   }
                 }
@@ -9713,6 +10350,7 @@
                 "optional": false,
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -9730,6 +10368,7 @@
                 "optional": true,
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               }
@@ -9753,6 +10392,7 @@
                 "name": "sources",
                 "tsType": {
                   "repr": "Record",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Record"
                   }
@@ -9762,6 +10402,7 @@
                 "name": "options",
                 "tsType": {
                   "repr": "CompilerOptions",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "CompilerOptions"
                   }
@@ -9770,6 +10411,7 @@
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -9794,6 +10436,7 @@
                 "name": "rootName",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -9801,6 +10444,7 @@
                 "name": "sources",
                 "tsType": {
                   "repr": "Record",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Record"
                   }
@@ -9810,6 +10454,7 @@
                 "name": "options",
                 "tsType": {
                   "repr": "CompilerOptions",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "CompilerOptions"
                   }
@@ -9818,6 +10463,7 @@
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -9842,6 +10488,7 @@
                 "name": "rootName",
                 "tsType": {
                   "repr": "string",
+                  "kind": "keyword",
                   "keyword": "string"
                 }
               },
@@ -9849,6 +10496,7 @@
                 "name": "sources",
                 "tsType": {
                   "repr": "Record",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "Record"
                   }
@@ -9858,6 +10506,7 @@
                 "name": "options",
                 "tsType": {
                   "repr": "CompilerOptions",
+                  "kind": "typeRef",
                   "typeRef": {
                     "typeName": "CompilerOptions"
                   }
@@ -9866,6 +10515,7 @@
             ],
             "returnType": {
               "repr": "Promise",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "Promise"
               }
@@ -9887,8 +10537,10 @@
           "variableDef": {
             "tsType": {
               "repr": "",
+              "kind": "array",
               "array": {
                 "repr": "string",
+                "kind": "keyword",
                 "keyword": "string"
               }
             },
@@ -9918,6 +10570,7 @@
                     "name": "signal",
                     "tsType": {
                       "repr": "<UNIMPLEMENTED>",
+                      "kind": "typeQuery",
                       "typeQuery": "<UNIMPLEMENTED>"
                     }
                   }
@@ -9945,19 +10598,23 @@
                       "name": "f",
                       "tsType": {
                         "repr": "",
+                        "kind": "fnOrConstructor",
                         "fnOrConstructor": {
                           "constructor": false,
                           "tsType": {
                             "repr": "",
+                            "kind": "union",
                             "union": [
                               {
                                 "repr": "T",
+                                "kind": "typeRef",
                                 "typeRef": {
                                   "typeName": "T"
                                 }
                               },
                               {
                                 "repr": "Promise",
+                                "kind": "typeRef",
                                 "typeRef": {
                                   "typeName": "Promise"
                                 }
@@ -9969,6 +10626,7 @@
                               "name": "v",
                               "tsType": {
                                 "repr": "void",
+                                "kind": "keyword",
                                 "keyword": "void"
                               }
                             }
@@ -9980,19 +10638,23 @@
                       "name": "g",
                       "tsType": {
                         "repr": "",
+                        "kind": "fnOrConstructor",
                         "fnOrConstructor": {
                           "constructor": false,
                           "tsType": {
                             "repr": "",
+                            "kind": "union",
                             "union": [
                               {
                                 "repr": "S",
+                                "kind": "typeRef",
                                 "typeRef": {
                                   "typeName": "S"
                                 }
                               },
                               {
                                 "repr": "Promise",
+                                "kind": "typeRef",
                                 "typeRef": {
                                   "typeName": "Promise"
                                 }
@@ -10004,6 +10666,7 @@
                               "name": "v",
                               "tsType": {
                                 "repr": "void",
+                                "kind": "keyword",
                                 "keyword": "void"
                               }
                             }
@@ -10014,6 +10677,7 @@
                   ],
                   "returnType": {
                     "repr": "Promise",
+                    "kind": "typeRef",
                     "typeRef": {
                       "typeName": "Promise"
                     }
@@ -10039,6 +10703,7 @@
                   "params": [],
                   "returnType": {
                     "repr": "Promise",
+                    "kind": "typeRef",
                     "typeRef": {
                       "typeName": "Promise"
                     }
@@ -10064,6 +10729,7 @@
                   "params": [],
                   "returnType": {
                     "repr": "AsyncIterableIterator",
+                    "kind": "typeRef",
                     "typeRef": {
                       "typeName": "AsyncIterableIterator"
                     }
@@ -10089,6 +10755,7 @@
                   "params": [],
                   "returnType": {
                     "repr": "void",
+                    "kind": "keyword",
                     "keyword": "void"
                   },
                   "isAsync": false,
@@ -10119,12 +10786,14 @@
                 "name": "signo",
                 "tsType": {
                   "repr": "number",
+                  "kind": "keyword",
                   "keyword": "number"
                 }
               }
             ],
             "returnType": {
               "repr": "SignalStream",
+              "kind": "typeRef",
               "typeRef": {
                 "typeName": "SignalStream"
               }
@@ -10146,6 +10815,7 @@
           "variableDef": {
             "tsType": {
               "repr": "",
+              "kind": "typeLiteral",
               "typeLiteral": {
                 "methods": [],
                 "properties": [
@@ -10156,10 +10826,12 @@
                     "optional": false,
                     "tsType": {
                       "repr": "",
+                      "kind": "fnOrConstructor",
                       "fnOrConstructor": {
                         "constructor": false,
                         "tsType": {
                           "repr": "SignalStream",
+                          "kind": "typeRef",
                           "typeRef": {
                             "typeName": "SignalStream"
                           }
@@ -10175,10 +10847,12 @@
                     "optional": false,
                     "tsType": {
                       "repr": "",
+                      "kind": "fnOrConstructor",
                       "fnOrConstructor": {
                         "constructor": false,
                         "tsType": {
                           "repr": "SignalStream",
+                          "kind": "typeRef",
                           "typeRef": {
                             "typeName": "SignalStream"
                           }
@@ -10194,10 +10868,12 @@
                     "optional": false,
                     "tsType": {
                       "repr": "",
+                      "kind": "fnOrConstructor",
                       "fnOrConstructor": {
                         "constructor": false,
                         "tsType": {
                           "repr": "SignalStream",
+                          "kind": "typeRef",
                           "typeRef": {
                             "typeName": "SignalStream"
                           }
@@ -10213,10 +10889,12 @@
                     "optional": false,
                     "tsType": {
                       "repr": "",
+                      "kind": "fnOrConstructor",
                       "fnOrConstructor": {
                         "constructor": false,
                         "tsType": {
                           "repr": "SignalStream",
+                          "kind": "typeRef",
                           "typeRef": {
                             "typeName": "SignalStream"
                           }
@@ -10232,10 +10910,12 @@
                     "optional": false,
                     "tsType": {
                       "repr": "",
+                      "kind": "fnOrConstructor",
                       "fnOrConstructor": {
                         "constructor": false,
                         "tsType": {
                           "repr": "SignalStream",
+                          "kind": "typeRef",
                           "typeRef": {
                             "typeName": "SignalStream"
                           }
@@ -10251,10 +10931,12 @@
                     "optional": false,
                     "tsType": {
                       "repr": "",
+                      "kind": "fnOrConstructor",
                       "fnOrConstructor": {
                         "constructor": false,
                         "tsType": {
                           "repr": "SignalStream",
+                          "kind": "typeRef",
                           "typeRef": {
                             "typeName": "SignalStream"
                           }
@@ -10270,10 +10952,12 @@
                     "optional": false,
                     "tsType": {
                       "repr": "",
+                      "kind": "fnOrConstructor",
                       "fnOrConstructor": {
                         "constructor": false,
                         "tsType": {
                           "repr": "SignalStream",
+                          "kind": "typeRef",
                           "typeRef": {
                             "typeName": "SignalStream"
                           }
@@ -10289,10 +10973,12 @@
                     "optional": false,
                     "tsType": {
                       "repr": "",
+                      "kind": "fnOrConstructor",
                       "fnOrConstructor": {
                         "constructor": false,
                         "tsType": {
                           "repr": "SignalStream",
+                          "kind": "typeRef",
                           "typeRef": {
                             "typeName": "SignalStream"
                           }
@@ -10308,10 +10994,12 @@
                     "optional": false,
                     "tsType": {
                       "repr": "",
+                      "kind": "fnOrConstructor",
                       "fnOrConstructor": {
                         "constructor": false,
                         "tsType": {
                           "repr": "SignalStream",
+                          "kind": "typeRef",
                           "typeRef": {
                             "typeName": "SignalStream"
                           }
@@ -10327,10 +11015,12 @@
                     "optional": false,
                     "tsType": {
                       "repr": "",
+                      "kind": "fnOrConstructor",
                       "fnOrConstructor": {
                         "constructor": false,
                         "tsType": {
                           "repr": "SignalStream",
+                          "kind": "typeRef",
                           "typeRef": {
                             "typeName": "SignalStream"
                           }
@@ -10346,10 +11036,12 @@
                     "optional": false,
                     "tsType": {
                       "repr": "",
+                      "kind": "fnOrConstructor",
                       "fnOrConstructor": {
                         "constructor": false,
                         "tsType": {
                           "repr": "SignalStream",
+                          "kind": "typeRef",
                           "typeRef": {
                             "typeName": "SignalStream"
                           }
@@ -10378,6 +11070,7 @@
           "variableDef": {
             "tsType": {
               "repr": "",
+              "kind": "typeLiteral",
               "typeLiteral": {
                 "methods": [],
                 "properties": [
@@ -10388,10 +11081,12 @@
                     "optional": false,
                     "tsType": {
                       "repr": "",
+                      "kind": "typeOperator",
                       "typeOperator": {
                         "operator": "unique",
                         "tsType": {
                           "repr": "symbol",
+                          "kind": "keyword",
                           "keyword": "symbol"
                         }
                       }
@@ -10404,10 +11099,12 @@
                     "optional": false,
                     "tsType": {
                       "repr": "",
+                      "kind": "typeOperator",
                       "typeOperator": {
                         "operator": "unique",
                         "tsType": {
                           "repr": "symbol",
+                          "kind": "keyword",
                           "keyword": "symbol"
                         }
                       }
