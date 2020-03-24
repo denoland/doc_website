@@ -1,26 +1,30 @@
+use super::ParamDef;
 use serde::Serialize;
 use swc_common::SourceMap;
 use swc_ecma_ast;
 use swc_ecma_ast::TsArrayType;
+use swc_ecma_ast::TsFnOrConstructorType;
 use swc_ecma_ast::TsKeywordType;
 use swc_ecma_ast::TsLit;
 use swc_ecma_ast::TsLitType;
 use swc_ecma_ast::TsOptionalType;
 use swc_ecma_ast::TsParenthesizedType;
 use swc_ecma_ast::TsRestType;
+use swc_ecma_ast::TsThisType;
 use swc_ecma_ast::TsTupleType;
 use swc_ecma_ast::TsType;
 use swc_ecma_ast::TsTypeAnn;
 use swc_ecma_ast::TsTypeOperator;
+use swc_ecma_ast::TsTypeQuery;
 use swc_ecma_ast::TsTypeRef;
 use swc_ecma_ast::TsUnionOrIntersectionType;
 
 // pub enum TsType {
 //  *      TsKeywordType(TsKeywordType),
-//     TsThisType(TsThisType),
-//     TsFnOrConstructorType(TsFnOrConstructorType),
+//  *      TsThisType(TsThisType),
+//  *      TsFnOrConstructorType(TsFnOrConstructorType),
 //  *      TsTypeRef(TsTypeRef),
-//     TsTypeQuery(TsTypeQuery),
+//  *      TsTypeQuery(TsTypeQuery),
 //     TsTypeLit(TsTypeLit),
 //  *      TsArrayType(TsArrayType),
 //  *      TsTupleType(TsTupleType),
@@ -195,7 +199,38 @@ impl Into<TsTypeDef> for &TsOptionalType {
     let ts_type = (&*self.type_ann).into();
 
     TsTypeDef {
-      rest: Some(Box::new(ts_type)),
+      optional: Some(Box::new(ts_type)),
+      ..Default::default()
+    }
+  }
+}
+
+impl Into<TsTypeDef> for &TsThisType {
+  fn into(self) -> TsTypeDef {
+    TsTypeDef {
+      repr: "this".to_string(),
+      this: Some(true),
+      ..Default::default()
+    }
+  }
+}
+
+impl Into<TsTypeDef> for &TsTypeQuery {
+  fn into(self) -> TsTypeDef {
+    use swc_ecma_ast::TsEntityName::*;
+    use swc_ecma_ast::TsTypeQueryExpr::*;
+
+    let type_name = match &self.expr_name {
+      TsEntityName(entity_name) => match entity_name {
+        Ident(ident) => ident.sym.to_string(),
+        TsQualifiedName(_) => "<UNIMPLEMENTED>".to_string(),
+      },
+      Import(import_type) => import_type.arg.value.to_string(),
+    };
+
+    TsTypeDef {
+      repr: type_name.to_string(),
+      type_query: Some(type_name),
       ..Default::default()
     }
   }
@@ -218,6 +253,88 @@ impl Into<TsTypeDef> for &TsTypeRef {
   }
 }
 
+impl Into<TsTypeDef> for &TsFnOrConstructorType {
+  fn into(self) -> TsTypeDef {
+    use swc_ecma_ast::TsFnOrConstructorType::*;
+
+    let fn_def = match self {
+      TsFnType(ts_fn_type) => {
+        let mut params = vec![];
+
+        for param in &ts_fn_type.params {
+          use swc_ecma_ast::TsFnParam::*;
+
+          let param_def = match param {
+            Ident(ident) => {
+              let ts_type: Option<TsTypeDef> =
+                ident.type_ann.as_ref().map(|rt| {
+                  let type_box = &*rt.type_ann;
+                  (&*type_box).into()
+                });
+
+              ParamDef {
+                name: ident.sym.to_string(),
+                ts_type,
+              }
+            }
+            _ => ParamDef {
+              name: "<TODO>".to_string(),
+              ts_type: None,
+            },
+          };
+
+          params.push(param_def);
+        }
+
+        TsFnOrConstructorDef {
+          constructor: false,
+          ts_type: (&*ts_fn_type.type_ann.type_ann).into(),
+          params,
+        }
+      }
+      TsConstructorType(ctor_type) => {
+        let mut params = vec![];
+
+        for param in &ctor_type.params {
+          use swc_ecma_ast::TsFnParam::*;
+
+          let param_def = match param {
+            Ident(ident) => {
+              let ts_type: Option<TsTypeDef> =
+                ident.type_ann.as_ref().map(|rt| {
+                  let type_box = &*rt.type_ann;
+                  (&*type_box).into()
+                });
+
+              ParamDef {
+                name: ident.sym.to_string(),
+                ts_type,
+              }
+            }
+            _ => ParamDef {
+              name: "<TODO>".to_string(),
+              ts_type: None,
+            },
+          };
+
+          params.push(param_def);
+        }
+
+        TsFnOrConstructorDef {
+          constructor: true,
+          ts_type: (&*ctor_type.type_ann.type_ann).into(),
+          params: vec![],
+        }
+      }
+    };
+
+    TsTypeDef {
+      fn_or_constructor: Some(Box::new(fn_def)),
+      ..Default::default()
+    }
+  }
+}
+
 impl Into<TsTypeDef> for &TsType {
   fn into(self) -> TsTypeDef {
     use swc_ecma_ast::TsType::*;
@@ -233,6 +350,9 @@ impl Into<TsTypeDef> for &TsType {
       TsParenthesizedType(paren_type) => paren_type.into(),
       TsRestType(rest_type) => rest_type.into(),
       TsOptionalType(optional_type) => optional_type.into(),
+      TsTypeQuery(type_query) => type_query.into(),
+      TsThisType(this_type) => this_type.into(),
+      TsFnOrConstructorType(fn_or_con_type) => fn_or_con_type.into(),
       _ => TsTypeDef {
         repr: "<UNIMPLEMENTED>".to_string(),
         ..Default::default()
@@ -261,6 +381,15 @@ pub enum LiteralDef {
 pub struct TsTypeOperatorDef {
   pub operator: String,
   pub ts_type: TsTypeDef,
+}
+
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct TsFnOrConstructorDef {
+  // TODO: type_params
+  pub constructor: bool,
+  pub ts_type: TsTypeDef,
+  pub params: Vec<ParamDef>,
 }
 
 #[derive(Debug, Default, Serialize)]
@@ -297,6 +426,18 @@ pub struct TsTypeDef {
 
   #[serde(skip_serializing_if = "Option::is_none")]
   pub rest: Option<Box<TsTypeDef>>,
+
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub optional: Option<Box<TsTypeDef>>,
+
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub type_query: Option<String>,
+
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub this: Option<bool>,
+
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub fn_or_constructor: Option<Box<TsFnOrConstructorDef>>,
 }
 
 pub fn ts_type_ann_to_def(
@@ -316,6 +457,9 @@ pub fn ts_type_ann_to_def(
     TsParenthesizedType(paren_type) => paren_type.into(),
     TsRestType(rest_type) => rest_type.into(),
     TsOptionalType(optional_type) => optional_type.into(),
+    TsTypeQuery(type_query) => type_query.into(),
+    TsThisType(this_type) => this_type.into(),
+    TsFnOrConstructorType(fn_or_con_type) => fn_or_con_type.into(),
     _ => {
       let repr = source_map
         .span_to_snippet(type_ann.span)

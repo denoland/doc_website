@@ -7762,10 +7762,12 @@
               "repr": "",
               "union": [
                 {
-                  "repr": "<UNIMPLEMENTED>"
+                  "repr": "MacOSSignal",
+                  "typeQuery": "MacOSSignal"
                 },
                 {
-                  "repr": "<UNIMPLEMENTED>"
+                  "repr": "LinuxSignal",
+                  "typeQuery": "LinuxSignal"
                 }
               ]
             },
@@ -9638,7 +9640,8 @@
                   {
                     "name": "signal",
                     "tsType": {
-                      "repr": "typeof Deno.Signal"
+                      "repr": "<UNIMPLEMENTED>",
+                      "typeQuery": "<UNIMPLEMENTED>"
                     }
                   }
                 ],
@@ -9664,13 +9667,71 @@
                     {
                       "name": "f",
                       "tsType": {
-                        "repr": "(v: void) => T | Promise<T>"
+                        "repr": "",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "",
+                            "union": [
+                              {
+                                "repr": "T",
+                                "typeRef": {
+                                  "typeName": "T"
+                                }
+                              },
+                              {
+                                "repr": "Promise",
+                                "typeRef": {
+                                  "typeName": "Promise"
+                                }
+                              }
+                            ]
+                          },
+                          "params": [
+                            {
+                              "name": "v",
+                              "tsType": {
+                                "repr": "void",
+                                "keyword": "void"
+                              }
+                            }
+                          ]
+                        }
                       }
                     },
                     {
                       "name": "g",
                       "tsType": {
-                        "repr": "(v: void) => S | Promise<S>"
+                        "repr": "",
+                        "fnOrConstructor": {
+                          "constructor": false,
+                          "tsType": {
+                            "repr": "",
+                            "union": [
+                              {
+                                "repr": "S",
+                                "typeRef": {
+                                  "typeName": "S"
+                                }
+                              },
+                              {
+                                "repr": "Promise",
+                                "typeRef": {
+                                  "typeName": "Promise"
+                                }
+                              }
+                            ]
+                          },
+                          "params": [
+                            {
+                              "name": "v",
+                              "tsType": {
+                                "repr": "void",
+                                "keyword": "void"
+                              }
+                            }
+                          ]
+                        }
                       }
                     }
                   ],
