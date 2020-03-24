@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "./Link";
 import { groupNodes, DocNodeShared } from "../util/docs";
 import { useNodes } from "../util/nodes";
-import HashLinkHandler from "./HashLinkHandler";
 
 const SidebarSection = (props: {
   title: string;

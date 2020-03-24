@@ -49,8 +49,12 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
       );
     }
     case TsTypeDefKind.IndexedAccess:
-      
-      return <span><TsType tsType={tsType.indexedAccess.objType} />[<TsType tsType={tsType.indexedAccess.indexType} />]</span>;
+      return (
+        <span>
+          <TsType tsType={tsType.indexedAccess.objType} />[
+          <TsType tsType={tsType.indexedAccess.indexType} />]
+        </span>
+      );
     case TsTypeDefKind.Intersection: {
       const elements = tsType.intersection.flatMap(tsType => [
         <TsType tsType={tsType} />,
@@ -70,7 +74,7 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
         case LiteralDefKind.Boolean:
           return <span>{tsType.literal.boolean ? "true" : "false"}</span>;
       }
-
+      return <></>;
     case TsTypeDefKind.Optional:
       return <span>_optional_</span>;
     case TsTypeDefKind.Parenthesized:
