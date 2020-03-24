@@ -27,6 +27,7 @@ export function ClassCard({ node }: { node: DocNodeClass }) {
   return (
     <SimpleCard
       node={node}
+      prefix={`${node.classDef.isAbstract ? "abstract " : ""} class`}
       details={
         <>
           {constructors.length > 0 ? (
@@ -41,7 +42,17 @@ export function ClassCard({ node }: { node: DocNodeClass }) {
             <div className="mt-2">
               <p className="text-md font-medium">Properties</p>
               {realProperties.map(node => {
-                return <SimpleSubCard node={node} returnType={node.tsType} />;
+                return (
+                  <SimpleSubCard
+                    node={node}
+                    prefix={`${
+                      node.accessibility ? node.accessibility + " " : ""
+                    }${node.isAbstract ? "abstract " : ""}${
+                      node.readonly ? "readonly " : ""
+                    }`}
+                    returnType={node.tsType}
+                  />
+                );
               })}
             </div>
           ) : null}
@@ -52,6 +63,15 @@ export function ClassCard({ node }: { node: DocNodeClass }) {
                 return (
                   <SimpleSubCard
                     node={node}
+                    prefix={`${
+                      node.accessibility ? node.accessibility + " " : ""
+                    }${node.isAbstract ? "abstract " : ""}${
+                      node.kind === "getter"
+                        ? "get "
+                        : node.kind === "setter"
+                        ? "set "
+                        : ""
+                    }`}
                     params={node.functionDef.params}
                     returnType={node.functionDef.returnType}
                   />

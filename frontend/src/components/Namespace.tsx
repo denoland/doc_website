@@ -47,7 +47,7 @@ export const Namespace = (props: {
                   name={node.name}
                   jsDoc={node.jsDoc}
                   type="variable"
-                  returnType={node.variableDef?.type_}
+                  returnType={node.variableDef?.tsType}
                   readonly={node.variableDef?.kind === "const"}
                 />
               ))}

@@ -141,7 +141,7 @@ export interface FunctionDef {
   isGenerator: boolean;
 }
 export interface VariableDef {
-  type_: TsTypeDef;
+  tsType: TsTypeDef;
   kind: "var" | "let" | "const";
 }
 export type Accessibility = "public" | "protected" | "private";
@@ -175,6 +175,29 @@ export interface EnumMemberDef {
 export interface EnumDef {
   members: EnumMemberDef[];
 }
+
+export interface InterfaceMethodDef extends DocNodeShared {
+  params: ParamDef[];
+  returnType?: TsTypeDef;
+}
+
+export interface InterfacePropertyDef extends DocNodeShared {
+  computed: boolean;
+  optional: boolean;
+  tsType?: TsTypeDef;
+}
+
+export interface InterfaceCallSignatureDef extends Omit<DocNodeShared, "name"> {
+  params: ParamDef[];
+  tsType?: TsTypeDef;
+}
+
+export interface InterfaceDef {
+  methods: InterfaceMethodDef[];
+  properties: InterfacePropertyDef[];
+  callSignatures: InterfaceCallSignatureDef[];
+}
+
 export interface InterfaceDef {}
 export interface TypeAliasDef {
   tsType: TsTypeDef;
@@ -235,6 +258,10 @@ export interface GroupedNodes {
   interfaces: DocNodeInterface[];
   typeAliases: DocNodeTypeAlias[];
   namespaces: DocNodeNamespace[];
+}
+
+export function sortByAlphabet(docs: DocNode[]): DocNode[] {
+  return docs.sort((a, b) => a.name.localeCompare(b.name));
 }
 
 export function groupNodes(docs: DocNode[]): GroupedNodes {
