@@ -11,6 +11,82 @@ import { VariableLink } from "./Variable";
 import { JSDoc, CodeBlock } from "./JSDoc";
 import { SimpleCard, SimpleSubCard } from "./SinglePage";
 
+export function ClassCard({ node }: { node: DocNodeClass }) {
+  const constructors = node.classDef.constructors;
+  const properties = node.classDef.properties.filter(
+    node => node.accessibility !== "private"
+  );
+  const realProperties = properties.filter(node => !node.isStatic);
+  const staticProperties = properties.filter(node => node.isStatic);
+  const methods = node.classDef.methods.filter(
+    node => node.accessibility !== "private"
+  );
+  const realMethods = methods.filter(node => !node.isStatic);
+  const staticMethods = methods.filter(node => node.isStatic);
+
+  return (
+    <SimpleCard
+      node={node}
+      details={
+        <>
+          {constructors.length > 0 ? (
+            <div className="mt-2">
+              <p className="text-md font-medium">Constructors</p>
+              {constructors.map(node => {
+                return <SimpleSubCard node={node} params={node.params} />;
+              })}
+            </div>
+          ) : null}
+          {realProperties.length > 0 ? (
+            <div className="mt-2">
+              <p className="text-md font-medium">Properties</p>
+              {realProperties.map(node => {
+                return <SimpleSubCard node={node} returnType={node.tsType} />;
+              })}
+            </div>
+          ) : null}
+          {realMethods.length > 0 ? (
+            <div className="mt-2">
+              <p className="text-md font-medium">Methods</p>
+              {realMethods.map(node => {
+                return (
+                  <SimpleSubCard
+                    node={node}
+                    params={node.functionDef.params}
+                    returnType={node.functionDef.returnType}
+                  />
+                );
+              })}
+            </div>
+          ) : null}
+          {staticProperties.length > 0 ? (
+            <div className="mt-2">
+              <p className="text-md font-medium">Static Properties</p>
+              {realProperties.map(node => {
+                return <SimpleSubCard node={node} returnType={node.tsType} />;
+              })}
+            </div>
+          ) : null}
+          {staticMethods.length > 0 ? (
+            <div className="mt-2">
+              <p className="text-md font-medium">Static Methods</p>
+              {realMethods.map(node => {
+                return (
+                  <SimpleSubCard
+                    node={node}
+                    params={node.functionDef.params}
+                    returnType={node.functionDef.returnType}
+                  />
+                );
+              })}
+            </div>
+          ) : null}
+        </>
+      }
+    />
+  );
+}
+
 export const Class = ({ class: class_ }: { class: DocNodeClass }) => {
   const constructors = class_.classDef.constructors;
   const properties = class_.classDef.properties.filter(
@@ -288,79 +364,3 @@ export const ClassMethod = ({ method }: { method: ClassMethodDef }) => {
     </Page>
   );
 };
-
-export function ClassCard({ node }: { node: DocNodeClass }) {
-  const constructors = node.classDef.constructors;
-  const properties = node.classDef.properties.filter(
-    node => node.accessibility !== "private"
-  );
-  const realProperties = properties.filter(node => !node.isStatic);
-  const staticProperties = properties.filter(node => node.isStatic);
-  const methods = node.classDef.methods.filter(
-    node => node.accessibility !== "private"
-  );
-  const realMethods = methods.filter(node => !node.isStatic);
-  const staticMethods = methods.filter(node => node.isStatic);
-
-  return (
-    <SimpleCard
-      node={node}
-      details={
-        <>
-          {constructors.length > 0 ? (
-            <div className="mt-2">
-              <p className="text-md font-medium">Constructors</p>
-              {constructors.map(node => {
-                return <SimpleSubCard node={node} params={node.params} />;
-              })}
-            </div>
-          ) : null}
-          {realProperties.length > 0 ? (
-            <div className="mt-2">
-              <p className="text-md font-medium">Properties</p>
-              {realProperties.map(node => {
-                return <SimpleSubCard node={node} returnType={node.tsType} />;
-              })}
-            </div>
-          ) : null}
-          {realMethods.length > 0 ? (
-            <div className="mt-2">
-              <p className="text-md font-medium">Methods</p>
-              {realMethods.map(node => {
-                return (
-                  <SimpleSubCard
-                    node={node}
-                    params={node.functionDef.params}
-                    returnType={node.functionDef.returnType}
-                  />
-                );
-              })}
-            </div>
-          ) : null}
-          {staticProperties.length > 0 ? (
-            <div className="mt-2">
-              <p className="text-md font-medium">Static Properties</p>
-              {realProperties.map(node => {
-                return <SimpleSubCard node={node} returnType={node.tsType} />;
-              })}
-            </div>
-          ) : null}
-          {staticMethods.length > 0 ? (
-            <div className="mt-2">
-              <p className="text-md font-medium">Static Methods</p>
-              {realMethods.map(node => {
-                return (
-                  <SimpleSubCard
-                    node={node}
-                    params={node.functionDef.params}
-                    returnType={node.functionDef.returnType}
-                  />
-                );
-              })}
-            </div>
-          ) : null}
-        </>
-      }
-    />
-  );
-}
