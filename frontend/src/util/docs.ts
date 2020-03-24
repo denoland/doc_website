@@ -68,26 +68,51 @@ export interface LiteralMethodDef {
   params: ParamDef[];
   returnType?: TsTypeDef;
 }
-export interface TsTypeDef {
-  repr: string;
-  keyword?: string;
-  literal?: number | string | boolean;
-  typeRef?: TsTypeRefDef;
-  union?: TsTypeDef[];
-  intersection?: TsTypeDef[];
-  array?: TsTypeDef;
-  tuple?: TsTypeDef;
-  typeOperator?: TsTypeOperatorDef;
-  parenthesized?: TsTypeDef;
-  rest?: TsTypeDef;
-  optional?: TsTypeDef;
-  typeQuery?: string;
-  this?: boolean;
-  fnOrConstructor?: TsFnOrConstructorDef;
-  conditionalType?: TsConditionalDef;
-  indexed_access?: TsIndexedAccessDef;
-  type_literal?: TsTypeLiteralDef;
+export enum TsTypeDefKind {
+  Keyword = "keyword",
+  Literal = "literal",
+  TypeRef = "typeRef",
+  Union = "union",
+  Intersection = "intersection",
+  Array = "array",
+  Tuple = "tuple",
+  TypeOperator = "typeOperator",
+  Parenthesized = "parenthesized",
+  Rest = "rest",
+  Optional = "optional",
+  TypeQuery = "typeQuery",
+  This = "this",
+  FnOrConstructor = "fnOrConstructor",
+  Conditional = "conditional",
+  IndexedAccess = "indexedAccess",
+  TypeLiteral = "typeLiteral"
 }
+export interface TsTypeDefShared {
+  repr: string;
+}
+export type TsTypeDef = TsTypeDefShared &
+  (
+    | { kind: TsTypeDefKind.Array; array: TsTypeDef }
+    | { kind: TsTypeDefKind.Conditional; conditionalType: TsConditionalDef }
+    | {
+        kind: TsTypeDefKind.FnOrConstructor;
+        fnOrConstructor: TsFnOrConstructorDef;
+      }
+    | { kind: TsTypeDefKind.IndexedAccess; indexedAccess: TsIndexedAccessDef }
+    | { kind: TsTypeDefKind.Intersection; intersection: TsTypeDef[] }
+    | { kind: TsTypeDefKind.Keyword; keyword: string }
+    | { kind: TsTypeDefKind.Literal; literal: number | string | boolean }
+    | { kind: TsTypeDefKind.Optional; optional: TsTypeDef }
+    | { kind: TsTypeDefKind.Parenthesized; parenthesized: TsTypeDef }
+    | { kind: TsTypeDefKind.Rest; rest: TsTypeDef }
+    | { kind: TsTypeDefKind.This; this: boolean }
+    | { kind: TsTypeDefKind.Tuple; tuple: TsTypeDef }
+    | { kind: TsTypeDefKind.TypeLiteral; typeLiteral: TsTypeLiteralDef }
+    | { kind: TsTypeDefKind.TypeOperator; typeOperator: TsTypeOperatorDef }
+    | { kind: TsTypeDefKind.TypeQuery; typeQuery: string }
+    | { kind: TsTypeDefKind.TypeRef; typeRef: TsTypeRefDef }
+    | { kind: TsTypeDefKind.Union; union: TsTypeDef[] }
+  );
 export interface ParamDef {
   name: string;
   tsType?: TsTypeDef;
