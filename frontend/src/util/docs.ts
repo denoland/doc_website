@@ -19,8 +19,16 @@ export interface DocNodeShared {
   location: DocNodeLocation;
   jsDoc?: string;
 }
+export interface TsTypeRefDef {
+  typeName: string;
+}
 export interface TsTypeDef {
   repr: string;
+  keyword?: string;
+  literal?: number | string | boolean;
+  typeRef?: TsTypeRefDef;
+  union?: TsTypeDef[];
+  intersection?: TsTypeDef[];
 }
 export interface ParamDef {
   name: string;
@@ -67,7 +75,7 @@ export interface EnumMemberDef {
 export interface EnumDef {
   members: EnumMemberDef[];
 }
-export interface InterfaceDef { }
+export interface InterfaceDef {}
 export interface TypeAliasDef {
   tsType: TsTypeDef;
 }
@@ -167,4 +175,18 @@ export function groupNodes(docs: DocNode[]): GroupedNodes {
   });
 
   return groupedNodes;
+}
+
+export function findNodeByType(
+  nodes: DocNode[],
+  type: TsTypeDef
+): DocNode | undefined {
+  return nodes.find(
+    node =>
+      node.name === type.typeRef?.typeName &&
+      (node.kind === DocNodeKind.Class ||
+        node.kind === DocNodeKind.Enum ||
+        node.kind === DocNodeKind.Interface ||
+        node.kind === DocNodeKind.TypeAlias)
+  );
 }
