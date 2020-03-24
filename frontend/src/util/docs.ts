@@ -39,13 +39,13 @@ export interface TsConditionalDef {
 }
 export interface TsIndexedAccessDef {
   readonly: boolean;
-  obj_type: TsTypeDef;
-  index_type: TsTypeDef;
+  objType: TsTypeDef;
+  indexType: TsTypeDef;
 }
 export interface TsTypeLiteralDef {
   methods: LiteralMethodDef[];
   properties: LiteralPropertyDef[];
-  call_signatures: LiteralCallSignatureDef[];
+  callSignatures: LiteralCallSignatureDef[];
 }
 export interface LiteralMethodDef {
   name: string;
@@ -54,13 +54,11 @@ export interface LiteralMethodDef {
 }
 export interface LiteralPropertyDef {
   name: string;
-  params: ParamDef[];
   computed: boolean;
   optional: boolean;
   tsType?: TsTypeDef;
 }
 export interface LiteralCallSignatureDef {
-  name: string;
   params: ParamDef[];
   tsType?: TsTypeDef;
 }
@@ -68,6 +66,24 @@ export interface LiteralMethodDef {
   params: ParamDef[];
   returnType?: TsTypeDef;
 }
+export enum LiteralDefKind {
+  Number = "number",
+  String = "string",
+  Boolean = "boolean"
+}
+export type LiteralDef =
+  | {
+      kind: LiteralDefKind.Number;
+      number: number;
+    }
+  | {
+      kind: LiteralDefKind.String;
+      string: string;
+    }
+  | {
+      kind: LiteralDefKind.Boolean;
+      boolean: boolean;
+    };
 export enum TsTypeDefKind {
   Keyword = "keyword",
   Literal = "literal",
@@ -101,12 +117,12 @@ export type TsTypeDef = TsTypeDefShared &
     | { kind: TsTypeDefKind.IndexedAccess; indexedAccess: TsIndexedAccessDef }
     | { kind: TsTypeDefKind.Intersection; intersection: TsTypeDef[] }
     | { kind: TsTypeDefKind.Keyword; keyword: string }
-    | { kind: TsTypeDefKind.Literal; literal: number | string | boolean }
+    | { kind: TsTypeDefKind.Literal; literal: LiteralDef }
     | { kind: TsTypeDefKind.Optional; optional: TsTypeDef }
     | { kind: TsTypeDefKind.Parenthesized; parenthesized: TsTypeDef }
     | { kind: TsTypeDefKind.Rest; rest: TsTypeDef }
     | { kind: TsTypeDefKind.This; this: boolean }
-    | { kind: TsTypeDefKind.Tuple; tuple: TsTypeDef }
+    | { kind: TsTypeDefKind.Tuple; tuple: TsTypeDef[] }
     | { kind: TsTypeDefKind.TypeLiteral; typeLiteral: TsTypeLiteralDef }
     | { kind: TsTypeDefKind.TypeOperator; typeOperator: TsTypeOperatorDef }
     | { kind: TsTypeDefKind.TypeQuery; typeQuery: string }
@@ -264,12 +280,14 @@ export function findNodeByType(
   nodes: DocNode[],
   type: TsTypeDef
 ): DocNode | undefined {
-  return nodes.find(
-    node =>
-      node.name === type.typeRef?.typeName &&
-      (node.kind === DocNodeKind.Class ||
-        node.kind === DocNodeKind.Enum ||
-        node.kind === DocNodeKind.Interface ||
-        node.kind === DocNodeKind.TypeAlias)
-  );
+  return type.kind === TsTypeDefKind.TypeRef
+    ? nodes.find(
+        node =>
+          node.name === type.typeRef?.typeName &&
+          (node.kind === DocNodeKind.Class ||
+            node.kind === DocNodeKind.Enum ||
+            node.kind === DocNodeKind.Interface ||
+            node.kind === DocNodeKind.TypeAlias)
+      )
+    : undefined;
 }

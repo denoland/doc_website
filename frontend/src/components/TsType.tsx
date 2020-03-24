@@ -1,5 +1,10 @@
 import React from "react";
-import { TsTypeDef, findNodeByType, TsTypeDefKind } from "../util/docs";
+import {
+  TsTypeDef,
+  findNodeByType,
+  TsTypeDefKind,
+  LiteralDefKind
+} from "../util/docs";
 import { useNodes } from "../util/nodes";
 import { Link } from "./Link";
 
@@ -23,18 +28,51 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
           <TsType tsType={tsType.conditionalType.falseType} />
         </span>
       );
-    case TsTypeDefKind.FnOrConstructor:
-      return <span>FnOrConstructor</span>;
+    case TsTypeDefKind.FnOrConstructor: {
+      const paramElements = (tsType.fnOrConstructor.params ?? []).flatMap(p => [
+        <>
+          {p.name}
+          {p.tsType ? (
+            <>
+              : <TsType tsType={p.tsType} />
+            </>
+          ) : null}
+        </>,
+        ", "
+      ]);
+      paramElements.pop();
+      return (
+        <span>
+          {tsType.fnOrConstructor.constructor ? "new " : null} ({paramElements}){" "}
+          => <TsType tsType={tsType.fnOrConstructor.tsType} />
+        </span>
+      );
+    }
     case TsTypeDefKind.IndexedAccess:
-      return <span>IndexedAccess</span>;
-    case TsTypeDefKind.Intersection:
-      return <span>Intersection</span>;
+      
+      return <span><TsType tsType={tsType.indexedAccess.objType} />[<TsType tsType={tsType.indexedAccess.indexType} />]</span>;
+    case TsTypeDefKind.Intersection: {
+      const elements = tsType.intersection.flatMap(tsType => [
+        <TsType tsType={tsType} />,
+        " & "
+      ]);
+      elements.pop();
+      return <span>{elements}</span>;
+    }
     case TsTypeDefKind.Keyword:
-      return <span>Keyword</span>;
+      return <span>{tsType.keyword}</span>;
     case TsTypeDefKind.Literal:
-      return <span>{JSON.stringify(tsType.literal)}</span>;
+      switch (tsType.literal.kind) {
+        case LiteralDefKind.Number:
+          return <span>{tsType.literal.number}</span>;
+        case LiteralDefKind.String:
+          return <span>"{tsType.literal.string}"</span>;
+        case LiteralDefKind.Boolean:
+          return <span>{tsType.literal.boolean ? "true" : "false"}</span>;
+      }
+
     case TsTypeDefKind.Optional:
-      return <span>Optional</span>;
+      return <span>_optional_</span>;
     case TsTypeDefKind.Parenthesized:
       return (
         <span>
@@ -42,17 +80,107 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
         </span>
       );
     case TsTypeDefKind.Rest:
-      return <span>Rest</span>;
+      return (
+        <span>
+          ...
+          <TsType tsType={tsType.rest} />
+        </span>
+      );
     case TsTypeDefKind.This:
-      return <span>This</span>;
+      return <span>this</span>;
     case TsTypeDefKind.Tuple:
-      return <span>Tuple</span>;
-    case TsTypeDefKind.TypeLiteral:
-      return <span>TypeLiteral</span>;
+      const elements = tsType.tuple.flatMap(tsType => [
+        <TsType tsType={tsType} />,
+        ", "
+      ]);
+      elements.pop();
+      return <span>[{elements}]</span>;
+    case TsTypeDefKind.TypeLiteral: {
+      const callSignatures = tsType.typeLiteral.callSignatures.flatMap(
+        callSignature => {
+          const paramElements = (callSignature.params ?? []).flatMap(p => [
+            <>
+              {p.name}
+              {p.tsType ? (
+                <>
+                  : <TsType tsType={p.tsType} />
+                </>
+              ) : null}
+            </>,
+            ", "
+          ]);
+          paramElements.pop();
+          return [
+            <span>
+              ({paramElements})
+              {callSignature.tsType ? (
+                <>
+                  : <TsType tsType={callSignature.tsType}></TsType>
+                </>
+              ) : null}
+            </span>,
+            ", "
+          ];
+        }
+      );
+      const methods = tsType.typeLiteral.methods.flatMap(method => {
+        const paramElements = (method.params ?? []).flatMap(p => [
+          <>
+            {p.name}
+            {p.tsType ? (
+              <>
+                : <TsType tsType={p.tsType} />
+              </>
+            ) : null}
+          </>,
+          ", "
+        ]);
+        paramElements.pop();
+        return [
+          <span>
+            {method.name}({paramElements})
+            {method.returnType ? (
+              <>
+                : <TsType tsType={method.returnType}></TsType>
+              </>
+            ) : null}
+          </span>,
+          ", "
+        ];
+      });
+      const properties = tsType.typeLiteral.properties.flatMap(property => {
+        return [
+          <span>
+            {property.name}
+            {property.tsType ? (
+              <span className="text-gray-600">
+                : <TsType tsType={property.tsType}></TsType>
+              </span>
+            ) : null}
+          </span>,
+          ", "
+        ];
+      });
+
+      const final = [...callSignatures, ...methods, ...properties];
+      final.pop();
+      return (
+        <span>
+          {"{ "}
+          {final}
+          {" }"}
+        </span>
+      );
+    }
     case TsTypeDefKind.TypeOperator:
-      return <span>TypeOperator</span>;
+      return (
+        <span>
+          {tsType.typeOperator.operator}{" "}
+          <TsType tsType={tsType.typeOperator.tsType} />
+        </span>
+      );
     case TsTypeDefKind.TypeQuery:
-      return <span>TypeQuery</span>;
+      return <span>typeof {tsType.typeQuery}</span>;
     case TsTypeDefKind.TypeRef:
       const node = findNodeByType(nodes, tsType);
       return node ? (
@@ -62,8 +190,14 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
       ) : (
         <span>{tsType.repr}</span>
       );
-    case TsTypeDefKind.Union:
-      return <span>Union</span>;
+    case TsTypeDefKind.Union: {
+      const elements = tsType.union.flatMap(tsType => [
+        <TsType tsType={tsType} />,
+        " & "
+      ]);
+      elements.pop();
+      return <span>{elements}</span>;
+    }
     default:
       return <span>_notimpl_</span>;
   }
