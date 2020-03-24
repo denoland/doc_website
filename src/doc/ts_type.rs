@@ -277,9 +277,26 @@ impl Into<TsTypeDef> for &TsTypeRef {
       TsQualifiedName(_) => "<UNIMPLEMENTED>".to_string(),
     };
 
+    let type_params = if let Some(type_params_inst) = &self.type_params {
+      let mut ts_type_defs = vec![];
+
+      for type_box in &type_params_inst.params {
+        let ts_type: &TsType = &(*type_box);
+        let def: TsTypeDef = ts_type.into();
+        ts_type_defs.push(def);
+      }
+
+      Some(ts_type_defs)
+    } else {
+      None
+    };
+
     TsTypeDef {
       repr: type_name.to_string(),
-      type_ref: Some(TsTypeRefDef { type_name }),
+      type_ref: Some(TsTypeRefDef {
+        type_name,
+        type_params,
+      }),
       kind: Some(TsTypeDefKind::TypeRef),
       ..Default::default()
     }
@@ -576,9 +593,10 @@ impl Into<TsTypeDef> for &TsType {
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct TsTypeRefDef {
-  // TODO: type_params
-  type_name: String,
+  pub type_params: Option<Vec<TsTypeDef>>,
+  pub type_name: String,
 }
+
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub enum LiteralDefKind {
