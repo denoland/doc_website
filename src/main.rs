@@ -13,7 +13,6 @@ use crate::doc::parser::DocParser;
 use crate::doc::parser::SwcDiagnostics;
 mod doc;
 
-  
 pub fn get_docs(
   file_name: String,
   source_code: String,
@@ -52,7 +51,8 @@ pub fn get_docs(
           SwcDiagnostics::from(buffered_err)
         })?;
 
-    let doc_entries = doc::module::get_doc_nodes_for_module_body(&doc_parser, module.body);
+    let doc_entries =
+      doc::module::get_doc_nodes_for_module_body(&doc_parser, module.body);
     Ok(doc_entries)
   })
 }

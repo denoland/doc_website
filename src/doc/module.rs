@@ -105,19 +105,16 @@ pub fn get_doc_nodes_for_module_decl(
   }
 }
 
-
-
-
 pub fn get_doc_nodes_for_module_body(
-    doc_parser: &DocParser,
-    module_body: Vec<swc_ecma_ast::ModuleItem>,
-  ) -> Vec<DocNode> {
-    let mut doc_entries: Vec<DocNode> = vec![];
-    for node in module_body.iter() {
-      if let swc_ecma_ast::ModuleItem::ModuleDecl(module_decl) = node {
-        doc_entries
-          .extend(get_doc_nodes_for_module_decl(&doc_parser, module_decl));
-      }
+  doc_parser: &DocParser,
+  module_body: Vec<swc_ecma_ast::ModuleItem>,
+) -> Vec<DocNode> {
+  let mut doc_entries: Vec<DocNode> = vec![];
+  for node in module_body.iter() {
+    if let swc_ecma_ast::ModuleItem::ModuleDecl(module_decl) = node {
+      doc_entries
+        .extend(get_doc_nodes_for_module_decl(&doc_parser, module_decl));
     }
-    doc_entries
   }
+  doc_entries
+}

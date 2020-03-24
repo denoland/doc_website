@@ -30,7 +30,10 @@ pub fn get_doc_for_ts_namespace_decl(
 
   let elements = match &*ts_namespace_decl.body {
     TsModuleBlock(ts_module_block) => {
-      super::module::get_doc_nodes_for_module_body(doc_parser, ts_module_block.body.clone())
+      super::module::get_doc_nodes_for_module_body(
+        doc_parser,
+        ts_module_block.body.clone(),
+      )
     }
     TsNamespaceDecl(ts_namespace_decl) => {
       vec![get_doc_for_ts_namespace_decl(doc_parser, ts_namespace_decl)]
@@ -82,7 +85,10 @@ pub fn get_doc_for_ts_module(
 
     match &body {
       TsModuleBlock(ts_module_block) => {
-        super::module::get_doc_nodes_for_module_body(doc_parser, ts_module_block.body.clone())
+        super::module::get_doc_nodes_for_module_body(
+          doc_parser,
+          ts_module_block.body.clone(),
+        )
       }
       TsNamespaceDecl(ts_namespace_decl) => {
         vec![get_doc_for_ts_namespace_decl(doc_parser, ts_namespace_decl)]
