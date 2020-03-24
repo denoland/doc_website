@@ -183,7 +183,7 @@ export function findNodeByType(
 ): DocNode | undefined {
   return nodes.find(
     node =>
-      node.name === type.repr &&
+      node.name === type.typeRef?.typeName &&
       (node.kind === DocNodeKind.Class ||
         node.kind === DocNodeKind.Enum ||
         node.kind === DocNodeKind.Interface ||
