@@ -5,7 +5,6 @@ import { NamespaceRoute } from "./routes/namespace";
 import { PrefixProvider } from "./util/prefix";
 import { Switch, Route } from "react-router-dom";
 import { SinglePageRoute } from "./routes/singlepage";
-import HashLinkHandler from "./components/HashLinkHandler";
 
 function App() {
   const [nodes, setNodes] = useState<DocNode[] | null>(null);

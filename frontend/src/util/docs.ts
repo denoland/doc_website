@@ -21,15 +21,115 @@ export interface DocNodeShared {
 }
 export interface TsTypeRefDef {
   typeName: string;
+  typeParams?: TsTypeDef[];
 }
-export interface TsTypeDef {
+export interface TsTypeOperatorDef {
+  operator: string;
+  tsType: TsTypeDef;
+}
+export interface TsFnOrConstructorDef {
+  constructor: boolean;
+  tsType: TsTypeDef;
+  params: ParamDef[];
+}
+export interface TsConditionalDef {
+  checkType: TsTypeDef;
+  extendsType: TsTypeDef;
+  trueType: TsTypeDef;
+  falseType: TsTypeDef;
+}
+export interface TsIndexedAccessDef {
+  readonly: boolean;
+  objType: TsTypeDef;
+  indexType: TsTypeDef;
+}
+export interface TsTypeLiteralDef {
+  methods: LiteralMethodDef[];
+  properties: LiteralPropertyDef[];
+  callSignatures: LiteralCallSignatureDef[];
+}
+export interface LiteralMethodDef {
+  name: string;
+  params: ParamDef[];
+  returnType?: TsTypeDef;
+}
+export interface LiteralPropertyDef {
+  name: string;
+  computed: boolean;
+  optional: boolean;
+  tsType?: TsTypeDef;
+}
+export interface LiteralCallSignatureDef {
+  params: ParamDef[];
+  tsType?: TsTypeDef;
+}
+export interface LiteralMethodDef {
+  params: ParamDef[];
+  returnType?: TsTypeDef;
+}
+export enum LiteralDefKind {
+  Number = "number",
+  String = "string",
+  Boolean = "boolean"
+}
+export type LiteralDef =
+  | {
+      kind: LiteralDefKind.Number;
+      number: number;
+    }
+  | {
+      kind: LiteralDefKind.String;
+      string: string;
+    }
+  | {
+      kind: LiteralDefKind.Boolean;
+      boolean: boolean;
+    };
+export enum TsTypeDefKind {
+  Keyword = "keyword",
+  Literal = "literal",
+  TypeRef = "typeRef",
+  Union = "union",
+  Intersection = "intersection",
+  Array = "array",
+  Tuple = "tuple",
+  TypeOperator = "typeOperator",
+  Parenthesized = "parenthesized",
+  Rest = "rest",
+  Optional = "optional",
+  TypeQuery = "typeQuery",
+  This = "this",
+  FnOrConstructor = "fnOrConstructor",
+  Conditional = "conditional",
+  IndexedAccess = "indexedAccess",
+  TypeLiteral = "typeLiteral"
+}
+export interface TsTypeDefShared {
   repr: string;
-  keyword?: string;
-  literal?: number | string | boolean;
-  typeRef?: TsTypeRefDef;
-  union?: TsTypeDef[];
-  intersection?: TsTypeDef[];
 }
+export type TsTypeDef = TsTypeDefShared &
+  (
+    | { kind: TsTypeDefKind.Array; array: TsTypeDef }
+    | { kind: TsTypeDefKind.Conditional; conditionalType: TsConditionalDef }
+    | {
+        kind: TsTypeDefKind.FnOrConstructor;
+        fnOrConstructor: TsFnOrConstructorDef;
+      }
+    | { kind: TsTypeDefKind.IndexedAccess; indexedAccess: TsIndexedAccessDef }
+    | { kind: TsTypeDefKind.Intersection; intersection: TsTypeDef[] }
+    | { kind: TsTypeDefKind.Keyword; keyword: string }
+    | { kind: TsTypeDefKind.Literal; literal: LiteralDef }
+    | { kind: TsTypeDefKind.Optional; optional: TsTypeDef }
+    | { kind: TsTypeDefKind.Parenthesized; parenthesized: TsTypeDef }
+    | { kind: TsTypeDefKind.Rest; rest: TsTypeDef }
+    | { kind: TsTypeDefKind.This; this: boolean }
+    | { kind: TsTypeDefKind.Tuple; tuple: TsTypeDef[] }
+    | { kind: TsTypeDefKind.TypeLiteral; typeLiteral: TsTypeLiteralDef }
+    | { kind: TsTypeDefKind.TypeOperator; typeOperator: TsTypeOperatorDef }
+    | { kind: TsTypeDefKind.TypeQuery; typeQuery: string }
+    | { kind: TsTypeDefKind.TypeRef; typeRef: TsTypeRefDef }
+    | { kind: TsTypeDefKind.Union; union: TsTypeDef[] }
+  );
 export interface ParamDef {
   name: string;
   tsType?: TsTypeDef;
@@ -181,12 +281,14 @@ export function findNodeByType(
   nodes: DocNode[],
   type: TsTypeDef
 ): DocNode | undefined {
-  return nodes.find(
-    node =>
-      node.name === type.typeRef?.typeName &&
-      (node.kind === DocNodeKind.Class ||
-        node.kind === DocNodeKind.Enum ||
-        node.kind === DocNodeKind.Interface ||
-        node.kind === DocNodeKind.TypeAlias)
-  );
+  return type.kind === TsTypeDefKind.TypeRef
+    ? nodes.find(
+        node =>
+          node.name === type.typeRef?.typeName &&
+          (node.kind === DocNodeKind.Class ||
+            node.kind === DocNodeKind.Enum ||
+            node.kind === DocNodeKind.Interface ||
+            node.kind === DocNodeKind.TypeAlias)
+      )
+    : undefined;
 }
