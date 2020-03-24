@@ -176,3 +176,17 @@ export function groupNodes(docs: DocNode[]): GroupedNodes {
 
   return groupedNodes;
 }
+
+export function findNodeByType(
+  nodes: DocNode[],
+  type: TsTypeDef
+): DocNode | undefined {
+  return nodes.find(
+    node =>
+      node.name === type.repr &&
+      (node.kind === DocNodeKind.Class ||
+        node.kind === DocNodeKind.Enum ||
+        node.kind === DocNodeKind.Interface ||
+        node.kind === DocNodeKind.TypeAlias)
+  );
+}

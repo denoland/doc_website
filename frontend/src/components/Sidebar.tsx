@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "./Link";
 import { groupNodes, DocNodeShared } from "../util/docs";
 import { useNodes } from "../util/nodes";
+import HashLinkHandler from "./HashLinkHandler";
 
 const SidebarSection = (props: {
   title: string;
@@ -18,9 +19,12 @@ const SidebarSection = (props: {
         {props.nodes.map((node, i) => (
           <p key={node.name + "+" + i}>
             {props.mode === "singlepage" ? (
-              <a href={`#${props.type}.${node.name}`} className="text-blue-500">
+              <Link
+                href={`#${props.type}.${node.name}`}
+                className="text-blue-500"
+              >
                 {node.name}
-              </a>
+              </Link>
             ) : (
               <Link
                 href={`/${props.type}/${node.name}`}
