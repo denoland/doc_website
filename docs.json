@@ -937,7 +937,14 @@
           "jsDoc": "**UNSTABLE**: might move to `Deno.symbols`.",
           "variableDef": {
             "tsType": {
-              "repr": "unique symbol"
+              "repr": "",
+              "typeOperator": {
+                "operator": "unique",
+                "tsType": {
+                  "repr": "symbol",
+                  "keyword": "symbol"
+                }
+              }
             },
             "kind": "const"
           }

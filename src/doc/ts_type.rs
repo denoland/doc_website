@@ -5,9 +5,13 @@ use swc_ecma_ast::TsArrayType;
 use swc_ecma_ast::TsKeywordType;
 use swc_ecma_ast::TsLit;
 use swc_ecma_ast::TsLitType;
+use swc_ecma_ast::TsOptionalType;
+use swc_ecma_ast::TsParenthesizedType;
+use swc_ecma_ast::TsRestType;
 use swc_ecma_ast::TsTupleType;
 use swc_ecma_ast::TsType;
 use swc_ecma_ast::TsTypeAnn;
+use swc_ecma_ast::TsTypeOperator;
 use swc_ecma_ast::TsTypeRef;
 use swc_ecma_ast::TsUnionOrIntersectionType;
 
@@ -20,13 +24,13 @@ use swc_ecma_ast::TsUnionOrIntersectionType;
 //     TsTypeLit(TsTypeLit),
 //  *      TsArrayType(TsArrayType),
 //  *      TsTupleType(TsTupleType),
-//     TsOptionalType(TsOptionalType),
-//     TsRestType(TsRestType),
+//  *      TsOptionalType(TsOptionalType),
+//  *      TsRestType(TsRestType),
 //  *      TsUnionOrIntersectionType(TsUnionOrIntersectionType),
 //     TsConditionalType(TsConditionalType),
 //     TsInferType(TsInferType),
-//     TsParenthesizedType(TsParenthesizedType),
-//     TsTypeOperator(TsTypeOperator),
+//  *      TsParenthesizedType(TsParenthesizedType),
+//  *      TsTypeOperator(TsTypeOperator),
 //     TsIndexedAccessType(TsIndexedAccessType),
 //     TsMappedType(TsMappedType),
 //  *      TsLitType(TsLitType),
@@ -149,6 +153,54 @@ impl Into<TsTypeDef> for &TsKeywordType {
   }
 }
 
+impl Into<TsTypeDef> for &TsTypeOperator {
+  fn into(self) -> TsTypeDef {
+    let ts_type = (&*self.type_ann).into();
+    let type_operator_def = TsTypeOperatorDef {
+      operator: self.op.as_str().to_string(),
+      ts_type,
+    };
+
+    TsTypeDef {
+      type_operator: Some(Box::new(type_operator_def)),
+      ..Default::default()
+    }
+  }
+}
+
+impl Into<TsTypeDef> for &TsParenthesizedType {
+  fn into(self) -> TsTypeDef {
+    let ts_type = (&*self.type_ann).into();
+
+    TsTypeDef {
+      parenthesized: Some(Box::new(ts_type)),
+      ..Default::default()
+    }
+  }
+}
+
+impl Into<TsTypeDef> for &TsRestType {
+  fn into(self) -> TsTypeDef {
+    let ts_type = (&*self.type_ann).into();
+
+    TsTypeDef {
+      rest: Some(Box::new(ts_type)),
+      ..Default::default()
+    }
+  }
+}
+
+impl Into<TsTypeDef> for &TsOptionalType {
+  fn into(self) -> TsTypeDef {
+    let ts_type = (&*self.type_ann).into();
+
+    TsTypeDef {
+      rest: Some(Box::new(ts_type)),
+      ..Default::default()
+    }
+  }
+}
+
 impl Into<TsTypeDef> for &TsTypeRef {
   fn into(self) -> TsTypeDef {
     use swc_ecma_ast::TsEntityName::*;
@@ -177,6 +229,10 @@ impl Into<TsTypeDef> for &TsType {
       TsUnionOrIntersectionType(union_or_inter) => union_or_inter.into(),
       TsArrayType(array_type) => array_type.into(),
       TsTupleType(tuple_type) => tuple_type.into(),
+      TsTypeOperator(type_op_type) => type_op_type.into(),
+      TsParenthesizedType(paren_type) => paren_type.into(),
+      TsRestType(rest_type) => rest_type.into(),
+      TsOptionalType(optional_type) => optional_type.into(),
       _ => TsTypeDef {
         repr: "<UNIMPLEMENTED>".to_string(),
         ..Default::default()
@@ -198,6 +254,13 @@ pub enum LiteralDef {
   Number(f64),
   Str(String),
   Bool(bool),
+}
+
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct TsTypeOperatorDef {
+  pub operator: String,
+  pub ts_type: TsTypeDef,
 }
 
 #[derive(Debug, Default, Serialize)]
@@ -225,6 +288,15 @@ pub struct TsTypeDef {
 
   #[serde(skip_serializing_if = "Option::is_none")]
   pub tuple: Option<Vec<TsTypeDef>>,
+
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub type_operator: Option<Box<TsTypeOperatorDef>>,
+
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub parenthesized: Option<Box<TsTypeDef>>,
+
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub rest: Option<Box<TsTypeDef>>,
 }
 
 pub fn ts_type_ann_to_def(
@@ -240,6 +312,10 @@ pub fn ts_type_ann_to_def(
     TsUnionOrIntersectionType(union_or_inter) => union_or_inter.into(),
     TsArrayType(array_type) => array_type.into(),
     TsTupleType(tuple_type) => tuple_type.into(),
+    TsTypeOperator(type_op_type) => type_op_type.into(),
+    TsParenthesizedType(paren_type) => paren_type.into(),
+    TsRestType(rest_type) => rest_type.into(),
+    TsOptionalType(optional_type) => optional_type.into(),
     _ => {
       let repr = source_map
         .span_to_snippet(type_ann.span)
