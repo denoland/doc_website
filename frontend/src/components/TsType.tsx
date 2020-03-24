@@ -187,17 +187,32 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
       return <span>typeof {tsType.typeQuery}</span>;
     case TsTypeDefKind.TypeRef:
       const node = findNodeByType(nodes, tsType);
-      return node ? (
-        <Link href={`#${node.kind}.${node.name}`} className="text-blue-500">
-          {tsType.repr}
-        </Link>
-      ) : (
-        <span>{tsType.repr}</span>
+      const paramElements = (
+        tsType.typeRef.typeParams ?? []
+      ).flatMap(tsType => [<TsType tsType={tsType} />, ", "]);
+      paramElements.pop();
+      return (
+        <>
+          {node ? (
+            <Link href={`#${node.kind}.${node.name}`} className="text-blue-500">
+              {tsType.typeRef.typeName}
+            </Link>
+          ) : (
+            <span>{tsType.typeRef.typeName}</span>
+          )}
+          {tsType.typeRef.typeParams ? (
+            <>
+              {"<"}
+              {paramElements}
+              {">"}
+            </>
+          ) : null}
+        </>
       );
     case TsTypeDefKind.Union: {
       const elements = tsType.union.flatMap(tsType => [
         <TsType tsType={tsType} />,
-        " & "
+        " | "
       ]);
       elements.pop();
       return <span>{elements}</span>;

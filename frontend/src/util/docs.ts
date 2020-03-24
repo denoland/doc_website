@@ -21,6 +21,7 @@ export interface DocNodeShared {
 }
 export interface TsTypeRefDef {
   typeName: string;
+  typeParams?: TsTypeDef[];
 }
 export interface TsTypeOperatorDef {
   operator: string;
