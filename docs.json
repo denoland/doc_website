@@ -517,7 +517,19 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "string | RegExp"
+                  "repr": "",
+                  "union": [
+                    {
+                      "repr": "string",
+                      "keyword": "string"
+                    },
+                    {
+                      "repr": "RegExp",
+                      "typeRef": {
+                        "typeName": "RegExp"
+                      }
+                    }
+                  ]
                 }
               },
               {
@@ -533,7 +545,19 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "string | RegExp"
+                  "repr": "",
+                  "union": [
+                    {
+                      "repr": "string",
+                      "keyword": "string"
+                    },
+                    {
+                      "repr": "RegExp",
+                      "typeRef": {
+                        "typeName": "RegExp"
+                      }
+                    }
+                  ]
                 }
               },
               {
@@ -735,7 +759,17 @@
               }
             ],
             "returnType": {
-              "repr": "string | undefined"
+              "repr": "",
+              "union": [
+                {
+                  "repr": "string",
+                  "keyword": "string"
+                },
+                {
+                  "repr": "undefined",
+                  "keyword": "undefined"
+                }
+              ]
             },
             "isAsync": false,
             "isGenerator": false
@@ -775,7 +809,17 @@
               }
             ],
             "returnType": {
-              "repr": "string | null"
+              "repr": "",
+              "union": [
+                {
+                  "repr": "string",
+                  "keyword": "string"
+                },
+                {
+                  "repr": "null",
+                  "keyword": "null"
+                }
+              ]
             },
             "isAsync": false,
             "isGenerator": false
@@ -1004,7 +1048,19 @@
                   }
                 ],
                 "returnType": {
-                  "repr": "number | EOF"
+                  "repr": "",
+                  "union": [
+                    {
+                      "repr": "number",
+                      "keyword": "number"
+                    },
+                    {
+                      "repr": "EOF",
+                      "typeRef": {
+                        "typeName": "EOF"
+                      }
+                    }
+                  ]
                 }
               }
             ],
@@ -1640,7 +1696,19 @@
               }
             ],
             "returnType": {
-              "repr": "number | EOF"
+              "repr": "",
+              "union": [
+                {
+                  "repr": "number",
+                  "keyword": "number"
+                },
+                {
+                  "repr": "EOF",
+                  "typeRef": {
+                    "typeName": "EOF"
+                  }
+                }
+              ]
             },
             "isAsync": false,
             "isGenerator": false
@@ -2058,7 +2126,19 @@
                     }
                   ],
                   "returnType": {
-                    "repr": "number | EOF"
+                    "repr": "",
+                    "union": [
+                      {
+                        "repr": "number",
+                        "keyword": "number"
+                      },
+                      {
+                        "repr": "EOF",
+                        "typeRef": {
+                          "typeName": "EOF"
+                        }
+                      }
+                    ]
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -2743,7 +2823,19 @@
                     }
                   ],
                   "returnType": {
-                    "repr": "number | EOF"
+                    "repr": "",
+                    "union": [
+                      {
+                        "repr": "number",
+                        "keyword": "number"
+                      },
+                      {
+                        "repr": "EOF",
+                        "typeRef": {
+                          "typeName": "EOF"
+                        }
+                      }
+                    ]
                   },
                   "isAsync": false,
                   "isGenerator": false
@@ -3688,13 +3780,37 @@
               {
                 "name": "atime",
                 "tsType": {
-                  "repr": "number | Date"
+                  "repr": "",
+                  "union": [
+                    {
+                      "repr": "number",
+                      "keyword": "number"
+                    },
+                    {
+                      "repr": "Date",
+                      "typeRef": {
+                        "typeName": "Date"
+                      }
+                    }
+                  ]
                 }
               },
               {
                 "name": "mtime",
                 "tsType": {
-                  "repr": "number | Date"
+                  "repr": "",
+                  "union": [
+                    {
+                      "repr": "number",
+                      "keyword": "number"
+                    },
+                    {
+                      "repr": "Date",
+                      "typeRef": {
+                        "typeName": "Date"
+                      }
+                    }
+                  ]
                 }
               }
             ],
@@ -3728,13 +3844,37 @@
               {
                 "name": "atime",
                 "tsType": {
-                  "repr": "number | Date"
+                  "repr": "",
+                  "union": [
+                    {
+                      "repr": "number",
+                      "keyword": "number"
+                    },
+                    {
+                      "repr": "Date",
+                      "typeRef": {
+                        "typeName": "Date"
+                      }
+                    }
+                  ]
                 }
               },
               {
                 "name": "mtime",
                 "tsType": {
-                  "repr": "number | Date"
+                  "repr": "",
+                  "union": [
+                    {
+                      "repr": "number",
+                      "keyword": "number"
+                    },
+                    {
+                      "repr": "Date",
+                      "typeRef": {
+                        "typeName": "Date"
+                      }
+                    }
+                  ]
                 }
               }
             ],
@@ -4076,7 +4216,17 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number | null"
+                  "repr": "",
+                  "union": [
+                    {
+                      "repr": "number",
+                      "keyword": "number"
+                    },
+                    {
+                      "repr": "null",
+                      "keyword": "null"
+                    }
+                  ]
                 }
               },
               {
@@ -4092,7 +4242,17 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number | null"
+                  "repr": "",
+                  "union": [
+                    {
+                      "repr": "number",
+                      "keyword": "number"
+                    },
+                    {
+                      "repr": "null",
+                      "keyword": "null"
+                    }
+                  ]
                 }
               },
               {
@@ -4108,7 +4268,17 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number | null"
+                  "repr": "",
+                  "union": [
+                    {
+                      "repr": "number",
+                      "keyword": "number"
+                    },
+                    {
+                      "repr": "null",
+                      "keyword": "null"
+                    }
+                  ]
                 }
               },
               {
@@ -4124,7 +4294,17 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "string | null"
+                  "repr": "",
+                  "union": [
+                    {
+                      "repr": "string",
+                      "keyword": "string"
+                    },
+                    {
+                      "repr": "null",
+                      "keyword": "null"
+                    }
+                  ]
                 }
               },
               {
@@ -4140,7 +4320,17 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number | null"
+                  "repr": "",
+                  "union": [
+                    {
+                      "repr": "number",
+                      "keyword": "number"
+                    },
+                    {
+                      "repr": "null",
+                      "keyword": "null"
+                    }
+                  ]
                 }
               },
               {
@@ -4156,7 +4346,17 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number | null"
+                  "repr": "",
+                  "union": [
+                    {
+                      "repr": "number",
+                      "keyword": "number"
+                    },
+                    {
+                      "repr": "null",
+                      "keyword": "null"
+                    }
+                  ]
                 }
               },
               {
@@ -4172,7 +4372,17 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number | null"
+                  "repr": "",
+                  "union": [
+                    {
+                      "repr": "number",
+                      "keyword": "number"
+                    },
+                    {
+                      "repr": "null",
+                      "keyword": "null"
+                    }
+                  ]
                 }
               },
               {
@@ -4188,7 +4398,17 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number | null"
+                  "repr": "",
+                  "union": [
+                    {
+                      "repr": "number",
+                      "keyword": "number"
+                    },
+                    {
+                      "repr": "null",
+                      "keyword": "null"
+                    }
+                  ]
                 }
               },
               {
@@ -4204,7 +4424,17 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number | null"
+                  "repr": "",
+                  "union": [
+                    {
+                      "repr": "number",
+                      "keyword": "number"
+                    },
+                    {
+                      "repr": "null",
+                      "keyword": "null"
+                    }
+                  ]
                 }
               },
               {
@@ -4220,7 +4450,17 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number | null"
+                  "repr": "",
+                  "union": [
+                    {
+                      "repr": "number",
+                      "keyword": "number"
+                    },
+                    {
+                      "repr": "null",
+                      "keyword": "null"
+                    }
+                  ]
                 }
               },
               {
@@ -4236,7 +4476,17 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number | null"
+                  "repr": "",
+                  "union": [
+                    {
+                      "repr": "number",
+                      "keyword": "number"
+                    },
+                    {
+                      "repr": "null",
+                      "keyword": "null"
+                    }
+                  ]
                 }
               },
               {
@@ -4252,7 +4502,17 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number | null"
+                  "repr": "",
+                  "union": [
+                    {
+                      "repr": "number",
+                      "keyword": "number"
+                    },
+                    {
+                      "repr": "null",
+                      "keyword": "null"
+                    }
+                  ]
                 }
               },
               {
@@ -4268,7 +4528,17 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "number | null"
+                  "repr": "",
+                  "union": [
+                    {
+                      "repr": "number",
+                      "keyword": "number"
+                    },
+                    {
+                      "repr": "null",
+                      "keyword": "null"
+                    }
+                  ]
                 }
               }
             ],
@@ -5381,12 +5651,36 @@
                   {
                     "name": "zeroCopy",
                     "tsType": {
-                      "repr": "ArrayBufferView | null"
+                      "repr": "",
+                      "union": [
+                        {
+                          "repr": "ArrayBufferView",
+                          "typeRef": {
+                            "typeName": "ArrayBufferView"
+                          }
+                        },
+                        {
+                          "repr": "null",
+                          "keyword": "null"
+                        }
+                      ]
                     }
                   }
                 ],
                 "returnType": {
-                  "repr": "Uint8Array | null"
+                  "repr": "",
+                  "union": [
+                    {
+                      "repr": "Uint8Array",
+                      "typeRef": {
+                        "typeName": "Uint8Array"
+                      }
+                    },
+                    {
+                      "repr": "null",
+                      "keyword": "null"
+                    }
+                  ]
                 }
               },
               {
@@ -6129,7 +6423,18 @@
               {
                 "name": "options",
                 "tsType": {
-                  "repr": "ListenOptions & { transport?: \"tcp\" }"
+                  "repr": "",
+                  "intersection": [
+                    {
+                      "repr": "ListenOptions",
+                      "typeRef": {
+                        "typeName": "ListenOptions"
+                      }
+                    },
+                    {
+                      "repr": "<UNIMPLEMENTED>"
+                    }
+                  ]
                 }
               }
             ],
@@ -6158,7 +6463,18 @@
               {
                 "name": "options",
                 "tsType": {
-                  "repr": "ListenOptions & { transport: \"udp\" }"
+                  "repr": "",
+                  "intersection": [
+                    {
+                      "repr": "ListenOptions",
+                      "typeRef": {
+                        "typeName": "ListenOptions"
+                      }
+                    },
+                    {
+                      "repr": "<UNIMPLEMENTED>"
+                    }
+                  ]
                 }
               }
             ],
@@ -6195,7 +6511,21 @@
               }
             ],
             "returnType": {
-              "repr": "Listener | UDPConn"
+              "repr": "",
+              "union": [
+                {
+                  "repr": "Listener",
+                  "typeRef": {
+                    "typeName": "Listener"
+                  }
+                },
+                {
+                  "repr": "UDPConn",
+                  "typeRef": {
+                    "typeName": "UDPConn"
+                  }
+                }
+              ]
             },
             "isAsync": false,
             "isGenerator": false
@@ -6760,7 +7090,39 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "\"any\" | \"access\" | \"create\" | \"modify\" | \"remove\""
+                  "repr": "",
+                  "union": [
+                    {
+                      "repr": "any",
+                      "literal": {
+                        "str": "any"
+                      }
+                    },
+                    {
+                      "repr": "access",
+                      "literal": {
+                        "str": "access"
+                      }
+                    },
+                    {
+                      "repr": "create",
+                      "literal": {
+                        "str": "create"
+                      }
+                    },
+                    {
+                      "repr": "modify",
+                      "literal": {
+                        "str": "modify"
+                      }
+                    },
+                    {
+                      "repr": "remove",
+                      "literal": {
+                        "str": "remove"
+                      }
+                    }
+                  ]
                 }
               },
               {
@@ -6798,7 +7160,16 @@
               {
                 "name": "paths",
                 "tsType": {
-                  "repr": "string | string[]"
+                  "repr": "",
+                  "union": [
+                    {
+                      "repr": "string",
+                      "keyword": "string"
+                    },
+                    {
+                      "repr": "<UNIMPLEMENTED>"
+                    }
+                  ]
                 }
               },
               {
@@ -7240,7 +7611,19 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "ProcessStdio | number"
+                  "repr": "",
+                  "union": [
+                    {
+                      "repr": "ProcessStdio",
+                      "typeRef": {
+                        "typeName": "ProcessStdio"
+                      }
+                    },
+                    {
+                      "repr": "number",
+                      "keyword": "number"
+                    }
+                  ]
                 }
               },
               {
@@ -7256,7 +7639,19 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "ProcessStdio | number"
+                  "repr": "",
+                  "union": [
+                    {
+                      "repr": "ProcessStdio",
+                      "typeRef": {
+                        "typeName": "ProcessStdio"
+                      }
+                    },
+                    {
+                      "repr": "number",
+                      "keyword": "number"
+                    }
+                  ]
                 }
               },
               {
@@ -7272,7 +7667,19 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "ProcessStdio | number"
+                  "repr": "",
+                  "union": [
+                    {
+                      "repr": "ProcessStdio",
+                      "typeRef": {
+                        "typeName": "ProcessStdio"
+                      }
+                    },
+                    {
+                      "repr": "number",
+                      "keyword": "number"
+                    }
+                  ]
                 }
               }
             ],
@@ -7323,7 +7730,15 @@
           "jsDoc": "**UNSTABLE**: make platform independent.\n\nSignals numbers. This is platform dependent.",
           "variableDef": {
             "tsType": {
-              "repr": "typeof MacOSSignal | typeof LinuxSignal"
+              "repr": "",
+              "union": [
+                {
+                  "repr": "<UNIMPLEMENTED>"
+                },
+                {
+                  "repr": "<UNIMPLEMENTED>"
+                }
+              ]
             },
             "kind": "const"
           }
@@ -8196,7 +8611,27 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "\"react\" | \"preserve\" | \"react-native\""
+                  "repr": "",
+                  "union": [
+                    {
+                      "repr": "react",
+                      "literal": {
+                        "str": "react"
+                      }
+                    },
+                    {
+                      "repr": "preserve",
+                      "literal": {
+                        "str": "preserve"
+                      }
+                    },
+                    {
+                      "repr": "react-native",
+                      "literal": {
+                        "str": "react-native"
+                      }
+                    }
+                  ]
                 }
               },
               {
@@ -8313,7 +8748,57 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "| \"none\"\n      | \"commonjs\"\n      | \"amd\"\n      | \"system\"\n      | \"umd\"\n      | \"es6\"\n      | \"es2015\"\n      | \"esnext\""
+                  "repr": "",
+                  "union": [
+                    {
+                      "repr": "none",
+                      "literal": {
+                        "str": "none"
+                      }
+                    },
+                    {
+                      "repr": "commonjs",
+                      "literal": {
+                        "str": "commonjs"
+                      }
+                    },
+                    {
+                      "repr": "amd",
+                      "literal": {
+                        "str": "amd"
+                      }
+                    },
+                    {
+                      "repr": "system",
+                      "literal": {
+                        "str": "system"
+                      }
+                    },
+                    {
+                      "repr": "umd",
+                      "literal": {
+                        "str": "umd"
+                      }
+                    },
+                    {
+                      "repr": "es6",
+                      "literal": {
+                        "str": "es6"
+                      }
+                    },
+                    {
+                      "repr": "es2015",
+                      "literal": {
+                        "str": "es2015"
+                      }
+                    },
+                    {
+                      "repr": "esnext",
+                      "literal": {
+                        "str": "esnext"
+                      }
+                    }
+                  ]
                 }
               },
               {
@@ -8772,7 +9257,69 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "| \"es3\"\n      | \"es5\"\n      | \"es6\"\n      | \"es2015\"\n      | \"es2016\"\n      | \"es2017\"\n      | \"es2018\"\n      | \"es2019\"\n      | \"es2020\"\n      | \"esnext\""
+                  "repr": "",
+                  "union": [
+                    {
+                      "repr": "es3",
+                      "literal": {
+                        "str": "es3"
+                      }
+                    },
+                    {
+                      "repr": "es5",
+                      "literal": {
+                        "str": "es5"
+                      }
+                    },
+                    {
+                      "repr": "es6",
+                      "literal": {
+                        "str": "es6"
+                      }
+                    },
+                    {
+                      "repr": "es2015",
+                      "literal": {
+                        "str": "es2015"
+                      }
+                    },
+                    {
+                      "repr": "es2016",
+                      "literal": {
+                        "str": "es2016"
+                      }
+                    },
+                    {
+                      "repr": "es2017",
+                      "literal": {
+                        "str": "es2017"
+                      }
+                    },
+                    {
+                      "repr": "es2018",
+                      "literal": {
+                        "str": "es2018"
+                      }
+                    },
+                    {
+                      "repr": "es2019",
+                      "literal": {
+                        "str": "es2019"
+                      }
+                    },
+                    {
+                      "repr": "es2020",
+                      "literal": {
+                        "str": "es2020"
+                      }
+                    },
+                    {
+                      "repr": "esnext",
+                      "literal": {
+                        "str": "esnext"
+                      }
+                    }
+                  ]
                 }
               },
               {

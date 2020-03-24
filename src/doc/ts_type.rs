@@ -7,6 +7,7 @@ use swc_ecma_ast::TsLitType;
 use swc_ecma_ast::TsType;
 use swc_ecma_ast::TsTypeAnn;
 use swc_ecma_ast::TsTypeRef;
+use swc_ecma_ast::TsUnionOrIntersectionType;
 
 // pub enum TsType {
 //  *      TsKeywordType(TsKeywordType),
@@ -50,6 +51,43 @@ impl Into<TsTypeDef> for &TsLitType {
       repr,
       literal: Some(lit),
       ..Default::default()
+    }
+  }
+}
+
+impl Into<TsTypeDef> for &TsUnionOrIntersectionType {
+  fn into(self) -> TsTypeDef {
+    use swc_ecma_ast::TsUnionOrIntersectionType::*;
+
+    match self {
+      TsUnionType(union_type) => {
+        let mut types_union = vec![];
+
+        for type_box in &union_type.types {
+          let ts_type: &TsType = &(*type_box);
+          let def: TsTypeDef = ts_type.into();
+          types_union.push(def);
+        }
+
+        TsTypeDef {
+          union: Some(types_union),
+          ..Default::default()
+        }
+      }
+      TsIntersectionType(intersection_type) => {
+        let mut types_intersection = vec![];
+
+        for type_box in &intersection_type.types {
+          let ts_type: &TsType = &(*type_box);
+          let def: TsTypeDef = ts_type.into();
+          types_intersection.push(def);
+        }
+
+        TsTypeDef {
+          intersection: Some(types_intersection),
+          ..Default::default()
+        }
+      }
     }
   }
 }
@@ -98,7 +136,7 @@ impl Into<TsTypeDef> for &TsTypeRef {
   }
 }
 
-impl Into<TsTypeDef> for TsType {
+impl Into<TsTypeDef> for &TsType {
   fn into(self) -> TsTypeDef {
     use swc_ecma_ast::TsType::*;
 
@@ -106,6 +144,7 @@ impl Into<TsTypeDef> for TsType {
       TsKeywordType(ref keyword_type) => keyword_type.into(),
       TsLitType(ref lit_type) => lit_type.into(),
       TsTypeRef(ref type_ref) => type_ref.into(),
+      TsUnionOrIntersectionType(union_or_inter) => union_or_inter.into(),
       _ => TsTypeDef {
         repr: "<UNIMPLEMENTED>".to_string(),
         ..Default::default()
@@ -168,6 +207,7 @@ pub fn ts_type_ann_to_def(
     TsKeywordType(keyword_type) => keyword_type.into(),
     TsLitType(lit_type) => lit_type.into(),
     TsTypeRef(type_ref) => type_ref.into(),
+    TsUnionOrIntersectionType(union_or_inter) => union_or_inter.into(),
     _ => {
       let repr = source_map
         .span_to_snippet(type_ann.span)
