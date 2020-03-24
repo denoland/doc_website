@@ -22,6 +22,52 @@ export interface DocNodeShared {
 export interface TsTypeRefDef {
   typeName: string;
 }
+export interface TsTypeOperatorDef {
+  operator: string;
+  tsType: TsTypeDef;
+}
+export interface TsFnOrConstructorDef {
+  constructor: boolean;
+  tsType: TsTypeDef;
+  params: ParamDef[];
+}
+export interface TsConditionalDef {
+  checkType: TsTypeDef;
+  extendsType: TsTypeDef;
+  trueType: TsTypeDef;
+  falseType: TsTypeDef;
+}
+export interface TsIndexedAccessDef {
+  readonly: boolean;
+  obj_type: TsTypeDef;
+  index_type: TsTypeDef;
+}
+export interface TsTypeLiteralDef {
+  methods: LiteralMethodDef[];
+  properties: LiteralPropertyDef[];
+  call_signatures: LiteralCallSignatureDef[];
+}
+export interface LiteralMethodDef {
+  name: string;
+  params: ParamDef[];
+  returnType?: TsTypeDef;
+}
+export interface LiteralPropertyDef {
+  name: string;
+  params: ParamDef[];
+  computed: boolean;
+  optional: boolean;
+  tsType?: TsTypeDef;
+}
+export interface LiteralCallSignatureDef {
+  name: string;
+  params: ParamDef[];
+  tsType?: TsTypeDef;
+}
+export interface LiteralMethodDef {
+  params: ParamDef[];
+  returnType?: TsTypeDef;
+}
 export interface TsTypeDef {
   repr: string;
   keyword?: string;
@@ -29,6 +75,18 @@ export interface TsTypeDef {
   typeRef?: TsTypeRefDef;
   union?: TsTypeDef[];
   intersection?: TsTypeDef[];
+  array?: TsTypeDef;
+  tuple?: TsTypeDef;
+  typeOperator?: TsTypeOperatorDef;
+  parenthesized?: TsTypeDef;
+  rest?: TsTypeDef;
+  optional?: TsTypeDef;
+  typeQuery?: string;
+  this?: boolean;
+  fnOrConstructor?: TsFnOrConstructorDef;
+  conditionalType?: TsConditionalDef;
+  indexed_access?: TsIndexedAccessDef;
+  type_literal?: TsTypeLiteralDef;
 }
 export interface ParamDef {
   name: string;
