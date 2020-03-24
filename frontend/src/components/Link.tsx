@@ -11,7 +11,8 @@ export function Link(
       to={
         props.unmanaged
           ? props.href
-          : prefix.namespace +
+          : prefix.global +
+            prefix.namespace +
             (props.href.startsWith("$")
               ? props.href.replace("$", prefix.node)
               : props.href)

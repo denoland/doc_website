@@ -17,7 +17,7 @@ export function FunctionRoute(props: { name: string }) {
   return function_ ? (
     <Switch>
       <Route
-        path={prefix.namespace + prefix.node}
+        path={prefix.global + prefix.namespace + prefix.node}
         exact
         render={() => <Function function={function_} />}
       />

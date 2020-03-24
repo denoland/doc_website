@@ -28,10 +28,11 @@ export function NamespaceRoute(props: { name: string }) {
     >
       <Switch>
         <Route
-          path={`${prefix.namespace}/class/:class`}
+          path={`${prefix.global}${prefix.namespace}/class/:class`}
           render={({ match: { params } }) => (
             <PrefixProvider
               value={{
+                global: prefix.global,
                 namespace: prefix.namespace,
                 node: `/class/${params.class}`
               }}
@@ -41,10 +42,11 @@ export function NamespaceRoute(props: { name: string }) {
           )}
         />
         <Route
-          path={`${prefix.namespace}/function/:function`}
+          path={`${prefix.global}${prefix.namespace}/function/:function`}
           render={({ match: { params } }) => (
             <PrefixProvider
               value={{
+                global: prefix.global,
                 namespace: prefix.namespace,
                 node: `/function/${params.function}`
               }}
@@ -54,10 +56,11 @@ export function NamespaceRoute(props: { name: string }) {
           )}
         />
         <Route
-          path={`${prefix.namespace}/variable/:variable`}
+          path={`${prefix.global}${prefix.namespace}/variable/:variable`}
           render={({ match: { params } }) => (
             <PrefixProvider
               value={{
+                global: prefix.global,
                 namespace: prefix.namespace,
                 node: `/variable/${params.variable}`
               }}
@@ -67,10 +70,11 @@ export function NamespaceRoute(props: { name: string }) {
           )}
         />
         <Route
-          path={`${prefix.namespace}/enum/:enum`}
+          path={`${prefix.global}${prefix.namespace}/enum/:enum`}
           render={({ match: { params } }) => (
             <PrefixProvider
               value={{
+                global: prefix.global,
                 namespace: prefix.namespace,
                 node: `/enum/${params.enum}`
               }}
@@ -80,10 +84,11 @@ export function NamespaceRoute(props: { name: string }) {
           )}
         />
         <Route
-          path={`${prefix.namespace}/interface/:interface`}
+          path={`${prefix.global}${prefix.namespace}/interface/:interface`}
           render={({ match: { params } }) => (
             <PrefixProvider
               value={{
+                global: prefix.global,
                 namespace: prefix.namespace,
                 node: `/interface/${params.interface}`
               }}
@@ -93,10 +98,11 @@ export function NamespaceRoute(props: { name: string }) {
           )}
         />
         <Route
-          path={`${prefix.namespace}/typealias/:typealias`}
+          path={`${prefix.global}${prefix.namespace}/typealias/:typealias`}
           render={({ match: { params } }) => (
             <PrefixProvider
               value={{
+                global: prefix.global,
                 namespace: prefix.namespace,
                 node: `/typealias/${params.typealias}`
               }}
@@ -106,10 +112,11 @@ export function NamespaceRoute(props: { name: string }) {
           )}
         />
         <Route
-          path={`${prefix.namespace}/namespace/:namespace`}
+          path={`${prefix.global}${prefix.namespace}/namespace/:namespace`}
           render={({ match: { params } }) => (
             <PrefixProvider
               value={{
+                global: prefix.global,
                 namespace: `${prefix.namespace}/namespace/${params.namespace}`,
                 node: ""
               }}
@@ -119,7 +126,7 @@ export function NamespaceRoute(props: { name: string }) {
           )}
         />
         <Route
-          path={prefix.namespace + "/"}
+          path={prefix.global + prefix.namespace + "/"}
           exact
           render={() =>
             isRootNamespace ? (

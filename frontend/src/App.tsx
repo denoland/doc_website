@@ -15,15 +15,15 @@ function App() {
 
   return nodes ? (
     <Switch>
-      <Route path="/singlepage">
-        <SinglePageRoute nodes={nodes} />
-      </Route>
-      <Route>
+      <Route path="/multi">
         <NodesProvider value={nodes}>
-          <PrefixProvider value={{ namespace: "", node: "" }}>
+          <PrefixProvider value={{ global: "/multi", namespace: "", node: "" }}>
             <NamespaceRoute name="" />
           </PrefixProvider>
         </NodesProvider>
+      </Route>
+      <Route>
+        <SinglePageRoute nodes={nodes} />
       </Route>
     </Switch>
   ) : (

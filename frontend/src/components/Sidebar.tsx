@@ -53,14 +53,21 @@ export const Sidebar = (props: {
         <div className="text-gray-600 text-sm">
           Generated on {props.generationDate.toLocaleDateString()}
         </div>
+        <div className="text-blue-400 text-sm">
+          <Link href={props.mode === "multipage" ? "/" : "/multi"} unmanaged>
+            {props.mode === "multipage"
+              ? "Single page view"
+              : "Multi page view"}
+          </Link>
+        </div>
       </header>
       <nav className="px-6 py-2">
         {!props.namespacesOnly ? (
           <>
             <SidebarSection
-              title="Classes"
-              type="class"
-              nodes={groups.classes}
+              title="Functions"
+              type="function"
+              nodes={groups.functions}
               mode={props.mode}
             />
             <SidebarSection
@@ -70,9 +77,9 @@ export const Sidebar = (props: {
               mode={props.mode}
             />
             <SidebarSection
-              title="Functions"
-              type="function"
-              nodes={groups.functions}
+              title="Classes"
+              type="class"
+              nodes={groups.classes}
               mode={props.mode}
             />
             <SidebarSection

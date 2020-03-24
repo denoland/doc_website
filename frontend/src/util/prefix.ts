@@ -1,6 +1,11 @@
 import { createContext, useContext } from "react";
 
-const context = createContext<{ namespace: string; node: string }>({
+const context = createContext<{
+  global: string;
+  namespace: string;
+  node: string;
+}>({
+  global: "",
   namespace: "",
   node: ""
 });

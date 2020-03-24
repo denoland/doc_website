@@ -17,7 +17,7 @@ export function InterfaceRoute(props: { name: string }) {
   return interface_ ? (
     <Switch>
       <Route
-        path={prefix.namespace + prefix.node}
+        path={prefix.global + prefix.namespace + prefix.node}
         exact
         render={() => <Interface interface={interface_} />}
       />

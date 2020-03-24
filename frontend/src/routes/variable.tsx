@@ -17,7 +17,7 @@ export function VariableRoute(props: { name: string }) {
   return variable ? (
     <Switch>
       <Route
-        path={prefix.namespace + prefix.node}
+        path={prefix.global + prefix.namespace + prefix.node}
         exact
         render={() => <Variable variable={variable} />}
       />
