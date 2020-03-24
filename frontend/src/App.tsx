@@ -3,8 +3,9 @@ import { DocNode, getDocs } from "./util/docs";
 import { NodesProvider } from "./util/nodes";
 import { NamespaceRoute } from "./routes/namespace";
 import { PrefixProvider } from "./util/prefix";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { SinglePageRoute } from "./routes/singlepage";
+import { NotFound } from "./components/NotFound";
 
 function App() {
   const [nodes, setNodes] = useState<DocNode[] | null>(null);
@@ -22,8 +23,11 @@ function App() {
           </PrefixProvider>
         </NodesProvider>
       </Route>
-      <Route>
+      <Route path="/" exact>
         <SinglePageRoute nodes={nodes} />
+      </Route>
+      <Route>
+        <NotFound />
       </Route>
     </Switch>
   ) : (
