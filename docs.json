@@ -89,6 +89,7 @@
                   "repr": "TestFunction",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "TestFunction"
                   }
                 }
@@ -187,6 +188,7 @@
                   "repr": "TestDefinition",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "TestDefinition"
                   }
                 }
@@ -219,6 +221,7 @@
                   "repr": "TestFunction",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "TestFunction"
                   }
                 }
@@ -259,6 +262,7 @@
                   "repr": "TestFunction",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "TestFunction"
                   }
                 }
@@ -344,6 +348,7 @@
                         "repr": "TestEventStart",
                         "kind": "typeRef",
                         "typeRef": {
+                          "typeParams": null,
                           "typeName": "TestEventStart"
                         }
                       }
@@ -353,6 +358,13 @@
                     "repr": "Promise",
                     "kind": "typeRef",
                     "typeRef": {
+                      "typeParams": [
+                        {
+                          "repr": "void",
+                          "kind": "keyword",
+                          "keyword": "void"
+                        }
+                      ],
                       "typeName": "Promise"
                     }
                   },
@@ -381,6 +393,7 @@
                         "repr": "TestEventTestStart",
                         "kind": "typeRef",
                         "typeRef": {
+                          "typeParams": null,
                           "typeName": "TestEventTestStart"
                         }
                       }
@@ -390,6 +403,13 @@
                     "repr": "Promise",
                     "kind": "typeRef",
                     "typeRef": {
+                      "typeParams": [
+                        {
+                          "repr": "void",
+                          "kind": "keyword",
+                          "keyword": "void"
+                        }
+                      ],
                       "typeName": "Promise"
                     }
                   },
@@ -418,6 +438,7 @@
                         "repr": "TestEventTestEnd",
                         "kind": "typeRef",
                         "typeRef": {
+                          "typeParams": null,
                           "typeName": "TestEventTestEnd"
                         }
                       }
@@ -427,6 +448,13 @@
                     "repr": "Promise",
                     "kind": "typeRef",
                     "typeRef": {
+                      "typeParams": [
+                        {
+                          "repr": "void",
+                          "kind": "keyword",
+                          "keyword": "void"
+                        }
+                      ],
                       "typeName": "Promise"
                     }
                   },
@@ -455,6 +483,7 @@
                         "repr": "TestEventEnd",
                         "kind": "typeRef",
                         "typeRef": {
+                          "typeParams": null,
                           "typeName": "TestEventEnd"
                         }
                       }
@@ -464,6 +493,13 @@
                     "repr": "Promise",
                     "kind": "typeRef",
                     "typeRef": {
+                      "typeParams": [
+                        {
+                          "repr": "void",
+                          "kind": "keyword",
+                          "keyword": "void"
+                        }
+                      ],
                       "typeName": "Promise"
                     }
                   },
@@ -553,6 +589,7 @@
                       "repr": "RegExp",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "RegExp"
                       }
                     }
@@ -584,6 +621,7 @@
                       "repr": "RegExp",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "RegExp"
                       }
                     }
@@ -624,6 +662,7 @@
                   "repr": "TestReporter",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "TestReporter"
                   }
                 }
@@ -650,6 +689,7 @@
                   "repr": "RunTestsOptions",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "RunTestsOptions"
                   }
                 }
@@ -659,6 +699,61 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "",
+                    "kind": "typeLiteral",
+                    "typeLiteral": {
+                      "methods": [],
+                      "properties": [
+                        {
+                          "name": "results",
+                          "params": [],
+                          "computed": false,
+                          "optional": false,
+                          "tsType": {
+                            "repr": "",
+                            "kind": "array",
+                            "array": {
+                              "repr": "TestResult",
+                              "kind": "typeRef",
+                              "typeRef": {
+                                "typeParams": null,
+                                "typeName": "TestResult"
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "name": "stats",
+                          "params": [],
+                          "computed": false,
+                          "optional": false,
+                          "tsType": {
+                            "repr": "TestStats",
+                            "kind": "typeRef",
+                            "typeRef": {
+                              "typeParams": null,
+                              "typeName": "TestStats"
+                            }
+                          }
+                        },
+                        {
+                          "name": "duration",
+                          "params": [],
+                          "computed": false,
+                          "optional": false,
+                          "tsType": {
+                            "repr": "number",
+                            "kind": "keyword",
+                            "keyword": "number"
+                          }
+                        }
+                      ],
+                      "callSignatures": []
+                    }
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -858,6 +953,7 @@
                   "repr": "DirKind",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "DirKind"
                   }
                 }
@@ -1073,6 +1169,7 @@
                       "repr": "Uint8Array",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "Uint8Array"
                       }
                     }
@@ -1082,6 +1179,27 @@
                   "repr": "Promise",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": [
+                      {
+                        "repr": "",
+                        "kind": "union",
+                        "union": [
+                          {
+                            "repr": "number",
+                            "kind": "keyword",
+                            "keyword": "number"
+                          },
+                          {
+                            "repr": "EOF",
+                            "kind": "typeRef",
+                            "typeRef": {
+                              "typeParams": null,
+                              "typeName": "EOF"
+                            }
+                          }
+                        ]
+                      }
+                    ],
                     "typeName": "Promise"
                   }
                 }
@@ -1118,6 +1236,7 @@
                       "repr": "Uint8Array",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "Uint8Array"
                       }
                     }
@@ -1136,6 +1255,7 @@
                       "repr": "EOF",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "EOF"
                       }
                     }
@@ -1174,6 +1294,7 @@
                       "repr": "Uint8Array",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "Uint8Array"
                       }
                     }
@@ -1183,6 +1304,13 @@
                   "repr": "Promise",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": [
+                      {
+                        "repr": "number",
+                        "kind": "keyword",
+                        "keyword": "number"
+                      }
+                    ],
                     "typeName": "Promise"
                   }
                 }
@@ -1219,6 +1347,7 @@
                       "repr": "Uint8Array",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "Uint8Array"
                       }
                     }
@@ -1302,6 +1431,7 @@
                       "repr": "SeekMode",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "SeekMode"
                       }
                     }
@@ -1311,6 +1441,13 @@
                   "repr": "Promise",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": [
+                      {
+                        "repr": "number",
+                        "kind": "keyword",
+                        "keyword": "number"
+                      }
+                    ],
                     "typeName": "Promise"
                   }
                 }
@@ -1355,6 +1492,7 @@
                       "repr": "SeekMode",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "SeekMode"
                       }
                     }
@@ -1485,6 +1623,7 @@
                   "repr": "Writer",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "Writer"
                   }
                 }
@@ -1495,6 +1634,7 @@
                   "repr": "Reader",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "Reader"
                   }
                 }
@@ -1504,6 +1644,13 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "number",
+                    "kind": "keyword",
+                    "keyword": "number"
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -1529,6 +1676,7 @@
                   "repr": "Reader",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "Reader"
                   }
                 }
@@ -1538,6 +1686,16 @@
               "repr": "AsyncIterableIterator",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "Uint8Array",
+                    "kind": "typeRef",
+                    "typeRef": {
+                      "typeParams": null,
+                      "typeName": "Uint8Array"
+                    }
+                  }
+                ],
                 "typeName": "AsyncIterableIterator"
               }
             },
@@ -1571,6 +1729,7 @@
                   "repr": "OpenOptions",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "OpenOptions"
                   }
                 }
@@ -1580,6 +1739,7 @@
               "repr": "File",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": null,
                 "typeName": "File"
               }
             },
@@ -1613,6 +1773,7 @@
                   "repr": "OpenMode",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "OpenMode"
                   }
                 }
@@ -1622,6 +1783,7 @@
               "repr": "File",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": null,
                 "typeName": "File"
               }
             },
@@ -1655,6 +1817,7 @@
                   "repr": "OpenOptions",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "OpenOptions"
                   }
                 }
@@ -1664,6 +1827,16 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "File",
+                    "kind": "typeRef",
+                    "typeRef": {
+                      "typeParams": null,
+                      "typeName": "File"
+                    }
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -1697,6 +1870,7 @@
                   "repr": "OpenMode",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "OpenMode"
                   }
                 }
@@ -1706,6 +1880,16 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "File",
+                    "kind": "typeRef",
+                    "typeRef": {
+                      "typeParams": null,
+                      "typeName": "File"
+                    }
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -1738,6 +1922,7 @@
               "repr": "File",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": null,
                 "typeName": "File"
               }
             },
@@ -1770,6 +1955,16 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "File",
+                    "kind": "typeRef",
+                    "typeRef": {
+                      "typeParams": null,
+                      "typeName": "File"
+                    }
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -1803,6 +1998,7 @@
                   "repr": "Uint8Array",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "Uint8Array"
                   }
                 }
@@ -1821,6 +2017,7 @@
                   "repr": "EOF",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "EOF"
                   }
                 }
@@ -1856,6 +2053,7 @@
                   "repr": "Uint8Array",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "Uint8Array"
                   }
                 }
@@ -1865,6 +2063,27 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "",
+                    "kind": "union",
+                    "union": [
+                      {
+                        "repr": "number",
+                        "kind": "keyword",
+                        "keyword": "number"
+                      },
+                      {
+                        "repr": "EOF",
+                        "kind": "typeRef",
+                        "typeRef": {
+                          "typeParams": null,
+                          "typeName": "EOF"
+                        }
+                      }
+                    ]
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -1898,6 +2117,7 @@
                   "repr": "Uint8Array",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "Uint8Array"
                   }
                 }
@@ -1938,6 +2158,7 @@
                   "repr": "Uint8Array",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "Uint8Array"
                   }
                 }
@@ -1947,6 +2168,13 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "number",
+                    "kind": "keyword",
+                    "keyword": "number"
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -1988,6 +2216,7 @@
                   "repr": "SeekMode",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "SeekMode"
                   }
                 }
@@ -2036,6 +2265,7 @@
                   "repr": "SeekMode",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "SeekMode"
                   }
                 }
@@ -2045,6 +2275,13 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "number",
+                    "kind": "keyword",
+                    "keyword": "number"
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -2155,6 +2392,7 @@
                         "repr": "Uint8Array",
                         "kind": "typeRef",
                         "typeRef": {
+                          "typeParams": null,
                           "typeName": "Uint8Array"
                         }
                       }
@@ -2164,6 +2402,13 @@
                     "repr": "Promise",
                     "kind": "typeRef",
                     "typeRef": {
+                      "typeParams": [
+                        {
+                          "repr": "number",
+                          "kind": "keyword",
+                          "keyword": "number"
+                        }
+                      ],
                       "typeName": "Promise"
                     }
                   },
@@ -2192,6 +2437,7 @@
                         "repr": "Uint8Array",
                         "kind": "typeRef",
                         "typeRef": {
+                          "typeParams": null,
                           "typeName": "Uint8Array"
                         }
                       }
@@ -2227,6 +2473,7 @@
                         "repr": "Uint8Array",
                         "kind": "typeRef",
                         "typeRef": {
+                          "typeParams": null,
                           "typeName": "Uint8Array"
                         }
                       }
@@ -2236,6 +2483,27 @@
                     "repr": "Promise",
                     "kind": "typeRef",
                     "typeRef": {
+                      "typeParams": [
+                        {
+                          "repr": "",
+                          "kind": "union",
+                          "union": [
+                            {
+                              "repr": "number",
+                              "kind": "keyword",
+                              "keyword": "number"
+                            },
+                            {
+                              "repr": "EOF",
+                              "kind": "typeRef",
+                              "typeRef": {
+                                "typeParams": null,
+                                "typeName": "EOF"
+                              }
+                            }
+                          ]
+                        }
+                      ],
                       "typeName": "Promise"
                     }
                   },
@@ -2264,6 +2532,7 @@
                         "repr": "Uint8Array",
                         "kind": "typeRef",
                         "typeRef": {
+                          "typeParams": null,
                           "typeName": "Uint8Array"
                         }
                       }
@@ -2282,6 +2551,7 @@
                         "repr": "EOF",
                         "kind": "typeRef",
                         "typeRef": {
+                          "typeParams": null,
                           "typeName": "EOF"
                         }
                       }
@@ -2320,6 +2590,7 @@
                         "repr": "SeekMode",
                         "kind": "typeRef",
                         "typeRef": {
+                          "typeParams": null,
                           "typeName": "SeekMode"
                         }
                       }
@@ -2329,6 +2600,13 @@
                     "repr": "Promise",
                     "kind": "typeRef",
                     "typeRef": {
+                      "typeParams": [
+                        {
+                          "repr": "number",
+                          "kind": "keyword",
+                          "keyword": "number"
+                        }
+                      ],
                       "typeName": "Promise"
                     }
                   },
@@ -2365,6 +2643,7 @@
                         "repr": "SeekMode",
                         "kind": "typeRef",
                         "typeRef": {
+                          "typeParams": null,
                           "typeName": "SeekMode"
                         }
                       }
@@ -2426,6 +2705,7 @@
               "repr": "File",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": null,
                 "typeName": "File"
               }
             },
@@ -2447,6 +2727,7 @@
               "repr": "File",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": null,
                 "typeName": "File"
               }
             },
@@ -2468,6 +2749,7 @@
               "repr": "File",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": null,
                 "typeName": "File"
               }
             },
@@ -2721,6 +3003,7 @@
                       "repr": "ArrayBuffer",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "ArrayBuffer"
                       }
                     }
@@ -2863,6 +3146,7 @@
                     "repr": "Uint8Array",
                     "kind": "typeRef",
                     "typeRef": {
+                      "typeParams": null,
                       "typeName": "Uint8Array"
                     }
                   },
@@ -2996,6 +3280,7 @@
                         "repr": "Uint8Array",
                         "kind": "typeRef",
                         "typeRef": {
+                          "typeParams": null,
                           "typeName": "Uint8Array"
                         }
                       }
@@ -3014,6 +3299,7 @@
                         "repr": "EOF",
                         "kind": "typeRef",
                         "typeRef": {
+                          "typeParams": null,
                           "typeName": "EOF"
                         }
                       }
@@ -3044,6 +3330,7 @@
                         "repr": "Uint8Array",
                         "kind": "typeRef",
                         "typeRef": {
+                          "typeParams": null,
                           "typeName": "Uint8Array"
                         }
                       }
@@ -3053,6 +3340,27 @@
                     "repr": "Promise",
                     "kind": "typeRef",
                     "typeRef": {
+                      "typeParams": [
+                        {
+                          "repr": "",
+                          "kind": "union",
+                          "union": [
+                            {
+                              "repr": "number",
+                              "kind": "keyword",
+                              "keyword": "number"
+                            },
+                            {
+                              "repr": "EOF",
+                              "kind": "typeRef",
+                              "typeRef": {
+                                "typeParams": null,
+                                "typeName": "EOF"
+                              }
+                            }
+                          ]
+                        }
+                      ],
                       "typeName": "Promise"
                     }
                   },
@@ -3081,6 +3389,7 @@
                         "repr": "Uint8Array",
                         "kind": "typeRef",
                         "typeRef": {
+                          "typeParams": null,
                           "typeName": "Uint8Array"
                         }
                       }
@@ -3116,6 +3425,7 @@
                         "repr": "Uint8Array",
                         "kind": "typeRef",
                         "typeRef": {
+                          "typeParams": null,
                           "typeName": "Uint8Array"
                         }
                       }
@@ -3125,6 +3435,13 @@
                     "repr": "Promise",
                     "kind": "typeRef",
                     "typeRef": {
+                      "typeParams": [
+                        {
+                          "repr": "number",
+                          "kind": "keyword",
+                          "keyword": "number"
+                        }
+                      ],
                       "typeName": "Promise"
                     }
                   },
@@ -3186,6 +3503,7 @@
                         "repr": "Reader",
                         "kind": "typeRef",
                         "typeRef": {
+                          "typeParams": null,
                           "typeName": "Reader"
                         }
                       }
@@ -3195,6 +3513,13 @@
                     "repr": "Promise",
                     "kind": "typeRef",
                     "typeRef": {
+                      "typeParams": [
+                        {
+                          "repr": "number",
+                          "kind": "keyword",
+                          "keyword": "number"
+                        }
+                      ],
                       "typeName": "Promise"
                     }
                   },
@@ -3223,6 +3548,7 @@
                         "repr": "SyncReader",
                         "kind": "typeRef",
                         "typeRef": {
+                          "typeParams": null,
                           "typeName": "SyncReader"
                         }
                       }
@@ -3263,6 +3589,7 @@
                   "repr": "Reader",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "Reader"
                   }
                 }
@@ -3272,6 +3599,16 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "Uint8Array",
+                    "kind": "typeRef",
+                    "typeRef": {
+                      "typeParams": null,
+                      "typeName": "Uint8Array"
+                    }
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -3297,6 +3634,7 @@
                   "repr": "SyncReader",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "SyncReader"
                   }
                 }
@@ -3306,6 +3644,7 @@
               "repr": "Uint8Array",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": null,
                 "typeName": "Uint8Array"
               }
             },
@@ -3331,6 +3670,7 @@
                   "repr": "Writer",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "Writer"
                   }
                 }
@@ -3341,6 +3681,7 @@
                   "repr": "Uint8Array",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "Uint8Array"
                   }
                 }
@@ -3350,6 +3691,13 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "void",
+                    "kind": "keyword",
+                    "keyword": "void"
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -3375,6 +3723,7 @@
                   "repr": "SyncWriter",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "SyncWriter"
                   }
                 }
@@ -3385,6 +3734,7 @@
                   "repr": "Uint8Array",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "Uint8Array"
                   }
                 }
@@ -3478,6 +3828,7 @@
                   "repr": "MkdirOptions",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "MkdirOptions"
                   }
                 }
@@ -3564,6 +3915,7 @@
                   "repr": "MkdirOptions",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "MkdirOptions"
                   }
                 }
@@ -3573,6 +3925,13 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "void",
+                    "kind": "keyword",
+                    "keyword": "void"
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -3621,6 +3980,13 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "void",
+                    "kind": "keyword",
+                    "keyword": "void"
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -3717,6 +4083,7 @@
                   "repr": "MakeTempOptions",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "MakeTempOptions"
                   }
                 }
@@ -3749,6 +4116,7 @@
                   "repr": "MakeTempOptions",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "MakeTempOptions"
                   }
                 }
@@ -3758,6 +4126,13 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "string",
+                    "kind": "keyword",
+                    "keyword": "string"
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -3783,6 +4158,7 @@
                   "repr": "MakeTempOptions",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "MakeTempOptions"
                   }
                 }
@@ -3815,6 +4191,7 @@
                   "repr": "MakeTempOptions",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "MakeTempOptions"
                   }
                 }
@@ -3824,6 +4201,13 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "string",
+                    "kind": "keyword",
+                    "keyword": "string"
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -3902,6 +4286,13 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "void",
+                    "kind": "keyword",
+                    "keyword": "void"
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -3996,6 +4387,13 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "void",
+                    "kind": "keyword",
+                    "keyword": "void"
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -4038,6 +4436,7 @@
                       "repr": "Date",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "Date"
                       }
                     }
@@ -4059,6 +4458,7 @@
                       "repr": "Date",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "Date"
                       }
                     }
@@ -4110,6 +4510,7 @@
                       "repr": "Date",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "Date"
                       }
                     }
@@ -4131,6 +4532,7 @@
                       "repr": "Date",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "Date"
                       }
                     }
@@ -4142,6 +4544,13 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "void",
+                    "kind": "keyword",
+                    "keyword": "void"
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -4210,6 +4619,7 @@
                   "repr": "RemoveOptions",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "RemoveOptions"
                   }
                 }
@@ -4250,6 +4660,7 @@
                   "repr": "RemoveOptions",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "RemoveOptions"
                   }
                 }
@@ -4259,6 +4670,13 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "void",
+                    "kind": "keyword",
+                    "keyword": "void"
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -4337,6 +4755,13 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "void",
+                    "kind": "keyword",
+                    "keyword": "void"
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -4369,6 +4794,7 @@
               "repr": "Uint8Array",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": null,
                 "typeName": "Uint8Array"
               }
             },
@@ -4401,6 +4827,16 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "Uint8Array",
+                    "kind": "typeRef",
+                    "typeRef": {
+                      "typeParams": null,
+                      "typeName": "Uint8Array"
+                    }
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -4921,6 +5357,13 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "string",
+                    "kind": "keyword",
+                    "keyword": "string"
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -4956,6 +5399,7 @@
                 "repr": "FileInfo",
                 "kind": "typeRef",
                 "typeRef": {
+                  "typeParams": null,
                   "typeName": "FileInfo"
                 }
               }
@@ -4989,6 +5433,20 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "",
+                    "kind": "array",
+                    "array": {
+                      "repr": "FileInfo",
+                      "kind": "typeRef",
+                      "typeRef": {
+                        "typeParams": null,
+                        "typeName": "FileInfo"
+                      }
+                    }
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -5067,6 +5525,13 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "void",
+                    "kind": "keyword",
+                    "keyword": "void"
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -5129,6 +5594,13 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "string",
+                    "kind": "keyword",
+                    "keyword": "string"
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -5161,6 +5633,16 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "FileInfo",
+                    "kind": "typeRef",
+                    "typeRef": {
+                      "typeParams": null,
+                      "typeName": "FileInfo"
+                    }
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -5193,6 +5675,7 @@
               "repr": "FileInfo",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": null,
                 "typeName": "FileInfo"
               }
             },
@@ -5225,6 +5708,16 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "FileInfo",
+                    "kind": "typeRef",
+                    "typeRef": {
+                      "typeParams": null,
+                      "typeName": "FileInfo"
+                    }
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -5257,6 +5750,7 @@
               "repr": "FileInfo",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": null,
                 "typeName": "FileInfo"
               }
             },
@@ -5335,6 +5829,13 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "void",
+                    "kind": "keyword",
+                    "keyword": "void"
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -5429,6 +5930,13 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "void",
+                    "kind": "keyword",
+                    "keyword": "void"
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -5533,6 +6041,7 @@
                   "repr": "Uint8Array",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "Uint8Array"
                   }
                 }
@@ -5543,6 +6052,7 @@
                   "repr": "WriteFileOptions",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "WriteFileOptions"
                   }
                 }
@@ -5583,6 +6093,7 @@
                   "repr": "Uint8Array",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "Uint8Array"
                   }
                 }
@@ -5593,6 +6104,7 @@
                   "repr": "WriteFileOptions",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "WriteFileOptions"
                   }
                 }
@@ -5602,6 +6114,13 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "void",
+                    "kind": "keyword",
+                    "keyword": "void"
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -5627,6 +6146,7 @@
                   "repr": "Location",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "Location"
                   }
                 }
@@ -5636,6 +6156,7 @@
               "repr": "Location",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": null,
                 "typeName": "Location"
               }
             },
@@ -5669,6 +6190,7 @@
                       "repr": "ErrorConstructor",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "ErrorConstructor"
                       }
                     }
@@ -5682,6 +6204,7 @@
                       "repr": "ErrorConstructor",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "ErrorConstructor"
                       }
                     }
@@ -5695,6 +6218,7 @@
                       "repr": "ErrorConstructor",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "ErrorConstructor"
                       }
                     }
@@ -5708,6 +6232,7 @@
                       "repr": "ErrorConstructor",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "ErrorConstructor"
                       }
                     }
@@ -5721,6 +6246,7 @@
                       "repr": "ErrorConstructor",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "ErrorConstructor"
                       }
                     }
@@ -5734,6 +6260,7 @@
                       "repr": "ErrorConstructor",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "ErrorConstructor"
                       }
                     }
@@ -5747,6 +6274,7 @@
                       "repr": "ErrorConstructor",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "ErrorConstructor"
                       }
                     }
@@ -5760,6 +6288,7 @@
                       "repr": "ErrorConstructor",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "ErrorConstructor"
                       }
                     }
@@ -5773,6 +6302,7 @@
                       "repr": "ErrorConstructor",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "ErrorConstructor"
                       }
                     }
@@ -5786,6 +6316,7 @@
                       "repr": "ErrorConstructor",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "ErrorConstructor"
                       }
                     }
@@ -5799,6 +6330,7 @@
                       "repr": "ErrorConstructor",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "ErrorConstructor"
                       }
                     }
@@ -5812,6 +6344,7 @@
                       "repr": "ErrorConstructor",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "ErrorConstructor"
                       }
                     }
@@ -5825,6 +6358,7 @@
                       "repr": "ErrorConstructor",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "ErrorConstructor"
                       }
                     }
@@ -5838,6 +6372,7 @@
                       "repr": "ErrorConstructor",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "ErrorConstructor"
                       }
                     }
@@ -5851,6 +6386,7 @@
                       "repr": "ErrorConstructor",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "ErrorConstructor"
                       }
                     }
@@ -5864,6 +6400,7 @@
                       "repr": "ErrorConstructor",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "ErrorConstructor"
                       }
                     }
@@ -5877,6 +6414,7 @@
                       "repr": "ErrorConstructor",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "ErrorConstructor"
                       }
                     }
@@ -5941,6 +6479,7 @@
                         "repr": "PermissionDescriptor",
                         "kind": "typeRef",
                         "typeRef": {
+                          "typeParams": null,
                           "typeName": "PermissionDescriptor"
                         }
                       }
@@ -5950,6 +6489,16 @@
                     "repr": "Promise",
                     "kind": "typeRef",
                     "typeRef": {
+                      "typeParams": [
+                        {
+                          "repr": "PermissionStatus",
+                          "kind": "typeRef",
+                          "typeRef": {
+                            "typeParams": null,
+                            "typeName": "PermissionStatus"
+                          }
+                        }
+                      ],
                       "typeName": "Promise"
                     }
                   },
@@ -5978,6 +6527,7 @@
                         "repr": "PermissionDescriptor",
                         "kind": "typeRef",
                         "typeRef": {
+                          "typeParams": null,
                           "typeName": "PermissionDescriptor"
                         }
                       }
@@ -5987,6 +6537,16 @@
                     "repr": "Promise",
                     "kind": "typeRef",
                     "typeRef": {
+                      "typeParams": [
+                        {
+                          "repr": "PermissionStatus",
+                          "kind": "typeRef",
+                          "typeRef": {
+                            "typeParams": null,
+                            "typeName": "PermissionStatus"
+                          }
+                        }
+                      ],
                       "typeName": "Promise"
                     }
                   },
@@ -6015,6 +6575,7 @@
                         "repr": "PermissionDescriptor",
                         "kind": "typeRef",
                         "typeRef": {
+                          "typeParams": null,
                           "typeName": "PermissionDescriptor"
                         }
                       }
@@ -6024,6 +6585,16 @@
                     "repr": "Promise",
                     "kind": "typeRef",
                     "typeRef": {
+                      "typeParams": [
+                        {
+                          "repr": "PermissionStatus",
+                          "kind": "typeRef",
+                          "typeRef": {
+                            "typeParams": null,
+                            "typeName": "PermissionStatus"
+                          }
+                        }
+                      ],
                       "typeName": "Promise"
                     }
                   },
@@ -6054,6 +6625,7 @@
               "repr": "Permissions",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": null,
                 "typeName": "Permissions"
               }
             },
@@ -6085,6 +6657,7 @@
                       "repr": "PermissionState",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "PermissionState"
                       }
                     }
@@ -6105,6 +6678,7 @@
                   "repr": "PermissionState",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "PermissionState"
                   }
                 },
@@ -6194,6 +6768,13 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "void",
+                    "kind": "keyword",
+                    "keyword": "void"
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -6230,6 +6811,7 @@
                       "repr": "Uint8Array",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "Uint8Array"
                       }
                     }
@@ -6271,6 +6853,7 @@
                       "repr": "Uint8Array",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "Uint8Array"
                       }
                     }
@@ -6285,6 +6868,7 @@
                           "repr": "ArrayBufferView",
                           "kind": "typeRef",
                           "typeRef": {
+                            "typeParams": null,
                             "typeName": "ArrayBufferView"
                           }
                         },
@@ -6305,6 +6889,7 @@
                       "repr": "Uint8Array",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "Uint8Array"
                       }
                     },
@@ -6331,6 +6916,7 @@
                       "repr": "AsyncHandler",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "AsyncHandler"
                       }
                     }
@@ -6411,6 +6997,7 @@
               "repr": "Plugin",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": null,
                 "typeName": "Plugin"
               }
             },
@@ -6458,6 +7045,7 @@
                   "repr": "Transport",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "Transport"
                   }
                 }
@@ -6549,6 +7137,7 @@
                   "repr": "Transport",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "Transport"
                   }
                 }
@@ -6625,6 +7214,7 @@
                   "repr": "ShutdownMode",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "ShutdownMode"
                   }
                 }
@@ -6665,6 +7255,7 @@
                   "repr": "Uint8Array",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "Uint8Array"
                   }
                 }
@@ -6674,6 +7265,27 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "",
+                    "kind": "tuple",
+                    "tuple": [
+                      {
+                        "repr": "number",
+                        "kind": "keyword",
+                        "keyword": "number"
+                      },
+                      {
+                        "repr": "Addr",
+                        "kind": "typeRef",
+                        "typeRef": {
+                          "typeParams": null,
+                          "typeName": "Addr"
+                        }
+                      }
+                    ]
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -6708,6 +7320,7 @@
                       "repr": "Uint8Array",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "Uint8Array"
                       }
                     }
@@ -6717,6 +7330,30 @@
                   "repr": "Promise",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": [
+                      {
+                        "repr": "",
+                        "kind": "tuple",
+                        "tuple": [
+                          {
+                            "repr": "Uint8Array",
+                            "kind": "typeRef",
+                            "typeRef": {
+                              "typeParams": null,
+                              "typeName": "Uint8Array"
+                            }
+                          },
+                          {
+                            "repr": "Addr",
+                            "kind": "typeRef",
+                            "typeRef": {
+                              "typeParams": null,
+                              "typeName": "Addr"
+                            }
+                          }
+                        ]
+                      }
+                    ],
                     "typeName": "Promise"
                   }
                 }
@@ -6736,6 +7373,7 @@
                       "repr": "Uint8Array",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "Uint8Array"
                       }
                     }
@@ -6746,6 +7384,7 @@
                       "repr": "UDPAddr",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "UDPAddr"
                       }
                     }
@@ -6755,6 +7394,13 @@
                   "repr": "Promise",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": [
+                      {
+                        "repr": "void",
+                        "kind": "keyword",
+                        "keyword": "void"
+                      }
+                    ],
                     "typeName": "Promise"
                   }
                 }
@@ -6787,6 +7433,30 @@
                   "repr": "AsyncIterator",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": [
+                      {
+                        "repr": "",
+                        "kind": "tuple",
+                        "tuple": [
+                          {
+                            "repr": "Uint8Array",
+                            "kind": "typeRef",
+                            "typeRef": {
+                              "typeParams": null,
+                              "typeName": "Uint8Array"
+                            }
+                          },
+                          {
+                            "repr": "Addr",
+                            "kind": "typeRef",
+                            "typeRef": {
+                              "typeParams": null,
+                              "typeName": "Addr"
+                            }
+                          }
+                        ]
+                      }
+                    ],
                     "typeName": "AsyncIterator"
                   }
                 }
@@ -6809,6 +7479,7 @@
                   "repr": "Addr",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "Addr"
                   }
                 }
@@ -6842,6 +7513,16 @@
                   "repr": "Promise",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": [
+                      {
+                        "repr": "Conn",
+                        "kind": "typeRef",
+                        "typeRef": {
+                          "typeParams": null,
+                          "typeName": "Conn"
+                        }
+                      }
+                    ],
                     "typeName": "Promise"
                   }
                 }
@@ -6874,6 +7555,16 @@
                   "repr": "AsyncIterator",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": [
+                      {
+                        "repr": "Conn",
+                        "kind": "typeRef",
+                        "typeRef": {
+                          "typeParams": null,
+                          "typeName": "Conn"
+                        }
+                      }
+                    ],
                     "typeName": "AsyncIterator"
                   }
                 }
@@ -6896,6 +7587,7 @@
                   "repr": "Addr",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "Addr"
                   }
                 }
@@ -6964,6 +7656,7 @@
                   "repr": "Addr",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "Addr"
                   }
                 }
@@ -6984,6 +7677,7 @@
                   "repr": "Addr",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "Addr"
                   }
                 }
@@ -7075,6 +7769,7 @@
                   "repr": "Transport",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "Transport"
                   }
                 }
@@ -7105,6 +7800,7 @@
                       "repr": "ListenOptions",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "ListenOptions"
                       }
                     },
@@ -7140,6 +7836,7 @@
               "repr": "Listener",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": null,
                 "typeName": "Listener"
               }
             },
@@ -7169,6 +7866,7 @@
                       "repr": "ListenOptions",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "ListenOptions"
                       }
                     },
@@ -7204,6 +7902,7 @@
               "repr": "UDPConn",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": null,
                 "typeName": "UDPConn"
               }
             },
@@ -7229,6 +7928,7 @@
                   "repr": "ListenOptions",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "ListenOptions"
                   }
                 }
@@ -7242,6 +7942,7 @@
                   "repr": "Listener",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "Listener"
                   }
                 },
@@ -7249,6 +7950,7 @@
                   "repr": "UDPConn",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "UDPConn"
                   }
                 }
@@ -7329,6 +8031,7 @@
                   "repr": "ListenTLSOptions",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "ListenTLSOptions"
                   }
                 }
@@ -7338,6 +8041,7 @@
               "repr": "Listener",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": null,
                 "typeName": "Listener"
               }
             },
@@ -7410,6 +8114,7 @@
                   "repr": "Transport",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "Transport"
                   }
                 }
@@ -7436,6 +8141,7 @@
                   "repr": "ConnectOptions",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "ConnectOptions"
                   }
                 }
@@ -7445,6 +8151,16 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "Conn",
+                    "kind": "typeRef",
+                    "typeRef": {
+                      "typeParams": null,
+                      "typeName": "Conn"
+                    }
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -7541,6 +8257,7 @@
                   "repr": "ConnectTLSOptions",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "ConnectTLSOptions"
                   }
                 }
@@ -7550,6 +8267,16 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "Conn",
+                    "kind": "typeRef",
+                    "typeRef": {
+                      "typeParams": null,
+                      "typeName": "Conn"
+                    }
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -7788,6 +8515,7 @@
               "repr": "Metrics",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": null,
                 "typeName": "Metrics"
               }
             },
@@ -7811,6 +8539,7 @@
               "repr": "ResourceMap",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": null,
                 "typeName": "ResourceMap"
               }
             },
@@ -7980,6 +8709,16 @@
               "repr": "AsyncIterableIterator",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "FsEvent",
+                    "kind": "typeRef",
+                    "typeRef": {
+                      "typeParams": null,
+                      "typeName": "FsEvent"
+                    }
+                  }
+                ],
                 "typeName": "AsyncIterableIterator"
               }
             },
@@ -8084,6 +8823,7 @@
                   "repr": "WriteCloser",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "WriteCloser"
                   }
                 },
@@ -8105,6 +8845,7 @@
                   "repr": "ReadCloser",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "ReadCloser"
                   }
                 },
@@ -8126,6 +8867,7 @@
                   "repr": "ReadCloser",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "ReadCloser"
                   }
                 },
@@ -8156,6 +8898,16 @@
                     "repr": "Promise",
                     "kind": "typeRef",
                     "typeRef": {
+                      "typeParams": [
+                        {
+                          "repr": "ProcessStatus",
+                          "kind": "typeRef",
+                          "typeRef": {
+                            "typeParams": null,
+                            "typeName": "ProcessStatus"
+                          }
+                        }
+                      ],
                       "typeName": "Promise"
                     }
                   },
@@ -8182,6 +8934,16 @@
                     "repr": "Promise",
                     "kind": "typeRef",
                     "typeRef": {
+                      "typeParams": [
+                        {
+                          "repr": "Uint8Array",
+                          "kind": "typeRef",
+                          "typeRef": {
+                            "typeParams": null,
+                            "typeName": "Uint8Array"
+                          }
+                        }
+                      ],
                       "typeName": "Promise"
                     }
                   },
@@ -8208,6 +8970,16 @@
                     "repr": "Promise",
                     "kind": "typeRef",
                     "typeRef": {
+                      "typeParams": [
+                        {
+                          "repr": "Uint8Array",
+                          "kind": "typeRef",
+                          "typeRef": {
+                            "typeParams": null,
+                            "typeName": "Uint8Array"
+                          }
+                        }
+                      ],
                       "typeName": "Promise"
                     }
                   },
@@ -8446,6 +9218,7 @@
                       "repr": "ProcessStdio",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "ProcessStdio"
                       }
                     },
@@ -8477,6 +9250,7 @@
                       "repr": "ProcessStdio",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "ProcessStdio"
                       }
                     },
@@ -8508,6 +9282,7 @@
                       "repr": "ProcessStdio",
                       "kind": "typeRef",
                       "typeRef": {
+                        "typeParams": null,
                         "typeName": "ProcessStdio"
                       }
                     },
@@ -8541,6 +9316,7 @@
                   "repr": "RunOptions",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "RunOptions"
                   }
                 }
@@ -8550,6 +9326,7 @@
               "repr": "Process",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": null,
                 "typeName": "Process"
               }
             },
@@ -8613,6 +9390,7 @@
                   "repr": "ConsoleOptions",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "ConsoleOptions"
                   }
                 }
@@ -8664,6 +9442,7 @@
               "repr": "BuildInfo",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": null,
                 "typeName": "BuildInfo"
               }
             },
@@ -8685,6 +9464,7 @@
               "repr": "Version",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": null,
                 "typeName": "Version"
               }
             },
@@ -8771,6 +9551,7 @@
                   "repr": "DiagnosticCategory",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "DiagnosticCategory"
                   }
                 }
@@ -8812,6 +9593,7 @@
                     "repr": "DiagnosticMessageChain",
                     "kind": "typeRef",
                     "typeRef": {
+                      "typeParams": null,
                       "typeName": "DiagnosticMessageChain"
                     }
                   }
@@ -8868,6 +9650,7 @@
                   "repr": "DiagnosticMessageChain",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "DiagnosticMessageChain"
                   }
                 }
@@ -8891,6 +9674,7 @@
                     "repr": "DiagnosticItem",
                     "kind": "typeRef",
                     "typeRef": {
+                      "typeParams": null,
                       "typeName": "DiagnosticItem"
                     }
                   }
@@ -9002,6 +9786,7 @@
                   "repr": "DiagnosticCategory",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "DiagnosticCategory"
                   }
                 }
@@ -9096,6 +9881,7 @@
                     "repr": "DiagnosticItem",
                     "kind": "typeRef",
                     "typeRef": {
+                      "typeParams": null,
                       "typeName": "DiagnosticItem"
                     }
                   }
@@ -9126,6 +9912,7 @@
                     "repr": "DiagnosticItem",
                     "kind": "typeRef",
                     "typeRef": {
+                      "typeParams": null,
                       "typeName": "DiagnosticItem"
                     }
                   }
@@ -9966,6 +10753,22 @@
                   "repr": "Record",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": [
+                      {
+                        "repr": "string",
+                        "kind": "keyword",
+                        "keyword": "string"
+                      },
+                      {
+                        "repr": "",
+                        "kind": "array",
+                        "array": {
+                          "repr": "string",
+                          "kind": "keyword",
+                          "keyword": "string"
+                        }
+                      }
+                    ],
                     "typeName": "Record"
                   }
                 }
@@ -10422,6 +11225,18 @@
                   "repr": "Record",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": [
+                      {
+                        "repr": "string",
+                        "kind": "keyword",
+                        "keyword": "string"
+                      },
+                      {
+                        "repr": "string",
+                        "kind": "keyword",
+                        "keyword": "string"
+                      }
+                    ],
                     "typeName": "Record"
                   }
                 }
@@ -10432,6 +11247,7 @@
                   "repr": "CompilerOptions",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "CompilerOptions"
                   }
                 }
@@ -10441,6 +11257,30 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "Record",
+                    "kind": "typeRef",
+                    "typeRef": {
+                      "typeParams": [
+                        {
+                          "repr": "string",
+                          "kind": "keyword",
+                          "keyword": "string"
+                        },
+                        {
+                          "repr": "TranspileOnlyResult",
+                          "kind": "typeRef",
+                          "typeRef": {
+                            "typeParams": null,
+                            "typeName": "TranspileOnlyResult"
+                          }
+                        }
+                      ],
+                      "typeName": "Record"
+                    }
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -10474,6 +11314,18 @@
                   "repr": "Record",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": [
+                      {
+                        "repr": "string",
+                        "kind": "keyword",
+                        "keyword": "string"
+                      },
+                      {
+                        "repr": "string",
+                        "kind": "keyword",
+                        "keyword": "string"
+                      }
+                    ],
                     "typeName": "Record"
                   }
                 }
@@ -10484,6 +11336,7 @@
                   "repr": "CompilerOptions",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "CompilerOptions"
                   }
                 }
@@ -10493,6 +11346,56 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "",
+                    "kind": "tuple",
+                    "tuple": [
+                      {
+                        "repr": "",
+                        "kind": "union",
+                        "union": [
+                          {
+                            "repr": "",
+                            "kind": "array",
+                            "array": {
+                              "repr": "DiagnosticItem",
+                              "kind": "typeRef",
+                              "typeRef": {
+                                "typeParams": null,
+                                "typeName": "DiagnosticItem"
+                              }
+                            }
+                          },
+                          {
+                            "repr": "undefined",
+                            "kind": "keyword",
+                            "keyword": "undefined"
+                          }
+                        ]
+                      },
+                      {
+                        "repr": "Record",
+                        "kind": "typeRef",
+                        "typeRef": {
+                          "typeParams": [
+                            {
+                              "repr": "string",
+                              "kind": "keyword",
+                              "keyword": "string"
+                            },
+                            {
+                              "repr": "string",
+                              "kind": "keyword",
+                              "keyword": "string"
+                            }
+                          ],
+                          "typeName": "Record"
+                        }
+                      }
+                    ]
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -10526,6 +11429,18 @@
                   "repr": "Record",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": [
+                      {
+                        "repr": "string",
+                        "kind": "keyword",
+                        "keyword": "string"
+                      },
+                      {
+                        "repr": "string",
+                        "kind": "keyword",
+                        "keyword": "string"
+                      }
+                    ],
                     "typeName": "Record"
                   }
                 }
@@ -10536,6 +11451,7 @@
                   "repr": "CompilerOptions",
                   "kind": "typeRef",
                   "typeRef": {
+                    "typeParams": null,
                     "typeName": "CompilerOptions"
                   }
                 }
@@ -10545,6 +11461,42 @@
               "repr": "Promise",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "",
+                    "kind": "tuple",
+                    "tuple": [
+                      {
+                        "repr": "",
+                        "kind": "union",
+                        "union": [
+                          {
+                            "repr": "",
+                            "kind": "array",
+                            "array": {
+                              "repr": "DiagnosticItem",
+                              "kind": "typeRef",
+                              "typeRef": {
+                                "typeParams": null,
+                                "typeName": "DiagnosticItem"
+                              }
+                            }
+                          },
+                          {
+                            "repr": "undefined",
+                            "kind": "keyword",
+                            "keyword": "undefined"
+                          }
+                        ]
+                      },
+                      {
+                        "repr": "string",
+                        "kind": "keyword",
+                        "keyword": "string"
+                      }
+                    ]
+                  }
+                ],
                 "typeName": "Promise"
               }
             },
@@ -10637,6 +11589,7 @@
                                 "repr": "T",
                                 "kind": "typeRef",
                                 "typeRef": {
+                                  "typeParams": null,
                                   "typeName": "T"
                                 }
                               },
@@ -10644,6 +11597,16 @@
                                 "repr": "Promise",
                                 "kind": "typeRef",
                                 "typeRef": {
+                                  "typeParams": [
+                                    {
+                                      "repr": "T",
+                                      "kind": "typeRef",
+                                      "typeRef": {
+                                        "typeParams": null,
+                                        "typeName": "T"
+                                      }
+                                    }
+                                  ],
                                   "typeName": "Promise"
                                 }
                               }
@@ -10677,6 +11640,7 @@
                                 "repr": "S",
                                 "kind": "typeRef",
                                 "typeRef": {
+                                  "typeParams": null,
                                   "typeName": "S"
                                 }
                               },
@@ -10684,6 +11648,16 @@
                                 "repr": "Promise",
                                 "kind": "typeRef",
                                 "typeRef": {
+                                  "typeParams": [
+                                    {
+                                      "repr": "S",
+                                      "kind": "typeRef",
+                                      "typeRef": {
+                                        "typeParams": null,
+                                        "typeName": "S"
+                                      }
+                                    }
+                                  ],
                                   "typeName": "Promise"
                                 }
                               }
@@ -10707,6 +11681,30 @@
                     "repr": "Promise",
                     "kind": "typeRef",
                     "typeRef": {
+                      "typeParams": [
+                        {
+                          "repr": "",
+                          "kind": "union",
+                          "union": [
+                            {
+                              "repr": "T",
+                              "kind": "typeRef",
+                              "typeRef": {
+                                "typeParams": null,
+                                "typeName": "T"
+                              }
+                            },
+                            {
+                              "repr": "S",
+                              "kind": "typeRef",
+                              "typeRef": {
+                                "typeParams": null,
+                                "typeName": "S"
+                              }
+                            }
+                          ]
+                        }
+                      ],
                       "typeName": "Promise"
                     }
                   },
@@ -10733,6 +11731,22 @@
                     "repr": "Promise",
                     "kind": "typeRef",
                     "typeRef": {
+                      "typeParams": [
+                        {
+                          "repr": "IteratorResult",
+                          "kind": "typeRef",
+                          "typeRef": {
+                            "typeParams": [
+                              {
+                                "repr": "void",
+                                "kind": "keyword",
+                                "keyword": "void"
+                              }
+                            ],
+                            "typeName": "IteratorResult"
+                          }
+                        }
+                      ],
                       "typeName": "Promise"
                     }
                   },
@@ -10759,6 +11773,13 @@
                     "repr": "AsyncIterableIterator",
                     "kind": "typeRef",
                     "typeRef": {
+                      "typeParams": [
+                        {
+                          "repr": "void",
+                          "kind": "keyword",
+                          "keyword": "void"
+                        }
+                      ],
                       "typeName": "AsyncIterableIterator"
                     }
                   },
@@ -10823,6 +11844,7 @@
               "repr": "SignalStream",
               "kind": "typeRef",
               "typeRef": {
+                "typeParams": null,
                 "typeName": "SignalStream"
               }
             },
@@ -10861,6 +11883,7 @@
                           "repr": "SignalStream",
                           "kind": "typeRef",
                           "typeRef": {
+                            "typeParams": null,
                             "typeName": "SignalStream"
                           }
                         },
@@ -10882,6 +11905,7 @@
                           "repr": "SignalStream",
                           "kind": "typeRef",
                           "typeRef": {
+                            "typeParams": null,
                             "typeName": "SignalStream"
                           }
                         },
@@ -10903,6 +11927,7 @@
                           "repr": "SignalStream",
                           "kind": "typeRef",
                           "typeRef": {
+                            "typeParams": null,
                             "typeName": "SignalStream"
                           }
                         },
@@ -10924,6 +11949,7 @@
                           "repr": "SignalStream",
                           "kind": "typeRef",
                           "typeRef": {
+                            "typeParams": null,
                             "typeName": "SignalStream"
                           }
                         },
@@ -10945,6 +11971,7 @@
                           "repr": "SignalStream",
                           "kind": "typeRef",
                           "typeRef": {
+                            "typeParams": null,
                             "typeName": "SignalStream"
                           }
                         },
@@ -10966,6 +11993,7 @@
                           "repr": "SignalStream",
                           "kind": "typeRef",
                           "typeRef": {
+                            "typeParams": null,
                             "typeName": "SignalStream"
                           }
                         },
@@ -10987,6 +12015,7 @@
                           "repr": "SignalStream",
                           "kind": "typeRef",
                           "typeRef": {
+                            "typeParams": null,
                             "typeName": "SignalStream"
                           }
                         },
@@ -11008,6 +12037,7 @@
                           "repr": "SignalStream",
                           "kind": "typeRef",
                           "typeRef": {
+                            "typeParams": null,
                             "typeName": "SignalStream"
                           }
                         },
@@ -11029,6 +12059,7 @@
                           "repr": "SignalStream",
                           "kind": "typeRef",
                           "typeRef": {
+                            "typeParams": null,
                             "typeName": "SignalStream"
                           }
                         },
@@ -11050,6 +12081,7 @@
                           "repr": "SignalStream",
                           "kind": "typeRef",
                           "typeRef": {
+                            "typeParams": null,
                             "typeName": "SignalStream"
                           }
                         },
@@ -11071,6 +12103,7 @@
                           "repr": "SignalStream",
                           "kind": "typeRef",
                           "typeRef": {
+                            "typeParams": null,
                             "typeName": "SignalStream"
                           }
                         },
