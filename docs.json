@@ -736,7 +736,12 @@
           "functionDef": {
             "params": [],
             "returnType": {
-              "repr": "{\n    [index: string]: string;\n  }"
+              "repr": "",
+              "typeLiteral": {
+                "methods": [],
+                "properties": [],
+                "callSignatures": []
+              }
             },
             "isAsync": false,
             "isGenerator": false
@@ -5291,7 +5296,217 @@
           "jsDoc": "A set of error constructors that are raised by Deno APIs.",
           "variableDef": {
             "tsType": {
-              "repr": "{\n    NotFound: ErrorConstructor;\n    PermissionDenied: ErrorConstructor;\n    ConnectionRefused: ErrorConstructor;\n    ConnectionReset: ErrorConstructor;\n    ConnectionAborted: ErrorConstructor;\n    NotConnected: ErrorConstructor;\n    AddrInUse: ErrorConstructor;\n    AddrNotAvailable: ErrorConstructor;\n    BrokenPipe: ErrorConstructor;\n    AlreadyExists: ErrorConstructor;\n    InvalidData: ErrorConstructor;\n    TimedOut: ErrorConstructor;\n    Interrupted: ErrorConstructor;\n    WriteZero: ErrorConstructor;\n    UnexpectedEof: ErrorConstructor;\n    BadResource: ErrorConstructor;\n    Http: ErrorConstructor;\n  }"
+              "repr": "",
+              "typeLiteral": {
+                "methods": [],
+                "properties": [
+                  {
+                    "name": "NotFound",
+                    "params": [],
+                    "computed": false,
+                    "optional": false,
+                    "tsType": {
+                      "repr": "ErrorConstructor",
+                      "typeRef": {
+                        "typeName": "ErrorConstructor"
+                      }
+                    }
+                  },
+                  {
+                    "name": "PermissionDenied",
+                    "params": [],
+                    "computed": false,
+                    "optional": false,
+                    "tsType": {
+                      "repr": "ErrorConstructor",
+                      "typeRef": {
+                        "typeName": "ErrorConstructor"
+                      }
+                    }
+                  },
+                  {
+                    "name": "ConnectionRefused",
+                    "params": [],
+                    "computed": false,
+                    "optional": false,
+                    "tsType": {
+                      "repr": "ErrorConstructor",
+                      "typeRef": {
+                        "typeName": "ErrorConstructor"
+                      }
+                    }
+                  },
+                  {
+                    "name": "ConnectionReset",
+                    "params": [],
+                    "computed": false,
+                    "optional": false,
+                    "tsType": {
+                      "repr": "ErrorConstructor",
+                      "typeRef": {
+                        "typeName": "ErrorConstructor"
+                      }
+                    }
+                  },
+                  {
+                    "name": "ConnectionAborted",
+                    "params": [],
+                    "computed": false,
+                    "optional": false,
+                    "tsType": {
+                      "repr": "ErrorConstructor",
+                      "typeRef": {
+                        "typeName": "ErrorConstructor"
+                      }
+                    }
+                  },
+                  {
+                    "name": "NotConnected",
+                    "params": [],
+                    "computed": false,
+                    "optional": false,
+                    "tsType": {
+                      "repr": "ErrorConstructor",
+                      "typeRef": {
+                        "typeName": "ErrorConstructor"
+                      }
+                    }
+                  },
+                  {
+                    "name": "AddrInUse",
+                    "params": [],
+                    "computed": false,
+                    "optional": false,
+                    "tsType": {
+                      "repr": "ErrorConstructor",
+                      "typeRef": {
+                        "typeName": "ErrorConstructor"
+                      }
+                    }
+                  },
+                  {
+                    "name": "AddrNotAvailable",
+                    "params": [],
+                    "computed": false,
+                    "optional": false,
+                    "tsType": {
+                      "repr": "ErrorConstructor",
+                      "typeRef": {
+                        "typeName": "ErrorConstructor"
+                      }
+                    }
+                  },
+                  {
+                    "name": "BrokenPipe",
+                    "params": [],
+                    "computed": false,
+                    "optional": false,
+                    "tsType": {
+                      "repr": "ErrorConstructor",
+                      "typeRef": {
+                        "typeName": "ErrorConstructor"
+                      }
+                    }
+                  },
+                  {
+                    "name": "AlreadyExists",
+                    "params": [],
+                    "computed": false,
+                    "optional": false,
+                    "tsType": {
+                      "repr": "ErrorConstructor",
+                      "typeRef": {
+                        "typeName": "ErrorConstructor"
+                      }
+                    }
+                  },
+                  {
+                    "name": "InvalidData",
+                    "params": [],
+                    "computed": false,
+                    "optional": false,
+                    "tsType": {
+                      "repr": "ErrorConstructor",
+                      "typeRef": {
+                        "typeName": "ErrorConstructor"
+                      }
+                    }
+                  },
+                  {
+                    "name": "TimedOut",
+                    "params": [],
+                    "computed": false,
+                    "optional": false,
+                    "tsType": {
+                      "repr": "ErrorConstructor",
+                      "typeRef": {
+                        "typeName": "ErrorConstructor"
+                      }
+                    }
+                  },
+                  {
+                    "name": "Interrupted",
+                    "params": [],
+                    "computed": false,
+                    "optional": false,
+                    "tsType": {
+                      "repr": "ErrorConstructor",
+                      "typeRef": {
+                        "typeName": "ErrorConstructor"
+                      }
+                    }
+                  },
+                  {
+                    "name": "WriteZero",
+                    "params": [],
+                    "computed": false,
+                    "optional": false,
+                    "tsType": {
+                      "repr": "ErrorConstructor",
+                      "typeRef": {
+                        "typeName": "ErrorConstructor"
+                      }
+                    }
+                  },
+                  {
+                    "name": "UnexpectedEof",
+                    "params": [],
+                    "computed": false,
+                    "optional": false,
+                    "tsType": {
+                      "repr": "ErrorConstructor",
+                      "typeRef": {
+                        "typeName": "ErrorConstructor"
+                      }
+                    }
+                  },
+                  {
+                    "name": "BadResource",
+                    "params": [],
+                    "computed": false,
+                    "optional": false,
+                    "tsType": {
+                      "repr": "ErrorConstructor",
+                      "typeRef": {
+                        "typeName": "ErrorConstructor"
+                      }
+                    }
+                  },
+                  {
+                    "name": "Http",
+                    "params": [],
+                    "computed": false,
+                    "optional": false,
+                    "tsType": {
+                      "repr": "ErrorConstructor",
+                      "typeRef": {
+                        "typeName": "ErrorConstructor"
+                      }
+                    }
+                  }
+                ],
+                "callSignatures": []
+              }
             },
             "kind": "const"
           }
@@ -5755,7 +5970,12 @@
                 "computed": false,
                 "optional": false,
                 "tsType": {
-                  "repr": "{\n      [name: string]: PluginOp;\n    }"
+                  "repr": "",
+                  "typeLiteral": {
+                    "methods": [],
+                    "properties": [],
+                    "callSignatures": []
+                  }
                 }
               }
             ],
@@ -6449,7 +6669,25 @@
                       }
                     },
                     {
-                      "repr": "<UNIMPLEMENTED>"
+                      "repr": "",
+                      "typeLiteral": {
+                        "methods": [],
+                        "properties": [
+                          {
+                            "name": "transport",
+                            "params": [],
+                            "computed": false,
+                            "optional": true,
+                            "tsType": {
+                              "repr": "tcp",
+                              "literal": {
+                                "str": "tcp"
+                              }
+                            }
+                          }
+                        ],
+                        "callSignatures": []
+                      }
                     }
                   ]
                 }
@@ -6489,7 +6727,25 @@
                       }
                     },
                     {
-                      "repr": "<UNIMPLEMENTED>"
+                      "repr": "",
+                      "typeLiteral": {
+                        "methods": [],
+                        "properties": [
+                          {
+                            "name": "transport",
+                            "params": [],
+                            "computed": false,
+                            "optional": false,
+                            "tsType": {
+                              "repr": "udp",
+                              "literal": {
+                                "str": "udp"
+                              }
+                            }
+                          }
+                        ],
+                        "callSignatures": []
+                      }
                     }
                   ]
                 }
@@ -7200,7 +7456,23 @@
               {
                 "name": "options",
                 "tsType": {
-                  "repr": "{ recursive: boolean }"
+                  "repr": "",
+                  "typeLiteral": {
+                    "methods": [],
+                    "properties": [
+                      {
+                        "name": "recursive",
+                        "params": [],
+                        "computed": false,
+                        "optional": false,
+                        "tsType": {
+                          "repr": "boolean",
+                          "keyword": "boolean"
+                        }
+                      }
+                    ],
+                    "callSignatures": []
+                  }
                 }
               }
             ],
@@ -7624,7 +7896,12 @@
                 "computed": false,
                 "optional": true,
                 "tsType": {
-                  "repr": "{\n      [key: string]: string;\n    }"
+                  "repr": "",
+                  "typeLiteral": {
+                    "methods": [],
+                    "properties": [],
+                    "callSignatures": []
+                  }
                 }
               },
               {
@@ -9868,7 +10145,222 @@
           "jsDoc": "**UNSTABLE**: new API, yet to be vetted.",
           "variableDef": {
             "tsType": {
-              "repr": "{\n    /** Returns the stream of SIGALRM signals.\n     *\n     * This method is the shorthand for `Deno.signal(Deno.Signal.SIGALRM)`. */\n    alarm: () => SignalStream;\n    /** Returns the stream of SIGCHLD signals.\n     *\n     * This method is the shorthand for `Deno.signal(Deno.Signal.SIGCHLD)`. */\n    child: () => SignalStream;\n    /** Returns the stream of SIGHUP signals.\n     *\n     * This method is the shorthand for `Deno.signal(Deno.Signal.SIGHUP)`. */\n    hungup: () => SignalStream;\n    /** Returns the stream of SIGINT signals.\n     *\n     * This method is the shorthand for `Deno.signal(Deno.Signal.SIGINT)`. */\n    interrupt: () => SignalStream;\n    /** Returns the stream of SIGIO signals.\n     *\n     * This method is the shorthand for `Deno.signal(Deno.Signal.SIGIO)`. */\n    io: () => SignalStream;\n    /** Returns the stream of SIGPIPE signals.\n     *\n     * This method is the shorthand for `Deno.signal(Deno.Signal.SIGPIPE)`. */\n    pipe: () => SignalStream;\n    /** Returns the stream of SIGQUIT signals.\n     *\n     * This method is the shorthand for `Deno.signal(Deno.Signal.SIGQUIT)`. */\n    quit: () => SignalStream;\n    /** Returns the stream of SIGTERM signals.\n     *\n     * This method is the shorthand for `Deno.signal(Deno.Signal.SIGTERM)`. */\n    terminate: () => SignalStream;\n    /** Returns the stream of SIGUSR1 signals.\n     *\n     * This method is the shorthand for `Deno.signal(Deno.Signal.SIGUSR1)`. */\n    userDefined1: () => SignalStream;\n    /** Returns the stream of SIGUSR2 signals.\n     *\n     * This method is the shorthand for `Deno.signal(Deno.Signal.SIGUSR2)`. */\n    userDefined2: () => SignalStream;\n    /** Returns the stream of SIGWINCH signals.\n     *\n     * This method is the shorthand for `Deno.signal(Deno.Signal.SIGWINCH)`. */\n    windowChange: () => SignalStream;\n  }"
+              "repr": "",
+              "typeLiteral": {
+                "methods": [],
+                "properties": [
+                  {
+                    "name": "alarm",
+                    "params": [],
+                    "computed": false,
+                    "optional": false,
+                    "tsType": {
+                      "repr": "",
+                      "fnOrConstructor": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "SignalStream",
+                          "typeRef": {
+                            "typeName": "SignalStream"
+                          }
+                        },
+                        "params": []
+                      }
+                    }
+                  },
+                  {
+                    "name": "child",
+                    "params": [],
+                    "computed": false,
+                    "optional": false,
+                    "tsType": {
+                      "repr": "",
+                      "fnOrConstructor": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "SignalStream",
+                          "typeRef": {
+                            "typeName": "SignalStream"
+                          }
+                        },
+                        "params": []
+                      }
+                    }
+                  },
+                  {
+                    "name": "hungup",
+                    "params": [],
+                    "computed": false,
+                    "optional": false,
+                    "tsType": {
+                      "repr": "",
+                      "fnOrConstructor": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "SignalStream",
+                          "typeRef": {
+                            "typeName": "SignalStream"
+                          }
+                        },
+                        "params": []
+                      }
+                    }
+                  },
+                  {
+                    "name": "interrupt",
+                    "params": [],
+                    "computed": false,
+                    "optional": false,
+                    "tsType": {
+                      "repr": "",
+                      "fnOrConstructor": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "SignalStream",
+                          "typeRef": {
+                            "typeName": "SignalStream"
+                          }
+                        },
+                        "params": []
+                      }
+                    }
+                  },
+                  {
+                    "name": "io",
+                    "params": [],
+                    "computed": false,
+                    "optional": false,
+                    "tsType": {
+                      "repr": "",
+                      "fnOrConstructor": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "SignalStream",
+                          "typeRef": {
+                            "typeName": "SignalStream"
+                          }
+                        },
+                        "params": []
+                      }
+                    }
+                  },
+                  {
+                    "name": "pipe",
+                    "params": [],
+                    "computed": false,
+                    "optional": false,
+                    "tsType": {
+                      "repr": "",
+                      "fnOrConstructor": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "SignalStream",
+                          "typeRef": {
+                            "typeName": "SignalStream"
+                          }
+                        },
+                        "params": []
+                      }
+                    }
+                  },
+                  {
+                    "name": "quit",
+                    "params": [],
+                    "computed": false,
+                    "optional": false,
+                    "tsType": {
+                      "repr": "",
+                      "fnOrConstructor": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "SignalStream",
+                          "typeRef": {
+                            "typeName": "SignalStream"
+                          }
+                        },
+                        "params": []
+                      }
+                    }
+                  },
+                  {
+                    "name": "terminate",
+                    "params": [],
+                    "computed": false,
+                    "optional": false,
+                    "tsType": {
+                      "repr": "",
+                      "fnOrConstructor": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "SignalStream",
+                          "typeRef": {
+                            "typeName": "SignalStream"
+                          }
+                        },
+                        "params": []
+                      }
+                    }
+                  },
+                  {
+                    "name": "userDefined1",
+                    "params": [],
+                    "computed": false,
+                    "optional": false,
+                    "tsType": {
+                      "repr": "",
+                      "fnOrConstructor": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "SignalStream",
+                          "typeRef": {
+                            "typeName": "SignalStream"
+                          }
+                        },
+                        "params": []
+                      }
+                    }
+                  },
+                  {
+                    "name": "userDefined2",
+                    "params": [],
+                    "computed": false,
+                    "optional": false,
+                    "tsType": {
+                      "repr": "",
+                      "fnOrConstructor": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "SignalStream",
+                          "typeRef": {
+                            "typeName": "SignalStream"
+                          }
+                        },
+                        "params": []
+                      }
+                    }
+                  },
+                  {
+                    "name": "windowChange",
+                    "params": [],
+                    "computed": false,
+                    "optional": false,
+                    "tsType": {
+                      "repr": "",
+                      "fnOrConstructor": {
+                        "constructor": false,
+                        "tsType": {
+                          "repr": "SignalStream",
+                          "typeRef": {
+                            "typeName": "SignalStream"
+                          }
+                        },
+                        "params": []
+                      }
+                    }
+                  }
+                ],
+                "callSignatures": []
+              }
             },
             "kind": "const"
           }
@@ -9885,7 +10377,45 @@
           "jsDoc": "**UNSTABLE**: new API. Maybe move `Deno.EOF` here.\n\nSpecial Deno related symbols.",
           "variableDef": {
             "tsType": {
-              "repr": "{\n    /** Symbol to access exposed internal Deno API */\n    readonly internal: unique symbol;\n    /** A symbol which can be used as a key for a custom method which will be\n     * called when `Deno.inspect()` is called, or when the object is logged to\n     * the console. */\n    readonly customInspect: unique symbol;\n    // TODO(ry) move EOF here?\n  }"
+              "repr": "",
+              "typeLiteral": {
+                "methods": [],
+                "properties": [
+                  {
+                    "name": "internal",
+                    "params": [],
+                    "computed": false,
+                    "optional": false,
+                    "tsType": {
+                      "repr": "",
+                      "typeOperator": {
+                        "operator": "unique",
+                        "tsType": {
+                          "repr": "symbol",
+                          "keyword": "symbol"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "name": "customInspect",
+                    "params": [],
+                    "computed": false,
+                    "optional": false,
+                    "tsType": {
+                      "repr": "",
+                      "typeOperator": {
+                        "operator": "unique",
+                        "tsType": {
+                          "repr": "symbol",
+                          "keyword": "symbol"
+                        }
+                      }
+                    }
+                  }
+                ],
+                "callSignatures": []
+              }
             },
             "kind": "const"
           }
