@@ -1,9 +1,11 @@
 use serde::Serialize;
 use swc_common::SourceMap;
 use swc_ecma_ast;
+use swc_ecma_ast::TsArrayType;
 use swc_ecma_ast::TsKeywordType;
 use swc_ecma_ast::TsLit;
 use swc_ecma_ast::TsLitType;
+use swc_ecma_ast::TsTupleType;
 use swc_ecma_ast::TsType;
 use swc_ecma_ast::TsTypeAnn;
 use swc_ecma_ast::TsTypeRef;
@@ -16,11 +18,11 @@ use swc_ecma_ast::TsUnionOrIntersectionType;
 //  *      TsTypeRef(TsTypeRef),
 //     TsTypeQuery(TsTypeQuery),
 //     TsTypeLit(TsTypeLit),
-//     TsArrayType(TsArrayType),
-//     TsTupleType(TsTupleType),
+//  *      TsArrayType(TsArrayType),
+//  *      TsTupleType(TsTupleType),
 //     TsOptionalType(TsOptionalType),
 //     TsRestType(TsRestType),
-//     TsUnionOrIntersectionType(TsUnionOrIntersectionType),
+//  *      TsUnionOrIntersectionType(TsUnionOrIntersectionType),
 //     TsConditionalType(TsConditionalType),
 //     TsInferType(TsInferType),
 //     TsParenthesizedType(TsParenthesizedType),
@@ -50,6 +52,34 @@ impl Into<TsTypeDef> for &TsLitType {
     TsTypeDef {
       repr,
       literal: Some(lit),
+      ..Default::default()
+    }
+  }
+}
+
+impl Into<TsTypeDef> for &TsArrayType {
+  fn into(self) -> TsTypeDef {
+    let ts_type_def: TsTypeDef = (&*self.elem_type).into();
+
+    TsTypeDef {
+      array: Some(Box::new(ts_type_def)),
+      ..Default::default()
+    }
+  }
+}
+
+impl Into<TsTypeDef> for &TsTupleType {
+  fn into(self) -> TsTypeDef {
+    let mut type_defs = vec![];
+
+    for type_box in &self.elem_types {
+      let ts_type: &TsType = &(*type_box);
+      let def: TsTypeDef = ts_type.into();
+      type_defs.push(def)
+    }
+
+    TsTypeDef {
+      tuple: Some(type_defs),
       ..Default::default()
     }
   }
@@ -145,6 +175,8 @@ impl Into<TsTypeDef> for &TsType {
       TsLitType(ref lit_type) => lit_type.into(),
       TsTypeRef(ref type_ref) => type_ref.into(),
       TsUnionOrIntersectionType(union_or_inter) => union_or_inter.into(),
+      TsArrayType(array_type) => array_type.into(),
+      TsTupleType(tuple_type) => tuple_type.into(),
       _ => TsTypeDef {
         repr: "<UNIMPLEMENTED>".to_string(),
         ..Default::default()
@@ -187,14 +219,12 @@ pub struct TsTypeDef {
 
   #[serde(skip_serializing_if = "Option::is_none")]
   pub intersection: Option<Vec<TsTypeDef>>,
-  //   #[serde(skip_serializing_if = "Option::is_none")]
-  //   pub type_alias_def: Option<TypeAliasDef>,
 
-  //   #[serde(skip_serializing_if = "Option::is_none")]
-  //   pub namespace_def: Option<NamespaceDef>,
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub array: Option<Box<TsTypeDef>>,
 
-  //   #[serde(skip_serializing_if = "Option::is_none")]
-  //   pub interface_def: Option<InterfaceDef>,
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub tuple: Option<Vec<TsTypeDef>>,
 }
 
 pub fn ts_type_ann_to_def(
@@ -208,6 +238,8 @@ pub fn ts_type_ann_to_def(
     TsLitType(lit_type) => lit_type.into(),
     TsTypeRef(type_ref) => type_ref.into(),
     TsUnionOrIntersectionType(union_or_inter) => union_or_inter.into(),
+    TsArrayType(array_type) => array_type.into(),
+    TsTupleType(tuple_type) => tuple_type.into(),
     _ => {
       let repr = source_map
         .span_to_snippet(type_ann.span)
