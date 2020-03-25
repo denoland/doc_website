@@ -29,12 +29,9 @@ pub fn get_doc_for_ts_type_alias_decl(
     .to_string();
 
   let alias_name = type_alias_decl.id.sym.to_string();
-  // TODO:
-  //   let repr = doc_parser
-  //     .source_map
-  //     .span_to_snippet(type_alias_decl.span)
-  //     .expect("Class prop type not found");
-  //   let repr = repr.trim_start_matches(':').trim_start().to_string();
+  let ts_type = type_alias_decl.type_ann.as_ref().into();
+
+  let type_alias_def = TypeAliasDef { ts_type };
 
   DocNode {
     kind: DocNodeKind::TypeAlias,
@@ -49,7 +46,7 @@ pub fn get_doc_for_ts_type_alias_decl(
     variable_def: None,
     enum_def: None,
     class_def: None,
-    type_alias_def: None,
+    type_alias_def: Some(type_alias_def),
     namespace_def: None,
     interface_def: None,
   }

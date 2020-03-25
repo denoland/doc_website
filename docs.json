@@ -58,7 +58,42 @@
             "line": 15,
             "col": 2
           },
-          "jsDoc": null
+          "jsDoc": null,
+          "typeAliasDef": {
+            "tsType": {
+              "repr": "",
+              "kind": "fnOrConstructor",
+              "fnOrConstructor": {
+                "constructor": false,
+                "tsType": {
+                  "repr": "",
+                  "kind": "union",
+                  "union": [
+                    {
+                      "repr": "void",
+                      "kind": "keyword",
+                      "keyword": "void"
+                    },
+                    {
+                      "repr": "Promise",
+                      "kind": "typeRef",
+                      "typeRef": {
+                        "typeParams": [
+                          {
+                            "repr": "void",
+                            "kind": "keyword",
+                            "keyword": "void"
+                          }
+                        ],
+                        "typeName": "Promise"
+                      }
+                    }
+                  ]
+                },
+                "params": []
+              }
+            }
+          }
         },
         {
           "kind": "interface",
@@ -933,7 +968,143 @@
             "line": 180,
             "col": 2
           },
-          "jsDoc": "**UNSTABLE**"
+          "jsDoc": "**UNSTABLE**",
+          "typeAliasDef": {
+            "tsType": {
+              "repr": "",
+              "kind": "union",
+              "union": [
+                {
+                  "repr": "home",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "home"
+                  }
+                },
+                {
+                  "repr": "cache",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "cache"
+                  }
+                },
+                {
+                  "repr": "config",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "config"
+                  }
+                },
+                {
+                  "repr": "executable",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "executable"
+                  }
+                },
+                {
+                  "repr": "data",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "data"
+                  }
+                },
+                {
+                  "repr": "data_local",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "data_local"
+                  }
+                },
+                {
+                  "repr": "audio",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "audio"
+                  }
+                },
+                {
+                  "repr": "desktop",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "desktop"
+                  }
+                },
+                {
+                  "repr": "document",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "document"
+                  }
+                },
+                {
+                  "repr": "download",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "download"
+                  }
+                },
+                {
+                  "repr": "font",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "font"
+                  }
+                },
+                {
+                  "repr": "picture",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "picture"
+                  }
+                },
+                {
+                  "repr": "public",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "public"
+                  }
+                },
+                {
+                  "repr": "template",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "template"
+                  }
+                },
+                {
+                  "repr": "tmp",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "tmp"
+                  }
+                },
+                {
+                  "repr": "video",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "video"
+                  }
+                }
+              ]
+            }
+          }
         },
         {
           "kind": "function",
@@ -1116,7 +1287,14 @@
             "line": 383,
             "col": 2
           },
-          "jsDoc": null
+          "jsDoc": null,
+          "typeAliasDef": {
+            "tsType": {
+              "repr": "EOF",
+              "kind": "typeQuery",
+              "typeQuery": "EOF"
+            }
+          }
         },
         {
           "kind": "enum",
@@ -2915,7 +3093,79 @@
             "line": 717,
             "col": 2
           },
-          "jsDoc": "A set of string literals which specify how to open a file.\n\n|Value |Description                                                                                       |\n|------|--------------------------------------------------------------------------------------------------|\n|`\"r\"` |Read-only. Default. Starts at beginning of file.                                                  |\n|`\"r+\"`|Read-write. Start at beginning of file.                                                           |\n|`\"w\"` |Write-only. Opens and truncates existing file or creates new one for writing only.                |\n|`\"w+\"`|Read-write. Opens and truncates existing file or creates new one for writing and reading.         |\n|`\"a\"` |Write-only. Opens existing file or creates new one. Each write appends content to the end of file.|\n|`\"a+\"`|Read-write. Behaves like `\"a\"` and allows to read from file.                                      |\n|`\"x\"` |Write-only. Exclusive create - creates new file only if one doesn't exist already.                |\n|`\"x+\"`|Read-write. Behaves like `x` and allows reading from file.                                        |"
+          "jsDoc": "A set of string literals which specify how to open a file.\n\n|Value |Description                                                                                       |\n|------|--------------------------------------------------------------------------------------------------|\n|`\"r\"` |Read-only. Default. Starts at beginning of file.                                                  |\n|`\"r+\"`|Read-write. Start at beginning of file.                                                           |\n|`\"w\"` |Write-only. Opens and truncates existing file or creates new one for writing only.                |\n|`\"w+\"`|Read-write. Opens and truncates existing file or creates new one for writing and reading.         |\n|`\"a\"` |Write-only. Opens existing file or creates new one. Each write appends content to the end of file.|\n|`\"a+\"`|Read-write. Behaves like `\"a\"` and allows to read from file.                                      |\n|`\"x\"` |Write-only. Exclusive create - creates new file only if one doesn't exist already.                |\n|`\"x+\"`|Read-write. Behaves like `x` and allows reading from file.                                        |",
+          "typeAliasDef": {
+            "tsType": {
+              "repr": "",
+              "kind": "union",
+              "union": [
+                {
+                  "repr": "r",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "r"
+                  }
+                },
+                {
+                  "repr": "r+",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "r+"
+                  }
+                },
+                {
+                  "repr": "w",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "w"
+                  }
+                },
+                {
+                  "repr": "w+",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "w+"
+                  }
+                },
+                {
+                  "repr": "a",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "a"
+                  }
+                },
+                {
+                  "repr": "a+",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "a+"
+                  }
+                },
+                {
+                  "repr": "x",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "x"
+                  }
+                },
+                {
+                  "repr": "x+",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "x+"
+                  }
+                }
+              ]
+            }
+          }
         },
         {
           "kind": "function",
@@ -6445,7 +6695,71 @@
             "line": 1446,
             "col": 2
           },
-          "jsDoc": "**UNSTABLE**: potentially want names to overlap more with browser.\n\nThe permissions as granted by the caller.\n\nSee: https://w3c.github.io/permissions/#permission-registry"
+          "jsDoc": "**UNSTABLE**: potentially want names to overlap more with browser.\n\nThe permissions as granted by the caller.\n\nSee: https://w3c.github.io/permissions/#permission-registry",
+          "typeAliasDef": {
+            "tsType": {
+              "repr": "",
+              "kind": "union",
+              "union": [
+                {
+                  "repr": "run",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "run"
+                  }
+                },
+                {
+                  "repr": "read",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "read"
+                  }
+                },
+                {
+                  "repr": "write",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "write"
+                  }
+                },
+                {
+                  "repr": "net",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "net"
+                  }
+                },
+                {
+                  "repr": "env",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "env"
+                  }
+                },
+                {
+                  "repr": "plugin",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "plugin"
+                  }
+                },
+                {
+                  "repr": "hrtime",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "hrtime"
+                  }
+                }
+              ]
+            }
+          }
         },
         {
           "kind": "typeAlias",
@@ -6456,7 +6770,39 @@
             "line": 1458,
             "col": 2
           },
-          "jsDoc": "The current status of the permission.\n\nSee: https://w3c.github.io/permissions/#status-of-a-permission"
+          "jsDoc": "The current status of the permission.\n\nSee: https://w3c.github.io/permissions/#status-of-a-permission",
+          "typeAliasDef": {
+            "tsType": {
+              "repr": "",
+              "kind": "union",
+              "union": [
+                {
+                  "repr": "granted",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "granted"
+                  }
+                },
+                {
+                  "repr": "denied",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "denied"
+                  }
+                },
+                {
+                  "repr": "prompt",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "prompt"
+                  }
+                }
+              ]
+            }
+          }
         },
         {
           "kind": "class",
@@ -7026,7 +7372,31 @@
             "line": 1583,
             "col": 2
           },
-          "jsDoc": null
+          "jsDoc": null,
+          "typeAliasDef": {
+            "tsType": {
+              "repr": "",
+              "kind": "union",
+              "union": [
+                {
+                  "repr": "tcp",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "tcp"
+                  }
+                },
+                {
+                  "repr": "udp",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "udp"
+                  }
+                }
+              ]
+            }
+          }
         },
         {
           "kind": "interface",
@@ -9435,7 +9805,39 @@
             "line": 2020,
             "col": 2
           },
-          "jsDoc": null
+          "jsDoc": null,
+          "typeAliasDef": {
+            "tsType": {
+              "repr": "",
+              "kind": "union",
+              "union": [
+                {
+                  "repr": "mac",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "mac"
+                  }
+                },
+                {
+                  "repr": "win",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "win"
+                  }
+                },
+                {
+                  "repr": "linux",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "linux"
+                  }
+                }
+              ]
+            }
+          }
         },
         {
           "kind": "typeAlias",
@@ -9446,7 +9848,31 @@
             "line": 2022,
             "col": 2
           },
-          "jsDoc": null
+          "jsDoc": null,
+          "typeAliasDef": {
+            "tsType": {
+              "repr": "",
+              "kind": "union",
+              "union": [
+                {
+                  "repr": "x64",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "x64"
+                  }
+                },
+                {
+                  "repr": "arm64",
+                  "kind": "literal",
+                  "literal": {
+                    "kind": "string",
+                    "string": "arm64"
+                  }
+                }
+              ]
+            }
+          }
         },
         {
           "kind": "variable",
