@@ -12,6 +12,9 @@ use swc_ecma_parser::TsConfig;
 use crate::doc::parser::DocParser;
 use crate::doc::parser::SwcDiagnostics;
 mod doc;
+use crate::printer::json::JSONPrinter;
+use crate::printer::terminal::TerminalPrinter;
+mod printer;
 
 #[cfg(test)]
 mod tests;
@@ -74,7 +77,11 @@ fn main() {
   let doc_nodes =
     get_docs(file_name, source_code).expect("Failed to print docs");
 
-  let docs_json = serde_json::to_string_pretty(&doc_nodes).unwrap();
-
-  println!("{}", docs_json);
+  if args.len() > 2 && args[2] == "--raw" {
+    let printer = JSONPrinter::new(false);
+    printer.print(doc_nodes);
+    std::process::exit(0);
+  }
+  let printer = TerminalPrinter::new();
+  printer.print(doc_nodes);
 }
