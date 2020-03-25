@@ -107,29 +107,92 @@ export enum TsTypeDefKind {
 export interface TsTypeDefShared {
   repr: string;
 }
-export type TsTypeDef = TsTypeDefShared &
-  (
-    | { kind: TsTypeDefKind.Array; array: TsTypeDef }
-    | { kind: TsTypeDefKind.Conditional; conditionalType: TsConditionalDef }
-    | {
-        kind: TsTypeDefKind.FnOrConstructor;
-        fnOrConstructor: TsFnOrConstructorDef;
-      }
-    | { kind: TsTypeDefKind.IndexedAccess; indexedAccess: TsIndexedAccessDef }
-    | { kind: TsTypeDefKind.Intersection; intersection: TsTypeDef[] }
-    | { kind: TsTypeDefKind.Keyword; keyword: string }
-    | { kind: TsTypeDefKind.Literal; literal: LiteralDef }
-    | { kind: TsTypeDefKind.Optional; optional: TsTypeDef }
-    | { kind: TsTypeDefKind.Parenthesized; parenthesized: TsTypeDef }
-    | { kind: TsTypeDefKind.Rest; rest: TsTypeDef }
-    | { kind: TsTypeDefKind.This; this: boolean }
-    | { kind: TsTypeDefKind.Tuple; tuple: TsTypeDef[] }
-    | { kind: TsTypeDefKind.TypeLiteral; typeLiteral: TsTypeLiteralDef }
-    | { kind: TsTypeDefKind.TypeOperator; typeOperator: TsTypeOperatorDef }
-    | { kind: TsTypeDefKind.TypeQuery; typeQuery: string }
-    | { kind: TsTypeDefKind.TypeRef; typeRef: TsTypeRefDef }
-    | { kind: TsTypeDefKind.Union; union: TsTypeDef[] }
-  );
+export interface TsTypeDefArray extends TsTypeDefShared {
+  kind: TsTypeDefKind.Array;
+  array: TsTypeDef;
+}
+export interface TsTypeDefConditional extends TsTypeDefShared {
+  kind: TsTypeDefKind.Conditional;
+  conditionalType: TsConditionalDef;
+}
+export interface TsTypeDefFnOrConstructor extends TsTypeDefShared {
+  kind: TsTypeDefKind.FnOrConstructor;
+  fnOrConstructor: TsFnOrConstructorDef;
+}
+export interface TsTypeDefIndexedAccess extends TsTypeDefShared {
+  kind: TsTypeDefKind.IndexedAccess;
+  indexedAccess: TsIndexedAccessDef;
+}
+export interface TsTypeDefIntersection extends TsTypeDefShared {
+  kind: TsTypeDefKind.Intersection;
+  intersection: TsTypeDef[];
+}
+export interface TsTypeDefKeyword extends TsTypeDefShared {
+  kind: TsTypeDefKind.Keyword;
+  keyword: string;
+}
+export interface TsTypeDefLiteral extends TsTypeDefShared {
+  kind: TsTypeDefKind.Literal;
+  literal: LiteralDef;
+}
+export interface TsTypeDefOptional extends TsTypeDefShared {
+  kind: TsTypeDefKind.Optional;
+  optional: TsTypeDef;
+}
+export interface TsTypeDefParenthesized extends TsTypeDefShared {
+  kind: TsTypeDefKind.Parenthesized;
+  parenthesized: TsTypeDef;
+}
+export interface TsTypeDefRest extends TsTypeDefShared {
+  kind: TsTypeDefKind.Rest;
+  rest: TsTypeDef;
+}
+export interface TsTypeDefThis extends TsTypeDefShared {
+  kind: TsTypeDefKind.This;
+  this: boolean;
+}
+export interface TsTypeDefTuple extends TsTypeDefShared {
+  kind: TsTypeDefKind.Tuple;
+  tuple: TsTypeDef[];
+}
+export interface TsTypeDefTypeLiteral extends TsTypeDefShared {
+  kind: TsTypeDefKind.TypeLiteral;
+  typeLiteral: TsTypeLiteralDef;
+}
+export interface TsTypeDefTypeOperator extends TsTypeDefShared {
+  kind: TsTypeDefKind.TypeOperator;
+  typeOperator: TsTypeOperatorDef;
+}
+export interface TsTypeDefTypeQuery extends TsTypeDefShared {
+  kind: TsTypeDefKind.TypeQuery;
+  typeQuery: string;
+}
+export interface TsTypeDefTypeRef extends TsTypeDefShared {
+  kind: TsTypeDefKind.TypeRef;
+  typeRef: TsTypeRefDef;
+}
+export interface TsTypeDefUnion extends TsTypeDefShared {
+  kind: TsTypeDefKind.Union;
+  union: TsTypeDef[];
+}
+export type TsTypeDef =
+  | TsTypeDefArray
+  | TsTypeDefConditional
+  | TsTypeDefFnOrConstructor
+  | TsTypeDefIndexedAccess
+  | TsTypeDefIntersection
+  | TsTypeDefKeyword
+  | TsTypeDefLiteral
+  | TsTypeDefOptional
+  | TsTypeDefParenthesized
+  | TsTypeDefRest
+  | TsTypeDefThis
+  | TsTypeDefTuple
+  | TsTypeDefTypeLiteral
+  | TsTypeDefTypeOperator
+  | TsTypeDefTypeQuery
+  | TsTypeDefTypeRef
+  | TsTypeDefUnion;
 export interface ParamDef {
   name: string;
   tsType?: TsTypeDef;
