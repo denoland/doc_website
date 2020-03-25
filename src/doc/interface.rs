@@ -15,7 +15,7 @@ use super::ParamDef;
 #[serde(rename_all = "camelCase")]
 pub struct InterfaceMethodDef {
   // TODO: type_params
-  // pub name: String,
+  pub name: String,
   pub snippet: String,
   pub location: Location,
   pub js_doc: Option<String>,
@@ -55,6 +55,24 @@ pub struct InterfaceDef {
   pub methods: Vec<InterfaceMethodDef>,
   pub properties: Vec<InterfacePropertyDef>,
   pub call_signatures: Vec<InterfaceCallSignatureDef>,
+}
+
+fn expr_to_name(expr: &swc_ecma_ast::Expr) -> String {
+  use swc_ecma_ast::Expr::*;
+  use swc_ecma_ast::ExprOrSuper::*;
+
+  match expr {
+    Ident(ident) => ident.sym.to_string(),
+    Member(member_expr) => {
+      let left = match &member_expr.obj {
+        Super(_) => "TODO".to_string(),
+        Expr(boxed_expr) => expr_to_name(&*boxed_expr),
+      };
+      let right = expr_to_name(&*member_expr.prop);
+      format!("[{}.{}]", left, right)
+    }
+    _ => "<TODO>".to_string(),
+  }
 }
 
 pub fn get_doc_for_ts_interface_decl(
@@ -131,12 +149,15 @@ pub fn get_doc_for_ts_interface_decl(
           params.push(param_def);
         }
 
+        let name = expr_to_name(&*ts_method_sig.key);
+
         let maybe_return_type = ts_method_sig
           .type_ann
           .as_ref()
           .map(|rt| ts_type_ann_to_def(&doc_parser.source_map, rt));
 
         let method_def = InterfaceMethodDef {
+          name,
           js_doc: method_js_doc,
           snippet: method_snippet,
           location: doc_parser

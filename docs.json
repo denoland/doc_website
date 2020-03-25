@@ -1155,6 +1155,7 @@
           "interfaceDef": {
             "methods": [
               {
+                "name": "read",
                 "snippet": "read(p: Uint8Array): Promise<number | EOF>;",
                 "location": {
                   "filename": "./deno.ts",
@@ -1222,6 +1223,7 @@
           "interfaceDef": {
             "methods": [
               {
+                "name": "readSync",
                 "snippet": "readSync(p: Uint8Array): number | EOF;",
                 "location": {
                   "filename": "./deno.ts",
@@ -1280,6 +1282,7 @@
           "interfaceDef": {
             "methods": [
               {
+                "name": "write",
                 "snippet": "write(p: Uint8Array): Promise<number>;",
                 "location": {
                   "filename": "./deno.ts",
@@ -1333,6 +1336,7 @@
           "interfaceDef": {
             "methods": [
               {
+                "name": "writeSync",
                 "snippet": "writeSync(p: Uint8Array): number;",
                 "location": {
                   "filename": "./deno.ts",
@@ -1377,6 +1381,7 @@
           "interfaceDef": {
             "methods": [
               {
+                "name": "close",
                 "snippet": "close(): void;",
                 "location": {
                   "filename": "./deno.ts",
@@ -1409,6 +1414,7 @@
           "interfaceDef": {
             "methods": [
               {
+                "name": "seek",
                 "snippet": "seek(offset: number, whence: SeekMode): Promise<number>;",
                 "location": {
                   "filename": "./deno.ts",
@@ -1470,6 +1476,7 @@
           "interfaceDef": {
             "methods": [
               {
+                "name": "seekSync",
                 "snippet": "seekSync(offset: number, whence: SeekMode): number;",
                 "location": {
                   "filename": "./deno.ts",
@@ -4857,6 +4864,7 @@
           "interfaceDef": {
             "methods": [
               {
+                "name": "isFile",
                 "snippet": "isFile(): boolean;",
                 "location": {
                   "filename": "./deno.ts",
@@ -4872,6 +4880,7 @@
                 }
               },
               {
+                "name": "isDirectory",
                 "snippet": "isDirectory(): boolean;",
                 "location": {
                   "filename": "./deno.ts",
@@ -4887,6 +4896,7 @@
                 }
               },
               {
+                "name": "isSymlink",
                 "snippet": "isSymlink(): boolean;",
                 "location": {
                   "filename": "./deno.ts",
@@ -6839,6 +6849,7 @@
           "interfaceDef": {
             "methods": [
               {
+                "name": "dispatch",
                 "snippet": "dispatch(\n      control: Uint8Array,\n      zeroCopy?: ArrayBufferView | null\n    ): Uint8Array | null;",
                 "location": {
                   "filename": "./deno.ts",
@@ -6902,6 +6913,7 @@
                 }
               },
               {
+                "name": "setAsyncHandler",
                 "snippet": "setAsyncHandler(handler: AsyncHandler): void;",
                 "location": {
                   "filename": "./deno.ts",
@@ -7306,6 +7318,7 @@
           "interfaceDef": {
             "methods": [
               {
+                "name": "receive",
                 "snippet": "receive(p?: Uint8Array): Promise<[Uint8Array, Addr]>;",
                 "location": {
                   "filename": "./deno.ts",
@@ -7359,6 +7372,7 @@
                 }
               },
               {
+                "name": "send",
                 "snippet": "send(p: Uint8Array, addr: UDPAddr): Promise<void>;",
                 "location": {
                   "filename": "./deno.ts",
@@ -7406,6 +7420,7 @@
                 }
               },
               {
+                "name": "close",
                 "snippet": "close(): void;",
                 "location": {
                   "filename": "./deno.ts",
@@ -7421,6 +7436,7 @@
                 }
               },
               {
+                "name": "[Symbol.asyncIterator]",
                 "snippet": "[Symbol.asyncIterator](): AsyncIterator<[Uint8Array, Addr]>;",
                 "location": {
                   "filename": "./deno.ts",
@@ -7501,6 +7517,7 @@
           "interfaceDef": {
             "methods": [
               {
+                "name": "accept",
                 "snippet": "accept(): Promise<Conn>;",
                 "location": {
                   "filename": "./deno.ts",
@@ -7528,6 +7545,7 @@
                 }
               },
               {
+                "name": "close",
                 "snippet": "close(): void;",
                 "location": {
                   "filename": "./deno.ts",
@@ -7543,6 +7561,7 @@
                 }
               },
               {
+                "name": "[Symbol.asyncIterator]",
                 "snippet": "[Symbol.asyncIterator](): AsyncIterator<Conn>;",
                 "location": {
                   "filename": "./deno.ts",
@@ -7609,6 +7628,7 @@
           "interfaceDef": {
             "methods": [
               {
+                "name": "closeRead",
                 "snippet": "closeRead(): void;",
                 "location": {
                   "filename": "./deno.ts",
@@ -7624,6 +7644,7 @@
                 }
               },
               {
+                "name": "closeWrite",
                 "snippet": "closeWrite(): void;",
                 "location": {
                   "filename": "./deno.ts",
