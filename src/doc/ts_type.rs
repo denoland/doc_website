@@ -246,16 +246,25 @@ impl Into<TsTypeDef> for &TsThisType {
   }
 }
 
+fn ts_entity_name_to_name(entity_name: &swc_ecma_ast::TsEntityName) -> String {
+  use swc_ecma_ast::TsEntityName::*;
+
+  match entity_name {
+    Ident(ident) => ident.sym.to_string(),
+    TsQualifiedName(ts_qualified_name) => {
+      let left = ts_entity_name_to_name(&ts_qualified_name.left);
+      let right = ts_qualified_name.right.sym.to_string();
+      format!("{}.{}", left, right)
+    }
+  }
+}
+
 impl Into<TsTypeDef> for &TsTypeQuery {
   fn into(self) -> TsTypeDef {
-    use swc_ecma_ast::TsEntityName::*;
     use swc_ecma_ast::TsTypeQueryExpr::*;
 
     let type_name = match &self.expr_name {
-      TsEntityName(entity_name) => match entity_name {
-        Ident(ident) => ident.sym.to_string(),
-        TsQualifiedName(_) => "<UNIMPLEMENTED>".to_string(),
-      },
+      TsEntityName(entity_name) => ts_entity_name_to_name(&*entity_name),
       Import(import_type) => import_type.arg.value.to_string(),
     };
 
@@ -270,12 +279,7 @@ impl Into<TsTypeDef> for &TsTypeQuery {
 
 impl Into<TsTypeDef> for &TsTypeRef {
   fn into(self) -> TsTypeDef {
-    use swc_ecma_ast::TsEntityName::*;
-
-    let type_name = match &self.type_name {
-      Ident(ident) => ident.sym.to_string(),
-      TsQualifiedName(_) => "<UNIMPLEMENTED>".to_string(),
-    };
+    let type_name = ts_entity_name_to_name(&self.type_name);
 
     let type_params = if let Some(type_params_inst) = &self.type_params {
       let mut ts_type_defs = vec![];

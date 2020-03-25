@@ -11570,9 +11570,9 @@
                   {
                     "name": "signal",
                     "tsType": {
-                      "repr": "<UNIMPLEMENTED>",
+                      "repr": "Deno.Signal",
                       "kind": "typeQuery",
-                      "typeQuery": "<UNIMPLEMENTED>"
+                      "typeQuery": "Deno.Signal"
                     }
                   }
                 ],
