@@ -162,7 +162,7 @@ export function SimpleCard({
       className="shadow rounded-md my-3 bg-white p-2"
       id={`${node.kind}.${node.name}`}
     >
-      <div className="text-lg">
+      <div className="text-lg font-mono">
         {prefix ? <span className="text-pink-800">{prefix} </span> : null}
         <span className="font-bold">{node.name}</span>
         {params ? (
@@ -227,7 +227,7 @@ export function SimpleSubCard({
 
   return (
     <div className="mt-2 py-1 px-2 rounded bg-gray-100">
-      <div className="text-sm">
+      <div className="text-sm font-mono">
         {prefix ? <span className="text-pink-800">{prefix} </span> : null}
         <span>{node.name}</span>
         {params ? (

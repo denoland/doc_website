@@ -3,7 +3,7 @@ import { DocNode, getDocs } from "./util/docs";
 import { NodesProvider } from "./util/nodes";
 import { NamespaceRoute } from "./routes/namespace";
 import { PrefixProvider } from "./util/prefix";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { SinglePageRoute } from "./routes/singlepage";
 import { NotFound } from "./components/NotFound";
 
