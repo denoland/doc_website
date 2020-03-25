@@ -29,12 +29,16 @@ impl TerminalPrinter {
       rendered.push_str(param.name.as_str());
       if param.ts_type.is_some() {
         rendered.push_str(": ");
-        rendered.push_str(param.ts_type.unwrap().repr.as_str());
+        rendered.push_str(self.render_ts_type(param.ts_type.unwrap()).as_str());
       }
       rendered.push_str(", ");
     }
     rendered.truncate(rendered.len() - 2);
     rendered
+  }
+
+  fn render_ts_type(&self, ts_type: doc::ts_type::TsTypeDef) -> String {
+    ts_type.repr
   }
 
   fn print_function(&self, node: doc::DocNode) {
@@ -44,7 +48,7 @@ impl TerminalPrinter {
       "function {}({}): {}",
       node.name,
       self.render_params(function_def.params),
-      return_type.repr
+      self.render_ts_type(return_type).as_str()
     )
   }
 
