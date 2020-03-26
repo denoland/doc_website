@@ -23,10 +23,10 @@ impl TerminalPrinter {
     self.print_signature(&node, 0);
 
     let js_doc = node.js_doc.clone();
-    if js_doc.is_some() {
-      self.print_jsdoc(js_doc.unwrap(), false, 1);
+    if let Some(js_doc) = js_doc {
+      self.print_jsdoc(js_doc, false, 1);
     }
-    println!("");
+    println!();
 
     match node.kind {
       DocNodeKind::Class => self.print_class_details(node),
@@ -60,7 +60,7 @@ impl TerminalPrinter {
   }
 
   fn print_(&self, doc_nodes: Vec<doc::DocNode>, indent: i64) {
-    let mut sorted = doc_nodes.clone();
+    let mut sorted = doc_nodes;
     sorted.sort_unstable_by(|a, b| {
       let kind_cmp = self.kind_order(&a.kind).cmp(&self.kind_order(&b.kind));
       if kind_cmp == core::cmp::Ordering::Equal {
@@ -75,20 +75,17 @@ impl TerminalPrinter {
       if node.js_doc.is_some() {
         self.print_jsdoc(node.js_doc.unwrap(), true, indent);
       }
-      println!("");
-      match node.kind {
-        DocNodeKind::Namespace => {
-          self.print_(node.namespace_def.unwrap().elements, indent + 1);
-          println!("");
-        }
-        _ => {}
+      println!();
+      if DocNodeKind::Namespace == node.kind {
+        self.print_(node.namespace_def.unwrap().elements, indent + 1);
+        println!();
       };
     }
   }
 
   fn render_params(&self, params: Vec<doc::ParamDef>) -> String {
     let mut rendered = String::from("");
-    if params.len() > 0 {
+    if !params.is_empty() {
       for param in params {
         rendered += param.name.as_str();
         if param.ts_type.is_some() {
@@ -142,7 +139,7 @@ impl TerminalPrinter {
       TsTypeDefKind::Intersection => {
         let intersection = ts_type.intersection.unwrap();
         let mut output = "".to_string();
-        if intersection.len() > 0 {
+        if !intersection.is_empty() {
           for ts_type in intersection {
             output += self.render_ts_type(ts_type).as_str();
             output += " & "
@@ -177,7 +174,7 @@ impl TerminalPrinter {
       TsTypeDefKind::Tuple => {
         let tuple = ts_type.tuple.unwrap();
         let mut output = "".to_string();
-        if tuple.len() > 0 {
+        if !tuple.is_empty() {
           for ts_type in tuple {
             output += self.render_ts_type(ts_type).as_str();
             output += ", "
@@ -214,7 +211,7 @@ impl TerminalPrinter {
           )
           .as_str()
         }
-        if output.len() > 0 {
+        if !output.is_empty() {
           output.truncate(output.len() - 2);
         }
         "{ ".to_string() + output.as_str() + " }"
@@ -236,7 +233,7 @@ impl TerminalPrinter {
         if type_ref.type_params.is_some() {
           let mut output = "".to_string();
           let type_params = type_ref.type_params.unwrap();
-          if type_params.len() > 0 {
+          if !type_params.is_empty() {
             for ts_type in type_params {
               output += self.render_ts_type(ts_type).as_str();
               output += ", "
@@ -250,7 +247,7 @@ impl TerminalPrinter {
       TsTypeDefKind::Union => {
         let union = ts_type.union.unwrap();
         let mut output = "".to_string();
-        if union.len() > 0 {
+        if !union.is_empty() {
           for ts_type in union {
             output += self.render_ts_type(ts_type).as_str();
             output += " | "
@@ -272,7 +269,7 @@ impl TerminalPrinter {
   fn print_jsdoc(&self, jsdoc: String, truncated: bool, indent: i64) {
     let mut lines = jsdoc.split("\n\n").map(|line| line.replace("\n", " "));
     if truncated {
-      let first_line = lines.next().unwrap_or("".to_string());
+      let first_line = lines.next().unwrap_or_else(|| "".to_string());
       self.print_indent(indent + 1);
       println!("{}", first_line)
     } else {
@@ -339,7 +336,7 @@ impl TerminalPrinter {
         self.render_ts_type(function_def.return_type.unwrap())
       );
     }
-    println!("");
+    println!();
   }
 
   fn print_namespace_details(&self, node: doc::DocNode) {
@@ -347,7 +344,7 @@ impl TerminalPrinter {
     for node in elements {
       self.print_signature(&node, 0);
     }
-    println!("");
+    println!();
   }
 
   fn print_function_signature(&self, node: &doc::DocNode, indent: i64) {

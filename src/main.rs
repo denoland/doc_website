@@ -32,8 +32,8 @@ fn main() {
   if args.len() == 3 {
     let name = args[2].clone();
     let node = find_node_by_name_recursively(doc_nodes, name.clone());
-    if node.is_some() {
-      printer.print_details(node.unwrap().clone());
+    if let Some(node) = node {
+      printer.print_details(node);
     } else {
       println!("error: Node {} was not found!", name)
     }
@@ -46,20 +46,18 @@ fn find_node_by_name_recursively(
   doc_nodes: Vec<doc::DocNode>,
   name: String,
 ) -> Option<doc::DocNode> {
-  let mut parts = name.splitn(2, ".");
+  let mut parts = name.splitn(2, '.');
   let name = parts.next();
   let leftover = parts.next();
-  if name.is_none() {
-    return None;
-  }
+  name?;
   let node = find_node_by_name(doc_nodes, name.unwrap().to_string());
   match node {
     Some(node) => match node.kind {
       doc::DocNodeKind::Namespace => {
-        if leftover.is_some() {
+        if let Some(leftover) = leftover {
           find_node_by_name_recursively(
             node.namespace_def.unwrap().elements,
-            leftover.unwrap().to_string(),
+            leftover.to_string(),
           )
         } else {
           Some(node)
