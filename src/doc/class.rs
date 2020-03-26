@@ -1,17 +1,14 @@
 use serde::Serialize;
 use swc_common;
 use swc_common::SourceMap;
-use swc_common::Span;
 use swc_common::Spanned;
 use swc_ecma_ast;
 
 use super::function::function_to_function_def;
+use super::function::FunctionDef;
 use super::parser::DocParser;
 use super::ts_type::ts_type_ann_to_def;
 use super::ts_type::TsTypeDef;
-use super::DocNode;
-use super::DocNodeKind;
-use super::FunctionDef;
 use super::Location;
 use super::ParamDef;
 
@@ -19,7 +16,6 @@ use super::ParamDef;
 #[serde(rename_all = "camelCase")]
 pub struct ClassConstructorDef {
   pub js_doc: Option<String>,
-  pub snippet: String,
   pub accessibility: Option<swc_ecma_ast::Accessibility>,
   pub name: String,
   pub params: Vec<ParamDef>,
@@ -30,7 +26,6 @@ pub struct ClassConstructorDef {
 #[serde(rename_all = "camelCase")]
 pub struct ClassPropertyDef {
   pub js_doc: Option<String>,
-  pub snippet: String,
   pub ts_type: Option<TsTypeDef>,
   pub readonly: bool,
   pub accessibility: Option<swc_ecma_ast::Accessibility>,
@@ -44,7 +39,6 @@ pub struct ClassPropertyDef {
 #[serde(rename_all = "camelCase")]
 pub struct ClassMethodDef {
   pub js_doc: Option<String>,
-  pub snippet: String,
   //   pub ts_type: Option<TsTypeDef>,
   //   pub readonly: bool,
   pub accessibility: Option<swc_ecma_ast::Accessibility>,
@@ -84,40 +78,8 @@ fn prop_name_to_string(
 
 pub fn get_doc_for_class_decl(
   doc_parser: &DocParser,
-  parent_span: Span,
   class_decl: &swc_ecma_ast::ClassDecl,
-) -> DocNode {
-  let js_doc = doc_parser.js_doc_for_span(parent_span);
-
-  let mut snippet = doc_parser
-    .source_map
-    .span_to_snippet(parent_span)
-    .expect("Snippet not found");
-
-  if !class_decl.class.body.is_empty() {
-    let body_beggining_span = class_decl.class.body.first().unwrap().span();
-    let body_end_span = class_decl.class.body.last().unwrap().span();
-    let body_span = Span::new(
-      body_beggining_span.lo(),
-      body_end_span.hi(),
-      body_end_span.ctxt(),
-    );
-    let body_snippet =
-      doc_parser.source_map.span_to_snippet(body_span).unwrap();
-    let index = snippet
-      .find(&body_snippet)
-      .expect("Body not found in snippet");
-    // Remove body from snippet
-    let _ = snippet.split_off(index);
-  }
-
-  // TODO(bartlomieju): trimming manually `{` is bad
-  let snippet = snippet
-    .trim_end()
-    .trim_end_matches('{')
-    .trim_end()
-    .to_string();
-
+) -> (String, ClassDef) {
   let mut constructors = vec![];
   let mut methods = vec![];
   let mut properties = vec![];
@@ -128,20 +90,6 @@ pub fn get_doc_for_class_decl(
     match member {
       Constructor(ctor) => {
         let ctor_js_doc = doc_parser.js_doc_for_span(ctor.span());
-        let mut ctor_snippet =
-          doc_parser.source_map.span_to_snippet(ctor.span()).unwrap();
-
-        if let Some(body) = &ctor.body {
-          let ctor_body_snippet =
-            doc_parser.source_map.span_to_snippet(body.span()).unwrap();
-          let index = ctor_snippet
-            .find(&ctor_body_snippet)
-            .expect("Body not found in snippet");
-          // Remove body from snippet
-          let _ = ctor_snippet.split_off(index);
-        }
-
-        let ctor_snippet = ctor_snippet.trim_end().to_string();
         let constructor_name =
           prop_name_to_string(&doc_parser.source_map, &ctor.key);
 
@@ -179,7 +127,6 @@ pub fn get_doc_for_class_decl(
 
         let constructor_def = ClassConstructorDef {
           js_doc: ctor_js_doc,
-          snippet: ctor_snippet,
           accessibility: ctor.accessibility,
           name: constructor_name,
           params,
@@ -192,31 +139,12 @@ pub fn get_doc_for_class_decl(
       }
       Method(class_method) => {
         let method_js_doc = doc_parser.js_doc_for_span(class_method.span());
-        let mut method_snippet = doc_parser
-          .source_map
-          .span_to_snippet(class_method.span())
-          .unwrap();
-
-        if let Some(body) = &class_method.function.body {
-          let body_span = body.span();
-          let body_snippet =
-            doc_parser.source_map.span_to_snippet(body_span).unwrap();
-          let index = method_snippet
-            .find(&body_snippet)
-            .expect("Body not found in snippet");
-          // Remove body from snippet
-          let _ = method_snippet.split_off(index);
-        }
-
-        let method_snippet = method_snippet.trim_end().to_string();
-
         let method_name =
           prop_name_to_string(&doc_parser.source_map, &class_method.key);
         let fn_def =
           function_to_function_def(doc_parser, &class_method.function);
         let method_def = ClassMethodDef {
           js_doc: method_js_doc,
-          snippet: method_snippet,
           accessibility: class_method.accessibility,
           is_abstract: class_method.is_abstract,
           is_static: class_method.is_static,
@@ -232,10 +160,6 @@ pub fn get_doc_for_class_decl(
       }
       ClassProp(class_prop) => {
         let prop_js_doc = doc_parser.js_doc_for_span(class_prop.span());
-        let prop_snippet = doc_parser
-          .source_map
-          .span_to_snippet(class_prop.span())
-          .unwrap();
 
         let ts_type = class_prop
           .type_ann
@@ -250,7 +174,6 @@ pub fn get_doc_for_class_decl(
 
         let prop_def = ClassPropertyDef {
           js_doc: prop_js_doc,
-          snippet: prop_snippet,
           ts_type,
           readonly: class_prop.readonly,
           is_abstract: class_prop.is_abstract,
@@ -279,21 +202,5 @@ pub fn get_doc_for_class_decl(
     methods,
   };
 
-  DocNode {
-    kind: DocNodeKind::Class,
-    name: class_name,
-    snippet,
-    location: doc_parser
-      .source_map
-      .lookup_char_pos(parent_span.lo())
-      .into(),
-    js_doc,
-    function_def: None,
-    variable_def: None,
-    enum_def: None,
-    class_def: Some(class_def),
-    type_alias_def: None,
-    namespace_def: None,
-    interface_def: None,
-  }
+  (class_name, class_def)
 }
