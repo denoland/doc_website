@@ -5,10 +5,10 @@ use swc_common::Spanned;
 use swc_ecma_ast;
 
 use super::function::function_to_function_def;
+use super::function::FunctionDef;
 use super::parser::DocParser;
 use super::ts_type::ts_type_ann_to_def;
 use super::ts_type::TsTypeDef;
-use super::FunctionDef;
 use super::Location;
 use super::ParamDef;
 
