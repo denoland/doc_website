@@ -35,7 +35,7 @@ fn main() {
     if node.is_some() {
       printer.print_details(node.unwrap().clone());
     } else {
-      println!("Node {} found!", name)
+      println!("error: Node {} was not found!", name)
     }
     std::process::exit(0);
   }

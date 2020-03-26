@@ -20,14 +20,19 @@ impl TerminalPrinter {
       node.location.filename, node.location.line, node.location.col
     );
 
+    let js_doc = node.js_doc.clone();
     match node.kind {
-      DocNodeKind::Function => self.print_function(node, 0),
-      DocNodeKind::Variable => self.print_variable(node, 0),
-      DocNodeKind::Class => self.print_class(node, 0),
-      DocNodeKind::Enum => self.print_enum(node, 0),
-      DocNodeKind::Interface => self.print_interface(node, 0),
-      DocNodeKind::TypeAlias => self.print_type_alias(node, 0),
-      DocNodeKind::Namespace => self.print_namespace(node, 0),
+      DocNodeKind::Function => self.print_function_signature(node, 0),
+      DocNodeKind::Variable => self.print_variable_signature(node, 0),
+      DocNodeKind::Class => self.print_class_signature(node, 0),
+      DocNodeKind::Enum => self.print_enum_signature(node, 0),
+      DocNodeKind::Interface => self.print_interface_signature(node, 0),
+      DocNodeKind::TypeAlias => self.print_type_alias_signature(node, 0),
+      DocNodeKind::Namespace => self.print_namespace_signature(node, 0),
+    }
+
+    if js_doc.is_some() {
+      self.print_jsdoc(js_doc.unwrap(), false, 1);
     }
   }
 
@@ -59,16 +64,16 @@ impl TerminalPrinter {
       let js_doc = node.js_doc.clone();
       let namespace_def = node.namespace_def.clone();
       match kind {
-        DocNodeKind::Function => self.print_function(node, indent),
-        DocNodeKind::Variable => self.print_variable(node, indent),
-        DocNodeKind::Class => self.print_class(node, indent),
-        DocNodeKind::Enum => self.print_enum(node, indent),
-        DocNodeKind::Interface => self.print_interface(node, indent),
-        DocNodeKind::TypeAlias => self.print_type_alias(node, indent),
-        DocNodeKind::Namespace => self.print_namespace(node, indent),
+        DocNodeKind::Function => self.print_function_signature(node, indent),
+        DocNodeKind::Variable => self.print_variable_signature(node, indent),
+        DocNodeKind::Class => self.print_class_signature(node, indent),
+        DocNodeKind::Enum => self.print_enum_signature(node, indent),
+        DocNodeKind::Interface => self.print_interface_signature(node, indent),
+        DocNodeKind::TypeAlias => self.print_type_alias_signature(node, indent),
+        DocNodeKind::Namespace => self.print_namespace_signature(node, indent),
       };
       if js_doc.is_some() {
-        self.print_jsdoc(indent, js_doc.unwrap());
+        self.print_jsdoc(js_doc.unwrap(), true, indent);
       }
       println!("");
       match kind {
@@ -230,14 +235,21 @@ impl TerminalPrinter {
     }
   }
 
-  fn print_jsdoc(&self, indent: i64, jsdoc: String) {
-    self.print_indent(indent + 1);
-    let first_line =
-      jsdoc.split("\n\n").next().unwrap_or("").replace("\n", " ");
-    println!("{}", first_line)
+  fn print_jsdoc(&self, jsdoc: String, truncated: bool, indent: i64) {
+    let mut lines = jsdoc.split("\n\n").map(|line| line.replace("\n", " "));
+    if truncated {
+      let first_line = lines.next().unwrap_or("".to_string());
+      self.print_indent(indent + 1);
+      println!("{}", first_line)
+    } else {
+      for line in lines {
+        self.print_indent(indent + 1);
+        println!("{}", line)
+      }
+    }
   }
 
-  fn print_function(&self, node: doc::DocNode, indent: i64) {
+  fn print_function_signature(&self, node: doc::DocNode, indent: i64) {
     self.print_indent(indent);
     let function_def = node.function_def.unwrap();
     let return_type = function_def.return_type.unwrap();
@@ -249,12 +261,12 @@ impl TerminalPrinter {
     );
   }
 
-  fn print_class(&self, node: doc::DocNode, indent: i64) {
+  fn print_class_signature(&self, node: doc::DocNode, indent: i64) {
     self.print_indent(indent);
     println!("class {}", node.name);
   }
 
-  fn print_variable(&self, node: doc::DocNode, indent: i64) {
+  fn print_variable_signature(&self, node: doc::DocNode, indent: i64) {
     self.print_indent(indent);
     let variable_def = node.variable_def.unwrap();
     println!(
@@ -273,22 +285,22 @@ impl TerminalPrinter {
     );
   }
 
-  fn print_enum(&self, node: doc::DocNode, indent: i64) {
+  fn print_enum_signature(&self, node: doc::DocNode, indent: i64) {
     self.print_indent(indent);
     println!("enum {}", node.name);
   }
 
-  fn print_interface(&self, node: doc::DocNode, indent: i64) {
+  fn print_interface_signature(&self, node: doc::DocNode, indent: i64) {
     self.print_indent(indent);
     println!("interface {}", node.name);
   }
 
-  fn print_type_alias(&self, node: doc::DocNode, indent: i64) {
+  fn print_type_alias_signature(&self, node: doc::DocNode, indent: i64) {
     self.print_indent(indent);
     println!("type {}", node.name);
   }
 
-  fn print_namespace(&self, node: doc::DocNode, indent: i64) {
+  fn print_namespace_signature(&self, node: doc::DocNode, indent: i64) {
     self.print_indent(indent);
     println!("namespace {}", node.name);
   }

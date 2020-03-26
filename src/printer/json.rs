@@ -19,6 +19,7 @@ impl JSONPrinter {
     println!("{}", docs_json);
   }
 
+  #[allow(dead_code)]
   pub fn print_details(&self, node: doc::DocNode) {
     let docs_json = if self.pretty_print {
       serde_json::to_string_pretty(&node).unwrap()
