@@ -15,7 +15,10 @@ pub fn get_doc_for_ts_namespace_decl(
   ts_namespace_decl: &swc_ecma_ast::TsNamespaceDecl,
 ) -> DocNode {
   let js_doc = doc_parser.js_doc_for_span(ts_namespace_decl.span);
-
+  let location = doc_parser
+    .source_map
+    .lookup_char_pos(ts_namespace_decl.span.lo())
+    .into();
   let namespace_name = ts_namespace_decl.id.sym.to_string();
 
   use swc_ecma_ast::TsNamespaceBody::*;
@@ -34,17 +37,14 @@ pub fn get_doc_for_ts_namespace_decl(
   DocNode {
     kind: DocNodeKind::Namespace,
     name: namespace_name,
-    location: doc_parser
-      .source_map
-      .lookup_char_pos(ts_namespace_decl.span.lo())
-      .into(),
+    location,
     js_doc,
+    namespace_def: Some(ns_def),
     function_def: None,
     variable_def: None,
     enum_def: None,
     class_def: None,
     type_alias_def: None,
-    namespace_def: Some(ns_def),
     interface_def: None,
   }
 }
