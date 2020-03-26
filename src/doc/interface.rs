@@ -1,13 +1,9 @@
 use serde::Serialize;
-use swc_common;
-use swc_common::Span;
 use swc_ecma_ast;
 
 use super::parser::DocParser;
 use super::ts_type::ts_type_ann_to_def;
 use super::ts_type::TsTypeDef;
-use super::DocNode;
-use super::DocNodeKind;
 use super::Location;
 use super::ParamDef;
 
@@ -77,35 +73,8 @@ fn expr_to_name(expr: &swc_ecma_ast::Expr) -> String {
 
 pub fn get_doc_for_ts_interface_decl(
   doc_parser: &DocParser,
-  parent_span: Span,
   interface_decl: &swc_ecma_ast::TsInterfaceDecl,
-) -> DocNode {
-  let js_doc = doc_parser.js_doc_for_span(parent_span);
-
-  let mut snippet = doc_parser
-    .source_map
-    .span_to_snippet(parent_span)
-    .expect("Snippet not found");
-
-  if let Some(margin) = doc_parser.source_map.span_to_margin(parent_span) {
-    let mut margin_pat = String::from("");
-    for _ in 0..margin {
-      margin_pat.push(' ');
-    }
-
-    snippet = snippet
-      .split('\n')
-      .map(|line| {
-        if line.starts_with(&margin_pat) {
-          line[margin_pat.len()..].to_string()
-        } else {
-          line.to_string()
-        }
-      })
-      .collect::<Vec<String>>()
-      .join("\n");
-  }
-
+) -> (String, InterfaceDef) {
   let interface_name = interface_decl.id.sym.to_string();
 
   let mut methods = vec![];
@@ -288,21 +257,5 @@ pub fn get_doc_for_ts_interface_decl(
     call_signatures,
   };
 
-  DocNode {
-    kind: DocNodeKind::Interface,
-    name: interface_name,
-    snippet,
-    location: doc_parser
-      .source_map
-      .lookup_char_pos(parent_span.lo())
-      .into(),
-    js_doc,
-    function_def: None,
-    variable_def: None,
-    enum_def: None,
-    class_def: None,
-    type_alias_def: None,
-    namespace_def: None,
-    interface_def: Some(interface_def),
-  }
+  (interface_name, interface_def)
 }

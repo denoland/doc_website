@@ -1,7 +1,6 @@
 use serde::Serialize;
 use swc_common;
 use swc_common::SourceMap;
-use swc_common::Span;
 use swc_common::Spanned;
 use swc_ecma_ast;
 
@@ -9,8 +8,6 @@ use super::function::function_to_function_def;
 use super::parser::DocParser;
 use super::ts_type::ts_type_ann_to_def;
 use super::ts_type::TsTypeDef;
-use super::DocNode;
-use super::DocNodeKind;
 use super::FunctionDef;
 use super::Location;
 use super::ParamDef;
@@ -84,40 +81,8 @@ fn prop_name_to_string(
 
 pub fn get_doc_for_class_decl(
   doc_parser: &DocParser,
-  parent_span: Span,
   class_decl: &swc_ecma_ast::ClassDecl,
-) -> DocNode {
-  let js_doc = doc_parser.js_doc_for_span(parent_span);
-
-  let mut snippet = doc_parser
-    .source_map
-    .span_to_snippet(parent_span)
-    .expect("Snippet not found");
-
-  if !class_decl.class.body.is_empty() {
-    let body_beggining_span = class_decl.class.body.first().unwrap().span();
-    let body_end_span = class_decl.class.body.last().unwrap().span();
-    let body_span = Span::new(
-      body_beggining_span.lo(),
-      body_end_span.hi(),
-      body_end_span.ctxt(),
-    );
-    let body_snippet =
-      doc_parser.source_map.span_to_snippet(body_span).unwrap();
-    let index = snippet
-      .find(&body_snippet)
-      .expect("Body not found in snippet");
-    // Remove body from snippet
-    let _ = snippet.split_off(index);
-  }
-
-  // TODO(bartlomieju): trimming manually `{` is bad
-  let snippet = snippet
-    .trim_end()
-    .trim_end_matches('{')
-    .trim_end()
-    .to_string();
-
+) -> (String, ClassDef) {
   let mut constructors = vec![];
   let mut methods = vec![];
   let mut properties = vec![];
@@ -279,21 +244,5 @@ pub fn get_doc_for_class_decl(
     methods,
   };
 
-  DocNode {
-    kind: DocNodeKind::Class,
-    name: class_name,
-    snippet,
-    location: doc_parser
-      .source_map
-      .lookup_char_pos(parent_span.lo())
-      .into(),
-    js_doc,
-    function_def: None,
-    variable_def: None,
-    enum_def: None,
-    class_def: Some(class_def),
-    type_alias_def: None,
-    namespace_def: None,
-    interface_def: None,
-  }
+  (class_name, class_def)
 }
