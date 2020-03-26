@@ -183,7 +183,21 @@ impl TerminalPrinter {
   }
 
   fn print_variable(&self, node: doc::DocNode) {
-    println!("variable {}", node.name)
+    let variable_def = node.variable_def.unwrap();
+    println!(
+      "{} {}{}",
+      match variable_def.kind {
+        swc_ecma_ast::VarDeclKind::Const => "const".to_string(),
+        swc_ecma_ast::VarDeclKind::Let => "let".to_string(),
+        swc_ecma_ast::VarDeclKind::Var => "var".to_string(),
+      },
+      node.name,
+      if variable_def.ts_type.is_some() {
+        format!(": {}", self.render_ts_type(variable_def.ts_type.unwrap()))
+      } else {
+        "".to_string()
+      }
+    )
   }
 
   fn print_enum(&self, node: doc::DocNode) {
