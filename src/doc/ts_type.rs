@@ -364,6 +364,7 @@ impl Into<TsTypeDef> for &TsTypeLit {
             .map(|rt| (&*rt.type_ann).into());
 
           let method_def = LiteralMethodDef {
+            name: "<TODO>".to_string(),
             params,
             return_type: maybe_return_type,
           };
@@ -661,7 +662,7 @@ pub struct TsIndexedAccessDef {
 #[serde(rename_all = "camelCase")]
 pub struct LiteralMethodDef {
   // TODO: type_params
-  // pub name: String,
+  pub name: String,
   // pub location: Location,
   // pub js_doc: Option<String>,
   pub params: Vec<ParamDef>,

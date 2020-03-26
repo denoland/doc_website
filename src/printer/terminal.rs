@@ -90,13 +90,12 @@ impl TerminalPrinter {
     let mut rendered = String::from("");
     if params.len() > 0 {
       for param in params {
-        rendered.push_str(param.name.as_str());
+        rendered += param.name.as_str();
         if param.ts_type.is_some() {
-          rendered.push_str(": ");
-          rendered
-            .push_str(self.render_ts_type(param.ts_type.unwrap()).as_str());
+          rendered += ": ";
+          rendered += self.render_ts_type(param.ts_type.unwrap()).as_str();
         }
-        rendered.push_str(", ");
+        rendered += ", ";
       }
       rendered.truncate(rendered.len() - 2);
     }
@@ -145,8 +144,8 @@ impl TerminalPrinter {
         let mut output = "".to_string();
         if intersection.len() > 0 {
           for ts_type in intersection {
-            output.push_str(self.render_ts_type(ts_type).as_str());
-            output.push_str(" & ")
+            output += self.render_ts_type(ts_type).as_str();
+            output += " & "
           }
           output.truncate(output.len() - 3);
         }
@@ -159,7 +158,9 @@ impl TerminalPrinter {
           doc::ts_type::LiteralDefKind::Boolean => {
             format!("{}", literal.boolean.unwrap())
           }
-          doc::ts_type::LiteralDefKind::String => literal.string.unwrap(),
+          doc::ts_type::LiteralDefKind::String => {
+            "\"".to_string() + literal.string.unwrap().as_str() + "\""
+          }
           doc::ts_type::LiteralDefKind::Number => {
             format!("{}", literal.number.unwrap())
           }
@@ -178,14 +179,44 @@ impl TerminalPrinter {
         let mut output = "".to_string();
         if tuple.len() > 0 {
           for ts_type in tuple {
-            output.push_str(self.render_ts_type(ts_type).as_str());
-            output.push_str(", ")
+            output += self.render_ts_type(ts_type).as_str();
+            output += ", "
           }
           output.truncate(output.len() - 2);
         }
         output
       }
-      TsTypeDefKind::TypeLiteral => ts_type.repr,
+      TsTypeDefKind::TypeLiteral => {
+        let mut output = "".to_string();
+        let type_literal = ts_type.type_literal.unwrap();
+        for node in type_literal.call_signatures {
+          output += format!(
+            "({}): {}, ",
+            self.render_params(node.params),
+            self.render_ts_type(node.ts_type.unwrap())
+          )
+          .as_str()
+        }
+        for node in type_literal.methods {
+          output += format!(
+            "{}({}): {}, ",
+            node.name,
+            self.render_params(node.params),
+            self.render_ts_type(node.return_type.unwrap())
+          )
+          .as_str()
+        }
+        for node in type_literal.properties {
+          output += format!(
+            "{}: {}, ",
+            node.name,
+            self.render_ts_type(node.ts_type.unwrap())
+          )
+          .as_str()
+        }
+        output.truncate(output.len() - 2);
+        "{ ".to_string() + output.as_str() + " }"
+      }
       TsTypeDefKind::TypeOperator => {
         let operator = ts_type.type_operator.unwrap();
         format!(
@@ -205,12 +236,12 @@ impl TerminalPrinter {
           let type_params = type_ref.type_params.unwrap();
           if type_params.len() > 0 {
             for ts_type in type_params {
-              output.push_str(self.render_ts_type(ts_type).as_str());
-              output.push_str(", ")
+              output += self.render_ts_type(ts_type).as_str();
+              output += ", "
             }
             output.truncate(output.len() - 2);
           }
-          final_output.push_str(format!("<{}>", output).as_str());
+          final_output += format!("<{}>", output).as_str();
         }
         final_output
       }
@@ -219,8 +250,8 @@ impl TerminalPrinter {
         let mut output = "".to_string();
         if union.len() > 0 {
           for ts_type in union {
-            output.push_str(self.render_ts_type(ts_type).as_str());
-            output.push_str(" | ")
+            output += self.render_ts_type(ts_type).as_str();
+            output += " | "
           }
           output.truncate(output.len() - 3);
         }
