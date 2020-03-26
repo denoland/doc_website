@@ -13,8 +13,9 @@ export function foo(a: string, b: number): void {
     console.log("Hello world");
 }
 "#;
-  let entries =
-    get_docs("test.ts".to_string(), source_code.to_string()).unwrap();
+  let entries = doc::DocParser::default()
+    .parse("test.ts".to_string(), source_code.to_string())
+    .unwrap();
   assert_eq!(entries.len(), 1);
   let entry = &entries[0];
   assert_eq!(entry.kind, doc::DocNodeKind::Function);
@@ -39,8 +40,9 @@ Or not that many?"#
 fn export_const() {
   let source_code =
     "/** Something about fizzBuzz */\nexport const fizzBuzz = \"fizzBuzz\";\n";
-  let entries =
-    get_docs("test.ts".to_string(), source_code.to_string()).unwrap();
+  let entries = doc::DocParser::default()
+    .parse("test.ts".to_string(), source_code.to_string())
+    .unwrap();
   assert_eq!(entries.len(), 1);
   let entry = &entries[0];
   assert_eq!(entry.kind, doc::DocNodeKind::Variable);
@@ -72,8 +74,9 @@ export class Foobar extends Fizz implements Buzz {
     }
 }
 "#;
-  let entries =
-    get_docs("test.ts".to_string(), source_code.to_string()).unwrap();
+  let entries = doc::DocParser::default()
+    .parse("test.ts".to_string(), source_code.to_string())
+    .unwrap();
   assert_eq!(entries.len(), 1);
   let entry = &entries[0];
   assert_eq!(entry.kind, doc::DocNodeKind::Class);
@@ -95,8 +98,9 @@ export interface Reader {
     read(buf: Uint8Array, something: unknown): Promise<number>
 }
     "#;
-  let entries =
-    get_docs("test.ts".to_string(), source_code.to_string()).unwrap();
+  let entries = doc::DocParser::default()
+    .parse("test.ts".to_string(), source_code.to_string())
+    .unwrap();
   assert_eq!(entries.len(), 1);
   let entry = &entries[0];
   assert_eq!(entry.kind, doc::DocNodeKind::Interface);
@@ -116,8 +120,9 @@ fn export_type_alias() {
 /** Array holding numbers */
 export type NumberArray = Array<number>;
     "#;
-  let entries =
-    get_docs("test.ts".to_string(), source_code.to_string()).unwrap();
+  let entries = doc::DocParser::default()
+    .parse("test.ts".to_string(), source_code.to_string())
+    .unwrap();
   assert_eq!(entries.len(), 1);
   let entry = &entries[0];
   assert_eq!(entry.kind, doc::DocNodeKind::TypeAlias);
@@ -137,8 +142,9 @@ export enum Hello {
     Buzz = "buzz",
 }
     "#;
-  let entries =
-    get_docs("test.ts".to_string(), source_code.to_string()).unwrap();
+  let entries = doc::DocParser::default()
+    .parse("test.ts".to_string(), source_code.to_string())
+    .unwrap();
   assert_eq!(entries.len(), 1);
   let entry = &entries[0];
   assert_eq!(entry.kind, doc::DocNodeKind::Enum);

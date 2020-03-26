@@ -21,6 +21,8 @@ use ts_type::TsTypeDef;
 use type_alias::TypeAliasDef;
 use variable::VariableDef;
 
+pub use parser::DocParser;
+
 #[derive(Debug, PartialEq, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub enum DocNodeKind {
