@@ -1,4 +1,6 @@
 use super::*;
+use serde_json;
+use serde_json::json;
 
 #[test]
 fn export_fn() {
@@ -18,18 +20,45 @@ export function foo(a: string, b: number): void {
     .unwrap();
   assert_eq!(entries.len(), 1);
   let entry = &entries[0];
-  assert_eq!(entry.kind, doc::DocNodeKind::Function);
-  assert_eq!(
-    entry.js_doc,
-    Some(
-      r#"Hello there, this is a multiline JSdoc.
-
-It has many lines
-
-Or not that many?"#
-        .to_string()
-    )
-  );
+  let expected_json = json!({
+    "functionDef": {
+      "isAsync": false,
+      "isGenerator": false,
+      "params": [
+          {
+            "name": "a",
+            "tsType": {
+              "keyword": "string",
+              "kind": "keyword",
+              "repr": "string",
+            },
+          },
+          {
+            "name": "b",
+            "tsType": {
+              "keyword": "number",
+              "kind": "keyword",
+              "repr": "number",
+            },
+          },
+      ],
+      "returnType": {
+        "keyword": "void",
+        "kind": "keyword",
+        "repr": "void",
+      },
+    },
+    "jsDoc": "Hello there, this is a multiline JSdoc.\n\nIt has many lines\n\nOr not that many?",
+    "kind": "function",
+    "location": {
+      "col": 0,
+      "filename": "test.ts",
+      "line": 8,
+    },
+    "name": "foo",
+  });
+  let actual = serde_json::to_value(entry).unwrap();
+  assert_eq!(actual, expected_json);
 }
 
 #[test]
@@ -41,8 +70,22 @@ fn export_const() {
     .unwrap();
   assert_eq!(entries.len(), 1);
   let entry = &entries[0];
-  assert_eq!(entry.kind, doc::DocNodeKind::Variable);
-  assert_eq!(entry.js_doc, Some("Something about fizzBuzz".to_string()));
+  let expected_json = json!({
+    "kind": "variable",
+    "name": "fizzBuzz",
+    "location": {
+      "filename": "test.ts",
+      "line": 2,
+      "col": 0
+    },
+    "jsDoc": "Something about fizzBuzz",
+    "variableDef": {
+      "tsType": null,
+      "kind": "const"
+    }
+  });
+  let actual = serde_json::to_value(entry).unwrap();
+  assert_eq!(actual, expected_json);
 }
 
 #[test]
@@ -73,9 +116,183 @@ export class Foobar extends Fizz implements Buzz {
     .parse("test.ts".to_string(), source_code.to_string())
     .unwrap();
   assert_eq!(entries.len(), 1);
+  let expected_json = json!({
+    "kind": "class",
+    "name": "Foobar",
+    "location": {
+      "filename": "test.ts",
+      "line": 3,
+      "col": 0
+    },
+    "jsDoc": "Class doc",
+    "classDef": {
+      "isAbstract": false,
+      "constructors": [
+        {
+          "jsDoc": "Constructor js doc",
+          "accessibility": null,
+          "name": "constructor",
+          "params": [
+            {
+              "name": "name",
+              "tsType": {
+                "repr": "string",
+                "kind": "keyword",
+                "keyword": "string"
+              }
+            },
+            {
+              "name": "<TODO>",
+              "tsType": null
+            },
+            {
+              "name": "<TODO>",
+              "tsType": null
+            }
+          ],
+          "location": {
+            "filename": "test.ts",
+            "line": 10,
+            "col": 4
+          }
+        }
+      ],
+      "properties": [
+        {
+          "jsDoc": null,
+          "tsType": {
+              "repr": "boolean",
+              "kind": "keyword",
+              "keyword": "boolean"
+          },
+          "readonly": false,
+          "accessibility": "private",
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "private1",
+          "location": {
+            "filename": "test.ts",
+            "line": 4,
+            "col": 4
+          }
+        },
+        {
+          "jsDoc": null,
+          "tsType": {
+            "repr": "number",
+            "kind": "keyword",
+            "keyword": "number"
+          },
+          "readonly": false,
+          "accessibility": "protected",
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "protected1",
+          "location": {
+            "filename": "test.ts",
+            "line": 5,
+            "col": 4
+          }
+        },
+        {
+          "jsDoc": null,
+          "tsType": {
+            "repr": "boolean",
+            "kind": "keyword",
+            "keyword": "boolean"
+          },
+          "readonly": false,
+          "accessibility": "public",
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "public1",
+          "location": {
+            "filename": "test.ts",
+            "line": 6,
+            "col": 4
+          }
+        },
+        {
+          "jsDoc": null,
+          "tsType": {
+            "repr": "number",
+            "kind": "keyword",
+            "keyword": "number"
+          },
+          "readonly": false,
+          "accessibility": null,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "public2",
+          "location": {
+            "filename": "test.ts",
+            "line": 7,
+            "col": 4
+          }
+        }
+      ],
+      "methods": [
+        {
+          "jsDoc": "Async foo method",
+          "accessibility": null,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "foo",
+          "kind": "method",
+          "functionDef": {
+            "params": [],
+            "returnType": {
+                "repr": "Promise",
+                "kind": "typeRef",
+                "typeRef": {
+                  "typeParams": [
+                    {
+                      "repr": "void",
+                      "kind": "keyword",
+                      "keyword": "void"
+                    }
+                  ],
+                  "typeName": "Promise"
+                }
+            },
+            "isAsync": true,
+            "isGenerator": false
+          },
+          "location": {
+            "filename": "test.ts",
+            "line": 13,
+            "col": 4
+          }
+        },
+        {
+          "jsDoc": "Sync bar method",
+          "accessibility": null,
+          "isAbstract": false,
+          "isStatic": false,
+          "name": "bar",
+          "kind": "method",
+          "functionDef": {
+            "params": [],
+              "returnType": {
+                "repr": "void",
+                "kind": "keyword",
+                "keyword": "void"
+              },
+              "isAsync": false,
+              "isGenerator": false
+            },
+            "location": {
+              "filename": "test.ts",
+              "line": 18,
+              "col": 4
+            }
+          }
+      ]
+    }
+  });
   let entry = &entries[0];
-  assert_eq!(entry.kind, doc::DocNodeKind::Class);
-  assert_eq!(entry.js_doc, Some("Class doc".to_string()));
+  let actual = serde_json::to_value(entry).unwrap();
+  assert_eq!(actual, expected_json);
 }
 
 #[test]
@@ -94,8 +311,68 @@ export interface Reader {
     .unwrap();
   assert_eq!(entries.len(), 1);
   let entry = &entries[0];
-  assert_eq!(entry.kind, doc::DocNodeKind::Interface);
-  assert_eq!(entry.js_doc, Some("Interface js doc".to_string()));
+  let expected_json = json!({
+      "kind": "interface",
+      "name": "Reader",
+      "location": {
+        "filename": "test.ts",
+        "line": 5,
+        "col": 0
+      },
+      "jsDoc": "Interface js doc",
+      "interfaceDef": {
+        "methods": [
+          {
+            "name": "read",
+            "location": {
+              "filename": "test.ts",
+              "line": 7,
+              "col": 4
+            },
+            "jsDoc": "Read n bytes",
+            "params": [
+              {
+                "name": "buf",
+                "tsType": {
+                  "repr": "Uint8Array",
+                  "kind": "typeRef",
+                  "typeRef": {
+                    "typeParams": null,
+                    "typeName": "Uint8Array"
+                  }
+                }
+              },
+              {
+                "name": "something",
+                "tsType": {
+                  "repr": "unknown",
+                  "kind": "keyword",
+                  "keyword": "unknown"
+                }
+              }
+            ],
+            "returnType": {
+              "repr": "Promise",
+              "kind": "typeRef",
+              "typeRef": {
+                "typeParams": [
+                  {
+                    "repr": "number",
+                    "kind": "keyword",
+                    "keyword": "number"
+                  }
+                ],
+                "typeName": "Promise"
+              }
+            }
+          }
+        ],
+        "properties": [],
+        "callSignatures": []
+    }
+  });
+  let actual = serde_json::to_value(entry).unwrap();
+  assert_eq!(actual, expected_json);
 }
 
 #[test]
@@ -109,8 +386,34 @@ export type NumberArray = Array<number>;
     .unwrap();
   assert_eq!(entries.len(), 1);
   let entry = &entries[0];
-  assert_eq!(entry.kind, doc::DocNodeKind::TypeAlias);
-  assert_eq!(entry.js_doc, Some("Array holding numbers".to_string()));
+  let expected_json = json!({
+    "kind": "typeAlias",
+    "name": "NumberArray",
+    "location": {
+        "filename": "test.ts",
+      "line": 3,
+      "col": 0
+    },
+    "jsDoc": "Array holding numbers",
+    "typeAliasDef": {
+      "tsType": {
+        "repr": "Array",
+        "kind": "typeRef",
+        "typeRef": {
+          "typeParams": [
+            {
+              "repr": "number",
+              "kind": "keyword",
+              "keyword": "number"
+            }
+          ],
+          "typeName": "Array"
+        }
+      }
+    }
+  });
+  let actual = serde_json::to_value(entry).unwrap();
+  assert_eq!(actual, expected_json);
 }
 
 #[test]
@@ -130,6 +433,29 @@ export enum Hello {
     .unwrap();
   assert_eq!(entries.len(), 1);
   let entry = &entries[0];
-  assert_eq!(entry.kind, doc::DocNodeKind::Enum);
-  assert_eq!(entry.js_doc, Some("Some enum for good measure".to_string()));
+  let expected_json = json!({
+    "kind": "enum",
+    "name": "Hello",
+    "location": {
+      "filename": "test.ts",
+      "line": 5,
+      "col": 0
+    },
+    "jsDoc": "Some enum for good measure",
+    "enumDef": {
+      "members": [
+        {
+          "name": "World"
+        },
+        {
+          "name": "Fizz"
+        },
+        {
+          "name": "Buzz"
+        }
+      ]
+    }
+  });
+  let actual = serde_json::to_value(entry).unwrap();
+  assert_eq!(actual, expected_json);
 }
