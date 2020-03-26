@@ -14,7 +14,28 @@ impl TerminalPrinter {
     self.print_(doc_nodes, 0);
   }
 
-  fn print_(&self, doc_nodes: Vec<doc::DocNode>, indent: i64) {
+  fn kind_order(&self, kind: &doc::DocNodeKind) -> i64 {
+    match kind {
+      DocNodeKind::Function => 0,
+      DocNodeKind::Variable => 1,
+      DocNodeKind::Class => 2,
+      DocNodeKind::Enum => 3,
+      DocNodeKind::Interface => 4,
+      DocNodeKind::TypeAlias => 5,
+      DocNodeKind::Namespace => 6,
+    }
+  }
+
+  fn print_(&self, mut doc_nodes: Vec<doc::DocNode>, indent: i64) {
+    doc_nodes.sort_unstable_by(|a, b| {
+      let kind_cmp = self.kind_order(&a.kind).cmp(&self.kind_order(&b.kind));
+      if kind_cmp == core::cmp::Ordering::Equal {
+        a.name.cmp(&b.name)
+      } else {
+        kind_cmp
+      }
+    });
+
     for node in doc_nodes {
       match node.kind {
         DocNodeKind::Function => self.print_function(node, indent),
