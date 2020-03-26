@@ -13,8 +13,9 @@ export function foo(a: string, b: number): void {
     console.log("Hello world");
 }
 "#;
-  let entries =
-    get_docs("test.ts".to_string(), source_code.to_string()).unwrap();
+  let entries = doc::DocParser::default()
+    .parse("test.ts".to_string(), source_code.to_string())
+    .unwrap();
   assert_eq!(entries.len(), 1);
   let entry = &entries[0];
   assert_eq!(entry.kind, doc::DocNodeKind::Function);
@@ -29,23 +30,19 @@ Or not that many?"#
         .to_string()
     )
   );
-  assert_eq!(
-    entry.snippet,
-    "export function foo(a: string, b: number): void"
-  );
 }
 
 #[test]
 fn export_const() {
   let source_code =
     "/** Something about fizzBuzz */\nexport const fizzBuzz = \"fizzBuzz\";\n";
-  let entries =
-    get_docs("test.ts".to_string(), source_code.to_string()).unwrap();
+  let entries = doc::DocParser::default()
+    .parse("test.ts".to_string(), source_code.to_string())
+    .unwrap();
   assert_eq!(entries.len(), 1);
   let entry = &entries[0];
   assert_eq!(entry.kind, doc::DocNodeKind::Variable);
   assert_eq!(entry.js_doc, Some("Something about fizzBuzz".to_string()));
-  assert_eq!(entry.snippet, "export const fizzBuzz = \"fizzBuzz\";");
 }
 
 #[test]
@@ -72,16 +69,13 @@ export class Foobar extends Fizz implements Buzz {
     }
 }
 "#;
-  let entries =
-    get_docs("test.ts".to_string(), source_code.to_string()).unwrap();
+  let entries = doc::DocParser::default()
+    .parse("test.ts".to_string(), source_code.to_string())
+    .unwrap();
   assert_eq!(entries.len(), 1);
   let entry = &entries[0];
   assert_eq!(entry.kind, doc::DocNodeKind::Class);
   assert_eq!(entry.js_doc, Some("Class doc".to_string()));
-  assert_eq!(
-    entry.snippet,
-    r#"export class Foobar extends Fizz implements Buzz"#
-  );
 }
 
 #[test]
@@ -95,19 +89,13 @@ export interface Reader {
     read(buf: Uint8Array, something: unknown): Promise<number>
 }
     "#;
-  let entries =
-    get_docs("test.ts".to_string(), source_code.to_string()).unwrap();
+  let entries = doc::DocParser::default()
+    .parse("test.ts".to_string(), source_code.to_string())
+    .unwrap();
   assert_eq!(entries.len(), 1);
   let entry = &entries[0];
   assert_eq!(entry.kind, doc::DocNodeKind::Interface);
   assert_eq!(entry.js_doc, Some("Interface js doc".to_string()));
-  assert_eq!(
-    entry.snippet,
-    r#"export interface Reader {
-    /** Read n bytes */
-    read(buf: Uint8Array, something: unknown): Promise<number>
-}"#
-  );
 }
 
 #[test]
@@ -116,13 +104,13 @@ fn export_type_alias() {
 /** Array holding numbers */
 export type NumberArray = Array<number>;
     "#;
-  let entries =
-    get_docs("test.ts".to_string(), source_code.to_string()).unwrap();
+  let entries = doc::DocParser::default()
+    .parse("test.ts".to_string(), source_code.to_string())
+    .unwrap();
   assert_eq!(entries.len(), 1);
   let entry = &entries[0];
   assert_eq!(entry.kind, doc::DocNodeKind::TypeAlias);
   assert_eq!(entry.js_doc, Some("Array holding numbers".to_string()));
-  assert_eq!(entry.snippet, "export type NumberArray = Array<number>;");
 }
 
 #[test]
@@ -137,18 +125,11 @@ export enum Hello {
     Buzz = "buzz",
 }
     "#;
-  let entries =
-    get_docs("test.ts".to_string(), source_code.to_string()).unwrap();
+  let entries = doc::DocParser::default()
+    .parse("test.ts".to_string(), source_code.to_string())
+    .unwrap();
   assert_eq!(entries.len(), 1);
   let entry = &entries[0];
   assert_eq!(entry.kind, doc::DocNodeKind::Enum);
   assert_eq!(entry.js_doc, Some("Some enum for good measure".to_string()));
-  assert_eq!(
-    entry.snippet,
-    r#"export enum Hello {
-    World = "world",
-    Fizz = "fizz",
-    Buzz = "buzz",
-}"#
-  );
 }

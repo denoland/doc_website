@@ -662,9 +662,8 @@ pub struct TsIndexedAccessDef {
 pub struct LiteralMethodDef {
   // TODO: type_params
   // pub name: String,
-  //   pub snippet: String,
-  //   pub location: Location,
-  //   pub js_doc: Option<String>,
+  // pub location: Location,
+  // pub js_doc: Option<String>,
   pub params: Vec<ParamDef>,
   pub return_type: Option<TsTypeDef>,
 }
@@ -674,9 +673,8 @@ pub struct LiteralMethodDef {
 pub struct LiteralPropertyDef {
   // TODO: type_params
   pub name: String,
-  //   pub snippet: String,
-  //   pub location: Location,
-  //   pub js_doc: Option<String>,
+  // pub location: Location,
+  // pub js_doc: Option<String>,
   pub params: Vec<ParamDef>,
   pub computed: bool,
   pub optional: bool,
@@ -687,9 +685,8 @@ pub struct LiteralPropertyDef {
 #[serde(rename_all = "camelCase")]
 pub struct LiteralCallSignatureDef {
   // TODO: type_params
-  //   pub snippet: String,
-  //   pub location: Location,
-  //   pub js_doc: Option<String>,
+  // pub location: Location,
+  // pub js_doc: Option<String>,
   pub params: Vec<ParamDef>,
   pub ts_type: Option<TsTypeDef>,
 }
