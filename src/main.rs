@@ -27,6 +27,17 @@ fn main() {
     printer.print(doc_nodes);
     std::process::exit(0);
   }
+
   let printer = TerminalPrinter::new();
+  if args.len() == 3 {
+    let name = args[2].clone();
+    let node = doc_nodes.iter().find(|node| node.name == name);
+    if node.is_some() {
+      printer.print_details(node.unwrap().clone());
+    } else {
+      println!("Node {} found!", name)
+    }
+    std::process::exit(0);
+  }
   printer.print(doc_nodes);
 }

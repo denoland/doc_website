@@ -7,7 +7,7 @@ use super::ts_type::TsTypeDef;
 use super::Location;
 use super::ParamDef;
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct InterfaceMethodDef {
   // TODO: type_params
@@ -18,7 +18,7 @@ pub struct InterfaceMethodDef {
   pub return_type: Option<TsTypeDef>,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct InterfacePropertyDef {
   // TODO: type_params
@@ -31,7 +31,7 @@ pub struct InterfacePropertyDef {
   pub ts_type: Option<TsTypeDef>,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct InterfaceCallSignatureDef {
   // TODO: type_params
@@ -41,7 +41,7 @@ pub struct InterfaceCallSignatureDef {
   pub ts_type: Option<TsTypeDef>,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct InterfaceDef {
   // TODO: extends, type params

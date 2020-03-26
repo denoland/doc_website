@@ -3,13 +3,13 @@ use swc_ecma_ast;
 
 use super::parser::DocParser;
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct EnumMemberDef {
   pub name: String,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct EnumDef {
   pub members: Vec<EnumMemberDef>,

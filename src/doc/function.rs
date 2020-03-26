@@ -6,7 +6,7 @@ use super::ts_type::ts_type_ann_to_def;
 use super::ts_type::TsTypeDef;
 use super::ParamDef;
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct FunctionDef {
   pub params: Vec<ParamDef>,

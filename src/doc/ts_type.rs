@@ -594,14 +594,14 @@ impl Into<TsTypeDef> for &TsType {
   }
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct TsTypeRefDef {
   pub type_params: Option<Vec<TsTypeDef>>,
   pub type_name: String,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub enum LiteralDefKind {
   Number,
@@ -609,7 +609,7 @@ pub enum LiteralDefKind {
   Boolean,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct LiteralDef {
   pub kind: LiteralDefKind,
@@ -624,14 +624,14 @@ pub struct LiteralDef {
   pub boolean: Option<bool>,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct TsTypeOperatorDef {
   pub operator: String,
   pub ts_type: TsTypeDef,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct TsFnOrConstructorDef {
   // TODO: type_params
@@ -640,7 +640,7 @@ pub struct TsFnOrConstructorDef {
   pub params: Vec<ParamDef>,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct TsConditionalDef {
   pub check_type: Box<TsTypeDef>,
@@ -649,7 +649,7 @@ pub struct TsConditionalDef {
   pub false_type: Box<TsTypeDef>,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct TsIndexedAccessDef {
   pub readonly: bool,
@@ -657,7 +657,7 @@ pub struct TsIndexedAccessDef {
   pub index_type: Box<TsTypeDef>,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct LiteralMethodDef {
   // TODO: type_params
@@ -668,7 +668,7 @@ pub struct LiteralMethodDef {
   pub return_type: Option<TsTypeDef>,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct LiteralPropertyDef {
   // TODO: type_params
@@ -681,7 +681,7 @@ pub struct LiteralPropertyDef {
   pub ts_type: Option<TsTypeDef>,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct LiteralCallSignatureDef {
   // TODO: type_params
@@ -691,7 +691,7 @@ pub struct LiteralCallSignatureDef {
   pub ts_type: Option<TsTypeDef>,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct TsTypeLiteralDef {
   pub methods: Vec<LiteralMethodDef>,
@@ -699,7 +699,7 @@ pub struct TsTypeLiteralDef {
   pub call_signatures: Vec<LiteralCallSignatureDef>,
 }
 
-#[derive(Debug, PartialEq, Serialize)]
+#[derive(Debug, PartialEq, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub enum TsTypeDefKind {
   Keyword,
@@ -721,7 +721,7 @@ pub enum TsTypeDefKind {
   TypeLiteral,
 }
 
-#[derive(Debug, Default, Serialize)]
+#[derive(Debug, Default, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct TsTypeDef {
   pub repr: String,

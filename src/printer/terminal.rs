@@ -14,6 +14,23 @@ impl TerminalPrinter {
     self.print_(doc_nodes, 0);
   }
 
+  pub fn print_details(&self, node: doc::DocNode) {
+    println!(
+      "Defined in {}:{}:{}.\n",
+      node.location.filename, node.location.line, node.location.col
+    );
+
+    match node.kind {
+      DocNodeKind::Function => self.print_function(node, 0),
+      DocNodeKind::Variable => self.print_variable(node, 0),
+      DocNodeKind::Class => self.print_class(node, 0),
+      DocNodeKind::Enum => self.print_enum(node, 0),
+      DocNodeKind::Interface => self.print_interface(node, 0),
+      DocNodeKind::TypeAlias => self.print_type_alias(node, 0),
+      DocNodeKind::Namespace => self.print_namespace(node, 0),
+    }
+  }
+
   fn kind_order(&self, kind: &doc::DocNodeKind) -> i64 {
     match kind {
       DocNodeKind::Function => 0,
@@ -26,8 +43,9 @@ impl TerminalPrinter {
     }
   }
 
-  fn print_(&self, mut doc_nodes: Vec<doc::DocNode>, indent: i64) {
-    doc_nodes.sort_unstable_by(|a, b| {
+  fn print_(&self, doc_nodes: Vec<doc::DocNode>, indent: i64) {
+    let mut sorted = doc_nodes.clone();
+    sorted.sort_unstable_by(|a, b| {
       let kind_cmp = self.kind_order(&a.kind).cmp(&self.kind_order(&b.kind));
       if kind_cmp == core::cmp::Ordering::Equal {
         a.name.cmp(&b.name)
@@ -36,8 +54,11 @@ impl TerminalPrinter {
       }
     });
 
-    for node in doc_nodes {
-      match node.kind {
+    for node in sorted {
+      let kind = node.kind.clone();
+      let js_doc = node.js_doc.clone();
+      let namespace_def = node.namespace_def.clone();
+      match kind {
         DocNodeKind::Function => self.print_function(node, indent),
         DocNodeKind::Variable => self.print_variable(node, indent),
         DocNodeKind::Class => self.print_class(node, indent),
@@ -45,7 +66,18 @@ impl TerminalPrinter {
         DocNodeKind::Interface => self.print_interface(node, indent),
         DocNodeKind::TypeAlias => self.print_type_alias(node, indent),
         DocNodeKind::Namespace => self.print_namespace(node, indent),
+      };
+      if js_doc.is_some() {
+        self.print_jsdoc(indent, js_doc.unwrap());
       }
+      println!("");
+      match kind {
+        DocNodeKind::Namespace => {
+          self.print_(namespace_def.unwrap().elements, indent + 1);
+          println!("");
+        }
+        _ => {}
+      };
     }
   }
 
@@ -215,19 +247,11 @@ impl TerminalPrinter {
       self.render_params(function_def.params),
       self.render_ts_type(return_type).as_str()
     );
-    if node.js_doc.is_some() {
-      self.print_jsdoc(indent, node.js_doc.unwrap());
-    }
-    println!("");
   }
 
   fn print_class(&self, node: doc::DocNode, indent: i64) {
     self.print_indent(indent);
     println!("class {}", node.name);
-    if node.js_doc.is_some() {
-      self.print_jsdoc(indent, node.js_doc.unwrap());
-    }
-    println!("");
   }
 
   fn print_variable(&self, node: doc::DocNode, indent: i64) {
@@ -247,48 +271,25 @@ impl TerminalPrinter {
         "".to_string()
       }
     );
-    if node.js_doc.is_some() {
-      self.print_jsdoc(indent, node.js_doc.unwrap());
-    }
-    println!("");
   }
 
   fn print_enum(&self, node: doc::DocNode, indent: i64) {
     self.print_indent(indent);
     println!("enum {}", node.name);
-    if node.js_doc.is_some() {
-      self.print_jsdoc(indent, node.js_doc.unwrap());
-    }
-    println!("");
   }
 
   fn print_interface(&self, node: doc::DocNode, indent: i64) {
     self.print_indent(indent);
     println!("interface {}", node.name);
-    if node.js_doc.is_some() {
-      self.print_jsdoc(indent, node.js_doc.unwrap());
-    }
-    println!("");
   }
 
   fn print_type_alias(&self, node: doc::DocNode, indent: i64) {
     self.print_indent(indent);
     println!("type {}", node.name);
-    if node.js_doc.is_some() {
-      self.print_jsdoc(indent, node.js_doc.unwrap());
-    }
-    println!("");
   }
 
   fn print_namespace(&self, node: doc::DocNode, indent: i64) {
     self.print_indent(indent);
-    let namespace_def = node.namespace_def.unwrap();
     println!("namespace {}", node.name);
-    if node.js_doc.is_some() {
-      self.print_jsdoc(indent, node.js_doc.unwrap());
-    }
-    println!("");
-    self.print_(namespace_def.elements, indent + 1);
-    println!("");
   }
 }

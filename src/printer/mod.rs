@@ -5,4 +5,5 @@ pub mod terminal;
 
 pub trait Printer {
   fn print(&self, doc_nodes: Vec<doc::DocNode>);
+  fn print_details(&self, node: doc::DocNode);
 }

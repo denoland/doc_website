@@ -18,4 +18,13 @@ impl JSONPrinter {
     };
     println!("{}", docs_json);
   }
+
+  pub fn print_details(&self, node: doc::DocNode) {
+    let docs_json = if self.pretty_print {
+      serde_json::to_string_pretty(&node).unwrap()
+    } else {
+      serde_json::to_string(&node).unwrap()
+    };
+    println!("{}", docs_json);
+  }
 }

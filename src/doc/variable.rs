@@ -5,7 +5,7 @@ use super::parser::DocParser;
 use super::ts_type::ts_type_ann_to_def;
 use super::ts_type::TsTypeDef;
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct VariableDef {
   pub ts_type: Option<TsTypeDef>,
