@@ -72,7 +72,6 @@ impl Into<Location> for swc_common::Loc {
 pub struct DocNode {
   pub kind: DocNodeKind,
   pub name: String,
-  pub snippet: String,
   pub location: Location,
   pub js_doc: Option<String>,
 

@@ -14,10 +14,6 @@ pub fn get_doc_node_for_export_decl(
   use swc_ecma_ast::Decl;
 
   let js_doc = doc_parser.js_doc_for_span(export_span);
-  let snippet = doc_parser
-    .source_map
-    .span_to_snippet(export_span)
-    .expect("Snippet not found");
   let location = doc_parser
     .source_map
     .lookup_char_pos(export_span.lo())
@@ -30,7 +26,6 @@ pub fn get_doc_node_for_export_decl(
       DocNode {
         kind: DocNodeKind::Class,
         name,
-        snippet,
         location,
         js_doc,
         class_def: Some(class_def),
@@ -48,7 +43,6 @@ pub fn get_doc_node_for_export_decl(
       DocNode {
         kind: DocNodeKind::Function,
         name,
-        snippet,
         location,
         js_doc,
         function_def: Some(function_def),
@@ -66,7 +60,6 @@ pub fn get_doc_node_for_export_decl(
       DocNode {
         kind: DocNodeKind::Variable,
         name,
-        snippet,
         location,
         js_doc,
         variable_def: Some(var_def),
@@ -87,7 +80,6 @@ pub fn get_doc_node_for_export_decl(
       DocNode {
         kind: DocNodeKind::Interface,
         name,
-        snippet,
         location,
         js_doc,
         interface_def: Some(interface_def),
@@ -108,7 +100,6 @@ pub fn get_doc_node_for_export_decl(
       DocNode {
         kind: DocNodeKind::TypeAlias,
         name,
-        snippet,
         location,
         js_doc,
         type_alias_def: Some(type_alias_def),
@@ -124,9 +115,8 @@ pub fn get_doc_node_for_export_decl(
       let (name, enum_def) =
         super::r#enum::get_doc_for_ts_enum_decl(doc_parser, ts_enum);
       DocNode {
-        kind: DocNodeKind::TypeAlias,
+        kind: DocNodeKind::Enum,
         name,
-        snippet,
         location,
         js_doc,
         enum_def: Some(enum_def),
@@ -142,9 +132,8 @@ pub fn get_doc_node_for_export_decl(
       let (name, namespace_def) =
         super::namespace::get_doc_for_ts_module(doc_parser, ts_module);
       DocNode {
-        kind: DocNodeKind::TypeAlias,
+        kind: DocNodeKind::Namespace,
         name,
-        snippet,
         location,
         js_doc,
         namespace_def: Some(namespace_def),

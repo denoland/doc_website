@@ -12,7 +12,6 @@ use super::ParamDef;
 pub struct InterfaceMethodDef {
   // TODO: type_params
   pub name: String,
-  pub snippet: String,
   pub location: Location,
   pub js_doc: Option<String>,
   pub params: Vec<ParamDef>,
@@ -24,7 +23,6 @@ pub struct InterfaceMethodDef {
 pub struct InterfacePropertyDef {
   // TODO: type_params
   pub name: String,
-  pub snippet: String,
   pub location: Location,
   pub js_doc: Option<String>,
   pub params: Vec<ParamDef>,
@@ -37,7 +35,6 @@ pub struct InterfacePropertyDef {
 #[serde(rename_all = "camelCase")]
 pub struct InterfaceCallSignatureDef {
   // TODO: type_params
-  pub snippet: String,
   pub location: Location,
   pub js_doc: Option<String>,
   pub params: Vec<ParamDef>,
@@ -87,10 +84,6 @@ pub fn get_doc_for_ts_interface_decl(
     match &type_element {
       TsMethodSignature(ts_method_sig) => {
         let method_js_doc = doc_parser.js_doc_for_span(ts_method_sig.span);
-        let method_snippet = doc_parser
-          .source_map
-          .span_to_snippet(ts_method_sig.span)
-          .unwrap();
 
         let mut params = vec![];
 
@@ -128,7 +121,6 @@ pub fn get_doc_for_ts_interface_decl(
         let method_def = InterfaceMethodDef {
           name,
           js_doc: method_js_doc,
-          snippet: method_snippet,
           location: doc_parser
             .source_map
             .lookup_char_pos(ts_method_sig.span.lo())
@@ -140,11 +132,6 @@ pub fn get_doc_for_ts_interface_decl(
       }
       TsPropertySignature(ts_prop_sig) => {
         let prop_js_doc = doc_parser.js_doc_for_span(ts_prop_sig.span);
-        let prop_snippet = doc_parser
-          .source_map
-          .span_to_snippet(ts_prop_sig.span)
-          .unwrap();
-
         let name = match &*ts_prop_sig.key {
           swc_ecma_ast::Expr::Ident(ident) => ident.sym.to_string(),
           _ => "TODO".to_string(),
@@ -184,7 +171,6 @@ pub fn get_doc_for_ts_interface_decl(
         let prop_def = InterfacePropertyDef {
           name,
           js_doc: prop_js_doc,
-          snippet: prop_snippet,
           location: doc_parser
             .source_map
             .lookup_char_pos(ts_prop_sig.span.lo())
@@ -198,10 +184,6 @@ pub fn get_doc_for_ts_interface_decl(
       }
       TsCallSignatureDecl(ts_call_sig) => {
         let call_sig_js_doc = doc_parser.js_doc_for_span(ts_call_sig.span);
-        let call_sig_snippet = doc_parser
-          .source_map
-          .span_to_snippet(ts_call_sig.span)
-          .unwrap();
 
         let mut params = vec![];
         for param in &ts_call_sig.params {
@@ -235,7 +217,6 @@ pub fn get_doc_for_ts_interface_decl(
 
         let call_sig_def = InterfaceCallSignatureDef {
           js_doc: call_sig_js_doc,
-          snippet: call_sig_snippet,
           location: doc_parser
             .source_map
             .lookup_char_pos(ts_call_sig.span.lo())

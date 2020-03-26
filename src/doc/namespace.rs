@@ -15,12 +15,6 @@ pub fn get_doc_for_ts_namespace_decl(
   ts_namespace_decl: &swc_ecma_ast::TsNamespaceDecl,
 ) -> DocNode {
   let js_doc = doc_parser.js_doc_for_span(ts_namespace_decl.span);
-  let snippet = doc_parser
-    .source_map
-    .span_to_snippet(ts_namespace_decl.span)
-    .expect("Snippet not found")
-    .trim_end()
-    .to_string();
 
   let namespace_name = ts_namespace_decl.id.sym.to_string();
 
@@ -40,7 +34,6 @@ pub fn get_doc_for_ts_namespace_decl(
   DocNode {
     kind: DocNodeKind::Namespace,
     name: namespace_name,
-    snippet,
     location: doc_parser
       .source_map
       .lookup_char_pos(ts_namespace_decl.span.lo())

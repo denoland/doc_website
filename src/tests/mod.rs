@@ -30,10 +30,6 @@ Or not that many?"#
         .to_string()
     )
   );
-  assert_eq!(
-    entry.snippet,
-    "export function foo(a: string, b: number): void"
-  );
 }
 
 #[test]
@@ -47,7 +43,6 @@ fn export_const() {
   let entry = &entries[0];
   assert_eq!(entry.kind, doc::DocNodeKind::Variable);
   assert_eq!(entry.js_doc, Some("Something about fizzBuzz".to_string()));
-  assert_eq!(entry.snippet, "export const fizzBuzz = \"fizzBuzz\";");
 }
 
 #[test]
@@ -81,10 +76,6 @@ export class Foobar extends Fizz implements Buzz {
   let entry = &entries[0];
   assert_eq!(entry.kind, doc::DocNodeKind::Class);
   assert_eq!(entry.js_doc, Some("Class doc".to_string()));
-  assert_eq!(
-    entry.snippet,
-    r#"export class Foobar extends Fizz implements Buzz"#
-  );
 }
 
 #[test]
@@ -105,13 +96,6 @@ export interface Reader {
   let entry = &entries[0];
   assert_eq!(entry.kind, doc::DocNodeKind::Interface);
   assert_eq!(entry.js_doc, Some("Interface js doc".to_string()));
-  assert_eq!(
-    entry.snippet,
-    r#"export interface Reader {
-    /** Read n bytes */
-    read(buf: Uint8Array, something: unknown): Promise<number>
-}"#
-  );
 }
 
 #[test]
@@ -127,7 +111,6 @@ export type NumberArray = Array<number>;
   let entry = &entries[0];
   assert_eq!(entry.kind, doc::DocNodeKind::TypeAlias);
   assert_eq!(entry.js_doc, Some("Array holding numbers".to_string()));
-  assert_eq!(entry.snippet, "export type NumberArray = Array<number>;");
 }
 
 #[test]
@@ -149,12 +132,4 @@ export enum Hello {
   let entry = &entries[0];
   assert_eq!(entry.kind, doc::DocNodeKind::Enum);
   assert_eq!(entry.js_doc, Some("Some enum for good measure".to_string()));
-  assert_eq!(
-    entry.snippet,
-    r#"export enum Hello {
-    World = "world",
-    Fizz = "fizz",
-    Buzz = "buzz",
-}"#
-  );
 }
