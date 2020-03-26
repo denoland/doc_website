@@ -11,15 +11,19 @@ impl TerminalPrinter {
   }
 
   pub fn print(&self, doc_nodes: Vec<doc::DocNode>) {
+    self.print_(doc_nodes, 0);
+  }
+
+  fn print_(&self, doc_nodes: Vec<doc::DocNode>, indent: i64) {
     for node in doc_nodes {
       match node.kind {
-        DocNodeKind::Function => self.print_function(node),
-        DocNodeKind::Variable => self.print_variable(node),
-        DocNodeKind::Class => self.print_class(node),
-        DocNodeKind::Enum => self.print_enum(node),
-        DocNodeKind::Interface => self.print_interface(node),
-        DocNodeKind::TypeAlias => self.print_type_alias(node),
-        DocNodeKind::Namespace => self.print_namespace(node),
+        DocNodeKind::Function => self.print_function(node, indent),
+        DocNodeKind::Variable => self.print_variable(node, indent),
+        DocNodeKind::Class => self.print_class(node, indent),
+        DocNodeKind::Enum => self.print_enum(node, indent),
+        DocNodeKind::Interface => self.print_interface(node, indent),
+        DocNodeKind::TypeAlias => self.print_type_alias(node, indent),
+        DocNodeKind::Namespace => self.print_namespace(node, indent),
       }
     }
   }
@@ -167,7 +171,21 @@ impl TerminalPrinter {
     }
   }
 
-  fn print_function(&self, node: doc::DocNode) {
+  fn print_indent(&self, indent: i64) {
+    for _ in 0..indent {
+      print!("  ")
+    }
+  }
+
+  fn print_jsdoc(&self, indent: i64, jsdoc: String) {
+    self.print_indent(indent + 1);
+    let first_line =
+      jsdoc.split("\n\n").next().unwrap_or("").replace("\n", " ");
+    println!("{}", first_line)
+  }
+
+  fn print_function(&self, node: doc::DocNode, indent: i64) {
+    self.print_indent(indent);
     let function_def = node.function_def.unwrap();
     let return_type = function_def.return_type.unwrap();
     println!(
@@ -175,14 +193,24 @@ impl TerminalPrinter {
       node.name,
       self.render_params(function_def.params),
       self.render_ts_type(return_type).as_str()
-    )
+    );
+    if node.js_doc.is_some() {
+      self.print_jsdoc(indent, node.js_doc.unwrap());
+    }
+    println!("");
   }
 
-  fn print_class(&self, node: doc::DocNode) {
-    println!("class {}", node.name)
+  fn print_class(&self, node: doc::DocNode, indent: i64) {
+    self.print_indent(indent);
+    println!("class {}", node.name);
+    if node.js_doc.is_some() {
+      self.print_jsdoc(indent, node.js_doc.unwrap());
+    }
+    println!("");
   }
 
-  fn print_variable(&self, node: doc::DocNode) {
+  fn print_variable(&self, node: doc::DocNode, indent: i64) {
+    self.print_indent(indent);
     let variable_def = node.variable_def.unwrap();
     println!(
       "{} {}{}",
@@ -197,22 +225,49 @@ impl TerminalPrinter {
       } else {
         "".to_string()
       }
-    )
+    );
+    if node.js_doc.is_some() {
+      self.print_jsdoc(indent, node.js_doc.unwrap());
+    }
+    println!("");
   }
 
-  fn print_enum(&self, node: doc::DocNode) {
-    println!("enum {}", node.name)
+  fn print_enum(&self, node: doc::DocNode, indent: i64) {
+    self.print_indent(indent);
+    println!("enum {}", node.name);
+    if node.js_doc.is_some() {
+      self.print_jsdoc(indent, node.js_doc.unwrap());
+    }
+    println!("");
   }
 
-  fn print_interface(&self, node: doc::DocNode) {
-    println!("interface {}", node.name)
+  fn print_interface(&self, node: doc::DocNode, indent: i64) {
+    self.print_indent(indent);
+    println!("interface {}", node.name);
+    if node.js_doc.is_some() {
+      self.print_jsdoc(indent, node.js_doc.unwrap());
+    }
+    println!("");
   }
 
-  fn print_type_alias(&self, node: doc::DocNode) {
-    println!("type {}", node.name)
+  fn print_type_alias(&self, node: doc::DocNode, indent: i64) {
+    self.print_indent(indent);
+    println!("type {}", node.name);
+    if node.js_doc.is_some() {
+      self.print_jsdoc(indent, node.js_doc.unwrap());
+    }
+    println!("");
   }
 
-  fn print_namespace(&self, node: doc::DocNode) {
-    println!("namespace {}", node.name)
+  fn print_namespace(&self, node: doc::DocNode, indent: i64) {
+    self.print_indent(indent);
+    let namespace_def = node.namespace_def.unwrap();
+    println!("namespace {}", node.name);
+    if node.js_doc.is_some() {
+      self.print_jsdoc(indent, node.js_doc.unwrap());
+    }
+    println!("");
+    self.print_(namespace_def.elements, indent + 1);
+    println!("");
   }
 }
