@@ -31,7 +31,7 @@ fn main() {
   let printer = TerminalPrinter::new();
   if args.len() == 3 {
     let name = args[2].clone();
-    let node = doc_nodes.iter().find(|node| node.name == name);
+    let node = find_node_by_name_recursively(doc_nodes, name.clone());
     if node.is_some() {
       printer.print_details(node.unwrap().clone());
     } else {
@@ -40,4 +40,50 @@ fn main() {
     std::process::exit(0);
   }
   printer.print(doc_nodes);
+}
+
+fn find_node_by_name_recursively(
+  doc_nodes: Vec<doc::DocNode>,
+  name: String,
+) -> Option<doc::DocNode> {
+  let mut parts = name.splitn(2, ".");
+  let name = parts.next();
+  let leftover = parts.next();
+  if name.is_none() {
+    return None;
+  }
+  let node = find_node_by_name(doc_nodes, name.unwrap().to_string());
+  match node {
+    Some(node) => match node.kind {
+      doc::DocNodeKind::Namespace => {
+        if leftover.is_some() {
+          find_node_by_name_recursively(
+            node.namespace_def.unwrap().elements,
+            leftover.unwrap().to_string(),
+          )
+        } else {
+          Some(node)
+        }
+      }
+      _ => {
+        if leftover.is_none() {
+          Some(node)
+        } else {
+          None
+        }
+      }
+    },
+    _ => None,
+  }
+}
+
+fn find_node_by_name(
+  doc_nodes: Vec<doc::DocNode>,
+  name: String,
+) -> Option<doc::DocNode> {
+  let node = doc_nodes.iter().find(|node| node.name == name);
+  match node {
+    Some(node) => Some(node.clone()),
+    None => None,
+  }
 }

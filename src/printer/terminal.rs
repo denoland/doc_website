@@ -214,7 +214,9 @@ impl TerminalPrinter {
           )
           .as_str()
         }
-        output.truncate(output.len() - 2);
+        if output.len() > 0 {
+          output.truncate(output.len() - 2);
+        }
         "{ ".to_string() + output.as_str() + " }"
       }
       TsTypeDefKind::TypeOperator => {
