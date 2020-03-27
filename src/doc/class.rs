@@ -12,7 +12,7 @@ use super::ts_type::TsTypeDef;
 use super::Location;
 use super::ParamDef;
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct ClassConstructorDef {
   pub js_doc: Option<String>,
@@ -22,7 +22,7 @@ pub struct ClassConstructorDef {
   pub location: Location,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct ClassPropertyDef {
   pub js_doc: Option<String>,
@@ -35,7 +35,7 @@ pub struct ClassPropertyDef {
   pub location: Location,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct ClassMethodDef {
   pub js_doc: Option<String>,
@@ -50,7 +50,7 @@ pub struct ClassMethodDef {
   pub location: Location,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct ClassDef {
   // TODO: decorators, super_class, implements,

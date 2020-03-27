@@ -5,7 +5,7 @@ use super::parser::DocParser;
 use super::DocNode;
 use super::DocNodeKind;
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 pub struct NamespaceDef {
   pub elements: Vec<DocNode>,
 }

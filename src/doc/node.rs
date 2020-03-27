@@ -1,7 +1,7 @@
 use serde::Serialize;
 use swc_common;
 
-#[derive(Debug, PartialEq, Serialize)]
+#[derive(Debug, PartialEq, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub enum DocNodeKind {
   Function,
@@ -13,18 +13,18 @@ pub enum DocNodeKind {
   Namespace,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct ParamDef {
   pub name: String,
   pub ts_type: Option<super::ts_type::TsTypeDef>,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 pub struct Location {
-  filename: String,
-  line: usize,
-  col: usize,
+  pub filename: String,
+  pub line: usize,
+  pub col: usize,
 }
 
 impl Into<Location> for swc_common::Loc {
@@ -45,7 +45,7 @@ impl Into<Location> for swc_common::Loc {
   }
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct DocNode {
   pub kind: DocNodeKind,

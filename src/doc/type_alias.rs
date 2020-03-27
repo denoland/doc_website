@@ -4,7 +4,7 @@ use swc_ecma_ast;
 use super::parser::DocParser;
 use super::ts_type::TsTypeDef;
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct TypeAliasDef {
   pub ts_type: TsTypeDef,
