@@ -8,7 +8,6 @@ import {
   DocNodeLocation,
   sortByAlphabet
 } from "../util/docs";
-import { Page } from "./Page";
 import { JSDoc, CodeBlock } from "./JSDoc";
 import { ClassCard } from "./Class";
 import { TsType } from "./TsType";
@@ -17,6 +16,7 @@ import { EnumCard } from "./Enum";
 import { InterfaceCard } from "./Interface";
 import { VariableCard } from "./Variable";
 import { TypeAliasCard } from "./TypeAlias";
+import { Page } from "./Page";
 
 export function SinglePage() {
   const nodes = useNodes();
@@ -24,7 +24,7 @@ export function SinglePage() {
   const groups = groupNodes(sorted);
 
   return (
-    <Page mode="singlepage">
+    <Page>
       <div className="bg-gray-100 py-3 px-6 h-full max-w-4xl">
         {groups.functions.length > 0 ? (
           <div className="py-4">
