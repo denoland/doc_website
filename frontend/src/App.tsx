@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { DocNode, getDocs } from "./util/docs";
-import { NodesProvider } from "./util/nodes";
-import { NamespaceRoute } from "./routes/namespace";
-import { PrefixProvider } from "./util/prefix";
 import { Switch, Route } from "react-router-dom";
 import { SinglePageRoute } from "./routes/singlepage";
 import { NotFound } from "./components/NotFound";
@@ -16,13 +13,6 @@ function App() {
 
   return nodes ? (
     <Switch>
-      <Route path="/multi">
-        <NodesProvider value={nodes}>
-          <PrefixProvider value={{ global: "/multi", namespace: "", node: "" }}>
-            <NamespaceRoute name="" />
-          </PrefixProvider>
-        </NodesProvider>
-      </Route>
       <Route path="/" exact>
         <SinglePageRoute nodes={nodes} />
       </Route>
