@@ -6,7 +6,7 @@ import { useState } from "react";
 const Home = () => {
   const examples = [
     "deno.land/std/http/mod.ts",
-    "deno.land/std/encoding/yaml.ts",
+    "deno.land/std/fs/copy.ts",
     "deno.land/x/oak/mod.ts"
   ];
   const router = useRouter();
@@ -20,7 +20,12 @@ const Home = () => {
   return (
     <>
       <Head>
-        <title>deno_doc</title>
+        <title>deno doc</title>
+        <meta
+          name="description"
+          content="Automatic documentation generator for Deno, a secure runtime for
+              JavaScript and TypeScript."
+        />
       </Head>
       <div className=" px-4 py-8 md:px-12 max-w-4xl mx-auto flex flex-col">
         <div className="flex flex-col md:flex-row items-center">
@@ -42,13 +47,13 @@ const Home = () => {
             value={url}
             onChange={e => setUrl(e.target.value)}
             onKeyDown={e => {
-              if (e.key === "Enter") navigate();
+              if (e.key === "Enter" && url.length > 0) navigate();
             }}
           />
           <button
             className="bg-gray-900 hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-800 border border-gray-300 focus:border-gray-500 text-white font-bold py-2 px-4 rounded-lg duration-100 ml-2 appearance-none leading-normal focus:outline-none"
             onClick={() => {
-              navigate();
+              if (url.length > 0) navigate();
             }}
           >
             View
@@ -57,13 +62,32 @@ const Home = () => {
         <div className="mt-4 font-bold">Some examples:</div>
         <ul className="list-disc">
           {examples.map(example => (
-            <li key={example} className="ml-8">
+            <li key={example} className="ml-6">
               <Link href="/[...url]" as={`/${example}`}>
                 <a className="text-blue-500">https://{example}</a>
               </Link>
             </li>
           ))}
         </ul>
+        <hr className="mt-6" />
+        <div className="mt-6">
+          <p className="font-bold">Other resources:</p>
+          <ul className="list-disc">
+            <li className="ml-6">
+              <a href="https://deno.land" className="text-blue-500">
+                Website
+              </a>
+            </li>
+            <li className="ml-6">
+              <a
+                href="https://deno.land/std/manual.md"
+                className="text-blue-500"
+              >
+                Manual
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </>
   );

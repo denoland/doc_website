@@ -53,11 +53,14 @@ export async function handler(
 
   const status = await proc.status();
   clearTimeout(timer);
+  const errOut = await proc.stderrOutput();
+  const out = await proc.output();
+  proc.close();
   if (!status.success) {
     return {
       statusCode: 500,
       body: JSON.stringify({
-        error: decoder.decode(await proc.stderrOutput())
+        error: decoder.decode(errOut)
       }),
       headers: {
         "content-type": "application/json; charset=utf-8"
@@ -69,7 +72,7 @@ export async function handler(
     statusCode: 200,
     body: JSON.stringify({
       timestamp: new Date().toISOString(),
-      nodes: JSON.parse(decoder.decode(await proc.output()))
+      nodes: JSON.parse(decoder.decode(out))
     }),
     headers: {
       "content-type": "application/json; charset=utf-8"
