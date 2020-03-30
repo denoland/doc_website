@@ -1,5 +1,5 @@
 import React from "react";
-import { useData } from "../util/nodes";
+import { useData } from "../util/data";
 import {
   groupNodes,
   DocNodeShared,
@@ -23,9 +23,26 @@ export function SinglePage() {
   const sorted = sortByAlphabet(nodes);
   const groups = groupNodes(sorted);
 
+  const hasNone =
+    groups.functions.length +
+      groups.variables.length +
+      groups.classes.length +
+      groups.enums.length +
+      groups.interfaces.length +
+      groups.typeAliases.length +
+      groups.namespaces.length ===
+    0;
+
   return (
     <Page>
-      <div className="bg-gray-100 py-3 px-6 h-full max-w-4xl">
+      <div className="bg-gray-100 pb-3 px-6 max-w-4xl">
+        {hasNone ? (
+          <div className="py-4">
+            <div className="text-gray-900 text-xl mb-1">
+              This module has no exports that are recognized by deno doc.
+            </div>
+          </div>
+        ) : null}
         {groups.functions.length > 0 ? (
           <div className="py-4">
             <div className="text-gray-900 text-2xl font-medium mb-1">
@@ -144,19 +161,23 @@ export function SimpleCard({
   returnType?: TsTypeDef;
   showSnippet?: boolean;
 }) {
-  const paramElements = (params ?? []).flatMap(p => [
-    <>
-      {p.name}
-      {p.tsType ? (
+  const paramElements = [];
+  if (params) {
+    for (const p of params) {
+      paramElements.push(
         <>
-          : <TsType tsType={p.tsType} />
-        </>
-      ) : null}
-    </>,
-    ", "
-  ]);
-  paramElements.pop();
-
+          {p.name}
+          {p.tsType ? (
+            <>
+              : <TsType tsType={p.tsType} />
+            </>
+          ) : null}
+        </>,
+        ", "
+      );
+    }
+    paramElements.pop();
+  }
   return (
     <div
       className="shadow rounded-md my-3 bg-white p-2"
@@ -212,18 +233,23 @@ export function SimpleSubCard({
   params?: ParamDef[];
   returnType?: TsTypeDef;
 }) {
-  const paramElements = (params ?? []).flatMap(p => [
-    <>
-      {p.name}
-      {p.tsType ? (
+  const paramElements = [];
+  if (params) {
+    for (const p of params) {
+      paramElements.push(
         <>
-          : <TsType tsType={p.tsType} />
-        </>
-      ) : null}
-    </>,
-    ", "
-  ]);
-  paramElements.pop();
+          {p.name}
+          {p.tsType ? (
+            <>
+              : <TsType tsType={p.tsType} />
+            </>
+          ) : null}
+        </>,
+        ", "
+      );
+    }
+    paramElements.pop();
+  }
 
   return (
     <div className="mt-2 py-1 px-2 rounded bg-gray-100">

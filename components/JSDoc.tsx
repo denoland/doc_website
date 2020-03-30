@@ -1,8 +1,8 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
-import ts from "react-syntax-highlighter/dist/esm/languages/hljs/typescript";
-import atomOneLight from "react-syntax-highlighter/dist/esm/styles/hljs/atom-one-light";
+import ts from "react-syntax-highlighter/dist/cjs/languages/hljs/typescript";
+import atomOneLight from "react-syntax-highlighter/dist/cjs/styles/hljs/atom-one-light";
 SyntaxHighlighter.registerLanguage("ts", ts);
 
 export function JSDoc(props: { jsdoc: string; short?: boolean }) {

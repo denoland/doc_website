@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "./Link";
+import Link from "next/link";
 import { JSDoc } from "./JSDoc";
 
 export function SimpleLink(props: {
@@ -12,8 +12,8 @@ export function SimpleLink(props: {
   return (
     <div className="py-2" key={props.name}>
       <p>
-        <Link href={`$/${props.type}/${props.name}`} className="text-blue-500">
-          {props.name}
+        <Link href={`$/${props.type}/${props.name}`}>
+          <a className="text-blue-500">{props.name}</a>
         </Link>
         {props.afterName}
       </p>
