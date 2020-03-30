@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useState } from "react";
 
 const Home = () => {
   const examples = [
@@ -9,6 +10,13 @@ const Home = () => {
     "deno.land/x/oak/mod.ts"
   ];
   const router = useRouter();
+  const [url, setUrl] = useState("");
+  function navigate() {
+    router.push(
+      "/[...url]",
+      "/" + url.replace("https://", "").replace("http://", "")
+    );
+  }
   return (
     <>
       <Head>
@@ -31,8 +39,18 @@ const Home = () => {
             className="bg-white border border-gray-300 focus:border-gray-500 rounded-lg py-2 px-4 block w-full appearance-none leading-normal outline-none"
             type="url"
             placeholder="https://deno.land/std/http/mod.ts"
+            value={url}
+            onChange={e => setUrl(e.target.value)}
+            onKeyDown={e => {
+              if (e.key === "Enter") navigate();
+            }}
           />
-          <button className="bg-gray-900 hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-800 border border-gray-300 focus:border-gray-500 text-white font-bold py-2 px-4 rounded-lg duration-100 ml-2 appearance-none leading-normal focus:outline-none">
+          <button
+            className="bg-gray-900 hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-800 border border-gray-300 focus:border-gray-500 text-white font-bold py-2 px-4 rounded-lg duration-100 ml-2 appearance-none leading-normal focus:outline-none"
+            onClick={() => {
+              navigate();
+            }}
+          >
             View
           </button>
         </div>
