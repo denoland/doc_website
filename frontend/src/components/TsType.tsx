@@ -5,11 +5,11 @@ import {
   TsTypeDefKind,
   LiteralDefKind
 } from "../util/docs";
-import { useNodes } from "../util/nodes";
+import { useData } from "../util/nodes";
 import { Link } from "./Link";
 
 export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
-  const nodes = useNodes();
+  const { nodes } = useData();
 
   switch (tsType.kind) {
     case TsTypeDefKind.Array:

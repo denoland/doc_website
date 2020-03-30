@@ -10,6 +10,7 @@ export function VariableCard({ node }: { node: DocNodeVariable }) {
   const type = node.variableDef.tsType;
   const isNamespace =
     node.variableDef.kind === "const" &&
+    type &&
     type.kind === TsTypeDefKind.TypeLiteral &&
     type.typeLiteral.properties.length > 0 &&
     type.typeLiteral.methods.length === 0 &&
