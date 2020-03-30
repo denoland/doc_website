@@ -24,3 +24,5 @@ yarn-error.log*
 
 /src/index.css
 .now
+
+deno.d.ts

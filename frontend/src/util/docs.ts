@@ -307,10 +307,13 @@ export type DocNode =
   | DocNodeTypeAlias
   | DocNodeNamespace;
 
-export async function getDocs(): Promise<DocNode[]> {
-  const req = await fetch("/docs.json");
-  if (!req.ok) throw new Error("Failed to fetch docs.");
-  return await req.json();
+export async function getDocs(entrypoint: string): Promise<DocNode[]> {
+  const req = await fetch(
+    `/api/docs?entrypoint=${encodeURIComponent("https://" + entrypoint)}`
+  );
+  if (!req.ok)
+    throw new Error("Failed to fetch docs: " + (await req.json()).error);
+  return (await req.json()).data;
 }
 
 export interface GroupedNodes {
