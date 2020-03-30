@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { DocNode, getDocs } from "./util/docs";
-import { Switch, Route, useLocation } from "react-router-dom";
+import { getData, DataResponse } from "./util/docs";
+import { useLocation } from "react-router-dom";
 import { SinglePageRoute } from "./routes/singlepage";
-import { NotFound } from "./components/NotFound";
 
 function App() {
   const { pathname } = useLocation();
-  const [nodes, setNodes] = useState<DocNode[] | null>(null);
+  const [data, setData] = useState<DataResponse | null>(null);
   const [error, setError] = useState<string | undefined>(undefined);
 
   const entrypoint = pathname.slice(1);
 
   useEffect(() => {
     if (entrypoint)
-      getDocs(entrypoint)
-        .then(setNodes)
+      getData(entrypoint)
+        .then(setData)
         .catch(err => setError(err?.message ?? err));
   }, [entrypoint]);
 
@@ -29,15 +28,8 @@ function App() {
     <div className="h-full flex justify-center items-center">
       <div className="text-gray-800 text-2xl">No entrypoint supplied.</div>
     </div>
-  ) : nodes ? (
-    <Switch>
-      <Route path="/">
-        <SinglePageRoute nodes={nodes} />
-      </Route>
-      <Route>
-        <NotFound />
-      </Route>
-    </Switch>
+  ) : data ? (
+    <SinglePageRoute data={data} />
   ) : (
     <div className="h-full flex justify-center items-center">
       <div className="text-gray-800 text-2xl">Loading...</div>

@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { Link } from "./Link";
 import { groupNodes, DocNodeShared } from "../util/docs";
-import { useNodes } from "../util/nodes";
+import { useData } from "../util/nodes";
 import { useLocation, useHistory } from "react-router-dom";
 
 const SidebarSection = (props: {
@@ -30,10 +30,10 @@ const SidebarSection = (props: {
   ) : null;
 };
 
-export const Sidebar = (props: { generationDate: Date }) => {
+export const Sidebar = (props: {}) => {
   const history = useHistory();
 
-  const nodes = useNodes();
+  const { nodes, timestamp } = useData();
   const groups = useMemo(() => groupNodes(nodes), [nodes]);
 
   const { pathname } = useLocation();
@@ -44,7 +44,7 @@ export const Sidebar = (props: { generationDate: Date }) => {
       <header className="px-6 py-4 border-b border-gray-200">
         <div className="text-gray-900 text-md">deno_doc</div>
         <div className="text-gray-600 text-sm">
-          Generated on {props.generationDate.toLocaleDateString()}
+          Last updated {timestamp.toLocaleString()}
         </div>
         <div className="flex">
           <div className="mt-1 relative rounded-md">

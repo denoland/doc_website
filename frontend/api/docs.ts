@@ -68,7 +68,8 @@ export async function handler(
   return {
     statusCode: 200,
     body: JSON.stringify({
-      data: JSON.parse(decoder.decode(await proc.output()))
+      timestamp: new Date().toISOString(),
+      nodes: JSON.parse(decoder.decode(await proc.output()))
     }),
     headers: {
       "content-type": "application/json; charset=utf-8"

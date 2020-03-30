@@ -1,12 +1,12 @@
 import React from "react";
-import { DocNode } from "../util/docs";
-import { NodesProvider } from "../util/nodes";
+import { DataResponse } from "../util/docs";
+import { DataProvider } from "../util/nodes";
 import { SinglePage } from "../components/SinglePage";
 
-export function SinglePageRoute(props: { nodes: DocNode[] }) {
+export function SinglePageRoute(props: { data: DataResponse }) {
   return (
-    <NodesProvider value={props.nodes}>
+    <DataProvider value={props.data}>
       <SinglePage />
-    </NodesProvider>
+    </DataProvider>
   );
 }

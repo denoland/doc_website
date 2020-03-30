@@ -1,5 +1,5 @@
 import React from "react";
-import { useNodes } from "../util/nodes";
+import { useData } from "../util/nodes";
 import {
   groupNodes,
   DocNodeShared,
@@ -19,7 +19,7 @@ import { TypeAliasCard } from "./TypeAlias";
 import { Page } from "./Page";
 
 export function SinglePage() {
-  const nodes = useNodes();
+  const { nodes } = useData();
   const sorted = sortByAlphabet(nodes);
   const groups = groupNodes(sorted);
 
