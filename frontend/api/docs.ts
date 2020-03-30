@@ -48,7 +48,7 @@ export async function handler(
   });
 
   const timer = setTimeout(() => {
-    proc.kill(Deno.MacOSSignal.SIGKILL);
+    proc.kill(Deno.LinuxSignal.SIGKILL);
   }, 5000);
 
   const status = await proc.status();
