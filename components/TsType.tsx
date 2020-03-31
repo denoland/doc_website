@@ -5,8 +5,8 @@ import {
   TsTypeDefKind,
   LiteralDefKind
 } from "../util/docs";
-import { useData } from "../util/nodes";
-import { Link } from "./Link";
+import { useData } from "../util/data";
+import Link from "next/link";
 
 export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
   const { nodes } = useData();
@@ -29,17 +29,20 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
         </span>
       );
     case TsTypeDefKind.FnOrConstructor: {
-      const paramElements = (tsType.fnOrConstructor.params ?? []).flatMap(p => [
-        <>
-          {p.name}
-          {p.tsType ? (
-            <>
-              : <TsType tsType={p.tsType} />
-            </>
-          ) : null}
-        </>,
-        ", "
-      ]);
+      const paramElements = [];
+      tsType.fnOrConstructor.params.forEach(p =>
+        paramElements.push(
+          <>
+            {p.name}
+            {p.tsType ? (
+              <>
+                : <TsType tsType={p.tsType} />
+              </>
+            ) : null}
+          </>,
+          ", "
+        )
+      );
       paramElements.pop();
       return (
         <span>
@@ -56,10 +59,10 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
         </span>
       );
     case TsTypeDefKind.Intersection: {
-      const elements = tsType.intersection.flatMap(tsType => [
-        <TsType tsType={tsType} />,
-        " & "
-      ]);
+      const elements = [];
+      tsType.intersection.forEach(tsType =>
+        elements.push(<TsType tsType={tsType} />, " & ")
+      );
       elements.pop();
       return <span>{elements}</span>;
     }
@@ -93,16 +96,18 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
     case TsTypeDefKind.This:
       return <span>this</span>;
     case TsTypeDefKind.Tuple:
-      const elements = tsType.tuple.flatMap(tsType => [
-        <TsType tsType={tsType} />,
-        ", "
-      ]);
+      const elements = [];
+      tsType.tuple.forEach(tsType =>
+        elements.push(<TsType tsType={tsType} />, ", ")
+      );
       elements.pop();
       return <span>[{elements}]</span>;
     case TsTypeDefKind.TypeLiteral: {
-      const callSignatures = tsType.typeLiteral.callSignatures.flatMap(
-        callSignature => {
-          const paramElements = (callSignature.params ?? []).flatMap(p => [
+      const final = [];
+      tsType.typeLiteral.callSignatures.forEach(callSignature => {
+        const paramElements = [];
+        (callSignature.params ?? []).forEach(p =>
+          paramElements.push(
             <>
               {p.name}
               {p.tsType ? (
@@ -112,23 +117,24 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
               ) : null}
             </>,
             ", "
-          ]);
-          paramElements.pop();
-          return [
-            <span>
-              ({paramElements})
-              {callSignature.tsType ? (
-                <>
-                  : <TsType tsType={callSignature.tsType}></TsType>
-                </>
-              ) : null}
-            </span>,
-            ", "
-          ];
-        }
-      );
-      const methods = tsType.typeLiteral.methods.flatMap(method => {
-        const paramElements = (method.params ?? []).flatMap(p => [
+          )
+        );
+        paramElements.pop();
+        final.push(
+          <span>
+            ({paramElements})
+            {callSignature.tsType ? (
+              <>
+                : <TsType tsType={callSignature.tsType}></TsType>
+              </>
+            ) : null}
+          </span>,
+          ", "
+        );
+      });
+      tsType.typeLiteral.methods.forEach(method => {
+        const paramElements = [];
+        (method.params ?? []).forEach(p => [
           <>
             {p.name}
             {p.tsType ? (
@@ -140,7 +146,7 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
           ", "
         ]);
         paramElements.pop();
-        return [
+        final.push(
           <span>
             {method.name}({paramElements})
             {method.returnType ? (
@@ -150,10 +156,10 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
             ) : null}
           </span>,
           ", "
-        ];
+        );
       });
-      const properties = tsType.typeLiteral.properties.flatMap(property => {
-        return [
+      tsType.typeLiteral.properties.forEach(property => {
+        final.push(
           <span>
             {property.name}
             {property.tsType ? (
@@ -163,10 +169,8 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
             ) : null}
           </span>,
           ", "
-        ];
+        );
       });
-
-      const final = [...callSignatures, ...methods, ...properties];
       final.pop();
       return (
         <span>
@@ -187,15 +191,16 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
       return <span>typeof {tsType.typeQuery}</span>;
     case TsTypeDefKind.TypeRef:
       const node = findNodeByType(nodes, tsType);
-      const paramElements = (
-        tsType.typeRef.typeParams ?? []
-      ).flatMap(tsType => [<TsType tsType={tsType} />, ", "]);
+      const paramElements = [];
+      (tsType.typeRef.typeParams ?? []).forEach(tsType =>
+        paramElements.push(<TsType tsType={tsType} />, ", ")
+      );
       paramElements.pop();
       return (
         <>
           {node ? (
-            <Link href={`#${node.kind}.${node.name}`} className="text-blue-500">
-              {tsType.typeRef.typeName}
+            <Link href="/[...url]" as={`#${node.kind}.${node.name}`}>
+              <a className="text-blue-500">{tsType.typeRef.typeName}</a>
             </Link>
           ) : (
             <span>{tsType.typeRef.typeName}</span>
@@ -210,10 +215,10 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
         </>
       );
     case TsTypeDefKind.Union: {
-      const elements = tsType.union.flatMap(tsType => [
-        <TsType tsType={tsType} />,
-        " | "
-      ]);
+      const elements = [];
+      tsType.union.forEach((tsType, i) =>
+        elements.push(<TsType tsType={tsType} key={i} />, " | ")
+      );
       elements.pop();
       return <span>{elements}</span>;
     }

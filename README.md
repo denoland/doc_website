@@ -1,5 +1,3 @@
-Example output in `docs.json`
+# deno_doc frontend
 
-`index.html` has simple webpage with output.
-
-Rust component moved to https://github.com/denoland/deno/tree/master/cli/doc
+Uses [NextJS](https://nextjs.org) and deploys to [ZEIT Now](https://now.sh).

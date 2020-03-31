@@ -10,8 +10,15 @@ module.exports = {
         '"Courier New"',
         "monospace"
       ]
+    },
+    inset: {
+      "0": 0,
+      auto: "auto",
+      "20": "5rem"
     }
   },
-  variants: {},
+  variants: {
+    backgroundColor: ["responsive", "hover", "focus", "active"]
+  },
   plugins: []
 };

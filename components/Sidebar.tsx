@@ -1,8 +1,7 @@
-import React, { useState, useMemo } from "react";
-import { Link } from "./Link";
+import React, { useMemo } from "react";
+import Link from "next/link";
 import { groupNodes, DocNodeShared } from "../util/docs";
-import { useData } from "../util/nodes";
-import { useLocation, useHistory } from "react-router-dom";
+import { useData } from "../util/data";
 
 const SidebarSection = (props: {
   title: string;
@@ -17,11 +16,8 @@ const SidebarSection = (props: {
       <div>
         {props.nodes.map((node, i) => (
           <p key={node.name + "+" + i}>
-            <Link
-              href={`#${props.type}.${node.name}`}
-              className="text-blue-500"
-            >
-              {node.name}
+            <Link href="/[...url]" as={`#${props.type}.${node.name}`}>
+              <a className="text-blue-500">{node.name}</a>
             </Link>
           </p>
         ))}
@@ -31,22 +27,19 @@ const SidebarSection = (props: {
 };
 
 export const Sidebar = (props: {}) => {
-  const history = useHistory();
-
   const { nodes, timestamp } = useData();
   const groups = useMemo(() => groupNodes(nodes), [nodes]);
 
-  const { pathname } = useLocation();
-  const [url, setUrl] = useState(decodeURIComponent(pathname.slice(1)));
-
   return (
     <>
-      <header className="px-6 py-4 border-b border-gray-200">
-        <div className="text-gray-900 text-md">deno_doc</div>
-        <div className="text-gray-600 text-sm">
-          Last updated {timestamp.toLocaleString()}
+      <header className="px-6 pt-4">
+        <div className="text-gray-900 text-xl font-bold mb-2 lg:hidden">
+          Table of Contents
         </div>
-        <div className="flex">
+        <div className="text-gray-600 text-sm">
+          Last updated {new Date(timestamp).toLocaleString()}
+        </div>
+        {/*<div className="flex">
           <div className="mt-1 relative rounded-md">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <span className="text-gray-500 sm:text-sm sm:leading-5">
@@ -69,7 +62,7 @@ export const Sidebar = (props: {}) => {
           >
             Go
           </button>
-        </div>
+        </div>*/}
       </header>
       <nav className="px-6 py-2">
         <>
