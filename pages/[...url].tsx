@@ -29,9 +29,12 @@ const Documentation: NextPage<{
         <Link href="/">
           <a className="text-blue-500 mt-4 text-xl">Go back home</a>
         </Link>
-        <Link href="https://github.com/bartlomieju/deno_doc/issues">
-          <a className="text-blue-500 mt-5 text-sm">Report Issue</a>
-        </Link>
+        <a
+          href="https://github.com/bartlomieju/deno_doc/issues"
+          className="text-blue-500 mt-5 text-sm"
+        >
+          Report Issue
+        </a>
       </div>
     );
   }
