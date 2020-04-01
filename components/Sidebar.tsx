@@ -26,44 +26,29 @@ const SidebarSection = (props: {
   ) : null;
 };
 
-export const Sidebar = (props: {}) => {
-  const { nodes, timestamp } = useData();
-  const groups = useMemo(() => groupNodes(nodes), [nodes]);
+export const Sidebar = (props: { forceReload: () => void }) => {
+  const data = useData();
+
+  const groups = useMemo(() => groupNodes(data?.nodes ?? []), [data]);
 
   return (
     <>
-      <header className="px-6 pt-4">
-        <div className="text-gray-900 text-xl font-bold mb-2 lg:hidden">
-          Table of Contents
-        </div>
-        <div className="text-gray-600 text-sm">
-          Last updated {new Date(timestamp).toLocaleString()}
-        </div>
-        {/*<div className="flex">
-          <div className="mt-1 relative rounded-md">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <span className="text-gray-500 sm:text-sm sm:leading-5">
-                https://
-              </span>
-            </div>
-            <input
-              className="bg-white border rounded text-gray-800 block w-full py-2 pr-2 sm:text-sm sm:leading-5 outline-none shadow-sm focus:shadow"
-              style={{ paddingLeft: "3.75rem" }}
-              placeholder="deno.land/std/http/server.ts"
-              value={url}
-              onChange={t => setUrl(t.target.value)}
-            />
+      {data ? (
+        <header className="px-6 pt-4">
+          <div className="text-gray-900 text-xl font-bold mb-2 lg:hidden">
+            Table of Contents
           </div>
-          <button
-            className="ml-2 px-4 bg-gray-200 rounded hover:bg-gray-300"
-            onClick={() => {
-              history.push("/" + url);
-            }}
+          <div className="text-gray-600 text-sm">
+            Last refreshed {new Date(data.timestamp).toLocaleString()}
+          </div>
+          <a
+            className="text-blue-500 text-sm cursor-pointer"
+            onClick={props.forceReload}
           >
-            Go
-          </button>
-        </div>*/}
-      </header>
+            Refresh now
+          </a>
+        </header>
+      ) : null}
       <nav className="px-6 py-2">
         <>
           <SidebarSection

@@ -1,15 +1,19 @@
+import { useReducer } from "react";
 import { NextPage } from "next";
 import Link from "next/link";
-import { DocsData, getData, DataProvider } from "../util/data";
-import { SinglePage } from "../components/SinglePage";
 import Head from "next/head";
+import useSWR from "swr";
+import { getData, DataProvider, DocsData } from "../util/data";
+import { SinglePage } from "../components/SinglePage";
 
-const Documentation: NextPage<{
-  error?: string;
-  data?: DocsData;
-  entrypoint: string;
-}> = ({ error, data, entrypoint }) => {
-  if (error || !data) {
+const Documentation: NextPage<{ entrypoint }> = ({ entrypoint }) => {
+  const [loadCount, forceReload] = useReducer(i => ++i, 0);
+  const { data, error } = useSWR<DocsData, string>(
+    [entrypoint, loadCount],
+    () => getData(entrypoint, "", loadCount > 0)
+  );
+
+  if (error) {
     let title =
       "A internal server error occured while generating the documentation.";
     let details = error;
@@ -38,6 +42,7 @@ const Documentation: NextPage<{
       </div>
     );
   }
+
   return (
     <>
       <Head>
@@ -48,7 +53,7 @@ const Documentation: NextPage<{
         />
       </Head>
       <DataProvider value={data}>
-        <SinglePage />
+        <SinglePage forceReload={() => forceReload()} />
       </DataProvider>
     </>
   );
@@ -57,21 +62,7 @@ const Documentation: NextPage<{
 Documentation.getInitialProps = async ctx => {
   const entrypoint =
     typeof ctx.query.url === "string" ? ctx.query.url : ctx.query.url.join("/");
-  try {
-    return {
-      data: await getData(
-        entrypoint,
-        typeof window !== "undefined"
-          ? ""
-          : ctx.req.headers["x-forwarded-proto"].toString() +
-              "://" +
-              ctx.req.headers["x-forwarded-host"].toString()
-      ),
-      entrypoint
-    };
-  } catch (err) {
-    return { error: err?.message ?? err.toString(), entrypoint };
-  }
+  return { entrypoint };
 };
 
 export default Documentation;

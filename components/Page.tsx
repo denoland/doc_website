@@ -3,7 +3,10 @@ import Link from "next/link";
 import { Sidebar } from "./Sidebar";
 
 // TODO(lucacasonato): not have this use absolute positioning - make this less terrible CSS
-export function Page(props: { children: React.ReactNode }) {
+export function Page(props: {
+  children: React.ReactNode;
+  forceReload: () => void;
+}) {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
 
   return (
@@ -62,7 +65,7 @@ export function Page(props: { children: React.ReactNode }) {
             if (e.target instanceof HTMLAnchorElement) setDrawerOpen(false);
           }}
         >
-          <Sidebar />
+          <Sidebar forceReload={props.forceReload} />
         </div>
         <div className="w-full overflow-y-scroll bg-gray-100">
           {props.children}

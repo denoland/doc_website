@@ -18,9 +18,27 @@ import { VariableCard } from "./Variable";
 import { TypeAliasCard } from "./TypeAlias";
 import { Page } from "./Page";
 
-export function SinglePage() {
-  const { nodes } = useData();
-  const sorted = sortByAlphabet(nodes);
+export function SinglePage(props: { forceReload: () => void }) {
+  const data = useData();
+
+  if (!data) {
+    return (
+      <Page forceReload={props.forceReload}>
+        <div className="bg-gray-100 pb-3 px-6 max-w-4xl">
+          <div className="py-4">
+            <div className="text-gray-900 text-2xl font-medium mb-1">
+              Loading...
+            </div>
+            <div className="text-gray-900 text-lg">
+              It can take a few seconds for documentation to be generated.
+            </div>
+          </div>
+        </div>
+      </Page>
+    );
+  }
+
+  const sorted = sortByAlphabet(data.nodes);
   const groups = groupNodes(sorted);
 
   const hasNone =
@@ -34,7 +52,8 @@ export function SinglePage() {
     0;
 
   return (
-    <Page>
+    <Page forceReload={props.forceReload}>
+      {}
       <div className="bg-gray-100 pb-3 px-6 max-w-4xl">
         {hasNone ? (
           <div className="py-4">

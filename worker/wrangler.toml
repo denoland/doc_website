@@ -1,0 +1,6 @@
+name = "deno_doc_cache"
+type = "javascript"
+account_id = "93bfcf72dfea0e9f2bf5563bc71052cf"
+workers_dev = false
+route = "https://denodoc.lcas.dev/api/docs*"
+zone_id = "0ce0e4d3281b88d402b5e7b874f99d2f"
