@@ -29,6 +29,9 @@ export function SinglePage(props: { forceReload: () => void }) {
             <div className="text-gray-900 text-2xl font-medium mb-1">
               Loading...
             </div>
+            <div className="text-gray-900 text-lg">
+              It can take a few seconds for documentation to be generated.
+            </div>
           </div>
         </div>
       </Page>
