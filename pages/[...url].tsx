@@ -1,29 +1,17 @@
+import { useReducer } from "react";
 import { NextPage } from "next";
 import Link from "next/link";
 import Head from "next/head";
+import useSWR from "swr";
 import { getData, DataProvider, DocsData } from "../util/data";
 import { SinglePage } from "../components/SinglePage";
-import { useState, useEffect, useReducer } from "react";
-import { useRouter } from "next/router";
 
-const Documentation: NextPage<{}> = () => {
-  const router = useRouter();
-  const entrypoint =
-    typeof router.query.url === "string"
-      ? router.query.url
-      : router.query.url.join("/");
-
-  const [data, setData] = useState<DocsData>();
-  const [error, setError] = useState<string>();
+const Documentation: NextPage<{ entrypoint }> = ({ entrypoint }) => {
   const [loadCount, forceReload] = useReducer(i => ++i, 0);
-
-  useEffect(() => {
-    setData(null);
-    setError(null);
-    getData(entrypoint, "", loadCount > 0)
-      .then(val => setData(val))
-      .catch(err => setError(err?.message ?? err.toString()));
-  }, [loadCount]);
+  const { data, error } = useSWR<DocsData, string>(
+    [entrypoint, loadCount],
+    () => getData(entrypoint, "", loadCount > 0)
+  );
 
   if (error) {
     let title =
@@ -69,6 +57,12 @@ const Documentation: NextPage<{}> = () => {
       </DataProvider>
     </>
   );
+};
+
+Documentation.getInitialProps = async ctx => {
+  const entrypoint =
+    typeof ctx.query.url === "string" ? ctx.query.url : ctx.query.url.join("/");
+  return { entrypoint };
 };
 
 export default Documentation;
