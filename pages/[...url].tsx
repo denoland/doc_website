@@ -1,15 +1,31 @@
 import { NextPage } from "next";
 import Link from "next/link";
-import { DocsData, getData, DataProvider } from "../util/data";
-import { SinglePage } from "../components/SinglePage";
 import Head from "next/head";
+import { getData, DataProvider, DocsData } from "../util/data";
+import { SinglePage } from "../components/SinglePage";
+import { useState, useEffect, useReducer } from "react";
+import { useRouter } from "next/router";
 
-const Documentation: NextPage<{
-  error?: string;
-  data?: DocsData;
-  entrypoint: string;
-}> = ({ error, data, entrypoint }) => {
-  if (error || !data) {
+const Documentation: NextPage<{}> = () => {
+  const router = useRouter();
+  const entrypoint =
+    typeof router.query.url === "string"
+      ? router.query.url
+      : router.query.url.join("/");
+
+  const [data, setData] = useState<DocsData>();
+  const [error, setError] = useState<string>();
+  const [loadCount, forceReload] = useReducer(i => ++i, 0);
+
+  useEffect(() => {
+    setData(null);
+    setError(null);
+    getData(entrypoint, "", loadCount > 0)
+      .then(val => setData(val))
+      .catch(err => setError(err?.message ?? err.toString()));
+  }, [loadCount]);
+
+  if (error) {
     let title =
       "A internal server error occured while generating the documentation.";
     let details = error;
@@ -38,6 +54,7 @@ const Documentation: NextPage<{
       </div>
     );
   }
+
   return (
     <>
       <Head>
@@ -48,30 +65,10 @@ const Documentation: NextPage<{
         />
       </Head>
       <DataProvider value={data}>
-        <SinglePage />
+        <SinglePage forceReload={() => forceReload()} />
       </DataProvider>
     </>
   );
-};
-
-Documentation.getInitialProps = async ctx => {
-  const entrypoint =
-    typeof ctx.query.url === "string" ? ctx.query.url : ctx.query.url.join("/");
-  try {
-    return {
-      data: await getData(
-        entrypoint,
-        typeof window !== "undefined"
-          ? ""
-          : ctx.req.headers["x-forwarded-proto"].toString() +
-              "://" +
-              ctx.req.headers["x-forwarded-host"].toString()
-      ),
-      entrypoint
-    };
-  } catch (err) {
-    return { error: err?.message ?? err.toString(), entrypoint };
-  }
 };
 
 export default Documentation;

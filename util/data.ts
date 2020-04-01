@@ -20,12 +20,13 @@ export interface DocsData {
 
 export async function getData(
   entrypoint: string,
-  hostname: string
+  hostname: string,
+  forceReload?: boolean
 ): Promise<DocsData> {
   const req = await fetch(
     `${hostname}/api/docs?entrypoint=${encodeURIComponent(
       "https://" + entrypoint
-    )}`
+    )}${forceReload ? "&force_reload=true" : ""}`
   );
   if (!req.ok) throw new Error((await req.json()).error);
   const resp = await req.json();
