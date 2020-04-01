@@ -11,7 +11,7 @@ export async function handler(
   context: Context
 ): Promise<APIGatewayProxyResult> {
   const url = new URL(
-    JSON.parse(event.body || '{ path: "" }').path,
+    JSON.parse(event.body || '{ "path": "" }').path,
     "https://example.com"
   );
 
@@ -42,7 +42,7 @@ export async function handler(
   }
 
   const proc = Deno.run({
-    cmd: ["deno", "doc", entrypoint, "--json"],
+    cmd: ["deno", "doc", entrypoint, "--json", "--reload"],
     stdout: "piped",
     stderr: "piped"
   });
