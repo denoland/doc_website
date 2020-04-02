@@ -1,16 +1,24 @@
 import { useReducer } from "react";
-import { NextPage } from "next";
 import Link from "next/link";
 import Head from "next/head";
 import useSWR from "swr";
 import { getData, DataProvider, DocsData } from "../util/data";
-import { SinglePage } from "../components/SinglePage";
+import { SinglePage } from "./SinglePage";
 
-const Documentation: NextPage<{ entrypoint }> = ({ entrypoint }) => {
+export const Documentation = ({
+  entrypoint,
+  name
+}: {
+  entrypoint: string;
+  name: string;
+}) => {
   const [loadCount, forceReload] = useReducer(i => ++i, 0);
   const { data, error } = useSWR<DocsData, string>(
     [entrypoint, loadCount],
-    () => getData(entrypoint, "", loadCount > 0)
+    () =>
+      getData(entrypoint, "", loadCount > 0).catch(err => {
+        throw err?.message ?? err.toString();
+      })
   );
 
   if (error) {
@@ -46,10 +54,10 @@ const Documentation: NextPage<{ entrypoint }> = ({ entrypoint }) => {
   return (
     <>
       <Head>
-        <title>{entrypoint} - deno doc</title>
+        <title>{name} - deno doc</title>
         <meta
           name="description"
-          content={`Automatically generated documentation for ${entrypoint}.`}
+          content={`Automatically generated documentation for ${name}.`}
         />
       </Head>
       <DataProvider value={data}>
@@ -58,11 +66,3 @@ const Documentation: NextPage<{ entrypoint }> = ({ entrypoint }) => {
     </>
   );
 };
-
-Documentation.getInitialProps = async ctx => {
-  const entrypoint =
-    typeof ctx.query.url === "string" ? ctx.query.url : ctx.query.url.join("/");
-  return { entrypoint };
-};
-
-export default Documentation;

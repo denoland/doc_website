@@ -154,7 +154,6 @@ export function SinglePage(props: { forceReload: () => void }) {
                 <SimpleCard
                   node={node}
                   key={`${node.kind}.${node.name}+${i}`}
-                  showSnippet
                 />
               ))}
             </div>
@@ -170,15 +169,13 @@ export function SimpleCard({
   prefix,
   details,
   params,
-  returnType,
-  showSnippet
+  returnType
 }: {
   node: DocNodeShared & { kind?: string };
   prefix?: string;
   details?: React.ReactNode;
   params?: ParamDef[];
   returnType?: TsTypeDef;
-  showSnippet?: boolean;
 }) {
   const paramElements = [];
   if (params) {
@@ -215,12 +212,6 @@ export function SimpleCard({
           </span>
         ) : null}
       </div>
-
-      {showSnippet ? (
-        <div className="mt-2">
-          <CodeBlock value={node.snippet} />
-        </div>
-      ) : null}
 
       <div className="text-xs mt-1 text-gray-600">
         Defined in file '{node.location.filename}' on line {node.location.line},
