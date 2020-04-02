@@ -1,7 +1,8 @@
 {
   "functions": {
     "api/**/*.ts": {
-      "runtime": "now-deno@0.3.0"
+      "runtime": "now-deno@0.3.0",
+      "includeFiles": "lib.deno.d.ts"
     }
   },
   "regions": ["bru"]
