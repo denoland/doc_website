@@ -35,7 +35,7 @@ export function VariableNamespaceCard({ node }: { node: DocNodeVariable }) {
           {type.typeLiteral.properties.map(node => {
             return (
               <SimpleSubCard
-                node={{ name: node.name, snippet: "" }}
+                node={{ name: node.name }}
                 returnType={node.tsType}
               />
             );

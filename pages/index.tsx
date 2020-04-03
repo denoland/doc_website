@@ -13,8 +13,8 @@ const Home = () => {
   const [url, setUrl] = useState("");
   function navigate() {
     router.push(
-      "/[...url]",
-      "/" + url.replace("https://", "").replace("http://", "")
+      "/https/[...url]",
+      "/https/" + url.replace("https://", "").replace("http://", "")
     );
   }
   return (
@@ -59,11 +59,20 @@ const Home = () => {
             View
           </button>
         </div>
-        <div className="mt-4 font-bold">Some examples:</div>
+        <div className="mt-1">
+          or{" "}
+          <Link href="/deno@latest">
+            <a className="text-blue-500">
+              view the latest documentation for the Deno runtime
+            </a>
+          </Link>
+          .
+        </div>
+        <div className="mt-4 font-bold">Some other examples:</div>
         <ul className="list-disc">
           {examples.map(example => (
             <li key={example} className="ml-6">
-              <Link href="/[...url]" as={`/${example}`}>
+              <Link href="/https/[...url]" as={`/https/${example}`}>
                 <a className="text-blue-500">https://{example}</a>
               </Link>
             </li>

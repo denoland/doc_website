@@ -13,9 +13,7 @@ export function EnumCard({ node }: { node: DocNodeEnum }) {
             <p className="text-md font-medium">Members</p>
             {node.enumDef.members.length > 0 ? (
               node.enumDef.members.map(member => {
-                return (
-                  <SimpleSubCard node={{ name: member.name, snippet: "" }} />
-                );
+                return <SimpleSubCard node={{ name: member.name }} />;
               })
             ) : (
               <div>This enum has no members.</div>

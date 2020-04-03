@@ -15,7 +15,6 @@ export interface DocNodeLocation {
 }
 export interface DocNodeShared {
   name: string;
-  snippet: string;
   location: DocNodeLocation;
   jsDoc?: string;
 }

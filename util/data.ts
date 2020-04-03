@@ -24,9 +24,9 @@ export async function getData(
   forceReload?: boolean
 ): Promise<DocsData> {
   const req = await fetch(
-    `${hostname}/api/docs?entrypoint=${encodeURIComponent(
-      "https://" + entrypoint
-    )}${forceReload ? "&force_reload=true" : ""}`
+    `${hostname}/api/docs?entrypoint=${encodeURIComponent(entrypoint)}${
+      forceReload ? "&force_reload=true" : ""
+    }`
   );
   if (!req.ok) throw new Error((await req.json()).error);
   const resp = await req.json();
