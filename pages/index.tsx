@@ -62,7 +62,10 @@ const Home = () => {
         </div>
         <div className="mt-1">
           or{" "}
-          <Link href="/deno@latest">
+          <Link
+            href="/https/[...url]"
+            as={`/https/github.com/denoland/deno/releases/download/latest/lib.deno.d.ts`}
+          >
             <a className="text-blue-500">view the Deno runtime documentation</a>
           </Link>
           .

@@ -199,7 +199,7 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
       return (
         <>
           {node ? (
-            <Link href={`#${node.name}`}>
+            <Link href="/https/[...url]" as={`#${node.name}`}>
               <a className="text-blue-500">{tsType.typeRef.typeName}</a>
             </Link>
           ) : (

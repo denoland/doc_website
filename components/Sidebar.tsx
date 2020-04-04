@@ -16,7 +16,7 @@ const SidebarSection = (props: {
       <div>
         {props.nodes.map((node, i) => (
           <p key={node.name + "+" + i}>
-            <Link href={`#${node.name}`}>
+            <Link href="/https/[...url]" as={`#${node.name}`}>
               <a className="text-blue-500">{node.name}</a>
             </Link>
           </p>
