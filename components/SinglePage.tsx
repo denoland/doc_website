@@ -300,9 +300,12 @@ export function SimpleCard({
         ) : null}
       </div>
 
-      <div className="text-xs mt-1 text-gray-600">
-        Defined in file '{node.location.filename}' on line {node.location.line},
-        column {node.location.col}.
+      <div className="text-xs mt-1 text-gray-600 break-words">
+        Defined in file '
+        <a href={node.location.filename} className="hover:text-gray-800">
+          {node.location.filename}
+        </a>
+        ' on line {node.location.line}, column {node.location.col}.
       </div>
 
       {node.jsDoc ? (
@@ -364,9 +367,12 @@ export function SimpleSubCard({
         ) : null}
       </div>
       {node.location ? (
-        <div className="text-xs text-gray-600">
-          Defined in file '{node.location.filename}' on line{" "}
-          {node.location.line}, column {node.location.col}.
+        <div className="text-xs mt-1 text-gray-600 break-words">
+          Defined in file '
+          <a href={node.location.filename} className="hover:text-gray-800">
+            {node.location.filename}
+          </a>
+          ' on line {node.location.line}, column {node.location.col}.
         </div>
       ) : null}
       {node.jsDoc ? (

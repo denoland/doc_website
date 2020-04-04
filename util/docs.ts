@@ -9,7 +9,7 @@ export enum DocNodeKind {
 }
 
 export interface DocNodeLocation {
-  filename: String;
+  filename: string;
   line: number;
   col: number;
 }
