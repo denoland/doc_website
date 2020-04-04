@@ -30,22 +30,13 @@ export async function handler(
   }
 
   const isRemote = entrypoint.startsWith("https://");
-  const isDeno = entrypoint.startsWith("deno://");
 
   let sourceFile: string;
   if (isRemote) {
     sourceFile = entrypoint;
-  } else if (isDeno) {
-    if (entrypoint !== "deno://latest/lib.deno.d.ts") {
-      return error(
-        "the only supported special deno:// module is 'deno://latest/lib.deno.d.ts'",
-        400
-      );
-    }
-    sourceFile = "./lib.deno.d.ts";
   } else {
     return error(
-      "entrypoint must be a remote https:// module or a special deno:// module",
+      "entrypoint must be a remote https:// module",
       400
     );
   }

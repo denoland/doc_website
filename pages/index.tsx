@@ -3,12 +3,13 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { useState } from "react";
 
+const examples = [
+  "deno.land/std/http/mod.ts",
+  "deno.land/std/fs/copy.ts",
+  "deno.land/x/oak/mod.ts",
+];
+
 const Home = () => {
-  const examples = [
-    "deno.land/std/http/mod.ts",
-    "deno.land/std/fs/copy.ts",
-    "deno.land/x/oak/mod.ts",
-  ];
   const router = useRouter();
   const [url, setUrl] = useState("");
   function navigate() {
@@ -67,7 +68,7 @@ const Home = () => {
           or{" "}
           <Link
             href="/https/[...url]"
-            as={`/https/github.com/denoland/deno/releases/download/latest/lib.deno.d.ts`}
+            as={`/https/github.com/denoland/deno/releases/latest/download/lib.deno.d.ts`}
           >
             <a className="text-blue-600">view the Deno runtime documentation</a>
           </Link>
