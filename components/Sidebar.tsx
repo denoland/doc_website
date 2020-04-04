@@ -16,7 +16,7 @@ const SidebarSection = (props: {
       <div>
         {props.nodes.map((node, i) => (
           <p key={node.name + "+" + i}>
-            <Link href={`#${props.type}.${node.name}`}>
+            <Link href={`#${node.name}`}>
               <a className="text-blue-500">{node.name}</a>
             </Link>
           </p>
@@ -37,28 +37,28 @@ export const Sidebar = (props: {
   return (
     <>
       {data ? (
-        <header className="px-6 pt-4">
-          <div className="text-gray-900 text-xl font-bold mb-2 lg:hidden">
-            Table of Contents
-          </div>
+        <header className="px-4 sm:px-6 pt-3 sm:pt-4">
           <a
-            className="text-blue-500 text-sm cursor-pointer"
+            className="text-blue-500 text-sm cursor-pointer break-words"
             href={props.entrypoint}
           >
             {props.entrypoint}
           </a>
-          <div className="text-gray-600 text-sm mt-2">
-            Last refreshed {new Date(data.timestamp).toLocaleString()}
+          <div className="text-gray-900 text-xl font-bold mt-3 lg:hidden">
+            Table of Contents
           </div>
-          <a
-            className="text-blue-500 text-sm cursor-pointer"
-            onClick={props.forceReload}
-          >
-            Refresh now
-          </a>
+          <div className="text-gray-600 text-sm mt-2">
+            Last refreshed {new Date(data.timestamp).toLocaleString()}.{" "}
+            <a
+              className="text-blue-500 text-sm cursor-pointer"
+              onClick={props.forceReload}
+            >
+              Refresh now
+            </a>
+          </div>
         </header>
       ) : null}
-      <nav className="px-6 py-2">
+      <nav className="px-4 sm:px-6 py-2">
         <>
           <SidebarSection
             title="Functions"

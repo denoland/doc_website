@@ -12,11 +12,15 @@ export function Page(props: {
 
   return (
     <>
-      <div className="bg-white h-20 px-6 py-2 flex justify-between border-b border-gray-200 absolute inset-0 bottom-auto">
+      <div className="bg-white h-16 sm:h-20 px-4 sm:px-6 py-2 flex justify-between border-b border-gray-200 absolute inset-0 bottom-auto">
         <Link href="/">
           <a className="flex items-center">
-            <img src="/logo.svg" alt="logo" className="h-16 w-16" />
-            <div className="text-gray-900 text-md ml-2 text-2xl font-bold">
+            <img
+              src="/logo.svg"
+              alt="logo"
+              className="h-12 w-12 sm:h-16 sm:w-16"
+            />
+            <div className="text-gray-900 text-xl sm:text-3xl mx-2  font-bold">
               deno doc
             </div>
           </a>
@@ -27,7 +31,7 @@ export function Page(props: {
         >
           {drawerOpen ? (
             <svg
-              className="h-8 w-8"
+              className="h-6 w-6 sm:h-8 sm:w-8"
               stroke="currentColor"
               fill="none"
               viewBox="0 0 24 24"
@@ -41,7 +45,7 @@ export function Page(props: {
             </svg>
           ) : (
             <svg
-              className="h-8 w-8"
+              className="h-6 w-6 sm:h-8 sm:w-8"
               stroke="currentColor"
               fill="none"
               viewBox="0 0 24 24"
@@ -56,7 +60,7 @@ export function Page(props: {
           )}
         </div>
       </div>
-      <div className="flex flex-grow absolute inset-0 top-20">
+      <div className="flex flex-grow absolute inset-0 top-16 sm:top-20">
         <div
           className={
             "bg-white lg:max-w-xs w-full overflow-y-scroll absolute lg:static inset-0" +

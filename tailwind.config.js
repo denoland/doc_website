@@ -8,17 +8,18 @@ module.exports = {
         "Consolas",
         '"Liberation Mono"',
         '"Courier New"',
-        "monospace"
-      ]
+        "monospace",
+      ],
     },
     inset: {
       "0": 0,
       auto: "auto",
-      "20": "5rem"
-    }
+      "16": "4rem",
+      "20": "5rem",
+    },
   },
   variants: {
-    backgroundColor: ["responsive", "hover", "focus", "active"]
+    backgroundColor: ["responsive", "hover", "focus", "active"],
   },
-  plugins: []
+  plugins: [],
 };

@@ -27,7 +27,7 @@ export function SinglePage(props: {
   if (!data) {
     return (
       <Page forceReload={props.forceReload} entrypoint={props.entrypoint}>
-        <div className="bg-gray-100 pb-3 px-6 max-w-4xl">
+        <div className="bg-gray-100 pb-3 px-4 sm:px-6 max-w-4xl">
           <div className="py-4">
             <div className="text-gray-900 text-2xl font-medium mb-1">
               Loading...
@@ -57,7 +57,7 @@ export function SinglePage(props: {
   return (
     <Page forceReload={props.forceReload} entrypoint={props.entrypoint}>
       {}
-      <div className="bg-gray-100 pb-3 px-6 max-w-4xl">
+      <div className="bg-gray-100 pb-3 px-4 sm:px-6 max-w-4xl">
         {hasNone ? (
           <div className="py-4">
             <div className="text-gray-900 text-xl mb-1">
@@ -72,10 +72,7 @@ export function SinglePage(props: {
             </div>
             <div>
               {groups.functions.map((node, i) => (
-                <FunctionCard
-                  node={node}
-                  key={`${node.kind}.${node.name}+${i}`}
-                />
+                <FunctionCard node={node} key={`$${node.name}+${i}`} />
               ))}
             </div>
           </div>
@@ -87,10 +84,7 @@ export function SinglePage(props: {
             </div>
             <div>
               {groups.variables.map((node, i) => (
-                <VariableCard
-                  node={node}
-                  key={`${node.kind}.${node.name}+${i}`}
-                />
+                <VariableCard node={node} key={`${node.name}+${i}`} />
               ))}
             </div>
           </div>
@@ -102,7 +96,7 @@ export function SinglePage(props: {
             </div>
             <div>
               {groups.classes.map((node, i) => (
-                <ClassCard node={node} key={`${node.kind}.${node.name}+${i}`} />
+                <ClassCard node={node} key={`${node.name}+${i}`} />
               ))}
             </div>
           </div>
@@ -112,7 +106,7 @@ export function SinglePage(props: {
             <div className="text-gray-900 text-2xl font-medium mb-1">Enums</div>
             <div>
               {groups.enums.map((node, i) => (
-                <EnumCard node={node} key={`${node.kind}.${node.name}+${i}`} />
+                <EnumCard node={node} key={`${node.name}+${i}`} />
               ))}
             </div>
           </div>
@@ -124,10 +118,7 @@ export function SinglePage(props: {
             </div>
             <div>
               {groups.interfaces.map((node, i) => (
-                <InterfaceCard
-                  node={node}
-                  key={`${node.kind}.${node.name}+${i}`}
-                />
+                <InterfaceCard node={node} key={`${node.name}+${i}`} />
               ))}
             </div>
           </div>
@@ -139,10 +130,7 @@ export function SinglePage(props: {
             </div>
             <div>
               {groups.typeAliases.map((node, i) => (
-                <TypeAliasCard
-                  node={node}
-                  key={`${node.kind}.${node.name}+${i}`}
-                />
+                <TypeAliasCard node={node} key={`${node.name}+${i}`} />
               ))}
             </div>
           </div>
@@ -154,10 +142,7 @@ export function SinglePage(props: {
             </div>
             <div>
               {groups.namespaces.map((node, i) => (
-                <SimpleCard
-                  node={node}
-                  key={`${node.kind}.${node.name}+${i}`}
-                />
+                <SimpleCard node={node} key={`${node.name}+${i}`} />
               ))}
             </div>
           </div>
@@ -198,10 +183,7 @@ export function SimpleCard({
     paramElements.pop();
   }
   return (
-    <div
-      className="shadow rounded-md my-3 bg-white p-2"
-      id={`${node.kind}.${node.name}`}
-    >
+    <div className="shadow rounded-md my-3 bg-white p-2" id={`${node.name}`}>
       <div className="text-lg font-mono">
         {prefix ? <span className="text-pink-800">{prefix} </span> : null}
         <span className="font-bold">{node.name}</span>

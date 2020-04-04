@@ -17,18 +17,20 @@ export function JSDoc(props: { jsdoc: string; short?: boolean }) {
           </a>
         ),
         inlineCode: (props: { children: string }) => (
-          <code className="font-mono bg-gray-200 px-1 ">{props.children}</code>
+          <code className="font-mono bg-gray-200 p-px rounded-sm">
+            {props.children}
+          </code>
         ),
         code: CodeBlock,
-        table: props => (
+        table: (props) => (
           <table
             {...props}
             className="border-collapse border-2 border-gray-400 my-2"
           />
         ),
-        tableCell: props => (
+        tableCell: (props) => (
           <td {...props} className="border border-gray-400 px-4 py-2" />
-        )
+        ),
       }}
     />
   );
@@ -42,7 +44,7 @@ export function CodeBlock(props: { value: string }) {
       customStyle={{
         fontSize: "0.75rem",
         padding: "0.5rem 0.75rem",
-        margin: "0.5rem 0"
+        margin: "0.5rem 0",
       }}
     >
       {props.value}

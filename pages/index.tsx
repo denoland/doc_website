@@ -7,7 +7,7 @@ const Home = () => {
   const examples = [
     "deno.land/std/http/mod.ts",
     "deno.land/std/fs/copy.ts",
-    "deno.land/x/oak/mod.ts"
+    "deno.land/x/oak/mod.ts",
   ];
   const router = useRouter();
   const [url, setUrl] = useState("");
@@ -27,10 +27,10 @@ const Home = () => {
               JavaScript and TypeScript."
         />
       </Head>
-      <div className=" px-4 py-8 md:px-12 max-w-4xl mx-auto flex flex-col">
-        <div className="flex flex-col md:flex-row items-center">
+      <div className="px-4 sm:px-8 md:px-12 py-4 md:py-8 max-w-4xl mx-auto flex flex-col">
+        <div className="flex flex-col sm:flex-row items-center">
           <img src="/logo.svg" className="w-48" />
-          <div className="md:ml-4 text-center md:text-left">
+          <div className="md:ml-4 text-center sm:text-left">
             <h1 className="text-4xl font-bold">deno doc</h1>
             <p>
               Automatic documentation generator for Deno, a secure runtime for
@@ -38,6 +38,7 @@ const Home = () => {
             </p>
           </div>
         </div>
+        <hr className="mt-4 sm:hidden" />
         <div className="mt-4 font-bold">View documentation for:</div>
         <div className="mt-1 flex flex-row">
           <input
@@ -45,8 +46,8 @@ const Home = () => {
             type="url"
             placeholder="https://deno.land/std/http/mod.ts"
             value={url}
-            onChange={e => setUrl(e.target.value)}
-            onKeyDown={e => {
+            onChange={(e) => setUrl(e.target.value)}
+            onKeyDown={(e) => {
               if (e.key === "Enter" && url.length > 0) navigate();
             }}
           />
@@ -62,18 +63,16 @@ const Home = () => {
         <div className="mt-1">
           or{" "}
           <Link href="/deno@latest">
-            <a className="text-blue-500">
-              view the latest documentation for the Deno runtime
-            </a>
+            <a className="text-blue-500">view the Deno runtime documentation</a>
           </Link>
           .
         </div>
         <div className="mt-4 font-bold">Some other examples:</div>
         <ul className="list-disc">
-          {examples.map(example => (
+          {examples.map((example) => (
             <li key={example} className="ml-6">
               <Link href="/https/[...url]" as={`/https/${example}`}>
-                <a className="text-blue-500">https://{example}</a>
+                <a className="text-blue-500 break-words">https://{example}</a>
               </Link>
             </li>
           ))}
