@@ -1,3 +1,5 @@
+import { useFlattend } from "./data";
+
 export enum DocNodeKind {
   Function = "function",
   Variable = "variable",
@@ -7,7 +9,6 @@ export enum DocNodeKind {
   TypeAlias = "typeAlias",
   Namespace = "namespace",
 }
-
 export interface DocNodeLocation {
   filename: string;
   line: number;
@@ -399,18 +400,34 @@ export function groupNodes(docs: DocNode[]): GroupedNodes {
   return groupedNodes;
 }
 
-export function findNodeByType(
-  nodes: DocNode[],
-  type: TsTypeDef
+export function findNodeByScopedName(
+  flattend: DocNode[],
+  name: string,
+  initialScope: string[],
+  mustBeType: boolean
 ): DocNode | undefined {
-  return type.kind === TsTypeDefKind.TypeRef
-    ? nodes.find(
-        (node) =>
-          node.name === type.typeRef?.typeName &&
-          (node.kind === DocNodeKind.Class ||
-            node.kind === DocNodeKind.Enum ||
-            node.kind === DocNodeKind.Interface ||
-            node.kind === DocNodeKind.TypeAlias)
-      )
-    : undefined;
+  const scope = [...initialScope];
+  let done = false;
+  while (!done) {
+    const node = flattend.find(
+      (node) =>
+        (node.scope && node.scope?.length > 0
+          ? node.scope.join(".") + "."
+          : "") +
+          node.name ===
+          (scope.length > 0 ? scope.join(".") + "." : "") + name &&
+        (!mustBeType ||
+          node.kind === DocNodeKind.Class ||
+          node.kind === DocNodeKind.Enum ||
+          node.kind === DocNodeKind.Interface ||
+          node.kind === DocNodeKind.TypeAlias ||
+          node.kind === DocNodeKind.Namespace)
+    );
+    if (node) return node;
+    if (scope.length === 0) {
+      done = true;
+    }
+    scope.pop();
+  }
+  return undefined;
 }

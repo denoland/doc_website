@@ -2,16 +2,13 @@ import { createContext, useContext } from "react";
 import fetch from "isomorphic-unfetch";
 import { DocNode } from "./docs";
 
-const context = createContext<DocsData>({
-  nodes: [],
-  timestamp: "",
-});
+const flattendContext = createContext<DocNode[]>([]);
 
-export function useData() {
-  return useContext(context);
+export function useFlattend() {
+  return useContext(flattendContext);
 }
 
-export const DataProvider = context.Provider;
+export const FlattendProvider = flattendContext.Provider;
 
 export interface DocsData {
   timestamp: string;

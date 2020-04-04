@@ -1,118 +1,42 @@
-import React from "react";
+import React, { memo } from "react";
 import {
   TsTypeDef,
-  findNodeByType,
   TsTypeDefKind,
   LiteralDefKind,
+  findNodeByScopedName,
 } from "../util/docs";
-import { useData } from "../util/data";
 import Link from "next/link";
+import { useFlattend } from "../util/data";
 
-export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
-  const { nodes } = useData();
-
-  switch (tsType.kind) {
-    case TsTypeDefKind.Array:
-      return (
-        <span>
-          <TsType tsType={tsType.array} />
-          []
-        </span>
-      );
-    case TsTypeDefKind.Conditional:
-      return (
-        <span>
-          <TsType tsType={tsType.conditionalType.checkType} /> extends{" "}
-          <TsType tsType={tsType.conditionalType.extendsType} /> ?{" "}
-          <TsType tsType={tsType.conditionalType.trueType} /> :{" "}
-          <TsType tsType={tsType.conditionalType.falseType} />
-        </span>
-      );
-    case TsTypeDefKind.FnOrConstructor: {
-      const paramElements: React.ReactNode[] = [];
-      tsType.fnOrConstructor.params.forEach((p) =>
-        paramElements.push(
+export const TsType = memo(
+  ({ tsType, scope }: { tsType: TsTypeDef; scope: string[] }) => {
+    switch (tsType.kind) {
+      case TsTypeDefKind.Array:
+        return (
           <>
-            {p.name}
-            {p.tsType ? (
-              <>
-                : <TsType tsType={p.tsType} />
-              </>
-            ) : null}
-          </>,
-          ", "
-        )
-      );
-      paramElements.pop();
-      return (
-        <span>
-          {tsType.fnOrConstructor.constructor ? "new " : null} ({paramElements}){" "}
-          => <TsType tsType={tsType.fnOrConstructor.tsType} />
-        </span>
-      );
-    }
-    case TsTypeDefKind.IndexedAccess:
-      return (
-        <span>
-          <TsType tsType={tsType.indexedAccess.objType} />[
-          <TsType tsType={tsType.indexedAccess.indexType} />]
-        </span>
-      );
-    case TsTypeDefKind.Intersection: {
-      const elements: React.ReactNode[] = [];
-      tsType.intersection.forEach((tsType) =>
-        elements.push(<TsType tsType={tsType} />, " & ")
-      );
-      elements.pop();
-      return <span>{elements}</span>;
-    }
-    case TsTypeDefKind.Keyword:
-      return <span>{tsType.keyword}</span>;
-    case TsTypeDefKind.Literal:
-      switch (tsType.literal.kind) {
-        case LiteralDefKind.Number:
-          return <span>{tsType.literal.number}</span>;
-        case LiteralDefKind.String:
-          return <span>"{tsType.literal.string}"</span>;
-        case LiteralDefKind.Boolean:
-          return <span>{tsType.literal.boolean ? "true" : "false"}</span>;
-      }
-      return <></>;
-    case TsTypeDefKind.Optional:
-      return <span>_optional_</span>;
-    case TsTypeDefKind.Parenthesized:
-      return (
-        <span>
-          (<TsType tsType={tsType.parenthesized} />)
-        </span>
-      );
-    case TsTypeDefKind.Rest:
-      return (
-        <span>
-          ...
-          <TsType tsType={tsType.rest} />
-        </span>
-      );
-    case TsTypeDefKind.This:
-      return <span>this</span>;
-    case TsTypeDefKind.Tuple:
-      const elements: React.ReactNode[] = [];
-      tsType.tuple.forEach((tsType) =>
-        elements.push(<TsType tsType={tsType} />, ", ")
-      );
-      elements.pop();
-      return <span>[{elements}]</span>;
-    case TsTypeDefKind.TypeLiteral: {
-      const final: React.ReactNode[] = [];
-      tsType.typeLiteral.callSignatures.forEach((callSignature) => {
+            <TsType tsType={tsType.array} scope={scope} />
+            []
+          </>
+        );
+      case TsTypeDefKind.Conditional:
+        return (
+          <>
+            <TsType tsType={tsType.conditionalType.checkType} scope={scope} />{" "}
+            extends{" "}
+            <TsType tsType={tsType.conditionalType.extendsType} scope={scope} />{" "}
+            ? <TsType tsType={tsType.conditionalType.trueType} scope={scope} />{" "}
+            : <TsType tsType={tsType.conditionalType.falseType} scope={scope} />
+          </>
+        );
+      case TsTypeDefKind.FnOrConstructor: {
         const paramElements: React.ReactNode[] = [];
-        (callSignature.params ?? []).forEach((p) =>
+        tsType.fnOrConstructor.params.forEach((p) =>
           paramElements.push(
             <>
               {p.name}
               {p.tsType ? (
                 <>
-                  : <TsType tsType={p.tsType} />
+                  : <TsType tsType={p.tsType} scope={scope} />
                 </>
               ) : null}
             </>,
@@ -120,109 +44,224 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
           )
         );
         paramElements.pop();
-        final.push(
-          <span>
-            ({paramElements})
-            {callSignature.tsType ? (
-              <>
-                : <TsType tsType={callSignature.tsType}></TsType>
-              </>
-            ) : null}
-          </span>,
-          ", "
-        );
-      });
-      tsType.typeLiteral.methods.forEach((method) => {
-        const paramElements: React.ReactNode[] = [];
-        (method.params ?? []).forEach((p) => [
+        return (
           <>
-            {p.name}
-            {p.tsType ? (
-              <>
-                : <TsType tsType={p.tsType} />
-              </>
-            ) : null}
-          </>,
-          ", ",
-        ]);
-        paramElements.pop();
-        final.push(
-          <span>
-            {method.name}({paramElements})
-            {method.returnType ? (
-              <>
-                : <TsType tsType={method.returnType}></TsType>
-              </>
-            ) : null}
-          </span>,
-          ", "
+            {tsType.fnOrConstructor.constructor ? "new " : null} (
+            {paramElements}) =>{" "}
+            <TsType tsType={tsType.fnOrConstructor.tsType} scope={scope} />
+          </>
         );
-      });
-      tsType.typeLiteral.properties.forEach((property) => {
-        final.push(
-          <span>
-            {property.name}
-            {property.tsType ? (
-              <span className="text-gray-600">
-                : <TsType tsType={property.tsType}></TsType>
-              </span>
-            ) : null}
-          </span>,
-          ", "
+      }
+      case TsTypeDefKind.IndexedAccess:
+        return (
+          <>
+            <TsType tsType={tsType.indexedAccess.objType} scope={scope} />[
+            <TsType tsType={tsType.indexedAccess.indexType} scope={scope} />]
+          </>
         );
-      });
-      final.pop();
-      return (
-        <span>
-          {"{ "}
-          {final}
-          {" }"}
-        </span>
-      );
-    }
-    case TsTypeDefKind.TypeOperator:
-      return (
-        <span>
-          {tsType.typeOperator.operator}{" "}
-          <TsType tsType={tsType.typeOperator.tsType} />
-        </span>
-      );
-    case TsTypeDefKind.TypeQuery:
-      return <span>typeof {tsType.typeQuery}</span>;
-    case TsTypeDefKind.TypeRef:
-      const node = findNodeByType(nodes, tsType);
-      const paramElements: React.ReactNode[] = [];
-      (tsType.typeRef.typeParams ?? []).forEach((tsType) =>
-        paramElements.push(<TsType tsType={tsType} />, ", ")
-      );
-      paramElements.pop();
-      return (
-        <>
-          {node ? (
-            <Link href="/https/[...url]" as={`#${node.name}`}>
-              <a className="text-blue-600">{tsType.typeRef.typeName}</a>
-            </Link>
-          ) : (
-            <span>{tsType.typeRef.typeName}</span>
-          )}
-          {tsType.typeRef.typeParams ? (
+      case TsTypeDefKind.Intersection: {
+        const elements: React.ReactNode[] = [];
+        tsType.intersection.forEach((tsType) =>
+          elements.push(<TsType tsType={tsType} scope={scope} />, " & ")
+        );
+        elements.pop();
+        return <>{elements}</>;
+      }
+      case TsTypeDefKind.Keyword:
+        return <>{tsType.keyword}</>;
+      case TsTypeDefKind.Literal:
+        switch (tsType.literal.kind) {
+          case LiteralDefKind.Number:
+            return <>{tsType.literal.number}</>;
+          case LiteralDefKind.String:
+            return <>"{tsType.literal.string}"</>;
+          case LiteralDefKind.Boolean:
+            return <>{tsType.literal.boolean ? "true" : "false"}</>;
+        }
+        return <></>;
+      case TsTypeDefKind.Optional:
+        return <>_optional_</>;
+      case TsTypeDefKind.Parenthesized:
+        return (
+          <>
+            (<TsType tsType={tsType.parenthesized} scope={scope} />)
+          </>
+        );
+      case TsTypeDefKind.Rest:
+        return (
+          <>
+            ...
+            <TsType tsType={tsType.rest} scope={scope} />
+          </>
+        );
+      case TsTypeDefKind.This:
+        return <>this</>;
+      case TsTypeDefKind.Tuple:
+        const elements: React.ReactNode[] = [];
+        tsType.tuple.forEach((tsType) =>
+          elements.push(<TsType tsType={tsType} scope={scope} />, ", ")
+        );
+        elements.pop();
+        return <>[{elements}]</>;
+      case TsTypeDefKind.TypeLiteral: {
+        const final: React.ReactNode[] = [];
+        tsType.typeLiteral.callSignatures.forEach((callSignature) => {
+          const paramElements: React.ReactNode[] = [];
+          (callSignature.params ?? []).forEach((p) =>
+            paramElements.push(
+              <>
+                {p.name}
+                {p.tsType ? (
+                  <>
+                    : <TsType tsType={p.tsType} scope={scope} />
+                  </>
+                ) : null}
+              </>,
+              ", "
+            )
+          );
+          paramElements.pop();
+          final.push(
             <>
-              {"<"}
-              {paramElements}
-              {">"}
-            </>
-          ) : null}
-        </>
-      );
-    case TsTypeDefKind.Union: {
-      const elements: React.ReactNode[] = [];
-      tsType.union.forEach((tsType, i) =>
-        elements.push(<TsType tsType={tsType} key={i} />, " | ")
-      );
-      elements.pop();
-      return <span>{elements}</span>;
+              ({paramElements})
+              {callSignature.tsType ? (
+                <>
+                  :{" "}
+                  <TsType tsType={callSignature.tsType} scope={scope}></TsType>
+                </>
+              ) : null}
+            </>,
+            ", "
+          );
+        });
+        tsType.typeLiteral.methods.forEach((method) => {
+          const paramElements: React.ReactNode[] = [];
+          (method.params ?? []).forEach((p) => [
+            <>
+              {p.name}
+              {p.tsType ? (
+                <>
+                  : <TsType tsType={p.tsType} scope={scope} />
+                </>
+              ) : null}
+            </>,
+            ", ",
+          ]);
+          paramElements.pop();
+          final.push(
+            <>
+              {method.name}({paramElements})
+              {method.returnType ? (
+                <>
+                  : <TsType tsType={method.returnType} scope={scope}></TsType>
+                </>
+              ) : null}
+            </>,
+            ", "
+          );
+        });
+        tsType.typeLiteral.properties.forEach((property) => {
+          final.push(
+            <>
+              {property.name}
+              {property.tsType ? (
+                <span className="text-gray-600">
+                  : <TsType tsType={property.tsType} scope={scope}></TsType>
+                </span>
+              ) : null}
+            </>,
+            ", "
+          );
+        });
+        final.pop();
+        return (
+          <>
+            {"{ "}
+            {final}
+            {" }"}
+          </>
+        );
+      }
+      case TsTypeDefKind.TypeOperator:
+        return (
+          <>
+            {tsType.typeOperator.operator}{" "}
+            <TsType tsType={tsType.typeOperator.tsType} scope={scope} />
+          </>
+        );
+      case TsTypeDefKind.TypeQuery: {
+        const flattend = useFlattend();
+        const node = findNodeByScopedName(
+          flattend,
+          tsType.typeQuery,
+          scope ?? [],
+          false
+        );
+        return (
+          <>
+            typeof{" "}
+            {node ? (
+              <Link
+                href="/https/[...url]"
+                as={`#${node.scope ? node.scope.join(".") + "." : ""}${
+                  node.name
+                }`}
+              >
+                <a className="text-blue-600">{tsType.typeQuery}</a>
+              </Link>
+            ) : (
+              tsType.typeQuery
+            )}
+          </>
+        );
+      }
+      case TsTypeDefKind.TypeRef: {
+        const flattend = useFlattend();
+        const node = findNodeByScopedName(
+          flattend,
+          tsType.typeRef.typeName,
+          scope ?? [],
+          true
+        );
+        const paramElements: React.ReactNode[] = [];
+        (tsType.typeRef.typeParams ?? []).forEach((tsType) =>
+          paramElements.push(<TsType tsType={tsType} scope={scope} />, ", ")
+        );
+        paramElements.pop();
+        return (
+          <>
+            {node ? (
+              <Link
+                href="/https/[...url]"
+                as={`#${node.scope ? node.scope.join(".") + "." : ""}${
+                  node.name
+                }`}
+              >
+                <a className="text-blue-600">{tsType.typeRef.typeName}</a>
+              </Link>
+            ) : (
+              tsType.typeRef.typeName
+            )}
+            {tsType.typeRef.typeParams ? (
+              <>
+                {"<"}
+                {paramElements}
+                {">"}
+              </>
+            ) : null}
+          </>
+        );
+      }
+      case TsTypeDefKind.Union: {
+        const elements: React.ReactNode[] = [];
+        tsType.union.forEach((tsType, i) =>
+          elements.push(<TsType tsType={tsType} key={i} scope={scope} />, " | ")
+        );
+        elements.pop();
+        return <>{elements}</>;
+      }
+      default:
+        return <>_notimpl_</>;
     }
-    default:
-      return <span>_notimpl_</span>;
   }
-};
+);

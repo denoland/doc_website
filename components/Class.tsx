@@ -2,7 +2,13 @@ import React from "react";
 import { DocNodeClass } from "../util/docs";
 import { SimpleCard, SimpleSubCard } from "./SinglePage";
 
-export function ClassCard({ node, nested }: { node: DocNodeClass, nested: boolean }) {
+export function ClassCard({
+  node,
+  nested,
+}: {
+  node: DocNodeClass;
+  nested: boolean;
+}) {
   const constructors = node.classDef.constructors;
   const properties = node.classDef.properties.filter(
     (node) => node.accessibility !== "private"
@@ -15,6 +21,8 @@ export function ClassCard({ node, nested }: { node: DocNodeClass, nested: boolea
   const realMethods = methods.filter((node) => !node.isStatic);
   const staticMethods = methods.filter((node) => node.isStatic);
 
+  const parent = node;
+
   return (
     <SimpleCard
       node={node}
@@ -26,7 +34,12 @@ export function ClassCard({ node, nested }: { node: DocNodeClass, nested: boolea
             <div className="mt-2">
               <p className="text-md font-medium">Constructors</p>
               {constructors.map((node) => {
-                return <SimpleSubCard node={node} params={node.params} />;
+                return (
+                  <SimpleSubCard
+                    node={{ ...node, scope: parent.scope }}
+                    params={node.params}
+                  />
+                );
               })}
             </div>
           ) : null}
@@ -36,7 +49,7 @@ export function ClassCard({ node, nested }: { node: DocNodeClass, nested: boolea
               {realProperties.map((node) => {
                 return (
                   <SimpleSubCard
-                    node={node}
+                    node={{ ...node, scope: parent.scope }}
                     prefix={`${
                       node.accessibility ? node.accessibility + " " : ""
                     }${node.isAbstract ? "abstract " : ""}${
@@ -54,7 +67,7 @@ export function ClassCard({ node, nested }: { node: DocNodeClass, nested: boolea
               {realMethods.map((node) => {
                 return (
                   <SimpleSubCard
-                    node={node}
+                    node={{ ...node, scope: parent.scope }}
                     prefix={`${
                       node.accessibility ? node.accessibility + " " : ""
                     }${node.isAbstract ? "abstract " : ""}${
@@ -75,7 +88,12 @@ export function ClassCard({ node, nested }: { node: DocNodeClass, nested: boolea
             <div className="mt-2">
               <p className="text-md font-medium">Static Properties</p>
               {staticProperties.map((node) => {
-                return <SimpleSubCard node={node} returnType={node.tsType} />;
+                return (
+                  <SimpleSubCard
+                    node={{ ...node, scope: parent.scope }}
+                    returnType={node.tsType}
+                  />
+                );
               })}
             </div>
           ) : null}
@@ -85,7 +103,7 @@ export function ClassCard({ node, nested }: { node: DocNodeClass, nested: boolea
               {staticMethods.map((node) => {
                 return (
                   <SimpleSubCard
-                    node={node}
+                    node={{ ...node, scope: parent.scope }}
                     params={node.functionDef.params}
                     returnType={node.functionDef.returnType}
                   />

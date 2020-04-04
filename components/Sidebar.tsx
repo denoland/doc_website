@@ -1,12 +1,7 @@
 import React, { useMemo } from "react";
 import Link from "next/link";
-import {
-  groupNodes,
-  DocNodeShared,
-  sortByAlphabet,
-  flattenNamespaces,
-} from "../util/docs";
-import { useData } from "../util/data";
+import { groupNodes, DocNodeShared, sortByAlphabet } from "../util/docs";
+import { useFlattend } from "../util/data";
 
 const SidebarSection = (props: {
   title: string;
@@ -38,17 +33,15 @@ const SidebarSection = (props: {
 export const Sidebar = (props: {
   forceReload: () => void;
   entrypoint: string;
+  timestamp: string;
 }) => {
-  const data = useData();
-  const flattend = useMemo(() => flattenNamespaces(data?.nodes ?? []), [
-    data?.nodes,
-  ]);
-  const nodes = sortByAlphabet(flattend);
-  const groups = useMemo(() => groupNodes(nodes), [data]);
+  const flattend = useFlattend();
+  const nodes = useMemo(() => sortByAlphabet(flattend), [flattend]);
+  const groups = useMemo(() => groupNodes(nodes), [nodes]);
 
   return (
     <>
-      {data ? (
+      {flattend ? (
         <header className="px-4 sm:px-6 pt-3 sm:pt-4">
           <a
             className="text-blue-600 text-sm cursor-pointer break-words"
@@ -60,7 +53,7 @@ export const Sidebar = (props: {
             Table of Contents
           </div>
           <div className="text-gray-600 text-sm mt-2">
-            Last refreshed {new Date(data.timestamp).toLocaleString()}.{" "}
+            Last refreshed {new Date(props.timestamp).toLocaleString()}.{" "}
             <a
               className="text-blue-600 text-sm cursor-pointer"
               onClick={props.forceReload}

@@ -1,5 +1,5 @@
-import React, { useMemo } from "react";
-import { useData, DataProvider, DocsData } from "../util/data";
+import React, { useMemo, memo } from "react";
+import { DocsData, FlattendProvider } from "../util/data";
 import {
   groupNodes,
   DocNodeShared,
@@ -9,8 +9,9 @@ import {
   sortByAlphabet,
   DocNode,
   expandNamespaces,
+  flattenNamespaces,
 } from "../util/docs";
-import { JSDoc, CodeBlock } from "./JSDoc";
+import { JSDoc } from "./JSDoc";
 import { ClassCard } from "./Class";
 import { TsType } from "./TsType";
 import { FunctionCard } from "./Function";
@@ -21,216 +22,223 @@ import { TypeAliasCard } from "./TypeAlias";
 import { Page } from "./Page";
 import { NamespaceCard } from "./Namespace";
 
-export function SinglePage(props: {
-  forceReload: () => void;
-  entrypoint: string;
-  data: DocsData | undefined;
-}) {
-  const nodes = useMemo(() => expandNamespaces(props.data?.nodes ?? []), [
-    props.data,
-  ]);
+export const SinglePage = memo(
+  (props: {
+    forceReload: () => void;
+    entrypoint: string;
+    data: DocsData | undefined;
+  }) => {
+    const nodes = useMemo(() => expandNamespaces(props.data?.nodes ?? []), [
+      props.data?.nodes,
+    ]);
 
-  if (!props.data) {
-    return (
-      <Page forceReload={props.forceReload} entrypoint={props.entrypoint}>
-        <div className="bg-gray-100 pb-3 px-4 sm:px-6 max-w-4xl">
-          <div className="py-4">
-            <div className="text-gray-900 text-2xl font-medium mb-1">
-              Loading...
-            </div>
-            <div className="text-gray-900 text-lg">
-              It can take a few seconds for documentation to be generated.
-            </div>
-          </div>
-        </div>
-      </Page>
-    );
-  }
-
-  const hasNone = nodes.length === 0;
-
-  return (
-    <DataProvider value={{ ...props.data, nodes }}>
-      <Page forceReload={props.forceReload} entrypoint={props.entrypoint}>
-        <div className="bg-gray-100 pb-3 px-4 sm:px-6 max-w-4xl">
-          {hasNone ? (
+    if (!props.data) {
+      return (
+        <Page
+          forceReload={props.forceReload}
+          entrypoint={props.entrypoint}
+          timestamp=""
+        >
+          <div className="bg-gray-100 pb-3 px-4 sm:px-6 max-w-4xl">
             <div className="py-4">
-              <div className="text-gray-900 text-xl mb-1">
-                This module has no exports that are recognized by deno doc.
+              <div className="text-gray-900 text-2xl font-medium mb-1">
+                Loading...
+              </div>
+              <div className="text-gray-900 text-lg">
+                It can take a few seconds for documentation to be generated.
               </div>
             </div>
-          ) : null}
-          <div className="pb-4">
-            <CardList nodes={nodes} />
           </div>
-        </div>
-      </Page>
-    </DataProvider>
-  );
-}
+        </Page>
+      );
+    }
 
-export function CardList({
-  nodes,
-  nested,
-}: {
-  nodes: DocNode[];
-  nested?: boolean;
-}) {
-  const sorted = sortByAlphabet(nodes);
-  const groups = groupNodes(sorted);
+    const hasNone = nodes.length === 0;
 
-  return (
-    <>
-      {groups.functions.length > 0 ? (
-        <div>
-          <div
-            className={
-              "text-gray-900 font-medium mb-1 " +
-              (nested ? "text-md mt-2" : "text-2xl mt-4")
-            }
-          >
-            Functions
+    const flattend = flattenNamespaces(nodes);
+
+    return (
+      <FlattendProvider value={flattend}>
+        <Page
+          forceReload={props.forceReload}
+          entrypoint={props.entrypoint}
+          timestamp={props.data.timestamp}
+        >
+          <div className="bg-gray-100 pb-3 px-4 sm:px-6 max-w-4xl">
+            {hasNone ? (
+              <div className="py-4">
+                <div className="text-gray-900 text-xl mb-1">
+                  This module has no exports that are recognized by deno doc.
+                </div>
+              </div>
+            ) : null}
+            <div className="pb-4">
+              <CardList nodes={nodes} />
+            </div>
           </div>
+        </Page>
+      </FlattendProvider>
+    );
+  }
+);
+
+export const CardList = memo(
+  ({ nodes, nested }: { nodes: DocNode[]; nested?: boolean }) => {
+    const groups = useMemo(() => groupNodes(sortByAlphabet(nodes)), [nodes]);
+
+    return (
+      <>
+        {groups.functions.length > 0 ? (
           <div>
-            {groups.functions.map((node, i) => (
-              <FunctionCard
-                node={node}
-                nested={!!nested}
-                key={`$${node.name}+${i}`}
-              />
-            ))}
+            <div
+              className={
+                "text-gray-900 font-medium mb-1 " +
+                (nested ? "text-md mt-2" : "text-2xl mt-4")
+              }
+            >
+              Functions
+            </div>
+            <div>
+              {groups.functions.map((node, i) => (
+                <FunctionCard
+                  node={node}
+                  nested={!!nested}
+                  key={`$${node.name}+${i}`}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      ) : null}
-      {groups.variables.length > 0 ? (
-        <div>
-          <div
-            className={
-              "text-gray-900 font-medium mb-1 " +
-              (nested ? "text-md mt-2" : "text-2xl mt-4")
-            }
-          >
-            Variables
-          </div>
+        ) : null}
+        {groups.variables.length > 0 ? (
           <div>
-            {groups.variables.map((node, i) => (
-              <VariableCard
-                node={node}
-                nested={!!nested}
-                key={`${node.name}+${i}`}
-              />
-            ))}
+            <div
+              className={
+                "text-gray-900 font-medium mb-1 " +
+                (nested ? "text-md mt-2" : "text-2xl mt-4")
+              }
+            >
+              Variables
+            </div>
+            <div>
+              {groups.variables.map((node, i) => (
+                <VariableCard
+                  node={node}
+                  nested={!!nested}
+                  key={`${node.name}+${i}`}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      ) : null}
-      {groups.classes.length > 0 ? (
-        <div>
-          <div
-            className={
-              "text-gray-900 font-medium mb-1 " +
-              (nested ? "text-md mt-2" : "text-2xl mt-4")
-            }
-          >
-            Classes
-          </div>
+        ) : null}
+        {groups.classes.length > 0 ? (
           <div>
-            {groups.classes.map((node, i) => (
-              <ClassCard
-                node={node}
-                nested={!!nested}
-                key={`${node.name}+${i}`}
-              />
-            ))}
+            <div
+              className={
+                "text-gray-900 font-medium mb-1 " +
+                (nested ? "text-md mt-2" : "text-2xl mt-4")
+              }
+            >
+              Classes
+            </div>
+            <div>
+              {groups.classes.map((node, i) => (
+                <ClassCard
+                  node={node}
+                  nested={!!nested}
+                  key={`${node.name}+${i}`}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      ) : null}
-      {groups.enums.length > 0 ? (
-        <div>
-          <div
-            className={
-              "text-gray-900 font-medium mb-1 " +
-              (nested ? "text-md mt-2" : "text-2xl mt-4")
-            }
-          >
-            Enums
-          </div>
+        ) : null}
+        {groups.enums.length > 0 ? (
           <div>
-            {groups.enums.map((node, i) => (
-              <EnumCard
-                node={node}
-                nested={!!nested}
-                key={`${node.name}+${i}`}
-              />
-            ))}
+            <div
+              className={
+                "text-gray-900 font-medium mb-1 " +
+                (nested ? "text-md mt-2" : "text-2xl mt-4")
+              }
+            >
+              Enums
+            </div>
+            <div>
+              {groups.enums.map((node, i) => (
+                <EnumCard
+                  node={node}
+                  nested={!!nested}
+                  key={`${node.name}+${i}`}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      ) : null}
-      {groups.interfaces.length > 0 ? (
-        <div>
-          <div
-            className={
-              "text-gray-900 font-medium mb-1 " +
-              (nested ? "text-md mt-2" : "text-2xl mt-4")
-            }
-          >
-            Interfaces
-          </div>
+        ) : null}
+        {groups.interfaces.length > 0 ? (
           <div>
-            {groups.interfaces.map((node, i) => (
-              <InterfaceCard
-                node={node}
-                nested={!!nested}
-                key={`${node.name}+${i}`}
-              />
-            ))}
+            <div
+              className={
+                "text-gray-900 font-medium mb-1 " +
+                (nested ? "text-md mt-2" : "text-2xl mt-4")
+              }
+            >
+              Interfaces
+            </div>
+            <div>
+              {groups.interfaces.map((node, i) => (
+                <InterfaceCard
+                  node={node}
+                  nested={!!nested}
+                  key={`${node.name}+${i}`}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      ) : null}
-      {groups.typeAliases.length > 0 ? (
-        <div>
-          <div
-            className={
-              "text-gray-900 font-medium mb-1 " +
-              (nested ? "text-md mt-2" : "text-2xl mt-4")
-            }
-          >
-            Type Aliases
-          </div>
+        ) : null}
+        {groups.typeAliases.length > 0 ? (
           <div>
-            {groups.typeAliases.map((node, i) => (
-              <TypeAliasCard
-                node={node}
-                nested={!!nested}
-                key={`${node.name}+${i}`}
-              />
-            ))}
+            <div
+              className={
+                "text-gray-900 font-medium mb-1 " +
+                (nested ? "text-md mt-2" : "text-2xl mt-4")
+              }
+            >
+              Type Aliases
+            </div>
+            <div>
+              {groups.typeAliases.map((node, i) => (
+                <TypeAliasCard
+                  node={node}
+                  nested={!!nested}
+                  key={`${node.name}+${i}`}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      ) : null}
-      {groups.namespaces.length > 0 ? (
-        <div>
-          <div
-            className={
-              "text-gray-900 font-medium mb-1 " +
-              (nested ? "text-md mt-2" : "text-2xl mt-4")
-            }
-          >
-            Namespaces
-          </div>
+        ) : null}
+        {groups.namespaces.length > 0 ? (
           <div>
-            {groups.namespaces.map((node, i) => (
-              <NamespaceCard
-                node={node}
-                nested={!!nested}
-                key={`${node.name}+${i}`}
-              />
-            ))}
+            <div
+              className={
+                "text-gray-900 font-medium mb-1 " +
+                (nested ? "text-md mt-2" : "text-2xl mt-4")
+              }
+            >
+              Namespaces
+            </div>
+            <div>
+              {groups.namespaces.map((node, i) => (
+                <NamespaceCard
+                  node={node}
+                  nested={!!nested}
+                  key={`${node.name}+${i}`}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      ) : null}
-    </>
-  );
-}
+        ) : null}
+      </>
+    );
+  }
+);
 
 export function SimpleCard({
   node,
@@ -255,7 +263,7 @@ export function SimpleCard({
           {p.name}
           {p.tsType ? (
             <>
-              : <TsType tsType={p.tsType} />
+              : <TsType tsType={p.tsType} scope={node.scope ?? []} />
             </>
           ) : null}
         </>,
@@ -295,7 +303,7 @@ export function SimpleCard({
         {returnType ? (
           <span className="text-gray-600">
             {" → "}
-            <TsType tsType={returnType}></TsType>
+            <TsType tsType={returnType} scope={node.scope ?? []} />
           </span>
         ) : null}
       </div>
@@ -341,7 +349,7 @@ export function SimpleSubCard({
           {p.name}
           {p.tsType ? (
             <>
-              : <TsType tsType={p.tsType} />
+              : <TsType tsType={p.tsType} scope={node.scope ?? []} />
             </>
           ) : null}
         </>,
@@ -355,14 +363,14 @@ export function SimpleSubCard({
     <div className="mt-2 py-1 px-2 rounded bg-gray-100">
       <div className="text-sm font-mono">
         {prefix ? <span className="text-pink-800">{prefix} </span> : null}
-        <span>{node.name}</span>
+        <>{node.name}</>
         {params ? (
           <span className="text-gray-600">({paramElements})</span>
         ) : null}
         {returnType ? (
           <span className="text-gray-600">
             {" → "}
-            <TsType tsType={returnType}></TsType>
+            <TsType tsType={returnType} scope={node.scope ?? []} />
           </span>
         ) : null}
       </div>

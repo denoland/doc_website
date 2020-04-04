@@ -7,6 +7,7 @@ export function Page(props: {
   children: React.ReactNode;
   forceReload: () => void;
   entrypoint: string;
+  timestamp: string;
 }) {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
 
@@ -72,6 +73,7 @@ export function Page(props: {
         >
           <Sidebar
             forceReload={props.forceReload}
+            timestamp={props.timestamp}
             entrypoint={props.entrypoint}
           />
         </div>
