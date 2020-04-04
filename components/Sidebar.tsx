@@ -43,8 +43,8 @@ export const Sidebar = (props: {
   const flattend = useMemo(() => flattenNamespaces(data?.nodes ?? []), [
     data?.nodes,
   ]);
-  const nodes = sortByAlphabet(flattend);
-  const groups = useMemo(() => groupNodes(nodes), [data]);
+  const nodes = useMemo(() => sortByAlphabet(flattend), [flattend]);
+  const groups = useMemo(() => groupNodes(nodes), [nodes]);
 
   return (
     <>

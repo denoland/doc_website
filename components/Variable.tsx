@@ -42,6 +42,7 @@ export function VariableNamespaceCard({
   nested: boolean;
 }) {
   const type = node.variableDef.tsType as TsTypeDefTypeLiteral;
+  const parent = node;
   return (
     <SimpleCard
       node={node}
@@ -53,7 +54,7 @@ export function VariableNamespaceCard({
           {type.typeLiteral.properties.map((node) => {
             return (
               <SimpleSubCard
-                node={{ name: node.name }}
+                node={{ name: node.name, scope: parent.scope }}
                 returnType={node.tsType}
               />
             );

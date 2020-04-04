@@ -1,31 +1,38 @@
 import React from "react";
 import {
   TsTypeDef,
-  findNodeByType,
   TsTypeDefKind,
   LiteralDefKind,
+  findNodeByScopedName,
 } from "../util/docs";
 import { useData } from "../util/data";
 import Link from "next/link";
 
-export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
+export const TsType = ({
+  tsType,
+  scope,
+}: {
+  tsType: TsTypeDef;
+  scope: string[];
+}) => {
   const { nodes } = useData();
 
   switch (tsType.kind) {
     case TsTypeDefKind.Array:
       return (
         <span>
-          <TsType tsType={tsType.array} />
+          <TsType tsType={tsType.array} scope={scope} />
           []
         </span>
       );
     case TsTypeDefKind.Conditional:
       return (
         <span>
-          <TsType tsType={tsType.conditionalType.checkType} /> extends{" "}
-          <TsType tsType={tsType.conditionalType.extendsType} /> ?{" "}
-          <TsType tsType={tsType.conditionalType.trueType} /> :{" "}
-          <TsType tsType={tsType.conditionalType.falseType} />
+          <TsType tsType={tsType.conditionalType.checkType} scope={scope} />{" "}
+          extends{" "}
+          <TsType tsType={tsType.conditionalType.extendsType} scope={scope} /> ?{" "}
+          <TsType tsType={tsType.conditionalType.trueType} scope={scope} /> :{" "}
+          <TsType tsType={tsType.conditionalType.falseType} scope={scope} />
         </span>
       );
     case TsTypeDefKind.FnOrConstructor: {
@@ -36,7 +43,7 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
             {p.name}
             {p.tsType ? (
               <>
-                : <TsType tsType={p.tsType} />
+                : <TsType tsType={p.tsType} scope={scope} />
               </>
             ) : null}
           </>,
@@ -47,21 +54,21 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
       return (
         <span>
           {tsType.fnOrConstructor.constructor ? "new " : null} ({paramElements}){" "}
-          => <TsType tsType={tsType.fnOrConstructor.tsType} />
+          => <TsType tsType={tsType.fnOrConstructor.tsType} scope={scope} />
         </span>
       );
     }
     case TsTypeDefKind.IndexedAccess:
       return (
         <span>
-          <TsType tsType={tsType.indexedAccess.objType} />[
-          <TsType tsType={tsType.indexedAccess.indexType} />]
+          <TsType tsType={tsType.indexedAccess.objType} scope={scope} />[
+          <TsType tsType={tsType.indexedAccess.indexType} scope={scope} />]
         </span>
       );
     case TsTypeDefKind.Intersection: {
       const elements: React.ReactNode[] = [];
       tsType.intersection.forEach((tsType) =>
-        elements.push(<TsType tsType={tsType} />, " & ")
+        elements.push(<TsType tsType={tsType} scope={scope} />, " & ")
       );
       elements.pop();
       return <span>{elements}</span>;
@@ -83,14 +90,14 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
     case TsTypeDefKind.Parenthesized:
       return (
         <span>
-          (<TsType tsType={tsType.parenthesized} />)
+          (<TsType tsType={tsType.parenthesized} scope={scope} />)
         </span>
       );
     case TsTypeDefKind.Rest:
       return (
         <span>
           ...
-          <TsType tsType={tsType.rest} />
+          <TsType tsType={tsType.rest} scope={scope} />
         </span>
       );
     case TsTypeDefKind.This:
@@ -98,7 +105,7 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
     case TsTypeDefKind.Tuple:
       const elements: React.ReactNode[] = [];
       tsType.tuple.forEach((tsType) =>
-        elements.push(<TsType tsType={tsType} />, ", ")
+        elements.push(<TsType tsType={tsType} scope={scope} />, ", ")
       );
       elements.pop();
       return <span>[{elements}]</span>;
@@ -112,7 +119,7 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
               {p.name}
               {p.tsType ? (
                 <>
-                  : <TsType tsType={p.tsType} />
+                  : <TsType tsType={p.tsType} scope={scope} />
                 </>
               ) : null}
             </>,
@@ -125,7 +132,7 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
             ({paramElements})
             {callSignature.tsType ? (
               <>
-                : <TsType tsType={callSignature.tsType}></TsType>
+                : <TsType tsType={callSignature.tsType} scope={scope}></TsType>
               </>
             ) : null}
           </span>,
@@ -139,7 +146,7 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
             {p.name}
             {p.tsType ? (
               <>
-                : <TsType tsType={p.tsType} />
+                : <TsType tsType={p.tsType} scope={scope} />
               </>
             ) : null}
           </>,
@@ -151,7 +158,7 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
             {method.name}({paramElements})
             {method.returnType ? (
               <>
-                : <TsType tsType={method.returnType}></TsType>
+                : <TsType tsType={method.returnType} scope={scope}></TsType>
               </>
             ) : null}
           </span>,
@@ -164,7 +171,7 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
             {property.name}
             {property.tsType ? (
               <span className="text-gray-600">
-                : <TsType tsType={property.tsType}></TsType>
+                : <TsType tsType={property.tsType} scope={scope}></TsType>
               </span>
             ) : null}
           </span>,
@@ -184,22 +191,54 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
       return (
         <span>
           {tsType.typeOperator.operator}{" "}
-          <TsType tsType={tsType.typeOperator.tsType} />
+          <TsType tsType={tsType.typeOperator.tsType} scope={scope} />
         </span>
       );
     case TsTypeDefKind.TypeQuery:
-      return <span>typeof {tsType.typeQuery}</span>;
-    case TsTypeDefKind.TypeRef:
-      const node = findNodeByType(nodes, tsType);
+      const node = findNodeByScopedName(
+        nodes,
+        tsType.typeQuery,
+        scope ?? [],
+        false
+      );
+      return (
+        <span>
+          typeof
+          {node ? (
+            <Link
+              href="/https/[...url]"
+              as={`#${node.scope ? node.scope.join(".") + "." : ""}${
+                node.name
+              }`}
+            >
+              <a className="text-blue-600">{tsType.typeQuery}</a>
+            </Link>
+          ) : (
+            <span>{tsType.typeQuery}</span>
+          )}
+        </span>
+      );
+    case TsTypeDefKind.TypeRef: {
+      const node = findNodeByScopedName(
+        nodes,
+        tsType.typeRef.typeName,
+        scope ?? [],
+        true
+      );
       const paramElements: React.ReactNode[] = [];
       (tsType.typeRef.typeParams ?? []).forEach((tsType) =>
-        paramElements.push(<TsType tsType={tsType} />, ", ")
+        paramElements.push(<TsType tsType={tsType} scope={scope} />, ", ")
       );
       paramElements.pop();
       return (
         <>
           {node ? (
-            <Link href="/https/[...url]" as={`#${node.name}`}>
+            <Link
+              href="/https/[...url]"
+              as={`#${node.scope ? node.scope.join(".") + "." : ""}${
+                node.name
+              }`}
+            >
               <a className="text-blue-600">{tsType.typeRef.typeName}</a>
             </Link>
           ) : (
@@ -214,10 +253,11 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
           ) : null}
         </>
       );
+    }
     case TsTypeDefKind.Union: {
       const elements: React.ReactNode[] = [];
       tsType.union.forEach((tsType, i) =>
-        elements.push(<TsType tsType={tsType} key={i} />, " | ")
+        elements.push(<TsType tsType={tsType} key={i} scope={scope} />, " | ")
       );
       elements.pop();
       return <span>{elements}</span>;

@@ -255,7 +255,7 @@ export function SimpleCard({
           {p.name}
           {p.tsType ? (
             <>
-              : <TsType tsType={p.tsType} />
+              : <TsType tsType={p.tsType} scope={node.scope ?? []} />
             </>
           ) : null}
         </>,
@@ -295,7 +295,7 @@ export function SimpleCard({
         {returnType ? (
           <span className="text-gray-600">
             {" → "}
-            <TsType tsType={returnType}></TsType>
+            <TsType tsType={returnType} scope={node.scope ?? []}></TsType>
           </span>
         ) : null}
       </div>
@@ -341,7 +341,7 @@ export function SimpleSubCard({
           {p.name}
           {p.tsType ? (
             <>
-              : <TsType tsType={p.tsType} />
+              : <TsType tsType={p.tsType} scope={node.scope ?? []} />
             </>
           ) : null}
         </>,
@@ -362,7 +362,7 @@ export function SimpleSubCard({
         {returnType ? (
           <span className="text-gray-600">
             {" → "}
-            <TsType tsType={returnType}></TsType>
+            <TsType tsType={returnType} scope={node.scope ?? []}></TsType>
           </span>
         ) : null}
       </div>
