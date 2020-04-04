@@ -2,7 +2,7 @@ import { useReducer } from "react";
 import Link from "next/link";
 import Head from "next/head";
 import useSWR from "swr";
-import { getData, DataProvider, DocsData } from "../util/data";
+import { getData, DocsData } from "../util/data";
 import { SinglePage } from "./SinglePage";
 
 export const Documentation = ({
@@ -24,7 +24,6 @@ export const Documentation = ({
       revalidateOnReconnect: false,
       refreshWhenHidden: false,
       refreshWhenOffline: false,
-      
     }
   );
 

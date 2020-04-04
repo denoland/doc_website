@@ -1,3 +1,5 @@
+import { useFlattend } from "./data";
+
 export enum DocNodeKind {
   Function = "function",
   Variable = "variable",
@@ -7,7 +9,6 @@ export enum DocNodeKind {
   TypeAlias = "typeAlias",
   Namespace = "namespace",
 }
-
 export interface DocNodeLocation {
   filename: string;
   line: number;
@@ -400,12 +401,11 @@ export function groupNodes(docs: DocNode[]): GroupedNodes {
 }
 
 export function findNodeByScopedName(
-  nodes: DocNode[],
+  flattend: DocNode[],
   name: string,
   initialScope: string[],
   mustBeType: boolean
 ): DocNode | undefined {
-  const flattend = flattenNamespaces(nodes);
   const scope = [...initialScope];
   let done = false;
   while (!done) {
