@@ -1,5 +1,3 @@
-import { useFlattend } from "./data";
-
 export enum DocNodeKind {
   Function = "function",
   Variable = "variable",

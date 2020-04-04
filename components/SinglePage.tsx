@@ -281,7 +281,7 @@ export function SimpleCard({
       }
       id={id}
     >
-      <div className="text-lg font-mono">
+      <div className="text-lg font-mono break-words">
         {prefix ? <span className="text-pink-800">{prefix} </span> : null}
         {node.scope?.map((s, i) => (
           <>
@@ -308,9 +308,9 @@ export function SimpleCard({
         ) : null}
       </div>
 
-      <div className="text-xs mt-1 text-gray-600 break-words">
+      <div className="text-xs mt-1 text-gray-600">
         Defined in file '
-        <a href={node.location.filename} className="hover:text-gray-800">
+        <a href={node.location.filename} className="hover:text-gray-800 break-words">
           {node.location.filename}
         </a>
         ' on line {node.location.line}, column {node.location.col}.
@@ -361,7 +361,7 @@ export function SimpleSubCard({
 
   return (
     <div className="mt-2 py-1 px-2 rounded bg-gray-100">
-      <div className="text-sm font-mono">
+      <div className="text-sm font-mono break-words">
         {prefix ? <span className="text-pink-800">{prefix} </span> : null}
         <>{node.name}</>
         {params ? (
@@ -375,9 +375,9 @@ export function SimpleSubCard({
         ) : null}
       </div>
       {node.location ? (
-        <div className="text-xs mt-1 text-gray-600 break-words">
+        <div className="text-xs mt-1 text-gray-600">
           Defined in file '
-          <a href={node.location.filename} className="hover:text-gray-800">
+          <a href={node.location.filename} className="hover:text-gray-800 break-words">
             {node.location.filename}
           </a>
           ' on line {node.location.line}, column {node.location.col}.
