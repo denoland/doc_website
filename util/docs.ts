@@ -334,7 +334,17 @@ export function expandNamespaces(docs: DocNode[]): DocNode[] {
             ),
           },
         },
-      ] as DocNodeNamespace[];
+      ];
+    } else {
+      return [parent];
+    }
+  });
+}
+
+export function flattenNamespaces(docs: DocNode[]): DocNode[] {
+  return docs.flatMap((parent): any => {
+    if (parent.kind === DocNodeKind.Namespace) {
+      return [parent, ...flattenNamespaces(parent.namespaceDef.elements)];
     } else {
       return [parent];
     }
@@ -342,7 +352,11 @@ export function expandNamespaces(docs: DocNode[]): DocNode[] {
 }
 
 export function sortByAlphabet(docs: DocNode[]): DocNode[] {
-  return docs.sort((a, b) => a.name.localeCompare(b.name));
+  return docs.sort((a, b) =>
+    ((a.scope ? a.scope.join(".") + "." : "") + a.name).localeCompare(
+      (b.scope ? b.scope.join(".") + "." : "") + b.name
+    )
+  );
 }
 
 export function groupNodes(docs: DocNode[]): GroupedNodes {

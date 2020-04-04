@@ -1,6 +1,11 @@
 import React, { useMemo } from "react";
 import Link from "next/link";
-import { groupNodes, DocNodeShared, sortByAlphabet } from "../util/docs";
+import {
+  groupNodes,
+  DocNodeShared,
+  sortByAlphabet,
+  flattenNamespaces,
+} from "../util/docs";
 import { useData } from "../util/data";
 
 const SidebarSection = (props: {
@@ -14,13 +19,17 @@ const SidebarSection = (props: {
         {props.title}
       </div>
       <div>
-        {props.nodes.map((node, i) => (
-          <p key={node.name + "+" + i}>
-            <Link href="/https/[...url]" as={`#${node.name}`}>
-              <a className="text-blue-600">{node.name}</a>
-            </Link>
-          </p>
-        ))}
+        {props.nodes.map((node, i) => {
+          const scope = node.scope ? node.scope.join(".") + "." : "";
+          return (
+            <p key={node.name + "+" + i}>
+              {scope}
+              <Link href="/https/[...url]" as={`#${scope}${node.name}`}>
+                <a className="text-blue-600">{node.name}</a>
+              </Link>
+            </p>
+          );
+        })}
       </div>
     </div>
   ) : null;
@@ -31,9 +40,10 @@ export const Sidebar = (props: {
   entrypoint: string;
 }) => {
   const data = useData();
-
-  const nodes = sortByAlphabet(data?.nodes ?? []);
-
+  const flattend = useMemo(() => flattenNamespaces(data?.nodes ?? []), [
+    data?.nodes,
+  ]);
+  const nodes = sortByAlphabet(flattend);
   const groups = useMemo(() => groupNodes(nodes), [data]);
 
   return (
