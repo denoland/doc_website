@@ -1,5 +1,5 @@
-import React from "react";
-import { useData } from "../util/data";
+import React, { useMemo } from "react";
+import { useData, DataProvider, DocsData } from "../util/data";
 import {
   groupNodes,
   DocNodeShared,
@@ -7,6 +7,8 @@ import {
   TsTypeDef,
   DocNodeLocation,
   sortByAlphabet,
+  DocNode,
+  expandNamespaces,
 } from "../util/docs";
 import { JSDoc, CodeBlock } from "./JSDoc";
 import { ClassCard } from "./Class";
@@ -17,14 +19,18 @@ import { InterfaceCard } from "./Interface";
 import { VariableCard } from "./Variable";
 import { TypeAliasCard } from "./TypeAlias";
 import { Page } from "./Page";
+import { NamespaceCard } from "./Namespace";
 
 export function SinglePage(props: {
   forceReload: () => void;
   entrypoint: string;
+  data: DocsData | undefined;
 }) {
-  const data = useData();
+  const nodes = useMemo(() => expandNamespaces(props.data?.nodes ?? []), [
+    props.data,
+  ]);
 
-  if (!data) {
+  if (!props.data) {
     return (
       <Page forceReload={props.forceReload} entrypoint={props.entrypoint}>
         <div className="bg-gray-100 pb-3 px-4 sm:px-6 max-w-4xl">
@@ -41,114 +47,188 @@ export function SinglePage(props: {
     );
   }
 
-  const sorted = sortByAlphabet(data.nodes);
-  const groups = groupNodes(sorted);
-
-  const hasNone =
-    groups.functions.length +
-      groups.variables.length +
-      groups.classes.length +
-      groups.enums.length +
-      groups.interfaces.length +
-      groups.typeAliases.length +
-      groups.namespaces.length ===
-    0;
+  const hasNone = nodes.length === 0;
 
   return (
-    <Page forceReload={props.forceReload} entrypoint={props.entrypoint}>
-      {}
-      <div className="bg-gray-100 pb-3 px-4 sm:px-6 max-w-4xl">
-        {hasNone ? (
-          <div className="py-4">
-            <div className="text-gray-900 text-xl mb-1">
-              This module has no exports that are recognized by deno doc.
+    <DataProvider value={{ ...props.data, nodes }}>
+      <Page forceReload={props.forceReload} entrypoint={props.entrypoint}>
+        <div className="bg-gray-100 pb-3 px-4 sm:px-6 max-w-4xl">
+          {hasNone ? (
+            <div className="py-4">
+              <div className="text-gray-900 text-xl mb-1">
+                This module has no exports that are recognized by deno doc.
+              </div>
             </div>
+          ) : null}
+          <div className="pb-4">
+            <CardList nodes={nodes} />
           </div>
-        ) : null}
-        {groups.functions.length > 0 ? (
-          <div className="py-4">
-            <div className="text-gray-900 text-2xl font-medium mb-1">
-              Functions
-            </div>
-            <div>
-              {groups.functions.map((node, i) => (
-                <FunctionCard node={node} key={`$${node.name}+${i}`} />
-              ))}
-            </div>
+        </div>
+      </Page>
+    </DataProvider>
+  );
+}
+
+export function CardList({
+  nodes,
+  nested,
+}: {
+  nodes: DocNode[];
+  nested?: boolean;
+}) {
+  const sorted = sortByAlphabet(nodes);
+  const groups = groupNodes(sorted);
+
+  return (
+    <>
+      {groups.functions.length > 0 ? (
+        <div>
+          <div
+            className={
+              "text-gray-900 font-medium mb-1 " +
+              (nested ? "text-md mt-2" : "text-2xl mt-4")
+            }
+          >
+            Functions
           </div>
-        ) : null}
-        {groups.variables.length > 0 ? (
-          <div className="py-4">
-            <div className="text-gray-900 text-2xl font-medium mb-1">
-              Variables
-            </div>
-            <div>
-              {groups.variables.map((node, i) => (
-                <VariableCard node={node} key={`${node.name}+${i}`} />
-              ))}
-            </div>
+          <div>
+            {groups.functions.map((node, i) => (
+              <FunctionCard
+                node={node}
+                nested={!!nested}
+                key={`$${node.name}+${i}`}
+              />
+            ))}
           </div>
-        ) : null}
-        {groups.classes.length > 0 ? (
-          <div className="py-4">
-            <div className="text-gray-900 text-2xl font-medium mb-1">
-              Classes
-            </div>
-            <div>
-              {groups.classes.map((node, i) => (
-                <ClassCard node={node} key={`${node.name}+${i}`} />
-              ))}
-            </div>
+        </div>
+      ) : null}
+      {groups.variables.length > 0 ? (
+        <div>
+          <div
+            className={
+              "text-gray-900 font-medium mb-1 " +
+              (nested ? "text-md mt-2" : "text-2xl mt-4")
+            }
+          >
+            Variables
           </div>
-        ) : null}
-        {groups.enums.length > 0 ? (
-          <div className="py-4">
-            <div className="text-gray-900 text-2xl font-medium mb-1">Enums</div>
-            <div>
-              {groups.enums.map((node, i) => (
-                <EnumCard node={node} key={`${node.name}+${i}`} />
-              ))}
-            </div>
+          <div>
+            {groups.variables.map((node, i) => (
+              <VariableCard
+                node={node}
+                nested={!!nested}
+                key={`${node.name}+${i}`}
+              />
+            ))}
           </div>
-        ) : null}
-        {groups.interfaces.length > 0 ? (
-          <div className="py-4">
-            <div className="text-gray-900 text-2xl font-medium mb-1">
-              Interfaces
-            </div>
-            <div>
-              {groups.interfaces.map((node, i) => (
-                <InterfaceCard node={node} key={`${node.name}+${i}`} />
-              ))}
-            </div>
+        </div>
+      ) : null}
+      {groups.classes.length > 0 ? (
+        <div>
+          <div
+            className={
+              "text-gray-900 font-medium mb-1 " +
+              (nested ? "text-md mt-2" : "text-2xl mt-4")
+            }
+          >
+            Classes
           </div>
-        ) : null}
-        {groups.typeAliases.length > 0 ? (
-          <div className="py-4">
-            <div className="text-gray-900 text-2xl font-medium mb-1">
-              Type Aliases
-            </div>
-            <div>
-              {groups.typeAliases.map((node, i) => (
-                <TypeAliasCard node={node} key={`${node.name}+${i}`} />
-              ))}
-            </div>
+          <div>
+            {groups.classes.map((node, i) => (
+              <ClassCard
+                node={node}
+                nested={!!nested}
+                key={`${node.name}+${i}`}
+              />
+            ))}
           </div>
-        ) : null}
-        {groups.namespaces.length > 0 ? (
-          <div className="py-4">
-            <div className="text-gray-900 text-2xl font-medium mb-1">
-              Namespaces
-            </div>
-            <div>
-              {groups.namespaces.map((node, i) => (
-                <SimpleCard node={node} key={`${node.name}+${i}`} />
-              ))}
-            </div>
+        </div>
+      ) : null}
+      {groups.enums.length > 0 ? (
+        <div>
+          <div
+            className={
+              "text-gray-900 font-medium mb-1 " +
+              (nested ? "text-md mt-2" : "text-2xl mt-4")
+            }
+          >
+            Enums
           </div>
-        ) : null}
-      </div>
-    </Page>
+          <div>
+            {groups.enums.map((node, i) => (
+              <EnumCard
+                node={node}
+                nested={!!nested}
+                key={`${node.name}+${i}`}
+              />
+            ))}
+          </div>
+        </div>
+      ) : null}
+      {groups.interfaces.length > 0 ? (
+        <div>
+          <div
+            className={
+              "text-gray-900 font-medium mb-1 " +
+              (nested ? "text-md mt-2" : "text-2xl mt-4")
+            }
+          >
+            Interfaces
+          </div>
+          <div>
+            {groups.interfaces.map((node, i) => (
+              <InterfaceCard
+                node={node}
+                nested={!!nested}
+                key={`${node.name}+${i}`}
+              />
+            ))}
+          </div>
+        </div>
+      ) : null}
+      {groups.typeAliases.length > 0 ? (
+        <div>
+          <div
+            className={
+              "text-gray-900 font-medium mb-1 " +
+              (nested ? "text-md mt-2" : "text-2xl mt-4")
+            }
+          >
+            Type Aliases
+          </div>
+          <div>
+            {groups.typeAliases.map((node, i) => (
+              <TypeAliasCard
+                node={node}
+                nested={!!nested}
+                key={`${node.name}+${i}`}
+              />
+            ))}
+          </div>
+        </div>
+      ) : null}
+      {groups.namespaces.length > 0 ? (
+        <div>
+          <div
+            className={
+              "text-gray-900 font-medium mb-1 " +
+              (nested ? "text-md mt-2" : "text-2xl mt-4")
+            }
+          >
+            Namespaces
+          </div>
+          <div>
+            {groups.namespaces.map((node, i) => (
+              <NamespaceCard
+                node={node}
+                nested={!!nested}
+                key={`${node.name}+${i}`}
+              />
+            ))}
+          </div>
+        </div>
+      ) : null}
+    </>
   );
 }
 
@@ -158,12 +238,14 @@ export function SimpleCard({
   details,
   params,
   returnType,
+  nested,
 }: {
   node: DocNodeShared & { kind?: string };
   prefix?: string;
   details?: React.ReactNode;
   params?: ParamDef[];
   returnType?: TsTypeDef;
+  nested: boolean;
 }) {
   const paramElements = [];
   if (params) {
@@ -182,11 +264,31 @@ export function SimpleCard({
     }
     paramElements.pop();
   }
+  const id = (node.scope ?? []).concat(node.name).join(".");
   return (
-    <div className="shadow rounded-md my-3 bg-white p-2" id={`${node.name}`}>
+    <div
+      className={
+        "mt-2 p-2 bg-white " +
+        (nested ? "rounded border border-gray-300" : "rounded-md shadow")
+      }
+      id={id}
+    >
       <div className="text-lg font-mono">
         {prefix ? <span className="text-pink-800">{prefix} </span> : null}
-        <span className="font-bold">{node.name}</span>
+        {node.scope?.map((s, i) => (
+          <>
+            <a
+              href={"#" + node.scope?.slice(0, i + 1).join(".")}
+              className="pointer hover:underline"
+            >
+              {s}
+            </a>
+            .
+          </>
+        ))}
+        <a href={"#" + id} className="pointer hover:underline">
+          <span className="font-bold">{node.name}</span>
+        </a>
         {params ? (
           <span className="text-gray-600">({paramElements})</span>
         ) : null}

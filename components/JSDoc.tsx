@@ -25,11 +25,17 @@ export function JSDoc(props: { jsdoc: string; short?: boolean }) {
         table: (props) => (
           <table
             {...props}
-            className="border-collapse border-2 border-gray-400 my-2"
+            className="border-collapse border border-gray-300 my-2"
           />
         ),
         tableCell: (props) => (
-          <td {...props} className="border border-gray-400 px-4 py-2" />
+          <td
+            {...props}
+            className={
+              "border border-gray-300 px-2 py-1" +
+              (props.isHeader ? " font-medium" : "")
+            }
+          />
         ),
       }}
     />
@@ -45,6 +51,7 @@ export function CodeBlock(props: { value: string }) {
         fontSize: "0.75rem",
         padding: "0.5rem 0.75rem",
         margin: "0.5rem 0",
+        borderRadius: "0.25rem",
       }}
     >
       {props.value}

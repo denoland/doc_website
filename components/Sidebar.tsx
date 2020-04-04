@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import Link from "next/link";
-import { groupNodes, DocNodeShared } from "../util/docs";
+import { groupNodes, DocNodeShared, sortByAlphabet } from "../util/docs";
 import { useData } from "../util/data";
 
 const SidebarSection = (props: {
@@ -32,7 +32,9 @@ export const Sidebar = (props: {
 }) => {
   const data = useData();
 
-  const groups = useMemo(() => groupNodes(data?.nodes ?? []), [data]);
+  const nodes = sortByAlphabet(data?.nodes ?? []);
+
+  const groups = useMemo(() => groupNodes(nodes), [data]);
 
   return (
     <>

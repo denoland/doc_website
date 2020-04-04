@@ -6,7 +6,13 @@ import {
 } from "../util/docs";
 import { SimpleCard, SimpleSubCard } from "./SinglePage";
 
-export function VariableCard({ node }: { node: DocNodeVariable }) {
+export function VariableCard({
+  node,
+  nested,
+}: {
+  node: DocNodeVariable;
+  nested: boolean;
+}) {
   const type = node.variableDef.tsType;
   const isNamespace =
     node.variableDef.kind === "const" &&
@@ -17,17 +23,29 @@ export function VariableCard({ node }: { node: DocNodeVariable }) {
     type.typeLiteral.callSignatures.length === 0;
 
   return isNamespace ? (
-    <VariableNamespaceCard node={node} />
+    <VariableNamespaceCard node={node} nested={nested} />
   ) : (
-    <SimpleCard node={node} prefix={node.variableDef.kind} returnType={type} />
+    <SimpleCard
+      node={node}
+      nested={nested}
+      prefix={node.variableDef.kind}
+      returnType={type}
+    />
   );
 }
 
-export function VariableNamespaceCard({ node }: { node: DocNodeVariable }) {
+export function VariableNamespaceCard({
+  node,
+  nested,
+}: {
+  node: DocNodeVariable;
+  nested: boolean;
+}) {
   const type = node.variableDef.tsType as TsTypeDefTypeLiteral;
   return (
     <SimpleCard
       node={node}
+      nested={nested}
       prefix={node.variableDef.kind}
       details={
         <div className="mt-2">

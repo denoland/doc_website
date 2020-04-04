@@ -2,7 +2,7 @@ import React from "react";
 import { DocNodeClass } from "../util/docs";
 import { SimpleCard, SimpleSubCard } from "./SinglePage";
 
-export function ClassCard({ node }: { node: DocNodeClass }) {
+export function ClassCard({ node, nested }: { node: DocNodeClass, nested: boolean }) {
   const constructors = node.classDef.constructors;
   const properties = node.classDef.properties.filter(
     (node) => node.accessibility !== "private"
@@ -18,6 +18,7 @@ export function ClassCard({ node }: { node: DocNodeClass }) {
   return (
     <SimpleCard
       node={node}
+      nested={nested}
       prefix={`${node.classDef.isAbstract ? "abstract " : ""} class`}
       details={
         <>
@@ -73,7 +74,7 @@ export function ClassCard({ node }: { node: DocNodeClass }) {
           {staticProperties.length > 0 ? (
             <div className="mt-2">
               <p className="text-md font-medium">Static Properties</p>
-              {realProperties.map((node) => {
+              {staticProperties.map((node) => {
                 return <SimpleSubCard node={node} returnType={node.tsType} />;
               })}
             </div>
@@ -81,7 +82,7 @@ export function ClassCard({ node }: { node: DocNodeClass }) {
           {staticMethods.length > 0 ? (
             <div className="mt-2">
               <p className="text-md font-medium">Static Methods</p>
-              {realMethods.map((node) => {
+              {staticMethods.map((node) => {
                 return (
                   <SimpleSubCard
                     node={node}

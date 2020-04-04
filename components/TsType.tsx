@@ -29,7 +29,7 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
         </span>
       );
     case TsTypeDefKind.FnOrConstructor: {
-      const paramElements = [];
+      const paramElements: React.ReactNode[] = [];
       tsType.fnOrConstructor.params.forEach((p) =>
         paramElements.push(
           <>
@@ -59,7 +59,7 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
         </span>
       );
     case TsTypeDefKind.Intersection: {
-      const elements = [];
+      const elements: React.ReactNode[] = [];
       tsType.intersection.forEach((tsType) =>
         elements.push(<TsType tsType={tsType} />, " & ")
       );
@@ -96,16 +96,16 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
     case TsTypeDefKind.This:
       return <span>this</span>;
     case TsTypeDefKind.Tuple:
-      const elements = [];
+      const elements: React.ReactNode[] = [];
       tsType.tuple.forEach((tsType) =>
         elements.push(<TsType tsType={tsType} />, ", ")
       );
       elements.pop();
       return <span>[{elements}]</span>;
     case TsTypeDefKind.TypeLiteral: {
-      const final = [];
+      const final: React.ReactNode[] = [];
       tsType.typeLiteral.callSignatures.forEach((callSignature) => {
-        const paramElements = [];
+        const paramElements: React.ReactNode[] = [];
         (callSignature.params ?? []).forEach((p) =>
           paramElements.push(
             <>
@@ -133,7 +133,7 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
         );
       });
       tsType.typeLiteral.methods.forEach((method) => {
-        const paramElements = [];
+        const paramElements: React.ReactNode[] = [];
         (method.params ?? []).forEach((p) => [
           <>
             {p.name}
@@ -191,7 +191,7 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
       return <span>typeof {tsType.typeQuery}</span>;
     case TsTypeDefKind.TypeRef:
       const node = findNodeByType(nodes, tsType);
-      const paramElements = [];
+      const paramElements: React.ReactNode[] = [];
       (tsType.typeRef.typeParams ?? []).forEach((tsType) =>
         paramElements.push(<TsType tsType={tsType} />, ", ")
       );
@@ -215,7 +215,7 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
         </>
       );
     case TsTypeDefKind.Union: {
-      const elements = [];
+      const elements: React.ReactNode[] = [];
       tsType.union.forEach((tsType, i) =>
         elements.push(<TsType tsType={tsType} key={i} />, " | ")
       );

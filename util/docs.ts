@@ -15,6 +15,7 @@ export interface DocNodeLocation {
 }
 export interface DocNodeShared {
   name: string;
+  scope?: string[];
   location: DocNodeLocation;
   jsDoc?: string;
 }
@@ -314,6 +315,30 @@ export interface GroupedNodes {
   interfaces: DocNodeInterface[];
   typeAliases: DocNodeTypeAlias[];
   namespaces: DocNodeNamespace[];
+}
+
+export function expandNamespaces(docs: DocNode[]): DocNode[] {
+  return docs.flatMap((parent): any => {
+    if (parent.kind === DocNodeKind.Namespace) {
+      const scope = parent.scope ?? [];
+      scope.push(parent.name);
+      return [
+        {
+          ...parent,
+          namespaceDef: {
+            elements: expandNamespaces(
+              parent.namespaceDef.elements.map((el) => ({
+                ...el,
+                scope: scope,
+              }))
+            ),
+          },
+        },
+      ] as DocNodeNamespace[];
+    } else {
+      return [parent];
+    }
+  });
 }
 
 export function sortByAlphabet(docs: DocNode[]): DocNode[] {

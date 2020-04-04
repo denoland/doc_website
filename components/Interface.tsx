@@ -2,10 +2,17 @@ import React from "react";
 import { DocNodeInterface } from "../util/docs";
 import { SimpleCard, SimpleSubCard } from "./SinglePage";
 
-export function InterfaceCard({ node }: { node: DocNodeInterface }) {
+export function InterfaceCard({
+  node,
+  nested,
+}: {
+  node: DocNodeInterface;
+  nested: boolean;
+}) {
   return (
     <SimpleCard
       node={node}
+      nested={nested}
       prefix="interface"
       details={
         <>

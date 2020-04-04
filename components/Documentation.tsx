@@ -60,9 +60,11 @@ export const Documentation = ({
           content={`Automatically generated documentation for ${name}.`}
         />
       </Head>
-      <DataProvider value={data}>
-        <SinglePage forceReload={() => forceReload()} entrypoint={entrypoint} />
-      </DataProvider>
+      <SinglePage
+        forceReload={() => forceReload()}
+        entrypoint={entrypoint}
+        data={data}
+      />
     </>
   );
 };

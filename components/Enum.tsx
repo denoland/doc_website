@@ -2,10 +2,17 @@ import React from "react";
 import { DocNodeEnum } from "../util/docs";
 import { SimpleCard, SimpleSubCard } from "./SinglePage";
 
-export function EnumCard({ node }: { node: DocNodeEnum }) {
+export function EnumCard({
+  node,
+  nested,
+}: {
+  node: DocNodeEnum;
+  nested: boolean;
+}) {
   return (
     <SimpleCard
       node={node}
+      nested={nested}
       prefix="enum"
       details={
         <>
