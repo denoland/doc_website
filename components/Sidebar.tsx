@@ -26,7 +26,10 @@ const SidebarSection = (props: {
   ) : null;
 };
 
-export const Sidebar = (props: { forceReload: () => void }) => {
+export const Sidebar = (props: {
+  forceReload: () => void;
+  entrypoint: string;
+}) => {
   const data = useData();
 
   const groups = useMemo(() => groupNodes(data?.nodes ?? []), [data]);
@@ -38,7 +41,13 @@ export const Sidebar = (props: { forceReload: () => void }) => {
           <div className="text-gray-900 text-xl font-bold mb-2 lg:hidden">
             Table of Contents
           </div>
-          <div className="text-gray-600 text-sm">
+          <a
+            className="text-blue-500 text-sm cursor-pointer"
+            href={props.entrypoint}
+          >
+            {props.entrypoint}
+          </a>
+          <div className="text-gray-600 text-sm mt-2">
             Last refreshed {new Date(data.timestamp).toLocaleString()}
           </div>
           <a

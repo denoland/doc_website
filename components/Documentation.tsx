@@ -61,7 +61,7 @@ export const Documentation = ({
         />
       </Head>
       <DataProvider value={data}>
-        <SinglePage forceReload={() => forceReload()} />
+        <SinglePage forceReload={() => forceReload()} entrypoint={entrypoint} />
       </DataProvider>
     </>
   );

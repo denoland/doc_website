@@ -6,7 +6,7 @@ import {
   ParamDef,
   TsTypeDef,
   DocNodeLocation,
-  sortByAlphabet
+  sortByAlphabet,
 } from "../util/docs";
 import { JSDoc, CodeBlock } from "./JSDoc";
 import { ClassCard } from "./Class";
@@ -18,12 +18,15 @@ import { VariableCard } from "./Variable";
 import { TypeAliasCard } from "./TypeAlias";
 import { Page } from "./Page";
 
-export function SinglePage(props: { forceReload: () => void }) {
+export function SinglePage(props: {
+  forceReload: () => void;
+  entrypoint: string;
+}) {
   const data = useData();
 
   if (!data) {
     return (
-      <Page forceReload={props.forceReload}>
+      <Page forceReload={props.forceReload} entrypoint={props.entrypoint}>
         <div className="bg-gray-100 pb-3 px-6 max-w-4xl">
           <div className="py-4">
             <div className="text-gray-900 text-2xl font-medium mb-1">
@@ -52,7 +55,7 @@ export function SinglePage(props: { forceReload: () => void }) {
     0;
 
   return (
-    <Page forceReload={props.forceReload}>
+    <Page forceReload={props.forceReload} entrypoint={props.entrypoint}>
       {}
       <div className="bg-gray-100 pb-3 px-6 max-w-4xl">
         {hasNone ? (
@@ -169,7 +172,7 @@ export function SimpleCard({
   prefix,
   details,
   params,
-  returnType
+  returnType,
 }: {
   node: DocNodeShared & { kind?: string };
   prefix?: string;
@@ -233,7 +236,7 @@ export function SimpleSubCard({
   node,
   prefix,
   params,
-  returnType
+  returnType,
 }: {
   node: Omit<DocNodeShared, "location"> & {
     kind?: string;

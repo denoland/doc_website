@@ -6,6 +6,7 @@ import { Sidebar } from "./Sidebar";
 export function Page(props: {
   children: React.ReactNode;
   forceReload: () => void;
+  entrypoint: string;
 }) {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
 
@@ -61,11 +62,14 @@ export function Page(props: {
             "bg-white lg:max-w-xs w-full overflow-y-scroll absolute lg:static inset-0" +
             (drawerOpen ? "" : " hidden lg:block")
           }
-          onClick={e => {
+          onClick={(e) => {
             if (e.target instanceof HTMLAnchorElement) setDrawerOpen(false);
           }}
         >
-          <Sidebar forceReload={props.forceReload} />
+          <Sidebar
+            forceReload={props.forceReload}
+            entrypoint={props.entrypoint}
+          />
         </div>
         <div className="w-full overflow-y-scroll bg-gray-100">
           {props.children}
