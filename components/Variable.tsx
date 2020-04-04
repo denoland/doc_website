@@ -2,7 +2,7 @@ import React from "react";
 import {
   DocNodeVariable,
   TsTypeDefKind,
-  TsTypeDefTypeLiteral
+  TsTypeDefTypeLiteral,
 } from "../util/docs";
 import { SimpleCard, SimpleSubCard } from "./SinglePage";
 
@@ -32,7 +32,7 @@ export function VariableNamespaceCard({ node }: { node: DocNodeVariable }) {
       details={
         <div className="mt-2">
           <p className="text-md font-medium">Properties</p>
-          {type.typeLiteral.properties.map(node => {
+          {type.typeLiteral.properties.map((node) => {
             return (
               <SimpleSubCard
                 node={{ name: node.name }}

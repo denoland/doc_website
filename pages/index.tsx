@@ -29,7 +29,7 @@ const Home = () => {
       </Head>
       <div className="px-4 sm:px-8 md:px-12 py-4 md:py-8 max-w-4xl mx-auto flex flex-col">
         <div className="flex flex-col sm:flex-row items-center">
-          <img src="/logo.svg" className="w-48" />
+          <img src="/logo.svg" className="w-48" alt="Deno logo" />
           <div className="md:ml-4 text-center sm:text-left">
             <h1 className="text-4xl font-bold">deno doc</h1>
             <p>
@@ -39,9 +39,12 @@ const Home = () => {
           </div>
         </div>
         <hr className="mt-4 sm:hidden" />
-        <div className="mt-4 font-bold">View documentation for:</div>
+        <label className="mt-4 font-bold" htmlFor="entrypoint">
+          View documentation for:
+        </label>
         <div className="mt-1 flex flex-row">
           <input
+            id="entrypoint"
             className="bg-white border border-gray-300 focus:border-gray-500 rounded-lg py-2 px-4 block w-full appearance-none leading-normal outline-none"
             type="url"
             placeholder="https://deno.land/std/http/mod.ts"
@@ -66,7 +69,7 @@ const Home = () => {
             href="/https/[...url]"
             as={`/https/github.com/denoland/deno/releases/download/latest/lib.deno.d.ts`}
           >
-            <a className="text-blue-500">view the Deno runtime documentation</a>
+            <a className="text-blue-600">view the Deno runtime documentation</a>
           </Link>
           .
         </div>
@@ -75,7 +78,7 @@ const Home = () => {
           {examples.map((example) => (
             <li key={example} className="ml-6">
               <Link href="/https/[...url]" as={`/https/${example}`}>
-                <a className="text-blue-500 break-words">https://{example}</a>
+                <a className="text-blue-600 break-words">https://{example}</a>
               </Link>
             </li>
           ))}
@@ -85,14 +88,14 @@ const Home = () => {
           <p className="font-bold">Other resources:</p>
           <ul className="list-disc">
             <li className="ml-6">
-              <a href="https://deno.land" className="text-blue-500">
+              <a href="https://deno.land" className="text-blue-600">
                 Website
               </a>
             </li>
             <li className="ml-6">
               <a
                 href="https://deno.land/std/manual.md"
-                className="text-blue-500"
+                className="text-blue-600"
               >
                 Manual
               </a>

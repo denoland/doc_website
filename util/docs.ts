@@ -5,7 +5,7 @@ export enum DocNodeKind {
   Enum = "enum",
   Interface = "interface",
   TypeAlias = "typeAlias",
-  Namespace = "namespace"
+  Namespace = "namespace",
 }
 
 export interface DocNodeLocation {
@@ -69,7 +69,7 @@ export interface LiteralMethodDef {
 export enum LiteralDefKind {
   Number = "number",
   String = "string",
-  Boolean = "boolean"
+  Boolean = "boolean",
 }
 export type LiteralDef =
   | {
@@ -101,7 +101,7 @@ export enum TsTypeDefKind {
   FnOrConstructor = "fnOrConstructor",
   Conditional = "conditional",
   IndexedAccess = "indexedAccess",
-  TypeLiteral = "typeLiteral"
+  TypeLiteral = "typeLiteral",
 }
 export interface TsTypeDefShared {
   repr: string;
@@ -328,10 +328,10 @@ export function groupNodes(docs: DocNode[]): GroupedNodes {
     enums: [],
     interfaces: [],
     typeAliases: [],
-    namespaces: []
+    namespaces: [],
   };
 
-  docs.forEach(node => {
+  docs.forEach((node) => {
     switch (node.kind) {
       case DocNodeKind.Function:
         groupedNodes.functions.push(node);
@@ -366,7 +366,7 @@ export function findNodeByType(
 ): DocNode | undefined {
   return type.kind === TsTypeDefKind.TypeRef
     ? nodes.find(
-        node =>
+        (node) =>
           node.name === type.typeRef?.typeName &&
           (node.kind === DocNodeKind.Class ||
             node.kind === DocNodeKind.Enum ||

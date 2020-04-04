@@ -3,7 +3,7 @@ import App from "next/app";
 import "../components/app.css";
 import Head from "next/head";
 
-export default class MyApp extends App {
+export default class DenoDocApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (

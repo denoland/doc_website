@@ -3,7 +3,7 @@ import {
   TsTypeDef,
   findNodeByType,
   TsTypeDefKind,
-  LiteralDefKind
+  LiteralDefKind,
 } from "../util/docs";
 import { useData } from "../util/data";
 import Link from "next/link";
@@ -30,7 +30,7 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
       );
     case TsTypeDefKind.FnOrConstructor: {
       const paramElements = [];
-      tsType.fnOrConstructor.params.forEach(p =>
+      tsType.fnOrConstructor.params.forEach((p) =>
         paramElements.push(
           <>
             {p.name}
@@ -60,7 +60,7 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
       );
     case TsTypeDefKind.Intersection: {
       const elements = [];
-      tsType.intersection.forEach(tsType =>
+      tsType.intersection.forEach((tsType) =>
         elements.push(<TsType tsType={tsType} />, " & ")
       );
       elements.pop();
@@ -97,16 +97,16 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
       return <span>this</span>;
     case TsTypeDefKind.Tuple:
       const elements = [];
-      tsType.tuple.forEach(tsType =>
+      tsType.tuple.forEach((tsType) =>
         elements.push(<TsType tsType={tsType} />, ", ")
       );
       elements.pop();
       return <span>[{elements}]</span>;
     case TsTypeDefKind.TypeLiteral: {
       const final = [];
-      tsType.typeLiteral.callSignatures.forEach(callSignature => {
+      tsType.typeLiteral.callSignatures.forEach((callSignature) => {
         const paramElements = [];
-        (callSignature.params ?? []).forEach(p =>
+        (callSignature.params ?? []).forEach((p) =>
           paramElements.push(
             <>
               {p.name}
@@ -132,9 +132,9 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
           ", "
         );
       });
-      tsType.typeLiteral.methods.forEach(method => {
+      tsType.typeLiteral.methods.forEach((method) => {
         const paramElements = [];
-        (method.params ?? []).forEach(p => [
+        (method.params ?? []).forEach((p) => [
           <>
             {p.name}
             {p.tsType ? (
@@ -143,7 +143,7 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
               </>
             ) : null}
           </>,
-          ", "
+          ", ",
         ]);
         paramElements.pop();
         final.push(
@@ -158,7 +158,7 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
           ", "
         );
       });
-      tsType.typeLiteral.properties.forEach(property => {
+      tsType.typeLiteral.properties.forEach((property) => {
         final.push(
           <span>
             {property.name}
@@ -192,7 +192,7 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
     case TsTypeDefKind.TypeRef:
       const node = findNodeByType(nodes, tsType);
       const paramElements = [];
-      (tsType.typeRef.typeParams ?? []).forEach(tsType =>
+      (tsType.typeRef.typeParams ?? []).forEach((tsType) =>
         paramElements.push(<TsType tsType={tsType} />, ", ")
       );
       paramElements.pop();
@@ -200,7 +200,7 @@ export const TsType = ({ tsType }: { tsType: TsTypeDef }) => {
         <>
           {node ? (
             <Link href="/https/[...url]" as={`#${node.name}`}>
-              <a className="text-blue-500">{tsType.typeRef.typeName}</a>
+              <a className="text-blue-600">{tsType.typeRef.typeName}</a>
             </Link>
           ) : (
             <span>{tsType.typeRef.typeName}</span>

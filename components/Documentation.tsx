@@ -7,16 +7,16 @@ import { SinglePage } from "./SinglePage";
 
 export const Documentation = ({
   entrypoint,
-  name
+  name,
 }: {
   entrypoint: string;
   name: string;
 }) => {
-  const [loadCount, forceReload] = useReducer(i => ++i, 0);
+  const [loadCount, forceReload] = useReducer((i) => ++i, 0);
   const { data, error } = useSWR<DocsData, string>(
     [entrypoint, loadCount],
     () =>
-      getData(entrypoint, "", loadCount > 0).catch(err => {
+      getData(entrypoint, "", loadCount > 0).catch((err) => {
         throw err?.message ?? err.toString();
       })
   );
@@ -39,11 +39,11 @@ export const Documentation = ({
         <div className="text-gray-800 text-3xl">{title}</div>
         <div className="text-lg mt-2">{details}</div>
         <Link href="/">
-          <a className="text-blue-500 mt-4 text-xl">Go back home</a>
+          <a className="text-blue-600 mt-4 text-xl">Go back home</a>
         </Link>
         <a
           href="https://github.com/bartlomieju/deno_doc/issues"
-          className="text-blue-500 mt-5 text-sm"
+          className="text-blue-600 mt-5 text-sm"
         >
           Report Issue
         </a>

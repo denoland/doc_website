@@ -17,7 +17,7 @@ const SidebarSection = (props: {
         {props.nodes.map((node, i) => (
           <p key={node.name + "+" + i}>
             <Link href="/https/[...url]" as={`#${node.name}`}>
-              <a className="text-blue-500">{node.name}</a>
+              <a className="text-blue-600">{node.name}</a>
             </Link>
           </p>
         ))}
@@ -39,7 +39,7 @@ export const Sidebar = (props: {
       {data ? (
         <header className="px-4 sm:px-6 pt-3 sm:pt-4">
           <a
-            className="text-blue-500 text-sm cursor-pointer break-words"
+            className="text-blue-600 text-sm cursor-pointer break-words"
             href={props.entrypoint}
           >
             {props.entrypoint}
@@ -50,7 +50,7 @@ export const Sidebar = (props: {
           <div className="text-gray-600 text-sm mt-2">
             Last refreshed {new Date(data.timestamp).toLocaleString()}.{" "}
             <a
-              className="text-blue-500 text-sm cursor-pointer"
+              className="text-blue-600 text-sm cursor-pointer"
               onClick={props.forceReload}
             >
               Refresh now

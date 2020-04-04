@@ -5,15 +5,15 @@ import { SimpleCard, SimpleSubCard } from "./SinglePage";
 export function ClassCard({ node }: { node: DocNodeClass }) {
   const constructors = node.classDef.constructors;
   const properties = node.classDef.properties.filter(
-    node => node.accessibility !== "private"
+    (node) => node.accessibility !== "private"
   );
-  const realProperties = properties.filter(node => !node.isStatic);
-  const staticProperties = properties.filter(node => node.isStatic);
+  const realProperties = properties.filter((node) => !node.isStatic);
+  const staticProperties = properties.filter((node) => node.isStatic);
   const methods = node.classDef.methods.filter(
-    node => node.accessibility !== "private"
+    (node) => node.accessibility !== "private"
   );
-  const realMethods = methods.filter(node => !node.isStatic);
-  const staticMethods = methods.filter(node => node.isStatic);
+  const realMethods = methods.filter((node) => !node.isStatic);
+  const staticMethods = methods.filter((node) => node.isStatic);
 
   return (
     <SimpleCard
@@ -24,7 +24,7 @@ export function ClassCard({ node }: { node: DocNodeClass }) {
           {constructors.length > 0 ? (
             <div className="mt-2">
               <p className="text-md font-medium">Constructors</p>
-              {constructors.map(node => {
+              {constructors.map((node) => {
                 return <SimpleSubCard node={node} params={node.params} />;
               })}
             </div>
@@ -32,7 +32,7 @@ export function ClassCard({ node }: { node: DocNodeClass }) {
           {realProperties.length > 0 ? (
             <div className="mt-2">
               <p className="text-md font-medium">Properties</p>
-              {realProperties.map(node => {
+              {realProperties.map((node) => {
                 return (
                   <SimpleSubCard
                     node={node}
@@ -50,7 +50,7 @@ export function ClassCard({ node }: { node: DocNodeClass }) {
           {realMethods.length > 0 ? (
             <div className="mt-2">
               <p className="text-md font-medium">Methods</p>
-              {realMethods.map(node => {
+              {realMethods.map((node) => {
                 return (
                   <SimpleSubCard
                     node={node}
@@ -73,7 +73,7 @@ export function ClassCard({ node }: { node: DocNodeClass }) {
           {staticProperties.length > 0 ? (
             <div className="mt-2">
               <p className="text-md font-medium">Static Properties</p>
-              {realProperties.map(node => {
+              {realProperties.map((node) => {
                 return <SimpleSubCard node={node} returnType={node.tsType} />;
               })}
             </div>
@@ -81,7 +81,7 @@ export function ClassCard({ node }: { node: DocNodeClass }) {
           {staticMethods.length > 0 ? (
             <div className="mt-2">
               <p className="text-md font-medium">Static Methods</p>
-              {realMethods.map(node => {
+              {realMethods.map((node) => {
                 return (
                   <SimpleSubCard
                     node={node}

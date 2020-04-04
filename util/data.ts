@@ -4,7 +4,7 @@ import { DocNode } from "./docs";
 
 const context = createContext<DocsData>({
   nodes: [],
-  timestamp: ""
+  timestamp: "",
 });
 
 export function useData() {
@@ -32,6 +32,6 @@ export async function getData(
   const resp = await req.json();
   return {
     timestamp: resp.timestamp,
-    nodes: resp.nodes
+    nodes: resp.nodes,
   };
 }
