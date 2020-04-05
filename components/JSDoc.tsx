@@ -23,10 +23,12 @@ export function JSDoc(props: { jsdoc: string; short?: boolean }) {
         ),
         code: CodeBlock,
         table: (props) => (
-          <table
-            {...props}
-            className="border-collapse border border-gray-300 my-2"
-          />
+          <div className="overflow-y-scroll w-full">
+            <table
+              {...props}
+              className="border-collapse border border-gray-300 my-2"
+            />
+          </div>
         ),
         tableCell: (props) => (
           <td
