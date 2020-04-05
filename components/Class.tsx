@@ -40,7 +40,7 @@ export function ClassCard({
         node.classDef.superClass ? (
           <>
             {" "}
-            <span className="text-pink-800">extends</span>{" "}
+            <span className="keyword">extends</span>{" "}
             {superClassNode ? (
               <Link
                 href="/https/[...url]"
@@ -50,7 +50,7 @@ export function ClassCard({
                     : ""
                 }${superClassNode.name}`}
               >
-                <a className="text-blue-600">{superClassNode.name}</a>
+                <a className="link">{superClassNode.name}</a>
               </Link>
             ) : (
               superClass
@@ -62,7 +62,7 @@ export function ClassCard({
         <>
           {constructors.length > 0 ? (
             <div className="mt-2">
-              <p className="text-md font-medium">Constructors</p>
+              <p className="font-medium text-md">Constructors</p>
               {constructors.map((node) => {
                 return (
                   <SimpleSubCard
@@ -75,7 +75,7 @@ export function ClassCard({
           ) : null}
           {realProperties.length > 0 ? (
             <div className="mt-2">
-              <p className="text-md font-medium">Properties</p>
+              <p className="font-medium text-md">Properties</p>
               {realProperties.map((node) => {
                 return (
                   <SimpleSubCard
@@ -93,7 +93,7 @@ export function ClassCard({
           ) : null}
           {realMethods.length > 0 ? (
             <div className="mt-2">
-              <p className="text-md font-medium">Methods</p>
+              <p className="font-medium text-md">Methods</p>
               {realMethods.map((node) => {
                 return (
                   <SimpleSubCard
@@ -116,7 +116,7 @@ export function ClassCard({
           ) : null}
           {staticProperties.length > 0 ? (
             <div className="mt-2">
-              <p className="text-md font-medium">Static Properties</p>
+              <p className="font-medium text-md">Static Properties</p>
               {staticProperties.map((node) => {
                 return (
                   <SimpleSubCard
@@ -129,7 +129,7 @@ export function ClassCard({
           ) : null}
           {staticMethods.length > 0 ? (
             <div className="mt-2">
-              <p className="text-md font-medium">Static Methods</p>
+              <p className="font-medium text-md">Static Methods</p>
               {staticMethods.map((node) => {
                 return (
                   <SimpleSubCard

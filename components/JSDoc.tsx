@@ -5,11 +5,11 @@ import ts from "react-syntax-highlighter/dist/cjs/languages/hljs/typescript";
 import atomOneLight from "react-syntax-highlighter/dist/cjs/styles/hljs/atom-one-light";
 SyntaxHighlighter.registerLanguage("ts", ts);
 
-export function JSDoc(props: { jsdoc: string; short?: boolean }) {
-  const firstline = props.jsdoc.split("\n")[0];
+export function JSDoc(props: { jsdoc: string }) {
+  const jsdoc = props.jsdoc.replace(/\n@param/g, "\n\n __param__");
   return (
     <ReactMarkdown
-      source={props.short ? firstline : props.jsdoc}
+      source={jsdoc}
       renderers={{
         link: (props: any) => (
           <a className="text-blue-400" {...props}>
@@ -17,16 +17,16 @@ export function JSDoc(props: { jsdoc: string; short?: boolean }) {
           </a>
         ),
         inlineCode: (props: { children: string }) => (
-          <code className="font-mono bg-gray-200 p-px rounded-sm">
+          <code className="p-px font-mono bg-gray-200 rounded-sm">
             {props.children}
           </code>
         ),
         code: CodeBlock,
         table: (props) => (
-          <div className="overflow-y-scroll w-full">
+          <div className="w-full overflow-x-auto">
             <table
               {...props}
-              className="border-collapse border border-gray-300 my-2"
+              className="my-2 border border-collapse border-gray-300"
             />
           </div>
         ),

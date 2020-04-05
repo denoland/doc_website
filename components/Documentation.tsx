@@ -41,15 +41,15 @@ export const Documentation = ({
     }
 
     return (
-      <div className="h-full flex justify-center items-center flex-col p-4 text-center">
-        <div className="text-gray-800 text-3xl">{title}</div>
-        <div className="text-lg mt-2">{details}</div>
+      <div className="flex flex-col items-center justify-center h-full p-4 text-center">
+        <div className="text-3xl text-gray-800">{title}</div>
+        <div className="mt-2 text-lg">{details}</div>
         <Link href="/">
-          <a className="text-blue-600 mt-4 text-xl">Go back home</a>
+          <a className="mt-4 text-xl link">Go back home</a>
         </Link>
         <a
           href="https://github.com/bartlomieju/deno_doc/issues"
-          className="text-blue-600 mt-5 text-sm"
+          className="mt-5 text-sm link"
         >
           Report Issue
         </a>

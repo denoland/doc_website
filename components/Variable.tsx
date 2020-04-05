@@ -50,7 +50,7 @@ export function VariableNamespaceCard({
       prefix={node.variableDef.kind}
       details={
         <div className="mt-2">
-          <p className="text-md font-medium">Properties</p>
+          <p className="font-medium text-md">Properties</p>
           {type.typeLiteral.properties.map((node) => {
             return (
               <SimpleSubCard

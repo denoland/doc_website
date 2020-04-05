@@ -2,4 +2,17 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 /* purgecss end ignore */
+
 @import "tailwindcss/utilities";
+
+.link {
+  @apply text-blue-600;
+}
+
+.link:hover {
+  @apply text-blue-400;
+}
+
+.keyword {
+  @apply text-pink-800;
+}

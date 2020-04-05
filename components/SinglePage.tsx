@@ -284,7 +284,7 @@ export function SimpleCard({
       id={id}
     >
       <div className="text-lg font-mono break-words">
-        {prefix ? <span className="text-pink-800">{prefix} </span> : null}
+        {prefix ? <span className="keyword">{prefix} </span> : null}
         {node.scope?.map((s, i) => (
           <>
             <a
@@ -303,8 +303,8 @@ export function SimpleCard({
           <span className="text-gray-600">({paramElements})</span>
         ) : null}
         {returnType ? (
-          <span className="text-gray-600">
-            {" → "}
+          <span className="text-gray-600 ">
+            {" ⇒ "}
             <TsType tsType={returnType} scope={node.scope ?? []} />
           </span>
         ) : null}
@@ -313,7 +313,10 @@ export function SimpleCard({
 
       <div className="text-xs mt-1 text-gray-600">
         Defined in file '
-        <a href={node.location.filename} className="hover:text-gray-800 break-words">
+        <a
+          href={node.location.filename}
+          className="hover:text-gray-800 break-words"
+        >
           {node.location.filename}
         </a>
         ' on line {node.location.line}, column {node.location.col}.
@@ -365,7 +368,7 @@ export function SimpleSubCard({
   return (
     <div className="mt-2 py-1 px-2 rounded bg-gray-100">
       <div className="text-sm font-mono break-words">
-        {prefix ? <span className="text-pink-800">{prefix} </span> : null}
+        {prefix ? <span className="keyword">{prefix} </span> : null}
         <>{node.name}</>
         {params ? (
           <span className="text-gray-600">({paramElements})</span>
@@ -377,18 +380,21 @@ export function SimpleSubCard({
           </span>
         ) : null}
       </div>
-      {node.location ? (
-        <div className="text-xs mt-1 text-gray-600">
-          Defined in file '
-          <a href={node.location.filename} className="hover:text-gray-800 break-words">
-            {node.location.filename}
-          </a>
-          ' on line {node.location.line}, column {node.location.col}.
-        </div>
-      ) : null}
       {node.jsDoc ? (
         <div className="text-xs mt-1">
           <JSDoc jsdoc={node.jsDoc} />
+        </div>
+      ) : null}
+      {node.location ? (
+        <div className="text-xs mt-1 text-gray-600">
+          Defined in file '
+          <a
+            href={node.location.filename}
+            className="hover:text-gray-800 break-words"
+          >
+            {node.location.filename}
+          </a>
+          ' on line {node.location.line}, column {node.location.col}.
         </div>
       ) : null}
     </div>

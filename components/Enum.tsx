@@ -17,7 +17,7 @@ export function EnumCard({
       details={
         <>
           <div className="mt-2">
-            <p className="text-md font-medium">Members</p>
+            <p className="font-medium text-md">Members</p>
             {node.enumDef.members.length > 0 ? (
               node.enumDef.members.map((member) => {
                 return <SimpleSubCard node={{ name: member.name }} />;

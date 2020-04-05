@@ -10,7 +10,7 @@ const SidebarSection = (props: {
 }) => {
   return props.nodes.length > 0 ? (
     <div className="py-4">
-      <div className="text-gray-900 text-xl font-medium mb-1">
+      <div className="mb-1 text-xl font-medium text-gray-900">
         {props.title}
       </div>
       <div>
@@ -20,7 +20,7 @@ const SidebarSection = (props: {
             <p key={node.name + "+" + i}>
               {scope}
               <Link href="/https/[...url]" as={`#${scope}${node.name}`}>
-                <a className="text-blue-600">{node.name}</a>
+                <a className="link">{node.name}</a>
               </Link>
             </p>
           );
@@ -42,20 +42,20 @@ export const Sidebar = (props: {
   return (
     <>
       {flattend ? (
-        <header className="px-4 sm:px-6 pt-3 sm:pt-4">
+        <header className="px-4 pt-3 sm:px-6 sm:pt-4">
           <a
-            className="text-blue-600 text-sm cursor-pointer break-words"
+            className="text-sm break-words cursor-pointer link"
             href={props.entrypoint}
           >
             {props.entrypoint}
           </a>
-          <div className="text-gray-900 text-xl font-bold mt-3 lg:hidden">
+          <div className="mt-3 text-xl font-bold text-gray-900 lg:hidden">
             Table of Contents
           </div>
-          <div className="text-gray-600 text-sm mt-2">
+          <div className="mt-2 text-sm text-gray-600">
             Last refreshed {new Date(props.timestamp).toLocaleString()}.{" "}
             <a
-              className="text-blue-600 text-sm cursor-pointer"
+              className="text-sm cursor-pointer link"
               onClick={props.forceReload}
             >
               Refresh now
@@ -63,7 +63,7 @@ export const Sidebar = (props: {
           </div>
         </header>
       ) : null}
-      <nav className="px-4 sm:px-6 py-2">
+      <nav className="px-4 py-2 sm:px-6">
         <>
           <SidebarSection
             title="Functions"

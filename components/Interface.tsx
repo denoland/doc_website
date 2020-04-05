@@ -19,7 +19,7 @@ export function InterfaceCard({
         <>
           {node.interfaceDef.callSignatures.length > 0 ? (
             <div className="mt-2">
-              <p className="text-md font-medium">Call Signatures</p>
+              <p className="font-medium text-md">Call Signatures</p>
               {node.interfaceDef.callSignatures.map((node) => {
                 return (
                   <SimpleSubCard
@@ -33,7 +33,7 @@ export function InterfaceCard({
           ) : null}
           {node.interfaceDef.properties.length > 0 ? (
             <div className="mt-2">
-              <p className="text-md font-medium">Properties</p>
+              <p className="font-medium text-md">Properties</p>
               {node.interfaceDef.properties.map((node) => {
                 return (
                   <SimpleSubCard
@@ -46,7 +46,7 @@ export function InterfaceCard({
           ) : null}
           {node.interfaceDef.methods.length > 0 ? (
             <div className="mt-2">
-              <p className="text-md font-medium">Methods</p>
+              <p className="font-medium text-md">Methods</p>
               {node.interfaceDef.methods.map((node) => {
                 return (
                   <SimpleSubCard

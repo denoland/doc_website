@@ -207,7 +207,7 @@ export const TsType = memo(
                   node.name
                 }`}
               >
-                <a className="text-blue-600">{tsType.typeQuery}</a>
+                <a className="link">{tsType.typeQuery}</a>
               </Link>
             ) : (
               tsType.typeQuery
@@ -237,7 +237,7 @@ export const TsType = memo(
                   node.name
                 }`}
               >
-                <a className="text-blue-600">{tsType.typeRef.typeName}</a>
+                <a className="link">{tsType.typeRef.typeName}</a>
               </Link>
             ) : (
               tsType.typeRef.typeName
