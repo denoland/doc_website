@@ -244,6 +244,7 @@ export function SimpleCard({
   node,
   prefix,
   details,
+  suffix,
   params,
   returnType,
   nested,
@@ -251,6 +252,7 @@ export function SimpleCard({
   node: DocNodeShared & { kind?: string };
   prefix?: string;
   details?: React.ReactNode;
+  suffix?: React.ReactNode;
   params?: ParamDef[];
   returnType?: TsTypeDef;
   nested: boolean;
@@ -306,6 +308,7 @@ export function SimpleCard({
             <TsType tsType={returnType} scope={node.scope ?? []} />
           </span>
         ) : null}
+        {suffix}
       </div>
 
       <div className="text-xs mt-1 text-gray-600">

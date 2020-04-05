@@ -1,6 +1,8 @@
 import React from "react";
-import { DocNodeClass } from "../util/docs";
+import { DocNodeClass, findNodeByScopedName } from "../util/docs";
 import { SimpleCard, SimpleSubCard } from "./SinglePage";
+import { useFlattend } from "../util/data";
+import Link from "next/link";
 
 export function ClassCard({
   node,
@@ -23,11 +25,39 @@ export function ClassCard({
 
   const parent = node;
 
+  const flattend = useFlattend();
+  const { superClass } = node.classDef;
+  const superClassNode = superClass
+    ? findNodeByScopedName(flattend, superClass, node.scope ?? [], false)
+    : undefined;
+
   return (
     <SimpleCard
       node={node}
       nested={nested}
       prefix={`${node.classDef.isAbstract ? "abstract " : ""} class`}
+      suffix={
+        node.classDef.superClass ? (
+          <>
+            {" "}
+            <span className="text-pink-800">extends</span>{" "}
+            {superClassNode ? (
+              <Link
+                href="/https/[...url]"
+                as={`#${
+                  superClassNode.scope
+                    ? superClassNode.scope.join(".") + "."
+                    : ""
+                }${superClassNode.name}`}
+              >
+                <a className="text-blue-600">{superClassNode.name}</a>
+              </Link>
+            ) : (
+              superClass
+            )}
+          </>
+        ) : null
+      }
       details={
         <>
           {constructors.length > 0 ? (

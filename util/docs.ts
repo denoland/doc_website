@@ -230,6 +230,8 @@ export interface ClassDef {
   constructors: ClassConstructorDef[];
   properties: ClassPropertyDef[];
   methods: ClassMethodDef[];
+  superClass?: string;
+  implements: string[];
 }
 export interface EnumMemberDef {
   name: string;
