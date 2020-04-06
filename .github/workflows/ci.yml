@@ -10,8 +10,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: yarn --frozen-lockfile
       # TODO(ry) check lint, formatting, tests
+      # - run: yarn --frozen-lockfile
       # - run: yarn run lint
       # - run: yarn format --check
       # - run: CI=true yarn test
@@ -21,3 +21,4 @@ jobs:
         with:
           apiKey: ${{ secrets.cloudflareKey }}
           email: ${{ secrets.email }}
+          workingDirectory: worker
