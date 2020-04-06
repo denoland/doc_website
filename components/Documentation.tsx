@@ -1,6 +1,6 @@
 // Copyright 2020 the Deno authors. All rights reserved. MIT license.
 
-import { useReducer } from "react";
+import { useReducer, useEffect } from "react";
 import Link from "next/link";
 import Head from "next/head";
 import useSWR from "swr";
@@ -28,6 +28,17 @@ export const Documentation = ({
       refreshWhenOffline: false,
     }
   );
+
+  useEffect(() => {
+    let { hash } = location;
+    hash = hash && hash.substring(1);
+    if (!hash) return;
+
+    const el = document.getElementById(hash);
+    if (!el) return;
+
+    setTimeout(() => el.scrollIntoView(), 0);
+  }, [data]);
 
   if (error) {
     let title =
