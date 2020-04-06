@@ -1,7 +1,11 @@
 // Copyright 2020 the Deno authors. All rights reserved. MIT license.
 
 import React from "react";
-import { DocNodeClass, findNodeByScopedName } from "../util/docs";
+import {
+  DocNodeClass,
+  findNodeByScopedName,
+  getFieldsForClassRecursive,
+} from "../util/docs";
 import { SimpleCard, SimpleSubCard } from "./SinglePage";
 import { useFlattend } from "../util/data";
 import Link from "next/link";
@@ -14,12 +18,16 @@ export function ClassCard({
   nested: boolean;
 }) {
   const constructors = node.classDef.constructors;
-  const properties = node.classDef.properties.filter(
+
+  const flattend = useFlattend();
+  const fullClass = getFieldsForClassRecursive(flattend, node);
+
+  const properties = fullClass.properties.filter(
     (node) => node.accessibility !== "private"
   );
   const realProperties = properties.filter((node) => !node.isStatic);
   const staticProperties = properties.filter((node) => node.isStatic);
-  const methods = node.classDef.methods.filter(
+  const methods = fullClass.methods.filter(
     (node) => node.accessibility !== "private"
   );
   const realMethods = methods.filter((node) => !node.isStatic);
@@ -27,10 +35,9 @@ export function ClassCard({
 
   const parent = node;
 
-  const flattend = useFlattend();
   const { superClass } = node.classDef;
   const superClassNode = superClass
-    ? findNodeByScopedName(flattend, superClass, node.scope ?? [], false)
+    ? findNodeByScopedName(flattend, superClass, node.scope ?? [])
     : undefined;
 
   return (

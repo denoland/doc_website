@@ -344,6 +344,7 @@ export function SimpleSubCard({
   node: Omit<DocNodeShared, "location"> & {
     kind?: string;
     location?: DocNodeLocation;
+    inherited?: boolean;
   };
   prefix?: string;
   params?: ParamDef[];
@@ -369,7 +370,15 @@ export function SimpleSubCard({
 
   return (
     <div className="px-2 py-1 mt-2 bg-gray-100 rounded">
-      <div className="font-mono text-sm break-words">
+      <div
+        className={
+          "font-mono text-sm break-words" +
+          (node.inherited ? " italic opacity-50" : "")
+        }
+      >
+        {node.inherited ? (
+          <span className="text-gray-600">inherited </span>
+        ) : null}
         {prefix ? <span className="keyword">{prefix} </span> : null}
         <>{node.name}</>
         {params ? (
