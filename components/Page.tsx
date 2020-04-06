@@ -1,3 +1,5 @@
+// Copyright 2020 the Deno authors. All rights reserved. MIT license.
+
 import React from "react";
 import Link from "next/link";
 import { Sidebar } from "./Sidebar";

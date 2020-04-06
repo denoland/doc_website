@@ -1,3 +1,5 @@
+// Copyright 2020 the Deno authors. All rights reserved. MIT license.
+
 import React from "react";
 import { DocNodeInterface } from "../util/docs";
 import { SimpleCard, SimpleSubCard } from "./SinglePage";

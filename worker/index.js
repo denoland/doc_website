@@ -1,3 +1,5 @@
+// Copyright 2020 the Deno authors. All rights reserved. MIT license.
+
 const origin = "https://deno-doc.lucacasonato.now.sh/api/docs";
 
 async function handleRequest(event) {

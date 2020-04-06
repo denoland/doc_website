@@ -1,3 +1,5 @@
+// Copyright 2020 the Deno authors. All rights reserved. MIT license.
+
 import { createContext, useContext } from "react";
 import fetch from "isomorphic-unfetch";
 import { DocNode } from "./docs";

@@ -1,3 +1,5 @@
+// Copyright 2020 the Deno authors. All rights reserved. MIT license.
+
 import React, { useMemo } from "react";
 import Link from "next/link";
 import { groupNodes, DocNodeShared, sortByAlphabet } from "../util/docs";

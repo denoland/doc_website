@@ -1,3 +1,5 @@
+// Copyright 2020 the Deno authors. All rights reserved. MIT license.
+
 import Head from "next/head";
 import { useRouter } from "next/router";
 import Link from "next/link";

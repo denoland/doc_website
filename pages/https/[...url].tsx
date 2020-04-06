@@ -1,3 +1,5 @@
+// Copyright 2020 the Deno authors. All rights reserved. MIT license.
+
 import { Documentation } from "../../components/Documentation";
 import { NextPage } from "next";
 
