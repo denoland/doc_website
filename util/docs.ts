@@ -406,7 +406,7 @@ export function findNodeByScopedName(
   flattend: DocNode[],
   name: string,
   initialScope: string[],
-  mustBeType: boolean
+  mustBe?: "type" | "class"
 ): DocNode | undefined {
   const scope = [...initialScope];
   let done = false;
@@ -418,12 +418,14 @@ export function findNodeByScopedName(
           : "") +
           node.name ===
           (scope.length > 0 ? scope.join(".") + "." : "") + name &&
-        (!mustBeType ||
-          node.kind === DocNodeKind.Class ||
-          node.kind === DocNodeKind.Enum ||
-          node.kind === DocNodeKind.Interface ||
-          node.kind === DocNodeKind.TypeAlias ||
-          node.kind === DocNodeKind.Namespace)
+        ((mustBe === "type" &&
+          (node.kind === DocNodeKind.Class ||
+            node.kind === DocNodeKind.Enum ||
+            node.kind === DocNodeKind.Interface ||
+            node.kind === DocNodeKind.TypeAlias ||
+            node.kind === DocNodeKind.Namespace)) ||
+          (mustBe === "class" && node.kind === DocNodeKind.Class) ||
+          mustBe === undefined)
     );
     if (node) return node;
     if (scope.length === 0) {
@@ -432,4 +434,55 @@ export function findNodeByScopedName(
     scope.pop();
   }
   return undefined;
+}
+
+export function getFieldsForClassRecursive(
+  flattend: DocNode[],
+  parent: DocNodeClass
+): {
+  methods: (ClassMethodDef & { inherited: boolean })[];
+  properties: (ClassPropertyDef & { inherited: boolean })[];
+} {
+  if (parent.classDef.superClass) {
+    const node = findNodeByScopedName(
+      flattend,
+      parent.classDef.superClass,
+      parent.scope ?? [],
+      "class"
+    ) as DocNodeClass;
+    const r = getFieldsForClassRecursive(flattend, node);
+    return {
+      methods: [
+        ...parent.classDef.methods.map((method) => ({
+          ...method,
+          inherited: false,
+        })),
+        ...r.methods.map((method) => ({
+          ...method,
+          inherited: true,
+        })),
+      ],
+      properties: [
+        ...parent.classDef.properties.map((property) => ({
+          ...property,
+          inherited: false,
+        })),
+        ...r.properties.map((property) => ({
+          ...property,
+          inherited: true,
+        })),
+      ],
+    };
+  } else {
+    return {
+      methods: parent.classDef.methods.map((method) => ({
+        ...method,
+        inherited: false,
+      })),
+      properties: parent.classDef.properties.map((property) => ({
+        ...property,
+        inherited: false,
+      })),
+    };
+  }
 }

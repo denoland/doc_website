@@ -196,8 +196,7 @@ export const TsType = memo(
         const node = findNodeByScopedName(
           flattend,
           tsType.typeQuery,
-          scope ?? [],
-          false
+          scope ?? []
         );
         return (
           <>
@@ -223,7 +222,7 @@ export const TsType = memo(
           flattend,
           tsType.typeRef.typeName,
           scope ?? [],
-          true
+          "type"
         );
         const paramElements: React.ReactNode[] = [];
         (tsType.typeRef.typeParams ?? []).forEach((tsType) =>
