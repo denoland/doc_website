@@ -54,15 +54,17 @@ export const Sidebar = (props: {
           <div className="mt-3 text-xl font-bold text-gray-900 lg:hidden">
             Table of Contents
           </div>
-          <div className="mt-2 text-sm text-gray-600">
-            Last refreshed {new Date(props.timestamp).toLocaleString()}.{" "}
-            <a
-              className="text-sm cursor-pointer link"
-              onClick={props.forceReload}
-            >
-              Refresh now
-            </a>
-          </div>
+          {props.timestamp ? (
+            <div className="mt-2 text-sm text-gray-600">
+              Last refreshed {new Date(props.timestamp).toLocaleString()}.{" "}
+              <a
+                className="text-sm cursor-pointer link"
+                onClick={props.forceReload}
+              >
+                Refresh now
+              </a>
+            </div>
+          ) : null}
         </header>
       ) : null}
       <nav className="px-4 py-2 sm:px-6">
