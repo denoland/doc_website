@@ -306,7 +306,7 @@ export function SimpleCard({
         ) : null}
         {returnType ? (
           <span className="text-gray-600 ">
-            {" ⇒ "}
+            {": "}
             <TsType tsType={returnType} scope={node.scope ?? []} />
           </span>
         ) : null}
