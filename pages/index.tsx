@@ -6,9 +6,9 @@ import Link from "next/link";
 import { useState } from "react";
 
 const examples = [
-  "deno.land/std/http/server.ts",
-  "deno.land/std/fs/copy.ts",
-  "deno.land/x/oak/application.ts",
+  "deno.land/std/http/mod.ts",
+  "deno.land/std/fs/mod.ts",
+  "deno.land/x/oak/mod.ts",
 ];
 
 const Home = () => {
