@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "format": "prettier **.tsx **.ts **.js **.json"
   },
   "dependencies": {
     "isomorphic-unfetch": "^3.0.0",
@@ -27,6 +28,7 @@
     "@types/react-syntax-highlighter": "^11.0.4",
     "autoprefixer": "^9.7.4",
     "postcss-import": "^12.0.1",
+    "prettier": "^2.0.4",
     "typescript": "^3.8.3"
   }
 }

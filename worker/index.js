@@ -8,7 +8,7 @@ async function handleRequest(event) {
   const entrypoint = url.searchParams.get("entrypoint");
   if (!entrypoint) {
     return new Response(`{"error": "No entrypoint URL specified."}`, {
-      status: 400
+      status: 400,
     });
   }
 
@@ -40,13 +40,13 @@ async function handleRequest(event) {
   return response;
 }
 
-addEventListener("fetch", event => {
+addEventListener("fetch", (event) => {
   try {
     return event.respondWith(handleRequest(event));
   } catch (e) {
     return event.respondWith(
       new Response(`{"error": "${e.message}"}`, {
-        status: 500
+        status: 500,
       })
     );
   }

@@ -5,10 +5,13 @@ import {
   DocNodeClass,
   findNodeByScopedName,
   getFieldsForClassRecursive,
+  ParamDef,
+  TsTypeParamDef,
 } from "../util/docs";
 import { SimpleCard, SimpleSubCard } from "./SinglePage";
 import { useFlattend } from "../util/data";
 import Link from "next/link";
+import { TsType } from "./TsType";
 
 export function ClassCard({
   node,
@@ -46,26 +49,38 @@ export function ClassCard({
       nested={nested}
       prefix={`${node.classDef.isAbstract ? "abstract " : ""} class`}
       suffix={
-        node.classDef.superClass ? (
-          <>
-            {" "}
-            <span className="keyword">extends</span>{" "}
-            {superClassNode ? (
-              <Link
-                href="/https/[...url]"
-                as={`#${
-                  superClassNode.scope
-                    ? superClassNode.scope.join(".") + "."
-                    : ""
-                }${superClassNode.name}`}
-              >
-                <a className="link">{superClassNode.name}</a>
-              </Link>
-            ) : (
-              superClass
-            )}
-          </>
-        ) : null
+        <>
+          {node.classDef.typeParams.length > 0 ? (
+            <span className="text-gray-600">
+              {"<"}
+              <TypeParams
+                params={node.classDef.typeParams}
+                scope={node.scope ?? []}
+              />
+              {">"}
+            </span>
+          ) : null}
+          {node.classDef.superClass ? (
+            <>
+              {" "}
+              <span className="keyword">extends</span>{" "}
+              {superClassNode ? (
+                <Link
+                  href="/https/[...url]"
+                  as={`#${
+                    superClassNode.scope
+                      ? superClassNode.scope.join(".") + "."
+                      : ""
+                  }${superClassNode.name}`}
+                >
+                  <a className="link">{superClassNode.name}</a>
+                </Link>
+              ) : (
+                superClass
+              )}
+            </>
+          ) : null}
+        </>
       }
       details={
         <>
@@ -153,5 +168,43 @@ export function ClassCard({
         </>
       }
     />
+  );
+}
+
+export function TypeParams({
+  params,
+  scope,
+}: {
+  params: TsTypeParamDef[];
+  scope: string[];
+}) {
+  return (
+    <>
+      {params
+        .map((p) => {
+          return (
+            <>
+              {p.name}
+              {p.constraint ? (
+                <>
+                  {" "}
+                  extends <TsType tsType={p.constraint} scope={scope} />
+                </>
+              ) : null}
+              {p.default ? (
+                <>
+                  {" "}
+                  = <TsType tsType={p.default} scope={scope} />
+                </>
+              ) : null}
+            </>
+          );
+        })
+        .reduce((r, a) => (
+          <>
+            {r}, {a}
+          </>
+        ))}
+    </>
   );
 }
