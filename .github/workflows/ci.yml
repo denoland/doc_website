@@ -11,7 +11,7 @@ jobs:
         with:
           node-version: 12
       # TODO(ry) check lint, tests
-      # - run: yarn --frozen-lockfile
+      - run: yarn --frozen-lockfile
       # - run: yarn run lint
       - run: yarn format --check
       # - run: CI=true yarn test
