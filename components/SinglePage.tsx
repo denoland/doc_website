@@ -271,45 +271,42 @@ export function SimpleCard({
       }
       id={id}
     >
-      <div className="font-mono text-lg break-words">
-        {prefix ? <span className="keyword">{prefix} </span> : null}
-        {node.scope?.map((s, i) => (
-          <>
-            <a
-              href={"#" + node.scope?.slice(0, i + 1).join(".")}
-              className="pointer hover:underline"
-            >
-              {s}
-            </a>
-            .
-          </>
-        ))}
-        <a href={"#" + id} className="pointer hover:underline">
-          <span className="font-bold">{node.name}</span>
-        </a>
-        {params ? (
-          <span className="text-gray-600">
-            (<Params params={params} scope={node.scope ?? []} />)
-          </span>
-        ) : null}
-        {returnType ? (
-          <span className="text-gray-600 ">
-            {": "}
-            <TsType tsType={returnType} scope={node.scope ?? []} />
-          </span>
-        ) : null}
-        {suffix}
-      </div>
-
-      <div className="mt-1 text-xs text-gray-600">
-        Defined in file '
+      <div className="flex justify-between">
+        <div className="overflow-auto font-mono text-lg break-words">
+          {prefix ? <span className="keyword">{prefix} </span> : null}
+          {node.scope?.map((s, i) => (
+            <>
+              <a
+                href={"#" + node.scope?.slice(0, i + 1).join(".")}
+                className="pointer hover:underline"
+              >
+                {s}
+              </a>
+              .
+            </>
+          ))}
+          <a href={"#" + id} className="pointer hover:underline">
+            <span className="font-bold">{node.name}</span>
+          </a>
+          {params ? (
+            <span className="text-gray-600">
+              (<Params params={params} scope={node.scope ?? []} />)
+            </span>
+          ) : null}
+          {returnType ? (
+            <span className="text-gray-600 ">
+              {": "}
+              <TsType tsType={returnType} scope={node.scope ?? []} />
+            </span>
+          ) : null}
+          {suffix}
+        </div>
         <a
-          href={node.location.filename}
-          className="break-words hover:text-gray-800"
+          href={node.location.filename + "#L" + node.location.line}
+          className="pl-2 text-gray-600 break-words hover:text-gray-800 hover:underline"
         >
-          {node.location.filename}
+          [src]
         </a>
-        ' on line {node.location.line}, column {node.location.col}.
       </div>
 
       {node.jsDoc ? (
@@ -340,44 +337,42 @@ export function SimpleSubCard({
 }) {
   return (
     <div className="px-2 py-1 mt-2 bg-gray-100 rounded">
-      <div
-        className={
-          "font-mono text-sm break-words" +
-          (node.inherited ? " italic opacity-50" : "")
-        }
-      >
-        {node.inherited ? (
-          <span className="text-gray-600">inherited</span>
-        ) : null}
-        {prefix ? <span className="keyword">{prefix}</span> : null}
-        <>{node.name}</>
-        {params ? (
-          <span className="text-gray-600">
-            (<Params params={params} scope={node.scope ?? []} />)
-          </span>
-        ) : null}
-        {returnType ? (
-          <span className="text-gray-600">
-            {": "}
-            <TsType tsType={returnType} scope={node.scope ?? []} />
-          </span>
+      <div className="flex justify-between">
+        <div
+          className={
+            "font-mono text-sm break-words" +
+            (node.inherited ? " italic opacity-50" : "")
+          }
+        >
+          {node.inherited ? (
+            <span className="text-gray-600">inherited </span>
+          ) : null}
+          {prefix ? <span className="keyword">{prefix} </span> : null}
+          <>{node.name}</>
+          {params ? (
+            <span className="text-gray-600">
+              (<Params params={params} scope={node.scope ?? []} />)
+            </span>
+          ) : null}
+          {returnType ? (
+            <span className="text-gray-600">
+              {": "}
+              <TsType tsType={returnType} scope={node.scope ?? []} />
+            </span>
+          ) : null}
+        </div>
+        {node.location ? (
+          <a
+            href={node.location.filename + "#L" + node.location.line}
+            className="pl-2 text-xs text-gray-600 break-words hover:text-gray-800 hover:underline"
+          >
+            [src]
+          </a>
         ) : null}
       </div>
       {node.jsDoc ? (
         <div className="mt-1 text-xs">
           <JSDoc jsdoc={node.jsDoc} />
-        </div>
-      ) : null}
-      {node.location ? (
-        <div className="mt-1 text-xs text-gray-600">
-          Defined in file '
-          <a
-            href={node.location.filename}
-            className="break-words hover:text-gray-800"
-          >
-            {node.location.filename}
-          </a>
-          ' on line {node.location.line}, column {node.location.col}.
         </div>
       ) : null}
     </div>
