@@ -20,6 +20,11 @@ export interface DocNodeShared {
   location: DocNodeLocation;
   jsDoc?: string;
 }
+export interface TsTypeParamDef {
+  name: string;
+  constraint?: TsTypeDef;
+  default?: TsTypeDef;
+}
 export interface TsTypeRefDef {
   typeName: string;
   typeParams?: TsTypeDef[];
@@ -243,6 +248,7 @@ export interface ClassDef {
   methods: ClassMethodDef[];
   superClass?: string;
   implements: string[];
+  typeParams: TsTypeParamDef[];
 }
 export interface EnumMemberDef {
   name: string;
