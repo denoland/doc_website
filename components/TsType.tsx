@@ -9,6 +9,7 @@ import {
 } from "../util/docs";
 import Link from "next/link";
 import { useFlattend } from "../util/data";
+import { Params } from "./Function";
 
 export const TsType = memo(
   ({ tsType, scope }: { tsType: TsTypeDef; scope: string[] }) => {
@@ -32,24 +33,10 @@ export const TsType = memo(
         );
       case TsTypeDefKind.FnOrConstructor: {
         const paramElements: React.ReactNode[] = [];
-        tsType.fnOrConstructor.params.forEach((p) =>
-          paramElements.push(
-            <>
-              {p.name}
-              {p.tsType ? (
-                <>
-                  : <TsType tsType={p.tsType} scope={scope} />
-                </>
-              ) : null}
-            </>,
-            ", "
-          )
-        );
-        paramElements.pop();
         return (
           <>
             {tsType.fnOrConstructor.constructor ? "new " : null} (
-            {paramElements}) =>{" "}
+            <Params params={tsType.fnOrConstructor.params} scope={scope} />) =>{" "}
             <TsType tsType={tsType.fnOrConstructor.tsType} scope={scope} />
           </>
         );
@@ -108,24 +95,9 @@ export const TsType = memo(
       case TsTypeDefKind.TypeLiteral: {
         const final: React.ReactNode[] = [];
         tsType.typeLiteral.callSignatures.forEach((callSignature) => {
-          const paramElements: React.ReactNode[] = [];
-          (callSignature.params ?? []).forEach((p) =>
-            paramElements.push(
-              <>
-                {p.name}
-                {p.tsType ? (
-                  <>
-                    : <TsType tsType={p.tsType} scope={scope} />
-                  </>
-                ) : null}
-              </>,
-              ", "
-            )
-          );
-          paramElements.pop();
           final.push(
             <>
-              ({paramElements})
+              (<Params params={callSignature.params} scope={scope} />)
               {callSignature.tsType ? (
                 <>
                   :{" "}
@@ -137,22 +109,9 @@ export const TsType = memo(
           );
         });
         tsType.typeLiteral.methods.forEach((method) => {
-          const paramElements: React.ReactNode[] = [];
-          (method.params ?? []).forEach((p) => [
-            <>
-              {p.name}
-              {p.tsType ? (
-                <>
-                  : <TsType tsType={p.tsType} scope={scope} />
-                </>
-              ) : null}
-            </>,
-            ", ",
-          ]);
-          paramElements.pop();
           final.push(
             <>
-              {method.name}({paramElements})
+              {method.name}(<Params params={method.params} scope={scope} />)
               {method.returnType ? (
                 <>
                   : <TsType tsType={method.returnType} scope={scope}></TsType>

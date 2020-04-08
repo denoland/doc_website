@@ -16,7 +16,7 @@ import {
 import { JSDoc } from "./JSDoc";
 import { ClassCard } from "./Class";
 import { TsType } from "./TsType";
-import { FunctionCard } from "./Function";
+import { FunctionCard, Params } from "./Function";
 import { EnumCard } from "./Enum";
 import { InterfaceCard } from "./Interface";
 import { VariableCard } from "./Variable";
@@ -30,9 +30,7 @@ export const SinglePage = memo(
     entrypoint: string;
     data: DocsData | undefined;
   }) => {
-    const nodes = useMemo(() => expandNamespaces(props.data?.nodes ?? []), [
-      props.data?.nodes,
-    ]);
+    const nodes = expandNamespaces(props.data?.nodes ?? []);
 
     if (!props.data) {
       return (
@@ -67,15 +65,20 @@ export const SinglePage = memo(
           timestamp={props.data.timestamp}
         >
           <div className="max-w-4xl px-4 pb-3 bg-gray-100 sm:px-6">
-            {hasNone ? (
-              <div className="py-4">
-                <div className="mb-1 text-xl text-gray-900">
+            <div className="py-4">
+              <a
+                className="break-words cursor-pointer link"
+                href={props.entrypoint}
+              >
+                {props.entrypoint}
+              </a>
+              {hasNone ? (
+                <h1 className="pt-4 pb-1 text-xl text-gray-900 ">
                   This module has no exports that are recognized by deno doc.
-                </div>
-              </div>
-            ) : null}
-            <div className="pb-4">
-              <CardList nodes={nodes} />
+                </h1>
+              ) : (
+                <CardList nodes={nodes} />
+              )}
             </div>
           </div>
         </Page>
@@ -259,23 +262,6 @@ export function SimpleCard({
   returnType?: TsTypeDef;
   nested: boolean;
 }) {
-  const paramElements = [];
-  if (params) {
-    for (const p of params) {
-      paramElements.push(
-        <>
-          {p.name}
-          {p.tsType ? (
-            <>
-              : <TsType tsType={p.tsType} scope={node.scope ?? []} />
-            </>
-          ) : null}
-        </>,
-        ", "
-      );
-    }
-    paramElements.pop();
-  }
   const id = (node.scope ?? []).concat(node.name).join(".");
   return (
     <div
@@ -302,7 +288,9 @@ export function SimpleCard({
           <span className="font-bold">{node.name}</span>
         </a>
         {params ? (
-          <span className="text-gray-600">({paramElements})</span>
+          <span className="text-gray-600">
+            (<Params params={params} scope={node.scope ?? []} />)
+          </span>
         ) : null}
         {returnType ? (
           <span className="text-gray-600 ">
@@ -350,24 +338,6 @@ export function SimpleSubCard({
   params?: ParamDef[];
   returnType?: TsTypeDef;
 }) {
-  const paramElements = [];
-  if (params) {
-    for (const p of params) {
-      paramElements.push(
-        <>
-          {p.name}
-          {p.tsType ? (
-            <>
-              : <TsType tsType={p.tsType} scope={node.scope ?? []} />
-            </>
-          ) : null}
-        </>,
-        ", "
-      );
-    }
-    paramElements.pop();
-  }
-
   return (
     <div className="px-2 py-1 mt-2 bg-gray-100 rounded">
       <div
@@ -377,12 +347,14 @@ export function SimpleSubCard({
         }
       >
         {node.inherited ? (
-          <span className="text-gray-600">inherited </span>
+          <span className="text-gray-600">inherited</span>
         ) : null}
-        {prefix ? <span className="keyword">{prefix} </span> : null}
+        {prefix ? <span className="keyword">{prefix}</span> : null}
         <>{node.name}</>
         {params ? (
-          <span className="text-gray-600">({paramElements})</span>
+          <span className="text-gray-600">
+            (<Params params={params} scope={node.scope ?? []} />)
+          </span>
         ) : null}
         {returnType ? (
           <span className="text-gray-600">

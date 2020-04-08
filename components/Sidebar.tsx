@@ -45,17 +45,11 @@ export const Sidebar = (props: {
     <>
       {flattend ? (
         <header className="px-4 pt-3 sm:px-6 sm:pt-4">
-          <a
-            className="text-sm break-words cursor-pointer link"
-            href={props.entrypoint}
-          >
-            {props.entrypoint}
-          </a>
-          <div className="mt-3 text-xl font-bold text-gray-900 lg:hidden">
+          <div className="text-xl font-bold text-gray-900 lg:hidden">
             Table of Contents
           </div>
           {props.timestamp ? (
-            <div className="mt-2 text-sm text-gray-600">
+            <div className="mt-1 text-sm text-gray-600">
               Last refreshed {new Date(props.timestamp).toLocaleString()}.{" "}
               <a
                 className="text-sm cursor-pointer link"

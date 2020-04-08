@@ -10,15 +10,16 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      # TODO(ry) check lint, formatting, tests
-      # - run: yarn --frozen-lockfile
+      # TODO(ry) check lint, tests
+      - run: yarn --frozen-lockfile
       # - run: yarn run lint
-      # - run: yarn format --check
+      - run: yarn format --check
       # - run: CI=true yarn test
       - name: Publish CF Worker
         if: github.ref == 'refs/heads/master' && github.event_name == 'push' && github.repository == 'denoland/doc_website'
-        uses: cloudflare/wrangler-action@1.0.0
+        uses: cloudflare/wrangler-action@1.1.0
         with:
+          # TODO(ry) migrate to API token? https://github.com/cloudflare/wrangler-action/releases/tag/1.1.0
           apiKey: ${{ secrets.cloudflareKey }}
           email: ${{ secrets.email }}
           workingDirectory: worker

@@ -3,7 +3,7 @@
 import {
   APIGatewayProxyEvent,
   APIGatewayProxyResult,
-  Context
+  Context,
 } from "https://deno.land/x/lambda/mod.ts";
 
 const decoder = new TextDecoder();
@@ -23,11 +23,11 @@ export async function handler(
     return {
       statusCode: 400,
       body: JSON.stringify({
-        error: "missing entrypoint query parameter"
+        error: "missing entrypoint query parameter",
       }),
       headers: {
-        "content-type": "application/json; charset=utf-8"
-      }
+        "content-type": "application/json; charset=utf-8",
+      },
     };
   }
 
@@ -37,24 +37,22 @@ export async function handler(
   if (isRemote) {
     sourceFile = entrypoint;
   } else {
-    return error(
-      "entrypoint must be a remote https:// module",
-      400
-    );
+    return error("entrypoint must be a remote https:// module", 400);
   }
 
   const proc = Deno.run({
-    cmd: ["deno", "doc", sourceFile, "--json", "--reload"],
+    cmd: ["deno", "doc", sourceFile, "--json"],
     stdout: "piped",
-    stderr: "piped"
+    stderr: "piped",
   });
 
   let killed = false;
 
+  // Zeit timeout is 10 seconds for free tier: https://zeit.co/docs/v2/platform/limits
   const timer = setTimeout(() => {
     killed = true;
     proc.kill(Deno.Signal.SIGKILL);
-  }, 5000);
+  }, 9000);
 
   const out = await proc.output();
   const errOut = await proc.stderrOutput();
@@ -70,11 +68,11 @@ export async function handler(
     statusCode: 200,
     body: JSON.stringify({
       timestamp: new Date().toISOString(),
-      nodes: JSON.parse(decoder.decode(out))
+      nodes: JSON.parse(decoder.decode(out)),
     }),
     headers: {
-      "content-type": "application/json; charset=utf-8"
-    }
+      "content-type": "application/json; charset=utf-8",
+    },
   };
 }
 
@@ -82,10 +80,10 @@ function error(message: string, code: number) {
   return {
     statusCode: code,
     body: JSON.stringify({
-      error: message
+      error: message,
     }),
     headers: {
-      "content-type": "application/json; charset=utf-8"
-    }
+      "content-type": "application/json; charset=utf-8",
+    },
   };
 }
