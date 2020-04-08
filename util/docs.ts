@@ -194,8 +194,17 @@ export type TsTypeDef =
   | TsTypeDefTypeQuery
   | TsTypeDefTypeRef
   | TsTypeDefUnion;
+
+export enum ParamKind {
+  Identifier = "identifier",
+  Rest = "rest",
+  Array = "array",
+  Object = "object",
+}
+
 export interface ParamDef {
   name: string;
+  kind: ParamKind;
   tsType?: TsTypeDef;
 }
 export interface FunctionDef {
