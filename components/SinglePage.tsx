@@ -303,7 +303,7 @@ export function SimpleCard({
         </div>
         <a
           href={node.location.filename + "#L" + node.location.line}
-          className="pl-2 text-gray-600 break-words hover:text-gray-800"
+          className="pl-2 text-gray-600 break-words hover:text-gray-800 hover:underline"
         >
           [src]
         </a>
@@ -364,7 +364,7 @@ export function SimpleSubCard({
         {node.location ? (
           <a
             href={node.location.filename + "#L" + node.location.line}
-            className="pl-2 text-xs text-gray-600 break-words hover:text-gray-800"
+            className="pl-2 text-xs text-gray-600 break-words hover:text-gray-800 hover:underline"
           >
             [src]
           </a>
