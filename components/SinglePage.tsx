@@ -272,7 +272,7 @@ export function SimpleCard({
       id={id}
     >
       <div className="font-mono text-lg break-words">
-        {prefix ? <span className="keyword">{prefix} </span> : null}
+        {prefix ? <span className="keyword">{prefix}</span> : null}
         {node.scope?.map((s, i) => (
           <>
             <a
@@ -347,9 +347,9 @@ export function SimpleSubCard({
         }
       >
         {node.inherited ? (
-          <span className="text-gray-600">inherited </span>
+          <span className="text-gray-600">inherited</span>
         ) : null}
-        {prefix ? <span className="keyword">{prefix} </span> : null}
+        {prefix ? <span className="keyword">{prefix}</span> : null}
         <>{node.name}</>
         {params ? (
           <span className="text-gray-600">
