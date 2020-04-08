@@ -73,9 +73,9 @@ export const SinglePage = memo(
                 {props.entrypoint}
               </a>
               {hasNone ? (
-                <div className="pt-4 mb-1 text-xl text-gray-900">
+                <h1 className="pt-4 pb-1 text-xl text-gray-900 ">
                   This module has no exports that are recognized by deno doc.
-                </div>
+                </h1>
               ) : (
                 <CardList nodes={nodes} />
               )}
@@ -272,7 +272,7 @@ export function SimpleCard({
       id={id}
     >
       <div className="font-mono text-lg break-words">
-        {prefix ? <span className="keyword">{prefix}</span> : null}
+        {prefix ? <span className="keyword">{prefix} </span> : null}
         {node.scope?.map((s, i) => (
           <>
             <a

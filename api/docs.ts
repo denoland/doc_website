@@ -41,17 +41,18 @@ export async function handler(
   }
 
   const proc = Deno.run({
-    cmd: ["deno", "doc", sourceFile, "--json", "--reload"],
+    cmd: ["deno", "doc", sourceFile, "--json"],
     stdout: "piped",
     stderr: "piped",
   });
 
   let killed = false;
 
+  // Zeit timeout is 10 seconds for free tier: https://zeit.co/docs/v2/platform/limits
   const timer = setTimeout(() => {
     killed = true;
     proc.kill(Deno.Signal.SIGKILL);
-  }, 5000);
+  }, 9000);
 
   const out = await proc.output();
   const errOut = await proc.stderrOutput();
