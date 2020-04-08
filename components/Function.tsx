@@ -35,7 +35,6 @@ export function Params({
       {params
         .map((p) => {
           let name = p.name;
-          console.log(p);
           switch (p.kind) {
             case ParamKind.Array:
             case ParamKind.Object:

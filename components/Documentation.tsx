@@ -80,7 +80,7 @@ export const Documentation = ({
         />
       </Head>
       <SinglePage
-        forceReload={() => forceReload()}
+        forceReload={forceReload}
         entrypoint={entrypoint}
         data={data}
       />

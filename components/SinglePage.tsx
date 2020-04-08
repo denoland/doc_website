@@ -30,9 +30,7 @@ export const SinglePage = memo(
     entrypoint: string;
     data: DocsData | undefined;
   }) => {
-    const nodes = useMemo(() => expandNamespaces(props.data?.nodes ?? []), [
-      props.data?.nodes,
-    ]);
+    const nodes = expandNamespaces(props.data?.nodes ?? []);
 
     if (!props.data) {
       return (
