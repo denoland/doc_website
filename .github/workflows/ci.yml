@@ -19,7 +19,6 @@ jobs:
         if: github.ref == 'refs/heads/master' && github.event_name == 'push' && github.repository == 'denoland/doc_website'
         uses: cloudflare/wrangler-action@1.1.0
         with:
-          # TODO(ry) migrate to API token? https://github.com/cloudflare/wrangler-action/releases/tag/1.1.0
-          apiKey: ${{ secrets.cloudflareKey }}
+          apiToken: ${{ secrets.secrets.cloudflareKey }}
           email: ${{ secrets.email }}
           workingDirectory: worker
