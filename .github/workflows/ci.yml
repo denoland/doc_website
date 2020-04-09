@@ -19,6 +19,5 @@ jobs:
         if: github.ref == 'refs/heads/master' && github.event_name == 'push' && github.repository == 'denoland/doc_website'
         uses: cloudflare/wrangler-action@1.1.0
         with:
-          apiToken: ${{ secrets.secrets.cloudflareKey }}
-          email: ${{ secrets.email }}
+          apiToken: ${{ secrets.cloudflareKey }}
           workingDirectory: worker
