@@ -465,39 +465,41 @@ export function getFieldsForClassRecursive(
       parent.scope ?? [],
       "class"
     ) as DocNodeClass;
-    const r = getFieldsForClassRecursive(flattend, node);
-    return {
-      methods: [
-        ...parent.classDef.methods.map((method) => ({
-          ...method,
-          inherited: false,
-        })),
-        ...r.methods.map((method) => ({
-          ...method,
-          inherited: true,
-        })),
-      ],
-      properties: [
-        ...parent.classDef.properties.map((property) => ({
-          ...property,
-          inherited: false,
-        })),
-        ...r.properties.map((property) => ({
-          ...property,
-          inherited: true,
-        })),
-      ],
-    };
-  } else {
-    return {
-      methods: parent.classDef.methods.map((method) => ({
-        ...method,
-        inherited: false,
-      })),
-      properties: parent.classDef.properties.map((property) => ({
-        ...property,
-        inherited: false,
-      })),
-    };
+    if (node) {
+      const r = getFieldsForClassRecursive(flattend, node);
+      return {
+        methods: [
+          ...parent.classDef.methods.map((method) => ({
+            ...method,
+            inherited: false,
+          })),
+          ...r.methods.map((method) => ({
+            ...method,
+            inherited: true,
+          })),
+        ],
+        properties: [
+          ...parent.classDef.properties.map((property) => ({
+            ...property,
+            inherited: false,
+          })),
+          ...r.properties.map((property) => ({
+            ...property,
+            inherited: true,
+          })),
+        ],
+      };
+    }
   }
+
+  return {
+    methods: parent.classDef.methods.map((method) => ({
+      ...method,
+      inherited: false,
+    })),
+    properties: parent.classDef.properties.map((property) => ({
+      ...property,
+      inherited: false,
+    })),
+  };
 }
