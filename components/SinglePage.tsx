@@ -23,6 +23,7 @@ import { VariableCard } from "./Variable";
 import { TypeAliasCard } from "./TypeAlias";
 import { Page } from "./Page";
 import { NamespaceCard } from "./Namespace";
+import { Loading } from "./Loading";
 
 export const SinglePage = memo(
   (props: {
@@ -42,7 +43,7 @@ export const SinglePage = memo(
           <div className="max-w-4xl px-4 pb-3 bg-gray-100 sm:px-6">
             <div className="py-4">
               <div className="mb-1 text-2xl font-medium text-gray-900">
-                Loading...
+                <Loading></Loading>
               </div>
               <div className="text-lg text-gray-900">
                 It can take a few seconds for documentation to be generated.
