@@ -40,14 +40,10 @@ export const SinglePage = memo(
           entrypoint={props.entrypoint}
           timestamp=""
         >
-          <div className="max-w-4xl px-4 pb-3 bg-gray-100 sm:px-6">
-            <div className="py-4">
-              <div className="mb-1 text-2xl font-medium text-gray-900">
-                <Loading></Loading>
-              </div>
-              <div className="text-lg text-gray-900">
-                It can take a few seconds for documentation to be generated.
-              </div>
+          <div className="px-4 pb-3 bg-gray-100 sm:px-6 flex flex-col h-full justify-center items-center">
+            <Loading></Loading>
+            <div className="text-lg text-gray-900">
+              It can take a few seconds for documentation to be generated.
             </div>
           </div>
         </Page>
