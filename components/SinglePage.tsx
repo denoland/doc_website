@@ -40,7 +40,7 @@ export const SinglePage = memo(
           entrypoint={props.entrypoint}
           timestamp=""
         >
-          <div className="px-4 pb-3 bg-gray-100 sm:px-6 flex flex-col h-full justify-center items-center">
+          <div className="flex flex-col items-center justify-center h-full px-4 pb-3 bg-gray-100 sm:px-6">
             <Loading></Loading>
             <div className="text-lg text-gray-900">
               It can take a few seconds for documentation to be generated.
@@ -320,6 +320,7 @@ export function SimpleCard({
 export function SimpleSubCard({
   node,
   prefix,
+  optional,
   params,
   returnType,
 }: {
@@ -329,6 +330,7 @@ export function SimpleSubCard({
     inherited?: boolean;
   };
   prefix?: string;
+  optional?: boolean;
   params?: ParamDef[];
   returnType?: TsTypeDef;
 }) {
@@ -345,7 +347,8 @@ export function SimpleSubCard({
             <span className="text-gray-600">inherited </span>
           ) : null}
           {prefix ? <span className="keyword">{prefix} </span> : null}
-          <>{node.name}</>
+          {node.name}
+          {optional ? "?" : ""}
           {params ? (
             <span className="text-gray-600">
               (<Params params={params} scope={node.scope ?? []} />)
