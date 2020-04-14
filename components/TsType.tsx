@@ -67,9 +67,12 @@ export const TsType = memo(
           case LiteralDefKind.Boolean:
             return <>{tsType.literal.boolean ? "true" : "false"}</>;
         }
-        return <></>;
       case TsTypeDefKind.Optional:
-        return <>_optional_</>;
+        return (
+          <>
+            <TsType tsType={tsType.optional} scope={scope} />?
+          </>
+        );
       case TsTypeDefKind.Parenthesized:
         return (
           <>
