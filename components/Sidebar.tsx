@@ -59,6 +59,11 @@ export const Sidebar = (props: {
               </a>
             </div>
           ) : null}
+          <p className="mt-2 text-sm">
+            <Link href="/about">
+              <a className="link">About doc.deno.land</a>
+            </Link>
+          </p>
         </header>
       ) : null}
       <nav className="px-4 py-2 sm:px-6">

@@ -24,6 +24,7 @@ import { TypeAliasCard } from "./TypeAlias";
 import { Page } from "./Page";
 import { NamespaceCard } from "./Namespace";
 import { Loading } from "./Loading";
+import Link from "next/link";
 
 export const SinglePage = memo(
   (props: {
