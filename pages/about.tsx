@@ -44,7 +44,10 @@ export default () => {
             .
           </p>
         </div>
-        <h3 className="text-2xl font-medium pt-6">
+        <h3
+          className="text-2xl font-medium pt-6"
+          id="adding-a-module-to-deno-doc"
+        >
           Adding a module to deno doc
         </h3>
         <div className="text-base leading-6 pt-2">
@@ -60,7 +63,10 @@ export default () => {
             the module is treated as if it had never been requested before.
           </p>
         </div>
-        <h3 className="text-2xl font-medium pt-6">
+        <h3
+          className="text-2xl font-medium pt-6"
+          id="removing-a-module-from-deno-doc"
+        >
           Removing a module from deno doc
         </h3>
         <p className="text-base leading-6 pt-2">
@@ -73,7 +79,9 @@ export default () => {
           </a>
           .
         </p>
-        <h3 className="text-2xl font-medium pt-6">Badges</h3>
+        <h3 className="text-2xl font-medium pt-6" id="badges">
+          Badges
+        </h3>
         <div className="text-base leading-6 pt-2">
           <img src="/badge.svg" alt="deno doc badge" />
           <p className="mt-3">
@@ -96,7 +104,9 @@ export default () => {
             />
           </div>
         </div>
-        <h3 className="text-2xl font-medium pt-6">Limitations</h3>
+        <h3 className="text-2xl font-medium pt-6" id="limitations">
+          Limitations
+        </h3>
         <div className="text-base leading-6 pt-2">
           <p>
             doc.deno.land currently has some limitations that you should be
@@ -137,7 +147,9 @@ export default () => {
             </li>
           </ul>
         </div>
-        <h3 className="text-2xl font-medium pt-6">Feedback</h3>
+        <h3 className="text-2xl font-medium pt-6" id="feedback">
+          Feedback
+        </h3>
         <p className="text-base leading-6 pt-2">
           On our{" "}
           <a href="https://github.com/denoland/doc_website" className="link">
