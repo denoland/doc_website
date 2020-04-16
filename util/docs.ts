@@ -374,7 +374,8 @@ function nodeName(a: DocNode): string {
 }
 
 export function sortByAlphabet(docs: DocNode[]): DocNode[] {
-  return docs.sort((a, b) => nodeName(a) < nodeName(b));
+  return docs.sort((a, b) =>  nodeName(a) < nodeName(b) ? -1 : 1);
+    );
 }
 
 export function groupNodes(docs: DocNode[]): GroupedNodes {
