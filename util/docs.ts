@@ -369,12 +369,12 @@ export function flattenNamespaces(docs: DocNode[]): DocNode[] {
   });
 }
 
+function nodeName(a: DocNode): string {
+  return (a.scope ? a.scope.join(".") + "." : "") + a.name;
+}
+
 export function sortByAlphabet(docs: DocNode[]): DocNode[] {
-  return docs.sort((a, b) =>
-    ((a.scope ? a.scope.join(".") + "." : "") + a.name).localeCompare(
-      (b.scope ? b.scope.join(".") + "." : "") + b.name
-    )
-  );
+  return docs.sort((a, b) =>  nodeName(a) < nodeName(b) ? -1 : 1);
 }
 
 export function groupNodes(docs: DocNode[]): GroupedNodes {
