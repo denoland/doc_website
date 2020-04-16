@@ -41,7 +41,7 @@ export async function handler(
   }
 
   const proc = Deno.run({
-    cmd: ["deno", "doc", sourceFile, "--json", "--reload"],
+    cmd: ["deno", "doc", sourceFile, "--json"],
     stdout: "piped",
     stderr: "piped",
   });
