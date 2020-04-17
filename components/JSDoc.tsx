@@ -18,11 +18,7 @@ export function JSDoc(props: { jsdoc: string }) {
             {props.children}
           </a>
         ),
-        inlineCode: (props: { children: string }) => (
-          <code className="p-px font-mono bg-gray-200 rounded-sm">
-            {props.children}
-          </code>
-        ),
+        inlineCode: InlineCode,
         code: CodeBlock,
         table: (props) => (
           <div className="w-full overflow-x-auto">
@@ -46,10 +42,21 @@ export function JSDoc(props: { jsdoc: string }) {
   );
 }
 
-export function CodeBlock(props: { value: string }) {
+export function InlineCode(props: { children: React.ReactNode }) {
+  return (
+    <code className="p-px font-mono bg-gray-200 rounded-sm">
+      {props.children}
+    </code>
+  );
+}
+
+export function CodeBlock(props: {
+  value: string;
+  language: "" | "typescript";
+}) {
   return (
     <SyntaxHighlighter
-      language="typescript"
+      language={props.language}
       style={atomOneLight}
       customStyle={{
         fontSize: "0.75rem",
