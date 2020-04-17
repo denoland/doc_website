@@ -38,9 +38,9 @@ export function ClassCard({
 
   const parent = node;
 
-  const { superClass } = node.classDef;
-  const superClassNode = superClass
-    ? findNodeByScopedName(flattend, superClass, node.scope ?? [])
+  const { extends: extends_ } = node.classDef;
+  const extendsNode = extends_
+    ? findNodeByScopedName(flattend, extends_, node.scope ?? [])
     : undefined;
 
   return (
@@ -60,23 +60,21 @@ export function ClassCard({
               {">"}
             </span>
           ) : null}
-          {node.classDef.superClass ? (
+          {node.classDef.extends ? (
             <>
               {" "}
               <span className="keyword">extends</span>{" "}
-              {superClassNode ? (
+              {extendsNode ? (
                 <Link
                   href="/https/[...url]"
                   as={`#${
-                    superClassNode.scope
-                      ? superClassNode.scope.join(".") + "."
-                      : ""
-                  }${superClassNode.name}`}
+                    extendsNode.scope ? extendsNode.scope.join(".") + "." : ""
+                  }${extendsNode.name}`}
                 >
-                  <a className="link">{superClassNode.name}</a>
+                  <a className="link">{extendsNode.name}</a>
                 </Link>
               ) : (
-                superClass
+                extends_
               )}
             </>
           ) : null}
@@ -104,6 +102,7 @@ export function ClassCard({
                 return (
                   <SimpleSubCard
                     node={{ ...node, scope: parent.scope }}
+                    optional={node.optional}
                     prefix={`${
                       node.accessibility ? node.accessibility + " " : ""
                     }${node.isAbstract ? "abstract " : ""}${
@@ -131,6 +130,7 @@ export function ClassCard({
                         ? "set "
                         : ""
                     }`}
+                    optional={node.optional}
                     params={node.functionDef.params}
                     returnType={node.functionDef.returnType}
                   />
@@ -145,6 +145,12 @@ export function ClassCard({
                 return (
                   <SimpleSubCard
                     node={{ ...node, scope: parent.scope }}
+                    prefix={`${
+                      node.accessibility ? node.accessibility + " " : ""
+                    }${node.isAbstract ? "abstract " : ""}${
+                      node.readonly ? "readonly " : ""
+                    }`}
+                    optional={node.optional}
                     returnType={node.tsType}
                   />
                 );
@@ -158,6 +164,16 @@ export function ClassCard({
                 return (
                   <SimpleSubCard
                     node={{ ...node, scope: parent.scope }}
+                    prefix={`${
+                      node.accessibility ? node.accessibility + " " : ""
+                    }${node.isAbstract ? "abstract " : ""}${
+                      node.kind === "getter"
+                        ? "get "
+                        : node.kind === "setter"
+                        ? "set "
+                        : ""
+                    }`}
+                    optional={node.optional}
                     params={node.functionDef.params}
                     returnType={node.functionDef.returnType}
                   />

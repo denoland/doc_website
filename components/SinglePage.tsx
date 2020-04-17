@@ -321,6 +321,7 @@ export function SimpleCard({
 export function SimpleSubCard({
   node,
   prefix,
+  optional,
   params,
   returnType,
 }: {
@@ -330,6 +331,7 @@ export function SimpleSubCard({
     inherited?: boolean;
   };
   prefix?: string;
+  optional?: boolean;
   params?: ParamDef[];
   returnType?: TsTypeDef;
 }) {
@@ -346,7 +348,8 @@ export function SimpleSubCard({
             <span className="text-gray-600">inherited </span>
           ) : null}
           {prefix ? <span className="keyword">{prefix} </span> : null}
-          <>{node.name}</>
+          {node.name}
+          {optional ? "?" : ""}
           {params ? (
             <span className="text-gray-600">
               (<Params params={params} scope={node.scope ?? []} />)
