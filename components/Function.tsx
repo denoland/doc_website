@@ -45,6 +45,7 @@ export function Params({
             <>
               {p.kind === ParamKind.Rest ? "..." : ""}
               {name}
+              {p.optional ? "?" : ""}
               {p.tsType ? (
                 <>
                   : <TsType tsType={p.tsType} scope={scope} />

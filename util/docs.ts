@@ -210,6 +210,7 @@ export enum ParamKind {
 export interface ParamDef {
   name: string;
   kind: ParamKind;
+  optional: boolean;
   tsType?: TsTypeDef;
 }
 export interface FunctionDef {
@@ -231,11 +232,13 @@ export interface ClassPropertyDef extends DocNodeShared {
   tsType: TsTypeDef;
   readonly: boolean;
   accessibility?: Accessibility;
+  optional: boolean;
   isAbstract: boolean;
   isStatic: boolean;
 }
 export interface ClassMethodDef extends DocNodeShared {
   accessibility?: Accessibility;
+  optional: boolean;
   isAbstract: boolean;
   isStatic: boolean;
   kind: "method" | "getter" | "setter";
@@ -246,7 +249,7 @@ export interface ClassDef {
   constructors: ClassConstructorDef[];
   properties: ClassPropertyDef[];
   methods: ClassMethodDef[];
-  superClass?: string;
+  extends?: string;
   implements: string[];
   typeParams: TsTypeParamDef[];
 }
@@ -259,6 +262,7 @@ export interface EnumDef {
 
 export interface InterfaceMethodDef extends DocNodeShared {
   params: ParamDef[];
+  optional: boolean;
   returnType?: TsTypeDef;
 }
 
@@ -274,9 +278,11 @@ export interface InterfaceCallSignatureDef extends Omit<DocNodeShared, "name"> {
 }
 
 export interface InterfaceDef {
+  extends: string[];
   methods: InterfaceMethodDef[];
   properties: InterfacePropertyDef[];
   callSignatures: InterfaceCallSignatureDef[];
+  typeParams: TsTypeParamDef[];
 }
 
 export interface InterfaceDef {}
@@ -458,10 +464,10 @@ export function getFieldsForClassRecursive(
   methods: (ClassMethodDef & { inherited: boolean })[];
   properties: (ClassPropertyDef & { inherited: boolean })[];
 } {
-  if (parent.classDef.superClass) {
+  if (parent.classDef.extends) {
     const node = findNodeByScopedName(
       flattend,
-      parent.classDef.superClass,
+      parent.classDef.extends,
       parent.scope ?? [],
       "class"
     ) as DocNodeClass;
