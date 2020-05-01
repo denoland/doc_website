@@ -41,8 +41,7 @@ const Home = () => {
           <div className="text-center md:ml-4 sm:text-left">
             <h1 className="text-4xl font-bold">deno doc</h1>
             <p>
-              Automatic documentation generator for Deno, a secure runtime for
-              JavaScript and TypeScript.
+              Automatic documentation generator for Deno
             </p>
           </div>
         </div>
@@ -50,6 +49,22 @@ const Home = () => {
         <label className="mt-4 font-bold" htmlFor="entrypoint">
           View documentation for:
         </label>
+        <div className="mt-1">
+          <Link
+            href="/https/[...url]"
+            as={`/https/github.com/denoland/deno/releases/latest/download/lib.deno.d.ts`}
+          >
+            <a className="link">Stable runtime documentation</a>
+          </Link>
+        </div>
+        <div className="mt-1">
+          <Link
+            href="/https/[...url]"
+            as={`/https/raw.githubusercontent.com/denoland/deno/v0.42.0/cli/js/lib.deno.unstable.d.ts`}
+          >
+            <a className="link">Unstable runtime documentation</a>
+          </Link>
+        </div>
         <div className="flex flex-row mt-1">
           <input
             id="entrypoint"
@@ -70,16 +85,6 @@ const Home = () => {
           >
             View
           </button>
-        </div>
-        <div className="mt-1">
-          or{" "}
-          <Link
-            href="/https/[...url]"
-            as={`/https/github.com/denoland/deno/releases/latest/download/lib.deno.d.ts`}
-          >
-            <a className="link">view the Deno runtime documentation</a>
-          </Link>
-          .
         </div>
         <div className="mt-4 font-bold">Some examples:</div>
         <ul className="list-disc pl-8">
