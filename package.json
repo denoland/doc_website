@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "format": "prettier **.tsx **.ts **.js **.json"
+    "format": "prettier --write **.tsx **.ts **.js **.json"
   },
   "dependencies": {
     "isomorphic-unfetch": "^3.0.0",
