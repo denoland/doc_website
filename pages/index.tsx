@@ -45,11 +45,7 @@ const Home = () => {
             </p>
           </div>
         </div>
-        <hr className="mt-4 sm:hidden" />
-        <label className="mt-4 font-bold" htmlFor="entrypoint">
-          View documentation for:
-        </label>
-        <div className="mt-1">
+        <div className="mt-1 py-2">
           <Link
             href="/https/[...url]"
             as={`/https/github.com/denoland/deno/releases/latest/download/lib.deno.d.ts`}
@@ -57,14 +53,17 @@ const Home = () => {
             <a className="link">Stable runtime documentation</a>
           </Link>
         </div>
-        <div className="mt-1">
+        <div className="mt-1 py-2">
           <Link
             href="/https/[...url]"
-            as={`/https/raw.githubusercontent.com/denoland/deno/v0.42.0/cli/js/lib.deno.unstable.d.ts`}
+            as={`/https/raw.githubusercontent.com/denoland/deno/master/cli/js/lib.deno.unstable.d.ts`}
           >
             <a className="link">Unstable runtime documentation</a>
           </Link>
         </div>
+        <label className="mt-4 font-bold" htmlFor="entrypoint">
+          View documentation for:
+        </label>
         <div className="flex flex-row mt-1">
           <input
             id="entrypoint"
