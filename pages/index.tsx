@@ -40,9 +40,7 @@ const Home = () => {
           <img src="/logo.svg" className="w-48" alt="Deno logo" />
           <div className="text-center md:ml-4 sm:text-left">
             <h1 className="text-4xl font-bold">deno doc</h1>
-            <p>
-              Automatic documentation generator for Deno
-            </p>
+            <p>Automatic documentation generator for Deno</p>
           </div>
         </div>
         <div className="mt-1 py-2">
