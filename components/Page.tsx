@@ -15,7 +15,7 @@ export function Page(props: {
 
   return (
     <>
-      <div className="fixed z-10 bottom-auto flex justify-between h-16 sm:h-20 px-4 py-2 bg-white border-b border-gray-200 sm:px-6 w-full">
+      <div className="fixed z-20 bottom-auto flex justify-between h-16 sm:h-20 px-4 py-2 bg-white border-b border-gray-200 sm:px-6 w-full">
         <Link href="/">
           <a className="flex items-center">
             <img
@@ -63,12 +63,13 @@ export function Page(props: {
           )}
         </div>
       </div>
-      <div className="fixed flex flex-grow top-16 sm:top-20 bottom-0 left-0 right-0 sm:right-auto z-10 lg:w-xs w-full">
+      <div
+        className={
+          "lg:fixed flex flex-grow pt-16 sm:pt-20 lg:pt-0 lg:top-20 bottom-auto min-h-full lg:h-auto lg:bottom-0 left-0 right-0 lg:right-auto z-10 lg:w-xs w-max-full lg:block bg-white overflow-y-auto" +
+          (drawerOpen ? "" : " hidden")
+        }
+      >
         <div
-          className={
-            "bg-white overflow-y-auto absolute inset-0 lg:block" +
-            (drawerOpen ? "" : " hidden")
-          }
           onClick={(e) => {
             if (e.target instanceof HTMLAnchorElement) setDrawerOpen(false);
           }}
