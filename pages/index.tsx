@@ -40,13 +40,25 @@ const Home = () => {
           <img src="/logo.svg" className="w-48" alt="Deno logo" />
           <div className="text-center md:ml-4 sm:text-left">
             <h1 className="text-4xl font-bold">deno doc</h1>
-            <p>
-              Automatic documentation generator for Deno, a secure runtime for
-              JavaScript and TypeScript.
-            </p>
+            <p>Automatic documentation generator for Deno</p>
           </div>
         </div>
-        <hr className="mt-4 sm:hidden" />
+        <div className="mt-1 py-2">
+          <Link
+            href="/https/[...url]"
+            as={`/https/github.com/denoland/deno/releases/latest/download/lib.deno.d.ts`}
+          >
+            <a className="link">Stable runtime documentation</a>
+          </Link>
+        </div>
+        <div className="mt-1 py-2">
+          <Link
+            href="/https/[...url]"
+            as={`/https/raw.githubusercontent.com/denoland/deno/master/cli/js/lib.deno.unstable.d.ts`}
+          >
+            <a className="link">Unstable runtime documentation</a>
+          </Link>
+        </div>
         <label className="mt-4 font-bold" htmlFor="entrypoint">
           View documentation for:
         </label>
@@ -70,16 +82,6 @@ const Home = () => {
           >
             View
           </button>
-        </div>
-        <div className="mt-1">
-          or{" "}
-          <Link
-            href="/https/[...url]"
-            as={`/https/github.com/denoland/deno/releases/latest/download/lib.deno.d.ts`}
-          >
-            <a className="link">view the Deno runtime documentation</a>
-          </Link>
-          .
         </div>
         <div className="mt-4 font-bold">Some examples:</div>
         <ul className="list-disc pl-8">
