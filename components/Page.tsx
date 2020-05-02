@@ -15,7 +15,7 @@ export function Page(props: {
 
   return (
     <>
-      <div className="absolute inset-0 bottom-auto flex justify-between h-16 px-4 py-2 bg-white border-b border-gray-200 sm:h-20 sm:px-6">
+      <div className="fixed z-10 bottom-auto flex justify-between h-16 sm:h-20 px-4 py-2 bg-white border-b border-gray-200 sm:px-6 w-full">
         <Link href="/">
           <a className="flex items-center">
             <img
@@ -63,11 +63,11 @@ export function Page(props: {
           )}
         </div>
       </div>
-      <div className="absolute inset-0 flex flex-grow top-16 sm:top-20">
+      <div className="fixed flex flex-grow top-16 sm:top-20 bottom-0 left-0 right-0 sm:right-auto z-10 lg:w-xs w-full">
         <div
           className={
-            "bg-white lg:max-w-xs w-full overflow-y-auto absolute lg:static inset-0" +
-            (drawerOpen ? "" : " hidden lg:block")
+            "bg-white overflow-y-auto absolute inset-0 lg:block" +
+            (drawerOpen ? "" : " hidden")
           }
           onClick={(e) => {
             if (e.target instanceof HTMLAnchorElement) setDrawerOpen(false);
@@ -79,9 +79,14 @@ export function Page(props: {
             entrypoint={props.entrypoint}
           />
         </div>
-        <div className="w-full overflow-y-auto bg-gray-100">
-          {props.children}
-        </div>
+      </div>
+      <div
+        className={
+          "pt-16 sm:pt-20 lg:pl-xs overflow-y-auto bg-gray-100 lg:block min-h-full" +
+          (drawerOpen ? " hidden" : "")
+        }
+      >
+        {props.children}
       </div>
     </>
   );
