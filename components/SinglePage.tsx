@@ -24,7 +24,6 @@ import { TypeAliasCard } from "./TypeAlias";
 import { Page } from "./Page";
 import { NamespaceCard } from "./Namespace";
 import { Loading } from "./Loading";
-import Link from "next/link";
 
 export const SinglePage = memo(
   (props: {
@@ -41,7 +40,7 @@ export const SinglePage = memo(
           entrypoint={props.entrypoint}
           timestamp=""
         >
-          <div className="flex flex-col items-center justify-center h-full px-4 pb-3 bg-gray-100 sm:px-6">
+          <div className="flex flex-col items-center justify-center h-full px-4 pb-3 bg-gray-100 sm:px-6 pt-8">
             <Loading></Loading>
             <div className="text-lg text-center text-gray-900">
               It can take a few seconds for documentation to be generated.

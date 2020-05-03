@@ -16,6 +16,15 @@ module.exports = {
       auto: "auto",
       "16": "4rem",
       "20": "5rem",
+      xs: "20rem",
+    },
+    extend: {
+      padding: {
+        xs: "20rem",
+      },
+      width: {
+        xs: "20rem",
+      },
     },
   },
   variants: {
