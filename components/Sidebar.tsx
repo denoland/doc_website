@@ -66,7 +66,7 @@ export const Sidebar = (props: {
           </p>
         </header>
       ) : null}
-      <nav className="px-4 py-2 sm:px-6">
+      <nav className="px-4 pt-2 pb-20 sm:px-6">
         <>
           <SidebarSection
             title="Functions"
