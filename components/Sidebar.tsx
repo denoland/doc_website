@@ -90,12 +90,12 @@ export const Sidebar = (props: {
             type="typeAlias"
             nodes={groups.typeAliases}
           />
+          <SidebarSection
+            title="Namespaces"
+            type="namespace"
+            nodes={groups.namespaces}
+          />
         </>
-        <SidebarSection
-          title="Namespaces"
-          type="namespace"
-          nodes={groups.namespaces}
-        />
       </nav>
     </>
   );
