@@ -54,8 +54,10 @@ export async function handler(
     proc.kill(Deno.Signal.SIGKILL);
   }, 9000);
 
-  const out = await proc.output();
-  const errOut = await proc.stderrOutput();
+  const [out, errOut] = await Promise.all([
+    proc.output(),
+    proc.stderrOutput(),
+  ]);
   const status = await proc.status();
   clearTimeout(timer);
   proc.close();
