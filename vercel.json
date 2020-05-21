@@ -12,5 +12,8 @@
   },
   "env": {
     "DENO_UNSTABLE": "true"
+  },
+  "github": {
+    "silent": true
   }
 }
