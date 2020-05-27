@@ -65,7 +65,7 @@ export function Page(props: {
       </div>
       <div
         className={
-          "lg:fixed flex flex-grow pt-16 sm:pt-20 lg:pt-0 lg:top-20 bottom-auto min-h-full lg:h-auto lg:bottom-0 left-0 right-0 lg:right-auto z-10 lg:w-xs w-max-full lg:block bg-white overflow-y-auto" +
+          "lg:fixed flex flex-grow pt-16 sm:pt-20 lg:pt-0 lg:top-20 bottom-auto lg:h-auto lg:bottom-0 left-0 right-0 lg:right-auto z-10 lg:w-xs w-max-full lg:block bg-white overflow-y-auto" +
           (drawerOpen ? "" : " hidden")
         }
       >
