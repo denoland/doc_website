@@ -5,7 +5,15 @@
     }
   },
   "regions": ["sfo"],
+  "build": {
+    "env": {
+      "DENO_UNSTABLE": "true"
+    }
+  },
   "env": {
     "DENO_UNSTABLE": "true"
+  },
+  "github": {
+    "silent": true
   }
 }
