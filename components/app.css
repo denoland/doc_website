@@ -8,13 +8,15 @@
 @import "tailwindcss/utilities";
 
 .link {
-  @apply text-blue-600;
+  @apply text-blue-500;
+  @apply transition;
+  @apply duration-75;
+  @apply ease-in-out;
 }
 
 .link:hover {
   @apply text-blue-400;
 }
-
 .keyword {
   @apply text-pink-800;
 }

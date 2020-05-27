@@ -21,7 +21,7 @@ import { EnumCard } from "./Enum";
 import { InterfaceCard } from "./Interface";
 import { VariableCard } from "./Variable";
 import { TypeAliasCard } from "./TypeAlias";
-import { Page } from "./Page";
+import { Wrapper } from "./Wrapper";
 import { NamespaceCard } from "./Namespace";
 import { Loading } from "./Loading";
 
@@ -35,18 +35,18 @@ export const SinglePage = memo(
 
     if (!props.data) {
       return (
-        <Page
+        <Wrapper
           forceReload={props.forceReload}
           entrypoint={props.entrypoint}
           timestamp=""
         >
-          <div className="flex flex-col items-center justify-center h-full px-4 pb-3 bg-gray-100 sm:px-6 pt-8">
+          <div className="flex flex-col items-center justify-center h-full px-4 pb-3 sm:px-6 pt-8">
             <Loading></Loading>
             <div className="text-lg text-center text-gray-900">
               It can take a few seconds for documentation to be generated.
             </div>
           </div>
-        </Page>
+        </Wrapper>
       );
     }
 
@@ -56,13 +56,13 @@ export const SinglePage = memo(
 
     return (
       <FlattendProvider value={flattend}>
-        <Page
+        <Wrapper
           forceReload={props.forceReload}
           entrypoint={props.entrypoint}
           timestamp={props.data.timestamp}
         >
-          <div className="max-w-4xl px-4 pb-3 bg-gray-100 sm:px-6">
-            <div className="py-4">
+          <div className="max-w-screen-lg px-4 sm:px-6 md:px-8 pb-12">
+            <div className="py-6">
               <a
                 className="break-words cursor-pointer link"
                 href={props.entrypoint}
@@ -70,7 +70,7 @@ export const SinglePage = memo(
                 {props.entrypoint}
               </a>
               {hasNone ? (
-                <h1 className="pt-4 pb-1 text-xl text-gray-900 ">
+                <h1 className="pt-4 pb-1 text-xl text-gray-900">
                   This module has no exports that are recognized by deno doc.
                 </h1>
               ) : (
@@ -78,7 +78,7 @@ export const SinglePage = memo(
               )}
             </div>
           </div>
-        </Page>
+        </Wrapper>
       </FlattendProvider>
     );
   }
@@ -92,14 +92,11 @@ export const CardList = memo(
       <>
         {groups.functions.length > 0 ? (
           <div>
-            <div
-              className={
-                "text-gray-900 font-medium mb-1 " +
-                (nested ? "text-md mt-2" : "text-2xl mt-4")
-              }
-            >
-              Functions
-            </div>
+            {!nested && (
+              <div className="leading-tight text-gray-900 font-bold text-2xl mt-8 mb-4">
+                Functions
+              </div>
+            )}
             <div>
               {groups.functions.map((node, i) => (
                 <FunctionCard
@@ -113,14 +110,11 @@ export const CardList = memo(
         ) : null}
         {groups.variables.length > 0 ? (
           <div>
-            <div
-              className={
-                "text-gray-900 font-medium mb-1 " +
-                (nested ? "text-md mt-2" : "text-2xl mt-4")
-              }
-            >
-              Variables
-            </div>
+            {!nested && (
+              <div className="leading-tight text-gray-900 font-bold text-2xl mt-8 mb-4">
+                Variables
+              </div>
+            )}
             <div>
               {groups.variables.map((node, i) => (
                 <VariableCard
@@ -134,14 +128,11 @@ export const CardList = memo(
         ) : null}
         {groups.classes.length > 0 ? (
           <div>
-            <div
-              className={
-                "text-gray-900 font-medium mb-1 " +
-                (nested ? "text-md mt-2" : "text-2xl mt-4")
-              }
-            >
-              Classes
-            </div>
+            {!nested && (
+              <div className="leading-tight text-gray-900 font-bold text-2xl mt-8 mb-4">
+                Classes
+              </div>
+            )}
             <div>
               {groups.classes.map((node, i) => (
                 <ClassCard
@@ -155,14 +146,11 @@ export const CardList = memo(
         ) : null}
         {groups.enums.length > 0 ? (
           <div>
-            <div
-              className={
-                "text-gray-900 font-medium mb-1 " +
-                (nested ? "text-md mt-2" : "text-2xl mt-4")
-              }
-            >
-              Enums
-            </div>
+            {!nested && (
+              <div className="leading-tight text-gray-900 font-bold text-2xl mt-8 mb-4">
+                Enums
+              </div>
+            )}
             <div>
               {groups.enums.map((node, i) => (
                 <EnumCard
@@ -176,14 +164,11 @@ export const CardList = memo(
         ) : null}
         {groups.interfaces.length > 0 ? (
           <div>
-            <div
-              className={
-                "text-gray-900 font-medium mb-1 " +
-                (nested ? "text-md mt-2" : "text-2xl mt-4")
-              }
-            >
-              Interfaces
-            </div>
+            {!nested && (
+              <div className="leading-tight text-gray-900 font-bold text-2xl mt-8 mb-4">
+                Interfaces
+              </div>
+            )}
             <div>
               {groups.interfaces.map((node, i) => (
                 <InterfaceCard
@@ -197,14 +182,11 @@ export const CardList = memo(
         ) : null}
         {groups.typeAliases.length > 0 ? (
           <div>
-            <div
-              className={
-                "text-gray-900 font-medium mb-1 " +
-                (nested ? "text-md mt-2" : "text-2xl mt-4")
-              }
-            >
-              Type Aliases
-            </div>
+            {!nested && (
+              <div className="leading-tight text-gray-900 font-bold text-2xl mt-8 mb-4">
+                Type Aliases
+              </div>
+            )}
             <div>
               {groups.typeAliases.map((node, i) => (
                 <TypeAliasCard
@@ -218,14 +200,11 @@ export const CardList = memo(
         ) : null}
         {groups.namespaces.length > 0 ? (
           <div>
-            <div
-              className={
-                "text-gray-900 font-medium mb-1 " +
-                (nested ? "text-md mt-2" : "text-2xl mt-4")
-              }
-            >
-              Namespaces
-            </div>
+            {!nested && (
+              <div className="leading-tight text-gray-900 font-bold text-2xl mt-8 mb-4">
+                Namespaces
+              </div>
+            )}
             <div>
               {groups.namespaces.map((node, i) => (
                 <NamespaceCard
@@ -263,8 +242,8 @@ export function SimpleCard({
   return (
     <div
       className={
-        "mt-2 p-2 bg-white " +
-        (nested ? "rounded border border-gray-300" : "rounded-md shadow")
+        "mt-4 p-2 rounded-md border border-gray-200" +
+        (nested ? "bg-gray-50" : "")
       }
       id={id}
     >

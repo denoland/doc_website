@@ -1,6 +1,6 @@
 // Copyright 2020 the Deno authors. All rights reserved. MIT license.
 
-import { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect } from "react";
 import Link from "next/link";
 import Head from "next/head";
 import useSWR from "swr";
@@ -61,7 +61,7 @@ export const Documentation = ({
           <a className="mt-4 text-xl link">Go back home</a>
         </Link>
         <a
-          href="https://github.com/bartlomieju/deno_doc/issues"
+          href="https://github.com/denoland/doc_website/issues"
           className="mt-5 text-sm link"
         >
           Report Issue

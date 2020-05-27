@@ -36,9 +36,9 @@ const Home = () => {
         />
       </Head>
       <div className="flex flex-col max-w-4xl px-4 py-4 mx-auto sm:px-8 md:px-12 md:py-8">
-        <div className="flex flex-col items-center sm:flex-row">
-          <img src="/logo.svg" className="w-48" alt="Deno logo" />
-          <div className="text-center md:ml-4 sm:text-left">
+        <div className="flex flex-col items-center sm:flex-row my-4">
+          <img src="/logo.svg" className="w-32 h-32" alt="Deno logo" />
+          <div className="text-center sm:ml-8 mt-4 sm:mt-0 sm:text-left">
             <h1 className="text-4xl font-bold">deno doc</h1>
             <p>Automatic documentation generator for Deno</p>
           </div>
