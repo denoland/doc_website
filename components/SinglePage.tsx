@@ -63,18 +63,12 @@ export const SinglePage = memo(
         >
           <div className="max-w-4xl px-4 pb-3 bg-gray-100 sm:px-6">
             <div className="py-4">
-              <a
-                className="break-words cursor-pointer link"
-                href={props.entrypoint}
-              >
-                {props.entrypoint}
-              </a>
               {hasNone ? (
                 <h1 className="pt-4 pb-1 text-xl text-gray-900 ">
                   This module has no exports that are recognized by deno doc.
                 </h1>
               ) : (
-                <CardList nodes={nodes} />
+                <CardList nodes={nodes} sourceUrl={props.entrypoint} />
               )}
             </div>
           </div>
@@ -85,7 +79,15 @@ export const SinglePage = memo(
 );
 
 export const CardList = memo(
-  ({ nodes, nested }: { nodes: DocNode[]; nested?: boolean }) => {
+  ({
+    nodes,
+    sourceUrl,
+    nested,
+  }: {
+    nodes: DocNode[];
+    sourceUrl?: string;
+    nested?: boolean;
+  }) => {
     const groups = useMemo(() => groupNodes(sortByAlphabet(nodes)), [nodes]);
 
     return (
@@ -95,10 +97,20 @@ export const CardList = memo(
             <div
               className={
                 "text-gray-900 font-medium mb-1 " +
-                (nested ? "text-md mt-2" : "text-2xl mt-4")
+                (nested ? "text-md mt-2" : "text-2xl")
               }
             >
-              Functions
+              Functions{" "}
+              {nested ? (
+                ""
+              ) : (
+                <a
+                  className="break-words cursor-pointer link text-sm"
+                  href={sourceUrl}
+                >
+                  [src]
+                </a>
+              )}
             </div>
             <div>
               {groups.functions.map((node, i) => (
