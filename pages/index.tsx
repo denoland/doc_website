@@ -86,7 +86,7 @@ const Home = () => {
         <div className="mt-4 font-bold">Some examples:</div>
         <ul className="list-disc pl-8">
           {examples.map((example) => (
-            <li key={example}>
+            <li className="py-1" key={example}>
               <Link href="/https/[...url]" as={`/https/${example}`}>
                 <a className="break-words link">https://{example}</a>
               </Link>
@@ -98,17 +98,17 @@ const Home = () => {
         <div className="mt-6">
           <p className="font-bold">Other resources:</p>
           <ul className="list-disc pl-8">
-            <li>
+            <li className="py-1">
               <Link href="/about">
                 <a className="link">About doc.deno.land</a>
               </Link>
             </li>
-            <li>
+            <li className="py-1">
               <a href="https://deno.land" className="link">
                 Website
               </a>
             </li>
-            <li>
+            <li className="py-1">
               <a href="https://deno.land/std/manual.md" className="link">
                 Manual
               </a>
