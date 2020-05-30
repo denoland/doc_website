@@ -105,7 +105,7 @@ export const CardList = memo(
                 ""
               ) : (
                 <a
-                  className="break-words cursor-pointer link text-sm"
+                  className="break-words cursor-pointer text-sm"
                   href={sourceUrl}
                 >
                   [src]
@@ -128,10 +128,20 @@ export const CardList = memo(
             <div
               className={
                 "text-gray-900 font-medium mb-1 " +
-                (nested ? "text-md mt-2" : "text-2xl mt-4")
+                (nested ? "text-md mt-2" : "text-2xl")
               }
             >
-              Variables
+              Variables{" "}
+              {nested ? (
+                ""
+              ) : (
+                <a
+                  className="break-words cursor-pointer link text-sm"
+                  href={sourceUrl}
+                >
+                  [src]
+                </a>
+              )}
             </div>
             <div>
               {groups.variables.map((node, i) => (
@@ -149,10 +159,20 @@ export const CardList = memo(
             <div
               className={
                 "text-gray-900 font-medium mb-1 " +
-                (nested ? "text-md mt-2" : "text-2xl mt-4")
+                (nested ? "text-md mt-2" : "text-2xl")
               }
             >
-              Classes
+              Classes{" "}
+              {nested ? (
+                ""
+              ) : (
+                <a
+                  className="break-words cursor-pointer link text-sm"
+                  href={sourceUrl}
+                >
+                  [src]
+                </a>
+              )}
             </div>
             <div>
               {groups.classes.map((node, i) => (
@@ -170,10 +190,20 @@ export const CardList = memo(
             <div
               className={
                 "text-gray-900 font-medium mb-1 " +
-                (nested ? "text-md mt-2" : "text-2xl mt-4")
+                (nested ? "text-md mt-2" : "text-2xl")
               }
             >
-              Enums
+              Enums{" "}
+              {nested ? (
+                ""
+              ) : (
+                <a
+                  className="break-words cursor-pointer link text-sm"
+                  href={sourceUrl}
+                >
+                  [src]
+                </a>
+              )}
             </div>
             <div>
               {groups.enums.map((node, i) => (
@@ -191,10 +221,20 @@ export const CardList = memo(
             <div
               className={
                 "text-gray-900 font-medium mb-1 " +
-                (nested ? "text-md mt-2" : "text-2xl mt-4")
+                (nested ? "text-md mt-2" : "text-2xl")
               }
             >
-              Interfaces
+              Interfaces{" "}
+              {nested ? (
+                ""
+              ) : (
+                <a
+                  className="break-words cursor-pointer link text-sm"
+                  href={sourceUrl}
+                >
+                  [src]
+                </a>
+              )}
             </div>
             <div>
               {groups.interfaces.map((node, i) => (
@@ -212,10 +252,20 @@ export const CardList = memo(
             <div
               className={
                 "text-gray-900 font-medium mb-1 " +
-                (nested ? "text-md mt-2" : "text-2xl mt-4")
+                (nested ? "text-md mt-2" : "text-2xl")
               }
             >
-              Type Aliases
+              Type Aliases{" "}
+              {nested ? (
+                ""
+              ) : (
+                <a
+                  className="break-words cursor-pointer link text-sm"
+                  href={sourceUrl}
+                >
+                  [src]
+                </a>
+              )}
             </div>
             <div>
               {groups.typeAliases.map((node, i) => (
@@ -233,10 +283,20 @@ export const CardList = memo(
             <div
               className={
                 "text-gray-900 font-medium mb-1 " +
-                (nested ? "text-md mt-2" : "text-2xl mt-4")
+                (nested ? "text-md mt-2" : "text-2xl")
               }
             >
-              Namespaces
+              Namespaces{" "}
+              {nested ? (
+                ""
+              ) : (
+                <a
+                  className="break-words cursor-pointer link text-sm"
+                  href={sourceUrl}
+                >
+                  [src]
+                </a>
+              )}
             </div>
             <div>
               {groups.namespaces.map((node, i) => (
