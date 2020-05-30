@@ -94,24 +94,7 @@ export const CardList = memo(
       <>
         {groups.functions.length > 0 ? (
           <div>
-            <div
-              className={
-                "text-gray-900 font-medium mb-1 " +
-                (nested ? "text-md mt-2" : "text-2xl")
-              }
-            >
-              Functions{" "}
-              {nested ? (
-                ""
-              ) : (
-                <a
-                  className="break-words cursor-pointer text-sm"
-                  href={sourceUrl}
-                >
-                  [src]
-                </a>
-              )}
-            </div>
+            <CardLabel name="Function" sourceUrl={sourceUrl} nested={nested} />
             <div>
               {groups.functions.map((node, i) => (
                 <FunctionCard
@@ -125,24 +108,7 @@ export const CardList = memo(
         ) : null}
         {groups.variables.length > 0 ? (
           <div>
-            <div
-              className={
-                "text-gray-900 font-medium mb-1 " +
-                (nested ? "text-md mt-2" : "text-2xl")
-              }
-            >
-              Variables{" "}
-              {nested ? (
-                ""
-              ) : (
-                <a
-                  className="break-words cursor-pointer link text-sm"
-                  href={sourceUrl}
-                >
-                  [src]
-                </a>
-              )}
-            </div>
+            <CardLabel name="Variables" sourceUrl={sourceUrl} nested={nested} />
             <div>
               {groups.variables.map((node, i) => (
                 <VariableCard
@@ -156,24 +122,7 @@ export const CardList = memo(
         ) : null}
         {groups.classes.length > 0 ? (
           <div>
-            <div
-              className={
-                "text-gray-900 font-medium mb-1 " +
-                (nested ? "text-md mt-2" : "text-2xl")
-              }
-            >
-              Classes{" "}
-              {nested ? (
-                ""
-              ) : (
-                <a
-                  className="break-words cursor-pointer link text-sm"
-                  href={sourceUrl}
-                >
-                  [src]
-                </a>
-              )}
-            </div>
+            <CardLabel name="Classes" sourceUrl={sourceUrl} nested={nested} />
             <div>
               {groups.classes.map((node, i) => (
                 <ClassCard
@@ -187,24 +136,7 @@ export const CardList = memo(
         ) : null}
         {groups.enums.length > 0 ? (
           <div>
-            <div
-              className={
-                "text-gray-900 font-medium mb-1 " +
-                (nested ? "text-md mt-2" : "text-2xl")
-              }
-            >
-              Enums{" "}
-              {nested ? (
-                ""
-              ) : (
-                <a
-                  className="break-words cursor-pointer link text-sm"
-                  href={sourceUrl}
-                >
-                  [src]
-                </a>
-              )}
-            </div>
+            <CardLabel name="Enums" sourceUrl={sourceUrl} nested={nested} />
             <div>
               {groups.enums.map((node, i) => (
                 <EnumCard
@@ -218,24 +150,11 @@ export const CardList = memo(
         ) : null}
         {groups.interfaces.length > 0 ? (
           <div>
-            <div
-              className={
-                "text-gray-900 font-medium mb-1 " +
-                (nested ? "text-md mt-2" : "text-2xl")
-              }
-            >
-              Interfaces{" "}
-              {nested ? (
-                ""
-              ) : (
-                <a
-                  className="break-words cursor-pointer link text-sm"
-                  href={sourceUrl}
-                >
-                  [src]
-                </a>
-              )}
-            </div>
+            <CardLabel
+              name="Interfaces"
+              sourceUrl={sourceUrl}
+              nested={nested}
+            />
             <div>
               {groups.interfaces.map((node, i) => (
                 <InterfaceCard
@@ -249,24 +168,11 @@ export const CardList = memo(
         ) : null}
         {groups.typeAliases.length > 0 ? (
           <div>
-            <div
-              className={
-                "text-gray-900 font-medium mb-1 " +
-                (nested ? "text-md mt-2" : "text-2xl")
-              }
-            >
-              Type Aliases{" "}
-              {nested ? (
-                ""
-              ) : (
-                <a
-                  className="break-words cursor-pointer link text-sm"
-                  href={sourceUrl}
-                >
-                  [src]
-                </a>
-              )}
-            </div>
+            <CardLabel
+              name="Type Aliases"
+              sourceUrl={sourceUrl}
+              nested={nested}
+            />
             <div>
               {groups.typeAliases.map((node, i) => (
                 <TypeAliasCard
@@ -280,24 +186,11 @@ export const CardList = memo(
         ) : null}
         {groups.namespaces.length > 0 ? (
           <div>
-            <div
-              className={
-                "text-gray-900 font-medium mb-1 " +
-                (nested ? "text-md mt-2" : "text-2xl")
-              }
-            >
-              Namespaces{" "}
-              {nested ? (
-                ""
-              ) : (
-                <a
-                  className="break-words cursor-pointer link text-sm"
-                  href={sourceUrl}
-                >
-                  [src]
-                </a>
-              )}
-            </div>
+            <CardLabel
+              name="Namespaces"
+              sourceUrl={sourceUrl}
+              nested={nested}
+            />
             <div>
               {groups.namespaces.map((node, i) => (
                 <NamespaceCard
@@ -447,6 +340,34 @@ export function SimpleSubCard({
           <JSDoc jsdoc={node.jsDoc} />
         </div>
       ) : null}
+    </div>
+  );
+}
+
+export function CardLabel({
+  name,
+  sourceUrl,
+  nested,
+}: {
+  name: string;
+  sourceUrl?: string;
+  nested?: boolean;
+}) {
+  return (
+    <div
+      className={
+        "text-gray-900 font-medium mb-1 " +
+        (nested ? "text-md mt-2" : "text-2xl")
+      }
+    >
+      {name}{" "}
+      {nested ? (
+        ""
+      ) : (
+        <a className="break-words cursor-pointer text-sm" href={sourceUrl}>
+          [src]
+        </a>
+      )}
     </div>
   );
 }
