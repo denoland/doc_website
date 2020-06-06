@@ -109,7 +109,7 @@ const Home = () => {
               </a>
             </li>
             <li className="py-1">
-              <a href="https://deno.land/std/manual.md" className="link">
+              <a href="https://deno.land/manual" className="link">
                 Manual
               </a>
             </li>
