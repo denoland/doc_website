@@ -63,12 +63,6 @@ export const SinglePage = memo(
         >
           <div className="max-w-4xl px-4 pb-3 bg-gray-100 sm:px-6">
             <div className="py-4">
-              <a
-                className="break-words cursor-pointer link"
-                href={props.entrypoint}
-              >
-                {props.entrypoint}
-              </a>
               {hasNone ? (
                 <h1 className="pt-4 pb-1 text-xl text-gray-900 ">
                   This module has no exports that are recognized by deno doc.

@@ -60,6 +60,11 @@ export const Sidebar = (props: {
             </div>
           ) : null}
           <p className="mt-2 text-sm">
+            <a className="link" href={props.entrypoint}>
+              Documentation Source
+            </a>
+          </p>
+          <p className="mt-2 text-sm">
             <Link href="/about">
               <a className="link">About doc.deno.land</a>
             </Link>
