@@ -473,7 +473,7 @@ export function groupNodes(docs: DocNode[]): GroupedNodes {
   return groupedNodes;
 }
 
-export function findNodeByScopedName(
+function findNodeByScopedName(
   flattend: DocNode[],
   name: string,
   initialScope: string[],
@@ -503,6 +503,34 @@ export function findNodeByScopedName(
       done = true;
     }
     scope.pop();
+  }
+  return undefined;
+}
+
+const mdnBuiltins: { [builtin: string]: string } = {
+  string:
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+};
+
+export function getLinkByScopedName(
+  flattend: DocNode[],
+  name: string,
+  initialScope: string[],
+  mustBe?: "type" | "class"
+): { type: "local"; href: string } | { type: "mdn"; href: string } | undefined {
+  const node = findNodeByScopedName(flattend, name, initialScope, mustBe);
+  if (node) {
+    return {
+      type: "local",
+      href: `#${node.scope ? node.scope.join(".") + "." : ""}${node.name}`,
+    };
+  }
+  const builtin = mdnBuiltins[name];
+  if (builtin) {
+    return {
+      type: "mdn",
+      href: builtin,
+    };
   }
   return undefined;
 }

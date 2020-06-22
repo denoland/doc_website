@@ -5,7 +5,7 @@ import {
   TsTypeDef,
   TsTypeDefKind,
   LiteralDefKind,
-  findNodeByScopedName,
+  getLinkByScopedName,
 } from "../util/docs";
 import { useFlattend } from "../util/data";
 import { Params } from "./Function";
@@ -35,8 +35,7 @@ export const TsType = memo(
         return (
           <>
             {tsType.fnOrConstructor.constructor ? "new " : null} (
-            <Params params={tsType.fnOrConstructor.params} scope={scope} />)
-            =&gt;{" "}
+            <Params params={tsType.fnOrConstructor.params} scope={scope} />) {"=> "}
             <TsType tsType={tsType.fnOrConstructor.tsType} scope={scope} />
           </>
         );
@@ -173,7 +172,7 @@ export const TsType = memo(
         );
       case TsTypeDefKind.TypeQuery: {
         const flattend = useFlattend();
-        const node = findNodeByScopedName(
+        const link = getLinkByScopedName(
           flattend,
           tsType.typeQuery,
           scope ?? []
@@ -181,13 +180,12 @@ export const TsType = memo(
         return (
           <>
             typeof{" "}
-            {node ? (
-              <a
-                className="link"
-                href={`#${node.scope ? node.scope.join(".") + "." : ""}${
-                  node.name
-                }`}
-              >
+            {link?.type == "local" ? (
+              <Link href="/https/[...url]" as={link.href}>
+                <a className="link">{tsType.typeQuery}</a>
+              </Link>
+            ) : link?.type == "mdn" ? (
+              <a className="link" href={link.href}>
                 {tsType.typeQuery}
               </a>
             ) : (
@@ -198,7 +196,7 @@ export const TsType = memo(
       }
       case TsTypeDefKind.TypeRef: {
         const flattend = useFlattend();
-        const node = findNodeByScopedName(
+        const link = getLinkByScopedName(
           flattend,
           tsType.typeRef.typeName,
           scope ?? [],
@@ -211,13 +209,12 @@ export const TsType = memo(
         paramElements.pop();
         return (
           <>
-            {node ? (
-              <a
-                className="link"
-                href={`#${node.scope ? node.scope.join(".") + "." : ""}${
-                  node.name
-                }`}
-              >
+            {link?.type == "local" ? (
+              <Link href="/https/[...url]" as={link.href}>
+                <a className="link">{tsType.typeRef.typeName}</a>
+              </Link>
+            ) : link?.type == "mdn" ? (
+              <a className="link" href={link.href}>
                 {tsType.typeRef.typeName}
               </a>
             ) : (
