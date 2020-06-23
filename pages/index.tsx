@@ -4,6 +4,8 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useState } from "react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const examples = [
   "deno.land/std/http/mod.ts",
@@ -35,87 +37,91 @@ const Home = () => {
               JavaScript and TypeScript."
         />
       </Head>
-      <div className="flex flex-col max-w-4xl px-4 py-4 mx-auto sm:px-8 md:px-12 md:py-8">
-        <div className="flex flex-col items-center sm:flex-row">
-          <img src="/logo.svg" className="w-48" alt="Deno logo" />
-          <div className="text-center md:ml-4 sm:text-left">
-            <h1 className="text-4xl font-bold">deno doc</h1>
-            <p>Automatic documentation generator for Deno</p>
+      <div className="bg-gray-50 border-b border-gray-200">
+        <Header />
+        <div className="max-w-screen-sm mx-auto px-4 sm:px-6 md:px-8 pt-4 sm:pt-12 pb-12 sm:pb-20 flex flex-col items-center">
+          <span className="block w-full rounded-md shadow-sm ">
+            <Link
+              href="/https/[...url]"
+              as={`/https/github.com/denoland/deno/releases/latest/download/lib.deno.d.ts`}
+            >
+              <a
+                type="submit"
+                className="w-full flex justify-center py-2 px-4 border border-gray-300 text-md font-medium rounded-md text-gray-700 bg-gray-100 hover:text-gray-500 hover:bg-gray-50 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition duration-150 ease-in-out"
+              >
+                Deno runtime documentation
+              </a>
+            </Link>
+          </span>
+          <label
+            htmlFor="email"
+            className="block text-center text-md leading-6 text-gray-500 mt-4"
+          >
+            or view documentation for
+          </label>
+          <div className="mt-4 flex rounded-md shadow-sm w-full">
+            <div className="relative flex-grow focus-within:z-10">
+              <input
+                id="email"
+                className="form-input block w-full rounded-none rounded-l-md transition ease-in-out duration-150 sm:text-md sm:leading-6"
+                placeholder="https://deno.land/x/oak/mod.ts"
+                type="url"
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && url.length > 0) navigate();
+                }}
+              />
+            </div>
+            <button
+              className="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-r-md text-gray-700 bg-gray-100 hover:text-gray-500 hover:bg-gray-50 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
+              onClick={() => {
+                if (url.length > 0) navigate();
+              }}
+            >
+              <span className="mr-2">View</span>{" "}
+              <svg
+                className="h-5 w-5 text-gray-400"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
           </div>
         </div>
+      </div>
+      <div className="flex flex-col max-w-screen-sm px-4 py-4 mx-auto sm:px-8 md:px-12 mt-8 mb-16">
         <div className="mt-1 py-2">
-          <Link
-            href="/https/[...url]"
-            as={`/https/github.com/denoland/deno/releases/latest/download/lib.deno.d.ts`}
-          >
-            <a className="link">Stable runtime documentation</a>
-          </Link>
-        </div>
-        <div className="mt-1 py-2">
+          View{" "}
+          <code className="py-0.5 px-1 font-mono rounded-sm bg-gray-100 deno-inlinecode">
+            --unstable
+          </code>{" "}
+          runtime documentation{" "}
           <Link
             href="/https/[...url]"
             as={`/https/raw.githubusercontent.com/denoland/deno/master/cli/js/lib.deno.unstable.d.ts`}
           >
-            <a className="link">Unstable runtime documentation</a>
+            <a className="link"> here</a>
           </Link>
-        </div>
-        <label className="mt-4 font-bold" htmlFor="entrypoint">
-          View documentation for:
-        </label>
-        <div className="flex flex-row mt-1">
-          <input
-            id="entrypoint"
-            className="block w-full px-4 py-2 leading-normal bg-white border border-gray-300 rounded-lg outline-none appearance-none focus:border-gray-500"
-            type="url"
-            placeholder="https://deno.land/std/http/mod.ts"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" && url.length > 0) navigate();
-            }}
-          />
-          <button
-            className="px-4 py-2 ml-2 font-bold leading-normal text-white duration-100 bg-gray-900 border border-gray-300 rounded-lg appearance-none hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-800 focus:border-gray-500 focus:outline-none"
-            onClick={() => {
-              if (url.length > 0) navigate();
-            }}
-          >
-            View
-          </button>
+          .
         </div>
         <div className="mt-4 font-bold">Some examples:</div>
-        <ul className="list-disc pl-8">
+        <ul className="list-disc pl-8 mt-2">
           {examples.map((example) => (
-            <li key={example}>
+            <li className="py-0.5" key={example}>
               <Link href="/https/[...url]" as={`/https/${example}`}>
                 <a className="break-words link">https://{example}</a>
               </Link>
             </li>
           ))}
         </ul>
-        <p className="mt-4"></p>
-        <hr className="mt-6" />
-        <div className="mt-6">
-          <p className="font-bold">Other resources:</p>
-          <ul className="list-disc pl-8">
-            <li>
-              <Link href="/about">
-                <a className="link">About doc.deno.land</a>
-              </Link>
-            </li>
-            <li>
-              <a href="https://deno.land" className="link">
-                Website
-              </a>
-            </li>
-            <li>
-              <a href="https://deno.land/std/manual.md" className="link">
-                Manual
-              </a>
-            </li>
-          </ul>
-        </div>
       </div>
+      <Footer />
     </>
   );
 };

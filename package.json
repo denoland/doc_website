@@ -9,6 +9,7 @@
     "format": "prettier --write **.tsx **.ts **.js **.json"
   },
   "dependencies": {
+    "@tailwindcss/ui": "^0.3.0",
     "isomorphic-unfetch": "^3.0.0",
     "next": "9.3.3",
     "preact": "^10.3.4",
@@ -18,14 +19,16 @@
     "react-markdown": "^4.3.1",
     "react-ssr-prepass": "npm:preact-ssr-prepass@^1.0.1",
     "react-syntax-highlighter": "^12.2.1",
+    "react-transition-group": "^4.4.1",
     "swr": "^0.2.0",
-    "tailwindcss": "^1.2.0"
+    "tailwindcss": "^1.4.6"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^2.1.0",
     "@types/node": "^13.7.7",
     "@types/react": "^16.9.23",
     "@types/react-syntax-highlighter": "^11.0.4",
+    "@types/react-transition-group": "^4.2.4",
     "autoprefixer": "^9.7.4",
     "postcss-import": "^12.0.1",
     "prettier": "^2.0.4",

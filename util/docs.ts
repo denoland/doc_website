@@ -344,8 +344,9 @@ export interface GroupedNodes {
 export function expandNamespaces(docs: DocNode[]): DocNode[] {
   return docs.flatMap((parent): any => {
     if (parent.kind === DocNodeKind.Namespace) {
-      const scope = parent.scope ?? [];
-      scope.push(parent.name);
+      const scope = Array.isArray(parent.scope)
+        ? [...parent.scope, parent.name]
+        : [parent.name];
       return [
         {
           ...parent,
@@ -380,7 +381,7 @@ function nodeName(a: DocNode): string {
 }
 
 export function sortByAlphabet(docs: DocNode[]): DocNode[] {
-  return docs.sort((a, b) =>  nodeName(a) < nodeName(b) ? -1 : 1);
+  return docs.sort((a, b) => (nodeName(a) < nodeName(b) ? -1 : 1));
 }
 
 export function groupNodes(docs: DocNode[]): GroupedNodes {

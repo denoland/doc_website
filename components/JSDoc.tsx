@@ -44,7 +44,7 @@ export function JSDoc(props: { jsdoc: string }) {
 
 export function InlineCode(props: { children: React.ReactNode }) {
   return (
-    <code className="p-px font-mono bg-gray-200 rounded-sm">
+    <code className="p-px font-mono bg-gray-100 rounded-sm">
       {props.children}
     </code>
   );
@@ -55,17 +55,18 @@ export function CodeBlock(props: {
   language: "" | "typescript";
 }) {
   return (
-    <SyntaxHighlighter
-      language={props.language}
-      style={atomOneLight}
-      customStyle={{
-        fontSize: "0.75rem",
-        padding: "0.5rem 0.75rem",
-        margin: "0.5rem 0",
-        borderRadius: "0.25rem",
-      }}
-    >
-      {props.value}
-    </SyntaxHighlighter>
+    <div className="my-2 bg-gray-50 rounded">
+      <SyntaxHighlighter
+        language={props.language}
+        style={atomOneLight}
+        customStyle={{
+          fontSize: "0.75rem",
+          padding: "0.5rem 0.75rem",
+          background: "rgba(0,,0,0)",
+        }}
+      >
+        {props.value}
+      </SyntaxHighlighter>
+    </div>
   );
 }

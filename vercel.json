@@ -1,0 +1,21 @@
+{
+  "functions": {
+    "api/**/*.ts": {
+      "runtime": "now-deno@0.4.0"
+    }
+  },
+  "regions": ["sfo"],
+  "build": {
+    "env": {
+      "DENO_VERSION": "1.1.0",
+      "DENO_UNSTABLE": "true"
+    }
+  },
+  "env": {
+    "DENO_VERSION": "1.1.0",
+    "DENO_UNSTABLE": "true"
+  },
+  "github": {
+    "silent": true
+  }
+}

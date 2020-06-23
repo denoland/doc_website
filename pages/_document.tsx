@@ -17,7 +17,9 @@ export default class DenoDocDocument extends Document {
   render() {
     return (
       <Html lang="en" style={{ scrollPaddingTop: "5rem" }}>
-        <Head />
+        <Head>
+          <link rel="stylesheet" href="/fonts/inter/inter.css" />
+        </Head>
         <body>
           <Main />
           <NextScript />

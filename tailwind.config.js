@@ -1,3 +1,5 @@
+const defaultTheme = require("tailwindcss/defaultTheme"); // eslint-disable-line
+
 module.exports = {
   theme: {
     fontFamily: {
@@ -19,6 +21,9 @@ module.exports = {
       xs: "20rem",
     },
     extend: {
+      fontFamily: {
+        sans: ["Inter var", ...defaultTheme.fontFamily.sans],
+      },
       padding: {
         xs: "20rem",
       },
@@ -30,5 +35,5 @@ module.exports = {
   variants: {
     backgroundColor: ["responsive", "hover", "focus", "active"],
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/ui")],
 };
