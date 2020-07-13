@@ -9,7 +9,7 @@ import {
 } from "../util/docs";
 import Link from "next/link";
 import { useFlattend } from "../util/data";
-import { Params, Param } from "./Function";
+import { Params } from "./Function";
 
 export const TsType = memo(
   ({ tsType, scope }: { tsType: TsTypeDef; scope: string[] }) => {
@@ -224,11 +224,11 @@ export const TsType = memo(
               tsType.typeRef.typeName
             )}
             {tsType.typeRef.typeParams ? (
-              <>
+              <span className="text-gray-600">
                 {"<"}
                 {paramElements}
                 {">"}
-              </>
+              </span>
             ) : null}
           </>
         );
