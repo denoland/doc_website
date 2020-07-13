@@ -53,6 +53,7 @@ export interface TsTypeLiteralDef {
   methods: LiteralMethodDef[];
   properties: LiteralPropertyDef[];
   callSignatures: LiteralCallSignatureDef[];
+  indexSignatures: LiteralIndexSignatureDef[];
 }
 export interface LiteralMethodDef {
   name: string;
@@ -66,6 +67,11 @@ export interface LiteralPropertyDef {
   tsType?: TsTypeDef;
 }
 export interface LiteralCallSignatureDef {
+  params: ParamDef[];
+  tsType?: TsTypeDef;
+}
+export interface LiteralIndexSignatureDef {
+  readonly: boolean;
   params: ParamDef[];
   tsType?: TsTypeDef;
 }
@@ -200,19 +206,51 @@ export type TsTypeDef =
   | TsTypeDefTypeRef
   | TsTypeDefUnion;
 
-export enum ParamKind {
-  Identifier = "identifier",
-  Rest = "rest",
-  Array = "array",
-  Object = "object",
-}
-
-export interface ParamDef {
-  name: string;
-  kind: ParamKind;
-  optional: boolean;
-  tsType?: TsTypeDef;
-}
+export type ParamDef =
+  | {
+      kind: "array";
+      elements: (ParamDef | null)[];
+      optional: boolean;
+      tsType?: TsTypeDef;
+    }
+  | {
+      kind: "assign";
+      left: ParamDef;
+      right: string;
+      tsType?: TsTypeDef;
+    }
+  | {
+      kind: "identifier";
+      name: string;
+      optional: boolean;
+      tsType?: TsTypeDef;
+    }
+  | {
+      kind: "object";
+      props: ObjectPatPropDef[];
+      optional: boolean;
+      tsType?: TsTypeDef;
+    }
+  | {
+      kind: "rest";
+      arg: ParamDef;
+      tsType?: TsTypeDef;
+    };
+export type ObjectPatPropDef =
+  | {
+      kind: "assign";
+      key: string;
+      value?: string;
+    }
+  | {
+      kind: "keyValue";
+      key: string;
+      value: ParamDef;
+    }
+  | {
+      kind: "rest";
+      arg: ParamDef;
+    };
 export interface FunctionDef {
   params: ParamDef[];
   returnType?: TsTypeDef;
@@ -248,10 +286,17 @@ export interface ClassDef {
   isAbstract: boolean;
   constructors: ClassConstructorDef[];
   properties: ClassPropertyDef[];
+  indexSignatures: ClassIndexSignatureDef[];
   methods: ClassMethodDef[];
   extends?: string;
-  implements: string[];
+  implements: TsTypeDef[];
   typeParams: TsTypeParamDef[];
+  superTypeParams: TsTypeDef[];
+}
+export interface ClassIndexSignatureDef {
+  readonly: boolean;
+  params: ParamDef[];
+  tsType?: TsTypeDef;
 }
 export interface EnumMemberDef {
   name: string;
@@ -278,14 +323,18 @@ export interface InterfaceCallSignatureDef extends Omit<DocNodeShared, "name"> {
 }
 
 export interface InterfaceDef {
-  extends: string[];
+  extends: TsTypeDef[];
   methods: InterfaceMethodDef[];
   properties: InterfacePropertyDef[];
   callSignatures: InterfaceCallSignatureDef[];
+  indexSignatures: InterfaceIndexSignatureDef[];
   typeParams: TsTypeParamDef[];
 }
-
-export interface InterfaceDef {}
+export interface InterfaceIndexSignatureDef {
+  readonly: boolean;
+  params: ParamDef[];
+  tsType?: TsTypeDef;
+}
 export interface TypeAliasDef {
   tsType: TsTypeDef;
 }

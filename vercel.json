@@ -7,12 +7,12 @@
   "regions": ["sfo"],
   "build": {
     "env": {
-      "DENO_VERSION": "1.1.0",
+      "DENO_VERSION": "1.2.0",
       "DENO_UNSTABLE": "true"
     }
   },
   "env": {
-    "DENO_VERSION": "1.1.0",
+    "DENO_VERSION": "1.2.0",
     "DENO_UNSTABLE": "true"
   },
   "github": {

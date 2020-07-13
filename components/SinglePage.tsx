@@ -300,6 +300,7 @@ export function SimpleSubCard({
   node,
   prefix,
   optional,
+  computedParams,
   params,
   returnType,
 }: {
@@ -310,6 +311,7 @@ export function SimpleSubCard({
   };
   prefix?: string;
   optional?: boolean;
+  computedParams?: ParamDef[];
   params?: ParamDef[];
   returnType?: TsTypeDef;
 }) {
@@ -328,6 +330,11 @@ export function SimpleSubCard({
           {prefix ? <span className="keyword">{prefix} </span> : null}
           {node.name}
           {optional ? "?" : ""}
+          {computedParams ? (
+            <>
+              [<Params params={computedParams} scope={node.scope ?? []} />]
+            </>
+          ) : null}
           {params ? (
             <span className="text-gray-600">
               (<Params params={params} scope={node.scope ?? []} />)

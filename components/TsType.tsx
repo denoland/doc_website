@@ -129,14 +129,32 @@ export const TsType = memo(
             <>
               {property.name}
               {property.tsType ? (
-                <span className="text-gray-600">
+                <>
                   : <TsType tsType={property.tsType} scope={scope}></TsType>
-                </span>
+                </>
               ) : null}
             </>,
             ", "
           );
         });
+        tsType.typeLiteral.indexSignatures.forEach((indexSignature) => {
+          final.push(
+            <>
+              {indexSignature.readonly && (
+                <span className="text-gray-600">readonly </span>
+              )}
+              <Params params={indexSignature.params} scope={scope} />
+              {indexSignature.tsType ? (
+                <>
+                  :{" "}
+                  <TsType tsType={indexSignature.tsType} scope={scope}></TsType>
+                </>
+              ) : null}
+            </>,
+            ", "
+          );
+        });
+
         final.pop();
         return (
           <>
@@ -206,11 +224,11 @@ export const TsType = memo(
               tsType.typeRef.typeName
             )}
             {tsType.typeRef.typeParams ? (
-              <>
+              <span className="text-gray-600">
                 {"<"}
                 {paramElements}
                 {">"}
-              </>
+              </span>
             ) : null}
           </>
         );

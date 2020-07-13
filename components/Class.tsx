@@ -21,6 +21,7 @@ export function ClassCard({
   nested: boolean;
 }) {
   const constructors = node.classDef.constructors;
+  const indexSignatures = node.classDef.indexSignatures;
 
   const flattend = useFlattend();
   const fullClass = getFieldsForClassRecursive(flattend, node);
@@ -76,6 +77,21 @@ export function ClassCard({
               ) : (
                 extends_
               )}
+              {node.classDef.superTypeParams.length > 0 ? (
+                <span className="text-gray-600">
+                  {"<"}
+                  {node.classDef.superTypeParams
+                    .map((tsType) => (
+                      <TsType tsType={tsType} scope={node.scope ?? []} />
+                    ))
+                    .reduce((r, a) => (
+                      <>
+                        {r}, {a}
+                      </>
+                    ))}
+                  {">"}
+                </span>
+              ) : null}
             </>
           ) : null}
         </>
@@ -133,6 +149,21 @@ export function ClassCard({
                     optional={node.optional}
                     params={node.functionDef.params}
                     returnType={node.functionDef.returnType}
+                  />
+                );
+              })}
+            </div>
+          ) : null}
+          {indexSignatures.length > 0 ? (
+            <div className="mt-2">
+              <p className="font-medium text-md">Index Signatures</p>
+              {indexSignatures.map((node) => {
+                return (
+                  <SimpleSubCard
+                    node={{ ...node, name: "", scope: parent.scope }}
+                    prefix={node.readonly ? "readonly " : ""}
+                    computedParams={node.params}
+                    returnType={node.tsType}
                   />
                 );
               })}
