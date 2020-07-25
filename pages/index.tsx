@@ -104,7 +104,7 @@ const Home = () => {
           runtime documentation{" "}
           <Link
             href="/https/[...url]"
-            as={`/https/raw.githubusercontent.com/denoland/deno/master/cli/js/lib.deno.unstable.d.ts`}
+            as={`/https/raw.githubusercontent.com/denoland/deno/master/cli/dts/lib.deno.unstable.d.ts`}
           >
             <a className="link"> here</a>
           </Link>
