@@ -1,8 +1,9 @@
 // Copyright 2020 the Deno authors. All rights reserved. MIT license.
 
+import React from "react";
 import Link from "next/link";
 
-export default () => {
+function NotFound() {
   return (
     <>
       <head>
@@ -16,4 +17,6 @@ export default () => {
       </div>
     </>
   );
-};
+}
+
+export default NotFound;

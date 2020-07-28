@@ -1,6 +1,7 @@
 const defaultTheme = require("tailwindcss/defaultTheme"); // eslint-disable-line
 
 module.exports = {
+  purge: ["./components/**/*.tsx", "./pages/**/*.tsx"],
   theme: {
     fontFamily: {
       mono: [
