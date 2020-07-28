@@ -3,7 +3,7 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
-import atomOneLight from "react-syntax-highlighter/dist/cjs/styles/hljs/atom-one-light";
+import atomOneDark from "react-syntax-highlighter/dist/cjs/styles/hljs/atom-one-dark";
 
 export function JSDoc(props: { jsdoc: string }) {
   const jsdoc = props.jsdoc
@@ -25,7 +25,7 @@ export function JSDoc(props: { jsdoc: string }) {
           <div className="w-full overflow-x-auto">
             <table
               {...props}
-              className="my-2 border border-collapse border-gray-300"
+              className="my-2 border border-collapse border-gray-300 dark:border-light-black-700"
             />
           </div>
         ),
@@ -33,7 +33,7 @@ export function JSDoc(props: { jsdoc: string }) {
           <td
             {...props}
             className={
-              "border border-gray-300 px-2 py-1" +
+              "border border-gray-300 dark:border-light-black-700 px-2 py-1" +
               (props.isHeader ? " font-medium" : "")
             }
           />
@@ -45,25 +45,21 @@ export function JSDoc(props: { jsdoc: string }) {
 
 export function InlineCode(props: { children: React.ReactNode }) {
   return (
-    <code className="p-px font-mono bg-gray-100 rounded-sm">
+    <code className="py-0.5 px-1 font-mono bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-300 rounded-sm">
       {props.children}
     </code>
   );
 }
 
-export function CodeBlock(props: {
-  value: string;
-  language: "" | "typescript";
-}) {
+export function CodeBlock(props: { value: string; language: string }) {
   return (
-    <div className="my-2 bg-gray-50 rounded">
+    <div className="my-2 bg-gray-50 rounded overflow-hidden">
       <SyntaxHighlighter
         language={props.language ?? "typescript"}
-        style={atomOneLight}
+        style={atomOneDark}
         customStyle={{
           fontSize: "0.75rem",
           padding: "0.5rem 0.75rem",
-          background: "rgba(0,,0,0)",
         }}
       >
         {props.value}

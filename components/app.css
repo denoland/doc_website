@@ -22,16 +22,20 @@ html {
   @apply text-blue-400;
 }
 
+.keyword {
+  @apply text-pink-800;
+}
+
 @media (prefers-color-scheme: dark) {
   .link {
-    @apply text-blue-400;
+    @apply text-blue-500;
   }
 
   .link:hover {
-    @apply text-blue-300;
+    @apply text-blue-400;
   }
-}
 
-.keyword {
-  @apply text-pink-800;
+  .keyword {
+    color: #ff3885;
+  }
 }

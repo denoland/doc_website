@@ -32,6 +32,7 @@ module.exports = {
         xs: "20rem",
       },
       colors: {
+        "light-black-950": "#080808",
         "light-black-900": "#111",
         "light-black-800": "#222",
         "light-black-700": "#333",

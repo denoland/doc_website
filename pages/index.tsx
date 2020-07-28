@@ -59,8 +59,11 @@ function Home() {
             </label>
             <div className="mt-4 flex rounded-md shadow-sm w-full">
               <div className="relative flex-grow focus-within:z-10">
+                <label htmlFor="link" className="sr-only">
+                  Source link
+                </label>
                 <input
-                  id="email"
+                  id="link"
                   className="form-input dark:text-gray-100 dark:bg-light-black-900 dark:border-light-black-800 dark:placeholder-text-gray-200 block w-full rounded-none rounded-l-md transition ease-in-out duration-150 sm:text-md sm:leading-6"
                   placeholder="https://deno.land/x/oak/mod.ts"
                   type="url"

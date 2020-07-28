@@ -19,13 +19,13 @@ export function EnumCard({
       details={
         <>
           <div className="mt-2">
-            <p className="font-medium text-md">Members</p>
+            <p className="font-medium text-md text-gray-800 dark:text-gray-300">Members</p>
             {node.enumDef.members.length > 0 ? (
               node.enumDef.members.map((member) => {
                 return <SimpleSubCard node={{ name: member.name }} />;
               })
             ) : (
-              <div>This enum has no members.</div>
+              <div className="text-gray-900 dark:text-gray-200">This enum has no members.</div>
             )}
           </div>
         </>

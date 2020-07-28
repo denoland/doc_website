@@ -26,7 +26,7 @@ export function InterfaceCard({
       suffix={
         <>
           {node.interfaceDef.typeParams.length > 0 ? (
-            <span className="text-gray-600">
+            <span className="text-gray-600 dark:text-gray-400">
               {"<"}
               <TypeParams
                 params={node.interfaceDef.typeParams}
@@ -47,7 +47,7 @@ export function InterfaceCard({
         <>
           {node.interfaceDef.callSignatures.length > 0 ? (
             <div className="mt-2">
-              <p className="font-medium text-md">Call Signatures</p>
+              <p className="font-medium text-md text-gray-800 dark:text-gray-300">Call Signatures</p>
               {node.interfaceDef.callSignatures.map((node) => {
                 return (
                   <SimpleSubCard
@@ -61,7 +61,7 @@ export function InterfaceCard({
           ) : null}
           {node.interfaceDef.properties.length > 0 ? (
             <div className="mt-2">
-              <p className="font-medium text-md">Properties</p>
+              <p className="font-medium text-md text-gray-800 dark:text-gray-300">Properties</p>
               {node.interfaceDef.properties.map((node) => {
                 return (
                   <SimpleSubCard
@@ -75,7 +75,7 @@ export function InterfaceCard({
           ) : null}
           {node.interfaceDef.methods.length > 0 ? (
             <div className="mt-2">
-              <p className="font-medium text-md">Methods</p>
+              <p className="font-medium text-md text-gray-800 dark:text-gray-300">Methods</p>
               {node.interfaceDef.methods.map((node) => {
                 return (
                   <SimpleSubCard
@@ -90,7 +90,7 @@ export function InterfaceCard({
           ) : null}
           {node.interfaceDef.indexSignatures.length > 0 ? (
             <div className="mt-2">
-              <p className="font-medium text-md">Index Signatures</p>
+              <p className="font-medium text-md text-gray-800 dark:text-gray-300">Index Signatures</p>
               {node.interfaceDef.indexSignatures.map((node) => {
                 return (
                   <SimpleSubCard

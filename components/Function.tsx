@@ -57,7 +57,7 @@ export function Param({
         <>
           [<Params params={p.elements} scope={scope} />]{p.optional && "?"}
           {p.tsType && (
-            <span className="text-gray-600">
+            <span className="text-gray-600 dark:text-gray-400">
               : <TsType tsType={p.tsType} scope={scope} />
             </span>
           )}
@@ -69,7 +69,7 @@ export function Param({
         <>
           <Param param={p.left} scope={scope} />
           {p.tsType && (
-            <span className="text-gray-600">
+            <span className="text-gray-600 dark:text-gray-400">
               : <TsType tsType={p.tsType} scope={scope} />
             </span>
           )}
@@ -82,7 +82,7 @@ export function Param({
           {p.name}
           {p.optional && "?"}
           {p.tsType && (
-            <span className="text-gray-600">
+            <span className="text-gray-600 dark:text-gray-400">
               : <TsType tsType={p.tsType} scope={scope} />
             </span>
           )}
@@ -103,7 +103,7 @@ export function Param({
           {" }"}
           {p.optional && "?"}
           {p.tsType && (
-            <span className="text-gray-600">
+            <span className="text-gray-600 dark:text-gray-400">
               : <TsType tsType={p.tsType} scope={scope} />
             </span>
           )}
@@ -116,7 +116,7 @@ export function Param({
           ...
           <Param param={p.arg} scope={scope} />
           {p.tsType && (
-            <span className="text-gray-600">
+            <span className="text-gray-600 dark:text-gray-400">
               : <TsType tsType={p.tsType} scope={scope} />
             </span>
           )}

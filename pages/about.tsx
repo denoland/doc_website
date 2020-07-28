@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 
 function About() {
   return (
-    <>
+    <div className="bg-white dark:bg-light-black-900">
       <Head>
         <title>About deno doc</title>
         <meta
@@ -15,7 +15,7 @@ function About() {
         />
       </Head>
       <Header />
-      <div className="max-w-screen-md mx-auto pt-4 pb-12 sm:pb-16 md:pb-20 sm:py-6 px-4 sm:px-6 md:px-8">
+      <div className="max-w-screen-md mx-auto pt-4 pb-12 sm:pb-16 md:pb-20 sm:py-6 px-4 sm:px-6 md:px-8 text-gray-900 dark:text-gray-200">
         <h2 className="text-3xl font-bold tracking-tight">About</h2>
         <div className="text-base leading-6 pt-4 grid row-gap-3">
           <p>
@@ -84,14 +84,14 @@ function About() {
           <div className="mt-4">
             <span className="font-semibold text-lg">HTML</span>
             <CodeBlock
-              language=""
+              language="html"
               value={`<a href="https://doc.deno.land/https/deno.land/std/fs/mod.ts"><img src="https://doc.deno.land/badge.svg" alt="deno doc"></a>`}
             />
           </div>
           <div className="mt-3">
             <span className="font-semibold text-lg">Markdown</span>
             <CodeBlock
-              language=""
+              language="markdown"
               value={`[![deno doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/std/fs/mod.ts)`}
             />
           </div>
@@ -164,7 +164,7 @@ function About() {
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 }
 
