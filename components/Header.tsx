@@ -121,7 +121,7 @@ const Header = () => {
                 <div className="-mr-2">
                   <button
                     type="button"
-                    className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-black focus:outline-none focus:text-gray-900 focus:bg-gray-50 dark:focus:bg-black transition duration-150 ease-in-out"
+                    className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-light-black-950 focus:outline-none focus:text-gray-900 focus:bg-gray-50 dark:focus:bg-light-black-950 transition duration-150 ease-in-out"
                     onClick={() => setMenuOpen(false)}
                   >
                     <svg
@@ -143,18 +143,18 @@ const Header = () => {
               <div className="px-2 pt-4 pb-3">
                 <a
                   href="https://deno.land/"
-                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-black focus:outline-none focus:text-gray-900 focus:bg-gray-50 dark:focus:bg-black transition duration-150 ease-in-out"
+                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-light-black-950 focus:outline-none focus:text-gray-900 focus:bg-gray-50 dark:focus:bg-light-black-950 transition duration-150 ease-in-out"
                 >
                   Home
                 </a>
                 <a
                   href="https://deno.land/manual"
-                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-black focus:outline-none focus:text-gray-900 focus:bg-gray-50 dark:focus:bg-black transition duration-150 ease-in-out"
+                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-light-black-950 focus:outline-none focus:text-gray-900 focus:bg-gray-50 dark:focus:bg-light-black-950 transition duration-150 ease-in-out"
                 >
                   Manual
                 </a>
                 <Link href="/about">
-                  <a className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-black focus:outline-none focus:text-gray-900 focus:bg-gray-50 dark:focus:bg-black transition duration-150 ease-in-out">
+                  <a className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-light-black-950 focus:outline-none focus:text-gray-900 focus:bg-gray-50 dark:focus:bg-light-black-950 transition duration-150 ease-in-out">
                     About
                   </a>
                 </Link>

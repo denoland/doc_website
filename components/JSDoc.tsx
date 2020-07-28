@@ -49,7 +49,7 @@ export function JSDoc(props: { jsdoc: string }) {
 
 export function InlineCode(props: { children: React.ReactNode }) {
   return (
-    <code className="py-0.5 px-1 font-mono bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-300 rounded-sm">
+    <code className="py-0.5 px-1 font-mono bg-gray-100 dark:bg-light-black-950 text-gray-800 dark:text-gray-300 rounded-sm">
       {props.children}
     </code>
   );

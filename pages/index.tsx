@@ -99,7 +99,7 @@ function Home() {
         <div className="flex flex-col max-w-screen-sm px-4 py-4 mx-auto sm:px-8 md:px-12 mt-8 mb-16 text-gray-900 dark:text-gray-100">
           <div className="mt-1 py-2">
             View{" "}
-            <code className="py-0.5 px-1 font-mono rounded-sm bg-gray-100 dark:bg-black deno-inlinecode">
+            <code className="py-0.5 px-1 font-mono rounded-sm bg-gray-100 dark:bg-light-black-950 deno-inlinecode">
               --unstable
             </code>{" "}
             runtime documentation{" "}
