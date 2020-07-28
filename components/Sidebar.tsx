@@ -17,16 +17,21 @@ const SidebarSection = (props: {
 }) => {
   return props.nodes.length > 0 ? (
     <div className="mt-2 mb-4">
-      <div className="mb-1 text-lg text-gray-900 font-bold">{props.title}</div>
+      <div className="mb-1 text-lg text-gray-900 dark:text-gray-200 font-bold">
+        {props.title}
+      </div>
       <div>
         {props.nodes.map((node, i) => {
           const scope = node.scope ? node.scope.join(".") + "." : "";
           return (
-            <p key={node.name + "+" + i}>
+            <p
+              key={node.name + "+" + i}
+              className="text-gray-800 dark:text-gray-300"
+            >
               {scope}
-              <Link href="/https/[...url]" as={`#${scope}${node.name}`}>
-                <a className="link">{node.name}</a>
-              </Link>
+              <a className="link" href={`#${scope}${node.name}`}>
+                {node.name}
+              </a>
             </p>
           );
         })}

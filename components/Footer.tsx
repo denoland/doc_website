@@ -5,14 +5,18 @@ import Link from "next/link";
 
 const Footer = (props: { simple?: boolean }) => (
   <div
-    className={props.simple ? undefined : "bg-gray-50 border-t border-gray-200"}
+    className={
+      props.simple
+        ? undefined
+        : "bg-gray-50 dark:bg-light-black-950 border-t border-gray-200 dark:border-light-black-800"
+    }
   >
     <div className="max-w-screen-xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
       <nav className="-mx-5 -my-2 flex flex-wrap justify-center">
         <div className="px-5 py-2">
           <a
             href="https://deno.land/"
-            className="text-base leading-6 text-gray-500 hover:text-gray-900"
+            className="text-base leading-6 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
           >
             Home
           </a>
@@ -20,14 +24,14 @@ const Footer = (props: { simple?: boolean }) => (
         <div className="px-5 py-2">
           <a
             href="https://deno.land/manual"
-            className="text-base leading-6 text-gray-500 hover:text-gray-900"
+            className="text-base leading-6 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
           >
             Manual
           </a>
         </div>
         <div className="px-5 py-2">
           <Link href="/about">
-            <a className="text-base leading-6 text-gray-500 hover:text-gray-900">
+            <a className="text-base leading-6 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">
               About
             </a>
           </Link>
@@ -36,7 +40,7 @@ const Footer = (props: { simple?: boolean }) => (
       <div className="mt-9 flex justify-center">
         <a
           href="https://github.com/denoland"
-          className="text-gray-400 hover:text-gray-500"
+          className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
         >
           <span className="sr-only">GitHub</span>
           <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
@@ -49,7 +53,7 @@ const Footer = (props: { simple?: boolean }) => (
         </a>
         <a
           href="https://discord.gg/deno"
-          className="ml-6 text-gray-400 hover:text-gray-500"
+          className="ml-6 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
         >
           <span className="sr-only">Discord</span>
           <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
@@ -58,7 +62,7 @@ const Footer = (props: { simple?: boolean }) => (
         </a>
         <a
           href="https://twitter.com/deno_land"
-          className="ml-6 text-gray-400 hover:text-gray-500"
+          className="ml-6 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
         >
           <span className="sr-only">Twitter</span>
           <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">

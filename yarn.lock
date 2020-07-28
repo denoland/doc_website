@@ -5715,7 +5715,14 @@ swr@^0.2.3:
   dependencies:
     fast-deep-equal "2.0.1"
 
-tailwindcss@^1.5.2:
+tailwindcss-prefers-dark-mode@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/tailwindcss-prefers-dark-mode/-/tailwindcss-prefers-dark-mode-1.2.0.tgz#dbb820c9b76c15efb66522560ccdde28b2b768b9"
+  integrity sha512-syd0pqM0JknkSEpjDKmoiWonqNx57KX9PWnwZV/GpncTLF5396DfDNMTAPYZGsCYt4wL9oR7oRDBEwtyhqUYuA==
+  dependencies:
+    tailwindcss "^1.4.0"
+
+tailwindcss@^1.4.0, tailwindcss@^1.5.2:
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-1.5.2.tgz#3e99526e55c600b9df9152b0db12449ed9770855"
   integrity sha512-OR7wxFetvHruLkQABeQac7jFdTOs+MwXzsuccOuMItva9GBANPd2VX8NgJ3pdvuGSL23c5cVId9jsvuKgulBiQ==

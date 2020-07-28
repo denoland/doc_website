@@ -37,93 +37,95 @@ function Home() {
               JavaScript and TypeScript."
         />
       </Head>
-      <div className="bg-gray-50 border-b border-gray-200">
-        <Header />
-        <div className="max-w-screen-sm mx-auto px-4 sm:px-6 md:px-8 pt-4 sm:pt-12 pb-12 sm:pb-20 flex flex-col items-center">
-          <span className="block w-full rounded-md shadow-sm ">
-            <Link
-              href="/https/[...url]"
-              as={`/https/github.com/denoland/deno/releases/latest/download/lib.deno.d.ts`}
-            >
-              <a
-                type="submit"
-                className="w-full flex justify-center py-2 px-4 border border-gray-300 text-md font-medium rounded-md text-gray-700 bg-gray-100 hover:text-gray-500 hover:bg-gray-50 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition duration-150 ease-in-out"
+      <div className="bg-white dark:bg-light-black-900">
+        <div className="bg-gray-50 dark:bg-light-black-950 border-b border-gray-200 dark:border-light-black-800">
+          <Header />
+          <div className="max-w-screen-sm mx-auto px-4 sm:px-6 md:px-8 pt-4 sm:pt-12 pb-12 sm:pb-20 flex flex-col items-center">
+            <span className="block w-full rounded-md shadow-sm ">
+              <Link
+                href="/https/[...url]"
+                as={`/https/github.com/denoland/deno/releases/latest/download/lib.deno.d.ts`}
               >
-                Deno runtime documentation
-              </a>
-            </Link>
-          </span>
-          <label
-            htmlFor="email"
-            className="block text-center text-md leading-6 text-gray-500 mt-4"
-          >
-            or view documentation for
-          </label>
-          <div className="mt-4 flex rounded-md shadow-sm w-full">
-            <div className="relative flex-grow focus-within:z-10">
-              <input
-                id="email"
-                className="form-input block w-full rounded-none rounded-l-md transition ease-in-out duration-150 sm:text-md sm:leading-6"
-                placeholder="https://deno.land/x/oak/mod.ts"
-                type="url"
-                value={url}
-                onChange={(e) => setUrl(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" && url.length > 0) navigate();
+                <a
+                  type="submit"
+                  className="w-full flex justify-center py-2 px-4 border border-gray-300 dark:border-light-black-800 dark:hover:border-light-black-700 text-md font-medium rounded-md text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-light-black-900 hover:text-gray-500 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-light-black-800 focus:outline-none focus:shadow-outline-gray focus:border-gray-600 active:bg-gray-100 dark:active:bg-light-black-800 active:text-gray-700 dark:active:text-gray-100 transition duration-150 ease-in-out"
+                >
+                  Deno runtime documentation
+                </a>
+              </Link>
+            </span>
+            <label className="block text-center text-md leading-6 text-gray-500 dark:text-gray-300 mt-4">
+              or view documentation for
+            </label>
+            <div className="mt-4 flex rounded-md shadow-sm w-full">
+              <div className="relative flex-grow focus-within:z-10">
+                <label htmlFor="link" className="sr-only">
+                  Source link
+                </label>
+                <input
+                  id="link"
+                  className="form-input dark:text-gray-100 dark:bg-light-black-900 dark:border-light-black-800 dark:placeholder-text-gray-200 block w-full focus:shadow-outline-gray focus:border-gray-600 rounded-none rounded-l-md transition ease-in-out duration-150 sm:text-md sm:leading-6"
+                  placeholder="https://deno.land/x/oak/mod.ts"
+                  type="url"
+                  value={url}
+                  onChange={(e) => setUrl(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && url.length > 0) navigate();
+                  }}
+                />
+              </div>
+              <button
+                className="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-light-black-800 dark:hover:border-light-black-700 text-md font-medium rounded-r-md text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-light-black-900 hover:text-gray-500 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-light-black-800 focus:outline-none focus:shadow-outline-gray focus:border-gray-600 active:bg-gray-100 dark:active:bg-light-black-800 active:text-gray-700 dark:active:text-gray-100 transition duration-150 ease-in-out"
+                onClick={() => {
+                  if (url.length > 0) navigate();
                 }}
-              />
-            </div>
-            <button
-              className="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-r-md text-gray-700 bg-gray-100 hover:text-gray-500 hover:bg-gray-50 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
-              onClick={() => {
-                if (url.length > 0) navigate();
-              }}
-            >
-              <span className="mr-2">View</span>{" "}
-              <svg
-                className="h-5 w-5 text-gray-400"
-                viewBox="0 0 20 20"
-                fill="currentColor"
               >
-                <path
-                  fill-rule="evenodd"
-                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-            </button>
+                <span className="mr-2">View</span>{" "}
+                <svg
+                  className="h-5 w-5 text-gray-400 dark:text-gray-300"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="flex flex-col max-w-screen-sm px-4 py-4 mx-auto sm:px-8 md:px-12 mt-8 mb-16">
-        <div className="mt-1 py-2">
-          View{" "}
-          <code className="py-0.5 px-1 font-mono rounded-sm bg-gray-100 deno-inlinecode">
-            --unstable
-          </code>{" "}
-          runtime documentation{" "}
-          <Link
-            href="/https/[...url]"
-            as={`/https/raw.githubusercontent.com/denoland/deno/master/cli/dts/lib.deno.unstable.d.ts`}
-          >
-            <a className="link"> here</a>
-          </Link>
-          .
+        <div className="flex flex-col max-w-screen-sm px-4 py-4 mx-auto sm:px-8 md:px-12 mt-8 mb-16 text-gray-900 dark:text-gray-100">
+          <div className="mt-1 py-2">
+            View{" "}
+            <code className="py-0.5 px-1 font-mono rounded-sm bg-gray-100 dark:bg-light-black-950 deno-inlinecode">
+              --unstable
+            </code>{" "}
+            runtime documentation{" "}
+            <Link
+              href="/https/[...url]"
+              as={`/https/raw.githubusercontent.com/denoland/deno/master/cli/dts/lib.deno.unstable.d.ts`}
+            >
+              <a className="link"> here</a>
+            </Link>
+            .
+          </div>
+          <div className="mt-4 font-bold">Some examples:</div>
+          <ul className="list-disc pl-8 mt-2">
+            {examples.map((example) => (
+              <li className="py-0.5" key={example}>
+                <Link href="/https/[...url]" as={`/https/${example}`}>
+                  <a className="break-words link">https://{example}</a>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
-        <div className="mt-4 font-bold">Some examples:</div>
-        <ul className="list-disc pl-8 mt-2">
-          {examples.map((example) => (
-            <li className="py-0.5" key={example}>
-              <Link href="/https/[...url]" as={`/https/${example}`}>
-                <a className="break-words link">https://{example}</a>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <Footer />
       </div>
-      <Footer />
     </>
   );
-};
+}
 
 export default Home;

@@ -52,7 +52,7 @@ export function ClassCard({
       suffix={
         <>
           {node.classDef.typeParams.length > 0 ? (
-            <span className="text-gray-600">
+            <span className="text-gray-600 dark:text-gray-400">
               {"<"}
               <TypeParams
                 params={node.classDef.typeParams}
@@ -66,19 +66,19 @@ export function ClassCard({
               {" "}
               <span className="keyword">extends</span>{" "}
               {extendsNode ? (
-                <Link
-                  href="/https/[...url]"
-                  as={`#${
+                <a
+                  className="link"
+                  href={`#${
                     extendsNode.scope ? extendsNode.scope.join(".") + "." : ""
                   }${extendsNode.name}`}
                 >
-                  <a className="link">{extendsNode.name}</a>
-                </Link>
+                  {extendsNode.name}
+                </a>
               ) : (
                 extends_
               )}
               {node.classDef.superTypeParams.length > 0 ? (
-                <span className="text-gray-600">
+                <span className="text-gray-600 dark:text-gray-400">
                   {"<"}
                   {node.classDef.superTypeParams
                     .map((tsType) => (
@@ -100,7 +100,7 @@ export function ClassCard({
         <>
           {constructors.length > 0 ? (
             <div className="mt-2">
-              <p className="font-medium text-md">Constructors</p>
+              <p className="font-medium text-md text-gray-800 dark:text-gray-300">Constructors</p>
               {constructors.map((node) => {
                 return (
                   <SimpleSubCard
@@ -113,7 +113,7 @@ export function ClassCard({
           ) : null}
           {realProperties.length > 0 ? (
             <div className="mt-2">
-              <p className="font-medium text-md">Properties</p>
+              <p className="font-medium text-md text-gray-800 dark:text-gray-300">Properties</p>
               {realProperties.map((node) => {
                 return (
                   <SimpleSubCard
@@ -132,7 +132,7 @@ export function ClassCard({
           ) : null}
           {realMethods.length > 0 ? (
             <div className="mt-2">
-              <p className="font-medium text-md">Methods</p>
+              <p className="font-medium text-md text-gray-800 dark:text-gray-300">Methods</p>
               {realMethods.map((node) => {
                 return (
                   <SimpleSubCard
@@ -156,7 +156,7 @@ export function ClassCard({
           ) : null}
           {indexSignatures.length > 0 ? (
             <div className="mt-2">
-              <p className="font-medium text-md">Index Signatures</p>
+              <p className="font-medium text-md text-gray-800 dark:text-gray-300">Index Signatures</p>
               {indexSignatures.map((node) => {
                 return (
                   <SimpleSubCard
@@ -171,7 +171,7 @@ export function ClassCard({
           ) : null}
           {staticProperties.length > 0 ? (
             <div className="mt-2">
-              <p className="font-medium text-md">Static Properties</p>
+              <p className="font-medium text-md text-gray-800 dark:text-gray-300">Static Properties</p>
               {staticProperties.map((node) => {
                 return (
                   <SimpleSubCard
@@ -190,7 +190,7 @@ export function ClassCard({
           ) : null}
           {staticMethods.length > 0 ? (
             <div className="mt-2">
-              <p className="font-medium text-md">Static Methods</p>
+              <p className="font-medium text-md text-gray-800 dark:text-gray-300">Static Methods</p>
               {staticMethods.map((node) => {
                 return (
                   <SimpleSubCard

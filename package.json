@@ -21,7 +21,8 @@
     "react-syntax-highlighter": "^13.0.0",
     "react-transition-group": "^4.4.1",
     "swr": "^0.2.3",
-    "tailwindcss": "^1.5.2"
+    "tailwindcss": "^1.5.2",
+    "tailwindcss-prefers-dark-mode": "^1.2.0"
   },
   "devDependencies": {
     "@prefresh/next": "^0.3.2",

@@ -22,151 +22,149 @@ export function Wrapper(props: {
   const hideSidebar = () => setShowSidebar(false);
 
   return (
-    <>
-      <div className="h-screen flex overflow-hidden">
-        <Transition show={showSidebar}>
-          <div className="md:hidden">
-            <div className="fixed inset-0 flex z-40">
-              <Transition
-                enter="transition-opacity ease-linear duration-300"
-                enterFrom="opacity-0"
-                enterTo="opacity-100"
-                leave="transition-opacity ease-linear duration-300"
-                leaveFrom="opacity-100"
-                leaveTo="opacity-0"
-              >
-                <div className="fixed inset-0">
-                  <div
-                    className="absolute inset-0 bg-gray-600 opacity-75"
-                    onClick={hideSidebar}
-                  ></div>
-                </div>
-              </Transition>
-              <Transition
-                enter="transition ease-in-out duration-300 transform"
-                enterFrom="-translate-x-full"
-                enterTo="translate-x-0"
-                leave="transition ease-in-out duration-300 transform"
-                leaveFrom="translate-x-0"
-                leaveTo="-translate-x-full"
-              >
-                <div className="relative flex-1 flex flex-col max-w-xs w-full bg-white">
-                  <div className="absolute top-0 right-0 -mr-14 p-1">
-                    <button
-                      role="button"
-                      className="flex items-center justify-center h-12 w-12 rounded-full focus:outline-none focus:bg-gray-600"
-                      aria-label="Close sidebar"
-                      onClick={hideSidebar}
-                    >
-                      <svg
-                        className="h-6 w-6 text-white"
-                        stroke="currentColor"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M6 18L18 6M6 6l12 12"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                  <div className="bg-gray-100 pb-4 pt-4 border-b border-gray-200">
-                    <Link href="/">
-                      <a className="flex items-center flex-shrink-0 px-4">
-                        <img
-                          src="/logo.svg"
-                          alt="logo"
-                          className="w-auto h-12"
-                        />
-                        <div className="mx-4 flex flex-col justify-center">
-                          <div className="font-bold text-gray-900 leading-6 text-2xl tracking-tight">
-                            deno doc
-                          </div>
-                        </div>
-                      </a>
-                    </Link>
-                    {flattend ? (
-                      <header className="px-4 pt-3 sm:px-6 sm:pt-4">
-                        {props.timestamp ? (
-                          <div className="mt-1 text-sm text-gray-600">
-                            Last refreshed{" "}
-                            {new Date(props.timestamp).toLocaleString()}.{" "}
-                            <a
-                              className="text-sm cursor-pointer link"
-                              onClick={props.forceReload}
-                            >
-                              Refresh now
-                            </a>
-                          </div>
-                        ) : null}
-                        <p className="mt-2 text-sm">
-                          <Link href="/about">
-                            <a className="link">About doc.deno.land</a>
-                          </Link>
-                        </p>
-                      </header>
-                    ) : null}
-                  </div>
-                  <Sidebar groups={groups} />
-                </div>
-              </Transition>
-              <div className="flex-shrink-0 w-14">
-                {/*<!-- Dummy element to force sidebar to shrink to fit close icon -->*/}
+    <div className="h-screen flex overflow-hidden bg-white dark:bg-light-black-900">
+      <Transition show={showSidebar}>
+        <div className="md:hidden">
+          <div className="fixed inset-0 flex z-40">
+            <Transition
+              enter="transition-opacity ease-linear duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="transition-opacity ease-linear duration-300"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div className="fixed inset-0">
+                <div
+                  className="absolute inset-0 bg-gray-600 opacity-75"
+                  onClick={hideSidebar}
+                ></div>
               </div>
-            </div>
-          </div>
-        </Transition>
-        <div className="hidden md:flex md:flex-shrink-0">
-          <div className="flex flex-col w-72 border-r border-gray-200 bg-gray-50">
-            <div className="bg-gray-100 pb-4 pt-4 border-b border-gray-200">
-              <Link href="/">
-                <a className="flex items-center flex-shrink-0 px-4">
-                  <img src="/logo.svg" alt="logo" className="w-auto h-12" />
-                  <div className="mx-4 flex flex-col justify-center">
-                    <div className="font-bold text-gray-900 leading-6 text-2xl tracking-tight">
-                      deno doc
-                    </div>
-                  </div>
-                </a>
-              </Link>
-              {flattend ? (
-                <header className="px-4 pt-3 sm:px-6 sm:pt-4">
-                  {props.timestamp ? (
-                    <div className="mt-1 text-sm text-gray-600">
-                      Last refreshed{" "}
-                      {new Date(props.timestamp).toLocaleString()}.{" "}
-                      <a
-                        className="text-sm cursor-pointer link"
-                        onClick={props.forceReload}
-                      >
-                        Refresh now
-                      </a>
-                    </div>
+            </Transition>
+            <Transition
+              enter="transition ease-in-out duration-300 transform"
+              enterFrom="-translate-x-full"
+              enterTo="translate-x-0"
+              leave="transition ease-in-out duration-300 transform"
+              leaveFrom="translate-x-0"
+              leaveTo="-translate-x-full"
+            >
+              <div className="relative flex-1 flex flex-col max-w-xs w-full bg-white dark:bg-light-black-950">
+                <div className="absolute top-0 right-0 -mr-14 p-1">
+                  <button
+                    role="button"
+                    className="flex items-center justify-center h-12 w-12 rounded-full focus:outline-none focus:bg-gray-600"
+                    aria-label="Close sidebar"
+                    onClick={hideSidebar}
+                  >
+                    <svg
+                      className="h-6 w-6 text-white"
+                      stroke="currentColor"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
+                </div>
+                <div className="bg-gray-100 dark:bg-black pb-4 pt-4 border-b border-gray-200 dark:border-light-black-800">
+                  <Link href="/">
+                    <a className="flex items-center flex-shrink-0 px-4">
+                      <img
+                        src="/favicon.svg"
+                        alt="logo"
+                        className="w-auto h-12"
+                      />
+                      <div className="mx-4 flex flex-col justify-center">
+                        <div className="font-bold text-gray-900 dark:text-gray-200 leading-6 text-2xl tracking-tight">
+                          deno doc
+                        </div>
+                      </div>
+                    </a>
+                  </Link>
+                  {flattend ? (
+                    <header className="px-4 pt-3 sm:px-6 sm:pt-4">
+                      {props.timestamp ? (
+                        <div className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                          Last refreshed{" "}
+                          {new Date(props.timestamp).toLocaleString()}.{" "}
+                          <a
+                            className="text-sm cursor-pointer link"
+                            onClick={props.forceReload}
+                          >
+                            Refresh now
+                          </a>
+                        </div>
+                      ) : null}
+                      <p className="mt-2 text-sm">
+                        <Link href="/about">
+                          <a className="link">About doc.deno.land</a>
+                        </Link>
+                      </p>
+                    </header>
                   ) : null}
-                  <p className="mt-2 text-sm">
-                    <Link href="/about">
-                      <a className="link">About doc.deno.land</a>
-                    </Link>
-                  </p>
-                </header>
-              ) : null}
+                </div>
+                <Sidebar groups={groups} />
+              </div>
+            </Transition>
+            <div className="flex-shrink-0 w-14">
+              {/*<!-- Dummy element to force sidebar to shrink to fit close icon -->*/}
             </div>
-            <Sidebar groups={groups} />
           </div>
         </div>
-        <div className="flex flex-col w-0 flex-1 overflow-hidden">
-          <div className="relative z-10 flex-shrink-0 flex h-16 bg-white shadow md:hidden">
+      </Transition>
+      <div className="hidden md:flex md:flex-shrink-0">
+        <div className="flex flex-col w-72 border-r border-gray-200 dark:border-light-black-800 bg-gray-50 dark:bg-light-black-950">
+          <div className="bg-gray-100 dark:bg-black pb-4 pt-4 border-b border-gray-200 dark:border-light-black-800">
             <Link href="/">
-              <a className="px-4 flex items-center justify-center md:hidden">
-                <img src="/logo.svg" alt="logo" className="w-auto h-10" />
+              <a className="flex items-center flex-shrink-0 px-4">
+                <img src="/favicon.svg" alt="logo" className="w-auto h-12" />
+                <div className="mx-4 flex flex-col justify-center">
+                  <div className="font-bold text-gray-900 dark:text-gray-200 leading-6 text-2xl tracking-tight">
+                    deno doc
+                  </div>
+                </div>
               </a>
             </Link>
-            <div className="flex-1 px-4 flex justify-between">
-              <div className="flex-1 flex">
-                {/* <div className="w-full flex md:ml-0">
+            {flattend ? (
+              <header className="px-4 pt-3 sm:px-6 sm:pt-4">
+                {props.timestamp ? (
+                  <div className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                    Last refreshed {new Date(props.timestamp).toLocaleString()}.{" "}
+                    <a
+                      className="text-sm cursor-pointer link"
+                      onClick={props.forceReload}
+                    >
+                      Refresh now
+                    </a>
+                  </div>
+                ) : null}
+                <p className="mt-2 text-sm">
+                  <Link href="/about">
+                    <a className="link">About doc.deno.land</a>
+                  </Link>
+                </p>
+              </header>
+            ) : null}
+          </div>
+          <Sidebar groups={groups} />
+        </div>
+      </div>
+      <div className="flex flex-col w-0 flex-1 overflow-hidden">
+        <div className="relative z-10 flex-shrink-0 flex h-16 bg-white dark:bg-black shadow md:hidden border-b border-gray-200 dark:border-light-black-800">
+          <Link href="/">
+            <a className="px-4 flex items-center justify-center md:hidden">
+              <img src="/favicon.svg" alt="logo" className="w-auto h-10" />
+            </a>
+          </Link>
+          <div className="flex-1 px-4 flex justify-between">
+            <div className="flex-1 flex">
+              {/* <div className="w-full flex md:ml-0">
                   <label htmlFor="search_field" className="sr-only">
                     Search
                   </label>
@@ -192,37 +190,36 @@ export function Wrapper(props: {
                     />
                   </div>
                 </div> */}
-              </div>
             </div>
-            <button
-              className="px-4 text-gray-500 focus:outline-none focus:bg-gray-100 focus:text-gray-600 md:hidden"
-              aria-label="Open sidebar"
-              onClick={() => setShowSidebar(true)}
-            >
-              <svg
-                className="h-6 w-6"
-                stroke="currentColor"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h7"
-                />
-              </svg>
-            </button>
           </div>
-
-          <main
-            className="flex-1 relative z-0 overflow-y-auto focus:outline-none"
-            tabIndex={0}
+          <button
+            className="px-4 text-gray-500 dark:text-gray-200 focus:outline-none focus:bg-gray-100 dark:focus:bg-light-black-950 focus:text-gray-600 dark:focus:text-gray-400 md:hidden"
+            aria-label="Open sidebar"
+            onClick={() => setShowSidebar(true)}
           >
-            {props.children}
-          </main>
+            <svg
+              className="h-6 w-6"
+              stroke="currentColor"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16M4 18h7"
+              />
+            </svg>
+          </button>
         </div>
+
+        <main
+          className="flex-1 relative z-0 overflow-y-auto focus:outline-none"
+          tabIndex={0}
+        >
+          {props.children}
+        </main>
       </div>
-    </>
+    </div>
   );
 }

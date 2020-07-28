@@ -7,7 +7,6 @@ import {
   LiteralDefKind,
   findNodeByScopedName,
 } from "../util/docs";
-import Link from "next/link";
 import { useFlattend } from "../util/data";
 import { Params } from "./Function";
 
@@ -142,7 +141,7 @@ export const TsType = memo(
           final.push(
             <>
               {indexSignature.readonly && (
-                <span className="text-gray-600">readonly </span>
+                <span className="text-gray-600 dark:text-gray-400">readonly </span>
               )}
               <Params params={indexSignature.params} scope={scope} />
               {indexSignature.tsType ? (
@@ -183,14 +182,14 @@ export const TsType = memo(
           <>
             typeof{" "}
             {node ? (
-              <Link
-                href="/https/[...url]"
-                as={`#${node.scope ? node.scope.join(".") + "." : ""}${
+              <a
+                className="link"
+                href={`#${node.scope ? node.scope.join(".") + "." : ""}${
                   node.name
                 }`}
               >
-                <a className="link">{tsType.typeQuery}</a>
-              </Link>
+                {tsType.typeQuery}
+              </a>
             ) : (
               tsType.typeQuery
             )}
@@ -213,19 +212,19 @@ export const TsType = memo(
         return (
           <>
             {node ? (
-              <Link
-                href="/https/[...url]"
-                as={`#${node.scope ? node.scope.join(".") + "." : ""}${
+              <a
+                className="link"
+                href={`#${node.scope ? node.scope.join(".") + "." : ""}${
                   node.name
                 }`}
               >
-                <a className="link">{tsType.typeRef.typeName}</a>
-              </Link>
+                {tsType.typeRef.typeName}
+              </a>
             ) : (
               tsType.typeRef.typeName
             )}
             {tsType.typeRef.typeParams ? (
-              <span className="text-gray-600">
+              <span className="text-gray-600 dark:text-gray-400">
                 {"<"}
                 {paramElements}
                 {">"}
