@@ -4,6 +4,10 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
 import atomOneDark from "react-syntax-highlighter/dist/cjs/styles/hljs/atom-one-dark";
+import javascript from "react-syntax-highlighter/dist/cjs/languages/hljs/javascript";
+import typescript from "react-syntax-highlighter/dist/cjs/languages/hljs/typescript";
+SyntaxHighlighter.registerLanguage("js", javascript);
+SyntaxHighlighter.registerLanguage("ts", typescript);
 
 export function JSDoc(props: { jsdoc: string }) {
   const jsdoc = props.jsdoc
@@ -25,7 +29,7 @@ export function JSDoc(props: { jsdoc: string }) {
           <div className="w-full overflow-x-auto">
             <table
               {...props}
-              className="my-2 border border-collapse border-gray-300 dark:border-light-black-700"
+              className="my-2 border border-collapse border-gray-300 dark:border-light-black-900"
             />
           </div>
         ),

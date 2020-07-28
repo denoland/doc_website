@@ -38,7 +38,7 @@ function Home() {
         />
       </Head>
       <div className="bg-white dark:bg-light-black-900">
-        <div className="bg-gray-50 dark:bg-black border-b border-gray-200 dark:border-light-black-800">
+        <div className="bg-gray-50 dark:bg-light-black-950 border-b border-gray-200 dark:border-light-black-800">
           <Header />
           <div className="max-w-screen-sm mx-auto px-4 sm:px-6 md:px-8 pt-4 sm:pt-12 pb-12 sm:pb-20 flex flex-col items-center">
             <span className="block w-full rounded-md shadow-sm ">

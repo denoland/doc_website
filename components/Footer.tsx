@@ -8,7 +8,7 @@ const Footer = (props: { simple?: boolean }) => (
     className={
       props.simple
         ? undefined
-        : "bg-gray-50 dark:bg-black border-t border-gray-200 dark:border-light-black-800"
+        : "bg-gray-50 dark:bg-light-black-950 border-t border-gray-200 dark:border-light-black-800"
     }
   >
     <div className="max-w-screen-xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
