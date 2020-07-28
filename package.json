@@ -9,29 +9,29 @@
     "format": "prettier --write **.tsx **.ts **.js **.json"
   },
   "dependencies": {
-    "@tailwindcss/ui": "^0.3.0",
+    "@tailwindcss/ui": "^0.4.0",
     "isomorphic-unfetch": "^3.0.0",
-    "next": "9.3.3",
-    "preact": "^10.3.4",
-    "preact-render-to-string": "^5.1.4",
+    "next": "^9.5.0",
+    "preact": "^10.4.6",
+    "preact-render-to-string": "^5.1.10",
     "react": "github:preact-compat/react#1.0.0",
     "react-dom": "github:preact-compat/react-dom#1.0.0",
     "react-markdown": "^4.3.1",
     "react-ssr-prepass": "npm:preact-ssr-prepass@^1.0.1",
-    "react-syntax-highlighter": "^12.2.1",
+    "react-syntax-highlighter": "^13.0.0",
     "react-transition-group": "^4.4.1",
-    "swr": "^0.2.0",
-    "tailwindcss": "^1.4.6"
+    "swr": "^0.2.3",
+    "tailwindcss": "^1.5.2"
   },
   "devDependencies": {
-    "@fullhuman/postcss-purgecss": "^2.1.0",
-    "@types/node": "^13.7.7",
-    "@types/react": "^16.9.23",
+    "@prefresh/next": "^0.3.2",
+    "@types/node": "^14.0.26",
+    "@types/react": "^16.9.43",
     "@types/react-syntax-highlighter": "^11.0.4",
-    "@types/react-transition-group": "^4.2.4",
-    "autoprefixer": "^9.7.4",
+    "@types/react-transition-group": "^4.4.0",
+    "autoprefixer": "^9.8.5",
     "postcss-import": "^12.0.1",
-    "prettier": "^2.0.4",
-    "typescript": "^3.8.3"
+    "prettier": "^2.0.5",
+    "typescript": "^3.9.7"
   }
 }

@@ -36,7 +36,8 @@ export const TsType = memo(
         return (
           <>
             {tsType.fnOrConstructor.constructor ? "new " : null} (
-            <Params params={tsType.fnOrConstructor.params} scope={scope} />) =>{" "}
+            <Params params={tsType.fnOrConstructor.params} scope={scope} />)
+            =&gt;{" "}
             <TsType tsType={tsType.fnOrConstructor.tsType} scope={scope} />
           </>
         );

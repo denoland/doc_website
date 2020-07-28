@@ -18,7 +18,7 @@ const examples = [
   "deno.land/std/node/module.ts",
 ];
 
-const Home = () => {
+function Home() {
   const router = useRouter();
   const [url, setUrl] = useState("");
   function navigate() {

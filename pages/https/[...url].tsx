@@ -9,7 +9,11 @@ const Page: NextPage<{ entrypoint: string; name: string }> = (props) => (
 
 Page.getInitialProps = async (ctx) => {
   const url =
-    typeof ctx.query.url === "string" ? ctx.query.url : ctx.query.url.join("/");
+    typeof ctx.query.url === "string"
+      ? ctx.query.url
+      : ctx.query.url === undefined
+      ? ""
+      : ctx.query.url.join("/");
   return { entrypoint: "https://" + url, name: url };
 };
 
