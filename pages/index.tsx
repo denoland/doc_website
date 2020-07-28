@@ -48,7 +48,7 @@ function Home() {
               >
                 <a
                   type="submit"
-                  className="w-full flex justify-center py-2 px-4 border border-gray-300 dark:border-light-black-800 dark:hover:border-light-black-700 text-md font-medium rounded-md text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-light-black-900 hover:text-gray-500 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-light-black-800 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 dark:active:bg-light-black-800 active:text-gray-700 dark:active:text-gray-100 transition duration-150 ease-in-out"
+                  className="w-full flex justify-center py-2 px-4 border border-gray-300 dark:border-light-black-800 dark:hover:border-light-black-700 text-md font-medium rounded-md text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-light-black-900 hover:text-gray-500 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-light-black-800 focus:outline-none focus:shadow-outline-gray focus:border-gray-600 active:bg-gray-100 dark:active:bg-light-black-800 active:text-gray-700 dark:active:text-gray-100 transition duration-150 ease-in-out"
                 >
                   Deno runtime documentation
                 </a>
@@ -64,7 +64,7 @@ function Home() {
                 </label>
                 <input
                   id="link"
-                  className="form-input dark:text-gray-100 dark:bg-light-black-900 dark:border-light-black-800 dark:placeholder-text-gray-200 block w-full rounded-none rounded-l-md transition ease-in-out duration-150 sm:text-md sm:leading-6"
+                  className="form-input dark:text-gray-100 dark:bg-light-black-900 dark:border-light-black-800 dark:placeholder-text-gray-200 block w-full focus:shadow-outline-gray focus:border-gray-600 rounded-none rounded-l-md transition ease-in-out duration-150 sm:text-md sm:leading-6"
                   placeholder="https://deno.land/x/oak/mod.ts"
                   type="url"
                   value={url}
@@ -75,7 +75,7 @@ function Home() {
                 />
               </div>
               <button
-                className="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-light-black-800 dark:hover:border-light-black-700 text-md font-medium rounded-r-md text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-light-black-900 hover:text-gray-500 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-light-black-800 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 dark:active:bg-light-black-800 active:text-gray-700 dark:active:text-gray-100 transition duration-150 ease-in-out"
+                className="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-light-black-800 dark:hover:border-light-black-700 text-md font-medium rounded-r-md text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-light-black-900 hover:text-gray-500 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-light-black-800 focus:outline-none focus:shadow-outline-gray focus:border-gray-600 active:bg-gray-100 dark:active:bg-light-black-800 active:text-gray-700 dark:active:text-gray-100 transition duration-150 ease-in-out"
                 onClick={() => {
                   if (url.length > 0) navigate();
                 }}
