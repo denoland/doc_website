@@ -24,9 +24,9 @@ const SidebarSection = (props: {
           return (
             <p key={node.name + "+" + i}>
               {scope}
-              <Link href="/https/[...url]" as={`#${scope}${node.name}`}>
-                <a className="link">{node.name}</a>
-              </Link>
+              <a className="link" href={`#${scope}${node.name}`}>
+                {node.name}
+              </a>
             </p>
           );
         })}

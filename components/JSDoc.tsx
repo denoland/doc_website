@@ -3,18 +3,19 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
-import ts from "react-syntax-highlighter/dist/cjs/languages/hljs/typescript";
 import atomOneLight from "react-syntax-highlighter/dist/cjs/styles/hljs/atom-one-light";
-SyntaxHighlighter.registerLanguage("ts", ts);
 
 export function JSDoc(props: { jsdoc: string }) {
-  const jsdoc = props.jsdoc.replace(/\n@param/g, "\n\n __param__");
+  const jsdoc = props.jsdoc
+    .replace(/\n@param/g, "\n\n __param__")
+    .replace(/\n@return/g, "\n\n __return__");
+
   return (
     <ReactMarkdown
       source={jsdoc}
       renderers={{
         link: (props: any) => (
-          <a className="text-blue-400" {...props}>
+          <a className="text-blue-500" {...props}>
             {props.children}
           </a>
         ),
@@ -57,7 +58,7 @@ export function CodeBlock(props: {
   return (
     <div className="my-2 bg-gray-50 rounded">
       <SyntaxHighlighter
-        language={props.language}
+        language={props.language ?? "typescript"}
         style={atomOneLight}
         customStyle={{
           fontSize: "0.75rem",
