@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 
 function About() {
   return (
-    <div className="bg-white dark:bg-light-black-900">
+    <div className="bg-white dark:bg-light-black-800">
       <Head>
         <title>About deno doc</title>
         <meta

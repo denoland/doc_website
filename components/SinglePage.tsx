@@ -242,8 +242,8 @@ export function SimpleCard({
   return (
     <div
       className={
-        "mt-4 p-2 rounded-md border border-gray-200 dark:border-light-black-700 " +
-        (nested ? "bg-gray-50 dark:bg-light-black-950" : "")
+        "mt-4 p-2 rounded-md border border-gray-200 dark:border-light-black-600 " +
+        (nested ? "bg-gray-50 dark:bg-light-black-900" : "")
       }
       id={id}
     >
@@ -316,7 +316,9 @@ export function SimpleSubCard({
   returnType?: TsTypeDef;
 }) {
   return (
-    <div className="px-2 py-1 mt-2 bg-gray-100 dark:bg-light-black-950 rounded text-gray-900 dark:text-gray-200">
+    <div
+      className={`px-2 py-1 mt-2 bg-gray-100 dark:bg-light-black-900 border border-gray-200 dark:border-light-black-700 rounded text-gray-900 dark:text-gray-200`}
+    >
       <div className="flex justify-between">
         <div
           className={

@@ -22,7 +22,7 @@ export function Wrapper(props: {
   const hideSidebar = () => setShowSidebar(false);
 
   return (
-    <div className="h-screen flex overflow-hidden bg-white dark:bg-light-black-900">
+    <div className="h-screen flex overflow-hidden bg-white dark:bg-light-black-800">
       <Transition show={showSidebar}>
         <div className="md:hidden">
           <div className="fixed inset-0 flex z-40">
@@ -49,7 +49,7 @@ export function Wrapper(props: {
               leaveFrom="translate-x-0"
               leaveTo="-translate-x-full"
             >
-              <div className="relative flex-1 flex flex-col max-w-xs w-full bg-white dark:bg-light-black-950">
+              <div className="relative flex-1 flex flex-col max-w-xs w-full bg-white dark:bg-light-black-900">
                 <div className="absolute top-0 right-0 -mr-14 p-1">
                   <button
                     role="button"
@@ -72,7 +72,7 @@ export function Wrapper(props: {
                     </svg>
                   </button>
                 </div>
-                <div className="bg-gray-100 dark:bg-black pb-4 pt-4 border-b border-gray-200 dark:border-light-black-800">
+                <div className="bg-gray-100 dark:bg-light-black-950 pb-4 pt-4 border-b border-gray-200 dark:border-light-black-700">
                   <Link href="/">
                     <a className="flex items-center flex-shrink-0 px-4">
                       <img
@@ -119,8 +119,8 @@ export function Wrapper(props: {
         </div>
       </Transition>
       <div className="hidden md:flex md:flex-shrink-0">
-        <div className="flex flex-col w-72 border-r border-gray-200 dark:border-light-black-800 bg-gray-50 dark:bg-light-black-950">
-          <div className="bg-gray-100 dark:bg-black pb-4 pt-4 border-b border-gray-200 dark:border-light-black-800">
+        <div className="flex flex-col w-72 border-r border-gray-200 dark:border-light-black-700 bg-gray-50 dark:bg-light-black-900">
+          <div className="bg-gray-100 dark:bg-light-black-950 pb-4 pt-4 border-b border-gray-200 dark:border-light-black-700">
             <Link href="/">
               <a className="flex items-center flex-shrink-0 px-4">
                 <img src="/favicon.svg" alt="logo" className="w-auto h-12" />
@@ -156,7 +156,7 @@ export function Wrapper(props: {
         </div>
       </div>
       <div className="flex flex-col w-0 flex-1 overflow-hidden">
-        <div className="relative z-10 flex-shrink-0 flex h-16 bg-white dark:bg-black shadow md:hidden border-b border-gray-200 dark:border-light-black-800">
+        <div className="relative z-10 flex-shrink-0 flex h-16 bg-white dark:bg-light-black-950 shadow md:hidden border-b border-gray-200 dark:border-light-black-700">
           <Link href="/">
             <a className="px-4 flex items-center justify-center md:hidden">
               <img src="/favicon.svg" alt="logo" className="w-auto h-10" />
@@ -193,7 +193,7 @@ export function Wrapper(props: {
             </div>
           </div>
           <button
-            className="px-4 text-gray-500 dark:text-gray-200 focus:outline-none focus:bg-gray-100 dark:focus:bg-light-black-950 focus:text-gray-600 dark:focus:text-gray-400 md:hidden"
+            className="px-4 text-gray-500 dark:text-gray-200 focus:outline-none focus:bg-gray-100 dark:focus:bg-light-black-900 focus:text-gray-600 dark:focus:text-gray-400 md:hidden"
             aria-label="Open sidebar"
             onClick={() => setShowSidebar(true)}
           >

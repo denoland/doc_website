@@ -29,7 +29,7 @@ export function JSDoc(props: { jsdoc: string }) {
           <div className="w-full overflow-x-auto">
             <table
               {...props}
-              className="my-2 border border-collapse border-gray-300 dark:border-light-black-900"
+              className="my-2 border border-collapse border-gray-300 dark:border-light-black-800"
             />
           </div>
         ),
@@ -37,7 +37,7 @@ export function JSDoc(props: { jsdoc: string }) {
           <td
             {...props}
             className={
-              "border border-gray-300 dark:border-light-black-700 px-2 py-1" +
+              "border border-gray-300 dark:border-light-black-600 px-2 py-1" +
               (props.isHeader ? " font-medium" : "")
             }
           />
@@ -49,7 +49,7 @@ export function JSDoc(props: { jsdoc: string }) {
 
 export function InlineCode(props: { children: React.ReactNode }) {
   return (
-    <code className="py-0.5 px-1 font-mono bg-gray-100 dark:bg-light-black-950 text-gray-800 dark:text-gray-300 rounded-sm">
+    <code className="py-0.5 px-1 font-mono bg-gray-100 dark:bg-light-black-900 text-gray-800 dark:text-gray-300 rounded-sm">
       {props.children}
     </code>
   );
