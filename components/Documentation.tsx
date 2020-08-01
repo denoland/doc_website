@@ -54,7 +54,7 @@ export const Documentation = ({
     }
 
     return (
-      <div className="flex flex-col items-center justify-center h-full p-4 text-center bg-white dark:bg-light-black-900">
+      <div className="flex flex-col items-center justify-center h-full p-4 text-center bg-white dark:bg-light-black-800">
         <div className="text-3xl text-gray-800 dark:text-gray-200">{title}</div>
         <div className="mt-2 text-lg text-gray-800 dark:text-gray-200">
           {details}

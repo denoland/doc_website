@@ -37,8 +37,8 @@ function Home() {
               JavaScript and TypeScript."
         />
       </Head>
-      <div className="bg-white dark:bg-light-black-900">
-        <div className="bg-gray-50 dark:bg-light-black-950 border-b border-gray-200 dark:border-light-black-800">
+      <div className="bg-white dark:bg-light-black-800">
+        <div className="bg-gray-50 dark:bg-light-black-900 border-b border-gray-200 dark:border-light-black-700">
           <Header />
           <div className="max-w-screen-sm mx-auto px-4 sm:px-6 md:px-8 pt-4 sm:pt-12 pb-12 sm:pb-20 flex flex-col items-center">
             <span className="block w-full rounded-md shadow-sm ">
@@ -48,7 +48,7 @@ function Home() {
               >
                 <a
                   type="submit"
-                  className="w-full flex justify-center py-2 px-4 border border-gray-300 dark:border-light-black-800 dark:hover:border-light-black-700 text-md font-medium rounded-md text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-light-black-900 hover:text-gray-500 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-light-black-800 focus:outline-none focus:shadow-outline-gray focus:border-gray-600 active:bg-gray-100 dark:active:bg-light-black-800 active:text-gray-700 dark:active:text-gray-100 transition duration-150 ease-in-out"
+                  className="w-full flex justify-center py-2 px-4 border border-gray-300 dark:border-light-black-700 dark:hover:border-light-black-600 text-md font-medium rounded-md text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-light-black-800 hover:text-gray-500 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-light-black-700 focus:outline-none focus:shadow-outline-gray focus:border-gray-600 active:bg-gray-100 dark:active:bg-light-black-700 active:text-gray-700 dark:active:text-gray-100 transition duration-150 ease-in-out"
                 >
                   Deno runtime documentation
                 </a>
@@ -64,7 +64,7 @@ function Home() {
                 </label>
                 <input
                   id="link"
-                  className="form-input dark:text-gray-100 dark:bg-light-black-900 dark:border-light-black-800 dark:placeholder-text-gray-200 block w-full focus:shadow-outline-gray focus:border-gray-600 rounded-none rounded-l-md transition ease-in-out duration-150 sm:text-md sm:leading-6"
+                  className="form-input dark:text-gray-100 dark:bg-light-black-800 dark:border-light-black-700 dark:placeholder-text-gray-200 block w-full focus:shadow-outline-gray focus:border-gray-600 rounded-none rounded-l-md transition ease-in-out duration-150 sm:text-md sm:leading-6"
                   placeholder="https://deno.land/x/oak/mod.ts"
                   type="url"
                   value={url}
@@ -75,7 +75,7 @@ function Home() {
                 />
               </div>
               <button
-                className="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-light-black-800 dark:hover:border-light-black-700 text-md font-medium rounded-r-md text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-light-black-900 hover:text-gray-500 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-light-black-800 focus:outline-none focus:shadow-outline-gray focus:border-gray-600 active:bg-gray-100 dark:active:bg-light-black-800 active:text-gray-700 dark:active:text-gray-100 transition duration-150 ease-in-out"
+                className="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-light-black-700 dark:hover:border-light-black-600 text-md font-medium rounded-r-md text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-light-black-800 hover:text-gray-500 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-light-black-700 focus:outline-none focus:shadow-outline-gray focus:border-gray-600 active:bg-gray-100 dark:active:bg-light-black-700 active:text-gray-700 dark:active:text-gray-100 transition duration-150 ease-in-out"
                 onClick={() => {
                   if (url.length > 0) navigate();
                 }}
@@ -99,7 +99,7 @@ function Home() {
         <div className="flex flex-col max-w-screen-sm px-4 py-4 mx-auto sm:px-8 md:px-12 mt-8 mb-16 text-gray-900 dark:text-gray-100">
           <div className="mt-1 py-2">
             View{" "}
-            <code className="py-0.5 px-1 font-mono rounded-sm bg-gray-100 dark:bg-light-black-950 deno-inlinecode">
+            <code className="py-0.5 px-1 font-mono rounded-sm bg-gray-100 dark:bg-light-black-900 deno-inlinecode">
               --unstable
             </code>{" "}
             runtime documentation{" "}

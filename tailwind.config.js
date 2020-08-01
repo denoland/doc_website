@@ -34,8 +34,9 @@ module.exports = {
       colors: {
         "light-black-950": "#141414",
         "light-black-900": "#1a1a1a",
-        "light-black-800": "#282828",
-        "light-black-700": "#323232",
+        "light-black-800": "#202020",
+        "light-black-700": "#2a2a2a",
+        "light-black-600": "#323232",
       },
     },
   },
