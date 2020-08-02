@@ -179,18 +179,7 @@ export const TsType = memo(
         );
         return (
           <>
-            typeof{" "}
-            {link?.type == "local" ? (
-              <Link href="/https/[...url]" as={link.href}>
-                <a className="link">{tsType.typeQuery}</a>
-              </Link>
-            ) : link?.type == "mdn" ? (
-              <a className="link" href={link.href}>
-                {tsType.typeQuery}
-              </a>
-            ) : (
-              tsType.typeQuery
-            )}
+            typeof <LinkRef link={link} name={tsType.typeQuery} />
           </>
         );
       }
@@ -209,17 +198,7 @@ export const TsType = memo(
         paramElements.pop();
         return (
           <>
-            {link?.type == "local" ? (
-              <Link href="/https/[...url]" as={link.href}>
-                <a className="link">{tsType.typeRef.typeName}</a>
-              </Link>
-            ) : link?.type == "mdn" ? (
-              <a className="link" href={link.href}>
-                {tsType.typeRef.typeName}
-              </a>
-            ) : (
-              tsType.typeRef.typeName
-            )}
+            <LinkRef link={link} name={tsType.typeRef.typeName} />
             {tsType.typeRef.typeParams ? (
               <span className="text-gray-600 dark:text-gray-400">
                 {"<"}
@@ -243,3 +222,25 @@ export const TsType = memo(
     }
   }
 );
+
+export function LinkRef(props: {
+  link: ReturnType<typeof getLinkByScopedName>;
+  name: string;
+}) {
+  switch (props.link?.type) {
+    case "local":
+      return (
+        <Link href="/https/[...url]" as={props.link.href}>
+          <a className="link">{props.name}</a>
+        </Link>
+      );
+    case "mdn":
+      return (
+        <a className="link" href={props.link.href}>
+          {props.name}
+        </a>
+      );
+    default:
+      return <>{props.name}</>;
+  }
+}

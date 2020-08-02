@@ -507,9 +507,52 @@ function findNodeByScopedName(
   return undefined;
 }
 
-const mdnBuiltins: { [builtin: string]: string } = {
-  string:
-    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+function globalObjectMDN(name: string): { [name: string]: string } {
+  return {
+    [name]: `https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/${name}`,
+  };
+}
+
+const MDN_BUILTINS: { [builtin: string]: string } = {
+  ...globalObjectMDN("Object"),
+  ...globalObjectMDN("Function"),
+  ...globalObjectMDN("Boolean"),
+  ...globalObjectMDN("Error"),
+  ...globalObjectMDN("TypeError"),
+  ...globalObjectMDN("Number"),
+  ...globalObjectMDN("BigInt"),
+  ...globalObjectMDN("Math"),
+  ...globalObjectMDN("Date"),
+  ...globalObjectMDN("String"),
+  ...globalObjectMDN("RegExp"),
+  ...globalObjectMDN("Array"),
+  ...globalObjectMDN("Int8Array"),
+  ...globalObjectMDN("Uint8Array"),
+  ...globalObjectMDN("Uint8ClampedArray"),
+  ...globalObjectMDN("Int16Array"),
+  ...globalObjectMDN("Uint16Array"),
+  ...globalObjectMDN("Int32Array"),
+  ...globalObjectMDN("Uint32Array"),
+  ...globalObjectMDN("Float32Array"),
+  ...globalObjectMDN("Float64Array"),
+  ...globalObjectMDN("BigInt64Array"),
+  ...globalObjectMDN("BigUint64Array"),
+  ...globalObjectMDN("Map"),
+  ...globalObjectMDN("Set"),
+  ...globalObjectMDN("WeakMap"),
+  ...globalObjectMDN("WeakSet"),
+  ...globalObjectMDN("ArrayBuffer"),
+  ...globalObjectMDN("SharedArrayBuffer"),
+  ...globalObjectMDN("Atomics"),
+  ...globalObjectMDN("DataView"),
+  ...globalObjectMDN("JSON"),
+  ...globalObjectMDN("Promise"),
+  ...globalObjectMDN("Generator"),
+  ...globalObjectMDN("GeneratorFunction"),
+  ...globalObjectMDN("AsyncFunction"),
+  ...globalObjectMDN("Reflect"),
+  ...globalObjectMDN("Proxy"),
+  ...globalObjectMDN("Intl"),
 };
 
 export function getLinkByScopedName(
@@ -525,7 +568,7 @@ export function getLinkByScopedName(
       href: `#${node.scope ? node.scope.join(".") + "." : ""}${node.name}`,
     };
   }
-  const builtin = mdnBuiltins[name];
+  const builtin = MDN_BUILTINS[name];
   if (builtin) {
     return {
       type: "mdn",
