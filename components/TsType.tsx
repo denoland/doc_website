@@ -35,7 +35,10 @@ export const TsType = memo(
         return (
           <>
             {tsType.fnOrConstructor.constructor ? "new " : null} (
-            <Params params={tsType.fnOrConstructor.params} scope={scope} />) {"=> "}
+            <Params
+              params={tsType.fnOrConstructor.params}
+              scope={scope}
+            />) {"=> "}
             <TsType tsType={tsType.fnOrConstructor.tsType} scope={scope} />
           </>
         );
@@ -140,7 +143,9 @@ export const TsType = memo(
           final.push(
             <>
               {indexSignature.readonly && (
-                <span className="text-gray-600 dark:text-gray-400">readonly </span>
+                <span className="text-gray-600 dark:text-gray-400">
+                  readonly{" "}
+                </span>
               )}
               <Params params={indexSignature.params} scope={scope} />
               {indexSignature.tsType ? (
@@ -229,11 +234,6 @@ export function LinkRef(props: {
 }) {
   switch (props.link?.type) {
     case "local":
-      return (
-        <Link href="/https/[...url]" as={props.link.href}>
-          <a className="link">{props.name}</a>
-        </Link>
-      );
     case "mdn":
       return (
         <a className="link" href={props.link.href}>
