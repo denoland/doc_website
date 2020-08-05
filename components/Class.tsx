@@ -3,15 +3,14 @@
 import React from "react";
 import {
   DocNodeClass,
-  findNodeByScopedName,
+  getLinkByScopedName,
   getFieldsForClassRecursive,
-  ParamDef,
   TsTypeParamDef,
 } from "../util/docs";
 import { SimpleCard, SimpleSubCard } from "./SinglePage";
 import { useFlattend } from "../util/data";
 import Link from "next/link";
-import { TsType } from "./TsType";
+import { TsType, LinkRef } from "./TsType";
 
 export function ClassCard({
   node,
@@ -40,8 +39,8 @@ export function ClassCard({
   const parent = node;
 
   const { extends: extends_ } = node.classDef;
-  const extendsNode = extends_
-    ? findNodeByScopedName(flattend, extends_, node.scope ?? [])
+  const extendsLink = extends_
+    ? getLinkByScopedName(flattend, extends_, node.scope ?? [])
     : undefined;
 
   return (
@@ -65,18 +64,7 @@ export function ClassCard({
             <>
               {" "}
               <span className="keyword">extends</span>{" "}
-              {extendsNode ? (
-                <a
-                  className="link"
-                  href={`#${
-                    extendsNode.scope ? extendsNode.scope.join(".") + "." : ""
-                  }${extendsNode.name}`}
-                >
-                  {extendsNode.name}
-                </a>
-              ) : (
-                extends_
-              )}
+              <LinkRef link={extendsLink} name={node.classDef.extends} />
               {node.classDef.superTypeParams.length > 0 ? (
                 <span className="text-gray-600 dark:text-gray-400">
                   {"<"}

@@ -5,7 +5,7 @@ import {
   TsTypeDef,
   TsTypeDefKind,
   LiteralDefKind,
-  findNodeByScopedName,
+  getLinkByScopedName,
 } from "../util/docs";
 import { useFlattend } from "../util/data";
 import { Params } from "./Function";
@@ -35,8 +35,10 @@ export const TsType = memo(
         return (
           <>
             {tsType.fnOrConstructor.constructor ? "new " : null} (
-            <Params params={tsType.fnOrConstructor.params} scope={scope} />)
-            =&gt;{" "}
+            <Params
+              params={tsType.fnOrConstructor.params}
+              scope={scope}
+            />) {"=> "}
             <TsType tsType={tsType.fnOrConstructor.tsType} scope={scope} />
           </>
         );
@@ -141,7 +143,9 @@ export const TsType = memo(
           final.push(
             <>
               {indexSignature.readonly && (
-                <span className="text-gray-600 dark:text-gray-400">readonly </span>
+                <span className="text-gray-600 dark:text-gray-400">
+                  readonly{" "}
+                </span>
               )}
               <Params params={indexSignature.params} scope={scope} />
               {indexSignature.tsType ? (
@@ -173,32 +177,20 @@ export const TsType = memo(
         );
       case TsTypeDefKind.TypeQuery: {
         const flattend = useFlattend();
-        const node = findNodeByScopedName(
+        const link = getLinkByScopedName(
           flattend,
           tsType.typeQuery,
           scope ?? []
         );
         return (
           <>
-            typeof{" "}
-            {node ? (
-              <a
-                className="link"
-                href={`#${node.scope ? node.scope.join(".") + "." : ""}${
-                  node.name
-                }`}
-              >
-                {tsType.typeQuery}
-              </a>
-            ) : (
-              tsType.typeQuery
-            )}
+            typeof <LinkRef link={link} name={tsType.typeQuery} />
           </>
         );
       }
       case TsTypeDefKind.TypeRef: {
         const flattend = useFlattend();
-        const node = findNodeByScopedName(
+        const link = getLinkByScopedName(
           flattend,
           tsType.typeRef.typeName,
           scope ?? [],
@@ -211,18 +203,7 @@ export const TsType = memo(
         paramElements.pop();
         return (
           <>
-            {node ? (
-              <a
-                className="link"
-                href={`#${node.scope ? node.scope.join(".") + "." : ""}${
-                  node.name
-                }`}
-              >
-                {tsType.typeRef.typeName}
-              </a>
-            ) : (
-              tsType.typeRef.typeName
-            )}
+            <LinkRef link={link} name={tsType.typeRef.typeName} />
             {tsType.typeRef.typeParams ? (
               <span className="text-gray-600 dark:text-gray-400">
                 {"<"}
@@ -246,3 +227,20 @@ export const TsType = memo(
     }
   }
 );
+
+export function LinkRef(props: {
+  link: ReturnType<typeof getLinkByScopedName>;
+  name: string;
+}) {
+  switch (props.link?.type) {
+    case "local":
+    case "mdn":
+      return (
+        <a className="link" href={props.link.href}>
+          {props.name}
+        </a>
+      );
+    default:
+      return <>{props.name}</>;
+  }
+}
