@@ -86,17 +86,17 @@ export enum LiteralDefKind {
 }
 export type LiteralDef =
   | {
-      kind: LiteralDefKind.Number;
-      number: number;
-    }
+    kind: LiteralDefKind.Number;
+    number: number;
+  }
   | {
-      kind: LiteralDefKind.String;
-      string: string;
-    }
+    kind: LiteralDefKind.String;
+    string: string;
+  }
   | {
-      kind: LiteralDefKind.Boolean;
-      boolean: boolean;
-    };
+    kind: LiteralDefKind.Boolean;
+    boolean: boolean;
+  };
 export enum TsTypeDefKind {
   Keyword = "keyword",
   Literal = "literal",
@@ -208,49 +208,49 @@ export type TsTypeDef =
 
 export type ParamDef =
   | {
-      kind: "array";
-      elements: (ParamDef | null)[];
-      optional: boolean;
-      tsType?: TsTypeDef;
-    }
+    kind: "array";
+    elements: (ParamDef | null)[];
+    optional: boolean;
+    tsType?: TsTypeDef;
+  }
   | {
-      kind: "assign";
-      left: ParamDef;
-      right: string;
-      tsType?: TsTypeDef;
-    }
+    kind: "assign";
+    left: ParamDef;
+    right: string;
+    tsType?: TsTypeDef;
+  }
   | {
-      kind: "identifier";
-      name: string;
-      optional: boolean;
-      tsType?: TsTypeDef;
-    }
+    kind: "identifier";
+    name: string;
+    optional: boolean;
+    tsType?: TsTypeDef;
+  }
   | {
-      kind: "object";
-      props: ObjectPatPropDef[];
-      optional: boolean;
-      tsType?: TsTypeDef;
-    }
+    kind: "object";
+    props: ObjectPatPropDef[];
+    optional: boolean;
+    tsType?: TsTypeDef;
+  }
   | {
-      kind: "rest";
-      arg: ParamDef;
-      tsType?: TsTypeDef;
-    };
+    kind: "rest";
+    arg: ParamDef;
+    tsType?: TsTypeDef;
+  };
 export type ObjectPatPropDef =
   | {
-      kind: "assign";
-      key: string;
-      value?: string;
-    }
+    kind: "assign";
+    key: string;
+    value?: string;
+  }
   | {
-      kind: "keyValue";
-      key: string;
-      value: ParamDef;
-    }
+    kind: "keyValue";
+    key: string;
+    value: ParamDef;
+  }
   | {
-      kind: "rest";
-      arg: ParamDef;
-    };
+    kind: "rest";
+    arg: ParamDef;
+  };
 export interface FunctionDef {
   params: ParamDef[];
   returnType?: TsTypeDef;
@@ -404,7 +404,7 @@ export function expandNamespaces(docs: DocNode[]): DocNode[] {
               parent.namespaceDef.elements.map((el) => ({
                 ...el,
                 scope: scope,
-              }))
+              })),
             ),
           },
         },
@@ -477,7 +477,7 @@ function findNodeByScopedName(
   flattend: DocNode[],
   name: string,
   initialScope: string[],
-  mustBe?: "type" | "class"
+  mustBe?: "type" | "class",
 ): DocNode | undefined {
   const scope = [...initialScope];
   let done = false;
@@ -485,9 +485,9 @@ function findNodeByScopedName(
     const node = flattend.find(
       (node) =>
         (node.scope && node.scope?.length > 0
-          ? node.scope.join(".") + "."
-          : "") +
-          node.name ===
+                ? node.scope.join(".") + "."
+                : "") +
+              node.name ===
           (scope.length > 0 ? scope.join(".") + "." : "") + name &&
         ((mustBe === "type" &&
           (node.kind === DocNodeKind.Class ||
@@ -496,7 +496,7 @@ function findNodeByScopedName(
             node.kind === DocNodeKind.TypeAlias ||
             node.kind === DocNodeKind.Namespace)) ||
           (mustBe === "class" && node.kind === DocNodeKind.Class) ||
-          mustBe === undefined)
+          mustBe === undefined),
     );
     if (node) return node;
     if (scope.length === 0) {
@@ -509,7 +509,8 @@ function findNodeByScopedName(
 
 function globalObjectMDN(name: string): { [name: string]: string } {
   return {
-    [name]: `https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/${name}`,
+    [name]:
+      `https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/${name}`,
   };
 }
 
@@ -557,10 +558,15 @@ const MDN_BUILTINS: { [builtin: string]: string } = {
 
 export function getLinkByScopedName(
   flattend: DocNode[],
+  runtimeBuiltins: DocNode[] | undefined,
   name: string,
   initialScope: string[],
-  mustBe?: "type" | "class"
-): { type: "local"; href: string } | { type: "mdn"; href: string } | undefined {
+  mustBe?: "type" | "class",
+):
+  | { type: "local"; href: string }
+  | { type: "builtin"; href: string }
+  | { type: "external"; href: string }
+  | undefined {
   const node = findNodeByScopedName(flattend, name, initialScope, mustBe);
   if (node) {
     return {
@@ -568,10 +574,24 @@ export function getLinkByScopedName(
       href: `#${node.scope ? node.scope.join(".") + "." : ""}${node.name}`,
     };
   }
+  if (runtimeBuiltins) {
+    const node = findNodeByScopedName(
+      runtimeBuiltins,
+      name,
+      [],
+      mustBe,
+    );
+    if (node) {
+      return {
+        type: "builtin",
+        href: `#${node.scope ? node.scope.join(".") + "." : ""}${node.name}`,
+      };
+    }
+  }
   const builtin = MDN_BUILTINS[name];
   if (builtin) {
     return {
-      type: "mdn",
+      type: "external",
       href: builtin,
     };
   }
@@ -580,7 +600,7 @@ export function getLinkByScopedName(
 
 export function getFieldsForClassRecursive(
   flattend: DocNode[],
-  parent: DocNodeClass
+  parent: DocNodeClass,
 ): {
   methods: (ClassMethodDef & { inherited: boolean })[];
   properties: (ClassPropertyDef & { inherited: boolean })[];
@@ -590,7 +610,7 @@ export function getFieldsForClassRecursive(
       flattend,
       parent.classDef.extends,
       parent.scope ?? [],
-      "class"
+      "class",
     ) as DocNodeClass;
     if (node) {
       const r = getFieldsForClassRecursive(flattend, node);

@@ -42,10 +42,7 @@ function Home() {
           <Header />
           <div className="max-w-screen-sm mx-auto px-4 sm:px-6 md:px-8 pt-4 sm:pt-12 pb-12 sm:pb-20 flex flex-col items-center">
             <span className="block w-full rounded-md shadow-sm ">
-              <Link
-                href="/https/[...url]"
-                as={`/https/github.com/denoland/deno/releases/latest/download/lib.deno.d.ts`}
-              >
+              <Link href="/builtin/[version]" as={`/builtin/stable`}>
                 <a
                   type="submit"
                   className="w-full flex justify-center py-2 px-4 border border-gray-300 dark:border-light-black-700 dark:hover:border-light-black-600 text-md font-medium rounded-md text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-light-black-800 hover:text-gray-500 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-light-black-700 focus:outline-none focus:shadow-outline-gray focus:border-gray-600 active:bg-gray-100 dark:active:bg-light-black-700 active:text-gray-700 dark:active:text-gray-100 transition duration-150 ease-in-out"
@@ -103,10 +100,7 @@ function Home() {
               --unstable
             </code>{" "}
             runtime documentation{" "}
-            <Link
-              href="/https/[...url]"
-              as={`/https/raw.githubusercontent.com/denoland/deno/master/cli/dts/lib.deno.unstable.d.ts`}
-            >
+            <Link href="/builtin/[version]" as={`/builtin/unstable`}>
               <a className="link"> here</a>
             </Link>
             .
