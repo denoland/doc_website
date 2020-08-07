@@ -7,8 +7,9 @@ import {
   LiteralDefKind,
   getLinkByScopedName,
 } from "../util/docs";
-import { useFlattend } from "../util/data";
+import { useFlattend, useRuntimeBuiltins } from "../util/data";
 import { Params } from "./Function";
+import Link from "next/link";
 
 export const TsType = memo(
   ({ tsType, scope }: { tsType: TsTypeDef; scope: string[] }) => {
@@ -177,8 +178,10 @@ export const TsType = memo(
         );
       case TsTypeDefKind.TypeQuery: {
         const flattend = useFlattend();
+        const runtimeBuiltins = useRuntimeBuiltins();
         const link = getLinkByScopedName(
           flattend,
+          runtimeBuiltins,
           tsType.typeQuery,
           scope ?? []
         );
@@ -190,8 +193,10 @@ export const TsType = memo(
       }
       case TsTypeDefKind.TypeRef: {
         const flattend = useFlattend();
+        const runtimeBuiltins = useRuntimeBuiltins();
         const link = getLinkByScopedName(
           flattend,
+          runtimeBuiltins,
           tsType.typeRef.typeName,
           scope ?? [],
           "type"
@@ -234,11 +239,17 @@ export function LinkRef(props: {
 }) {
   switch (props.link?.type) {
     case "local":
-    case "mdn":
+    case "external":
       return (
         <a className="link" href={props.link.href}>
           {props.name}
         </a>
+      );
+    case "builtin":
+      return (
+        <Link href={`/builtin/stable${props.link.href}`}>
+          <a className="link">{props.name}</a>
+        </Link>
       );
     default:
       return <>{props.name}</>;
