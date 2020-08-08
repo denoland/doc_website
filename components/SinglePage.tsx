@@ -1,7 +1,11 @@
 // Copyright 2020 the Deno authors. All rights reserved. MIT license.
 
 import React, { useMemo, memo } from "react";
-import { DocsData, FlattendProvider } from "../util/data";
+import {
+  DocsData,
+  FlattendProvider,
+  RuntimeBuiltinsProvider,
+} from "../util/data";
 import {
   groupNodes,
   DocNodeShared,
@@ -30,9 +34,8 @@ export const SinglePage = memo(
     forceReload: () => void;
     entrypoint: string;
     data: DocsData | undefined;
+    runtimeBuiltinsData: DocsData | undefined;
   }) => {
-    const nodes = expandNamespaces(props.data?.nodes ?? []);
-
     if (!props.data) {
       return (
         <Wrapper
@@ -50,36 +53,46 @@ export const SinglePage = memo(
       );
     }
 
+    const nodes = expandNamespaces(props.data.nodes ?? []);
+    const runtimeBuiltinsNodes = props.runtimeBuiltinsData
+      ? expandNamespaces(props.runtimeBuiltinsData.nodes)
+      : undefined;
+
     const hasNone = nodes.length === 0;
 
     const flattend = flattenNamespaces(nodes);
+    const flattendRuntimeBuiltins = runtimeBuiltinsNodes
+      ? flattenNamespaces(runtimeBuiltinsNodes)
+      : undefined;
 
     return (
-      <FlattendProvider value={flattend}>
-        <Wrapper
-          forceReload={props.forceReload}
-          entrypoint={props.entrypoint}
-          timestamp={props.data.timestamp}
-        >
-          <div className="max-w-screen-lg px-4 sm:px-6 md:px-8 pb-12">
-            <div className="py-6">
-              <a
-                className="break-words cursor-pointer link"
-                href={props.entrypoint}
-              >
-                {props.entrypoint}
-              </a>
-              {hasNone ? (
-                <h1 className="pt-4 pb-1 text-xl text-gray-900 dark:text-gray-200">
-                  This module has no exports that are recognized by deno doc.
-                </h1>
-              ) : (
-                <CardList nodes={nodes} />
-              )}
+      <RuntimeBuiltinsProvider value={flattendRuntimeBuiltins}>
+        <FlattendProvider value={flattend}>
+          <Wrapper
+            forceReload={props.forceReload}
+            entrypoint={props.entrypoint}
+            timestamp={props.data.timestamp}
+          >
+            <div className="max-w-screen-lg px-4 sm:px-6 md:px-8 pb-12">
+              <div className="py-6">
+                <a
+                  className="break-words cursor-pointer link"
+                  href={props.entrypoint}
+                >
+                  {props.entrypoint}
+                </a>
+                {hasNone ? (
+                  <h1 className="pt-4 pb-1 text-xl text-gray-900 dark:text-gray-200">
+                    This module has no exports that are recognized by deno doc.
+                  </h1>
+                ) : (
+                  <CardList nodes={nodes} />
+                )}
+              </div>
             </div>
-          </div>
-        </Wrapper>
-      </FlattendProvider>
+          </Wrapper>
+        </FlattendProvider>
+      </RuntimeBuiltinsProvider>
     );
   }
 );

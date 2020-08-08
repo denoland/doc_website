@@ -8,7 +8,7 @@ import {
   TsTypeParamDef,
 } from "../util/docs";
 import { SimpleCard, SimpleSubCard } from "./SinglePage";
-import { useFlattend } from "../util/data";
+import { useFlattend, useRuntimeBuiltins } from "../util/data";
 import Link from "next/link";
 import { TsType, LinkRef } from "./TsType";
 
@@ -39,8 +39,9 @@ export function ClassCard({
   const parent = node;
 
   const { extends: extends_ } = node.classDef;
+  const runtimeBuiltins = useRuntimeBuiltins();
   const extendsLink = extends_
-    ? getLinkByScopedName(flattend, extends_, node.scope ?? [])
+    ? getLinkByScopedName(flattend, runtimeBuiltins, extends_, node.scope ?? [])
     : undefined;
 
   return (

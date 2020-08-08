@@ -29,6 +29,24 @@ export const Documentation = ({
     }
   );
 
+  const { data: runtimeBuiltinsData } = useSWR<DocsData>(
+    [loadCount],
+    () =>
+      getData(
+        "https://github.com/denoland/deno/releases/latest/download/lib.deno.d.ts",
+        "",
+        loadCount > 0
+      ).catch((err) => {
+        throw err?.message ?? err.toString();
+      }),
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+      refreshWhenHidden: false,
+      refreshWhenOffline: false,
+    }
+  );
+
   useEffect(() => {
     let { hash } = location;
     hash = hash && hash.substring(1);
@@ -85,6 +103,7 @@ export const Documentation = ({
         forceReload={forceReload}
         entrypoint={entrypoint}
         data={data}
+        runtimeBuiltinsData={runtimeBuiltinsData}
       />
     </>
   );
