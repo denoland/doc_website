@@ -1,6 +1,7 @@
 // Copyright 2020 the Deno authors. All rights reserved. MIT license.
 
 import React, { memo } from "react";
+import Link from "next/link";
 import {
   TsTypeDef,
   TsTypeDefKind,
@@ -240,6 +241,20 @@ export function LinkRef(props: {
           {props.name}
         </a>
       );
+    case "remote":
+      const url = props.link.remote;
+      if (url.startsWith("https://")) {
+        return (
+          <Link
+            href="/https/[...url]"
+            as={`${url.toString().replace("https://", "/https/")}#${
+              props.link.node
+            }`}
+          >
+            <a className="link">{props.name}</a>
+          </Link>
+        );
+      }
     default:
       return <>{props.name}</>;
   }
