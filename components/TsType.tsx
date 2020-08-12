@@ -32,7 +32,6 @@ export const TsType = memo(
           </>
         );
       case TsTypeDefKind.FnOrConstructor: {
-        const paramElements: React.ReactNode[] = [];
         return (
           <>
             {tsType.fnOrConstructor.constructor ? "new " : null} (
