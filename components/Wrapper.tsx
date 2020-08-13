@@ -88,7 +88,7 @@ export function Wrapper(props: {
                     </a>
                   </Link>
                   {flattend ? (
-                    <header className="px-4 pt-3 sm:px-6 sm:pt-4">
+                    <header className="p-4">
                       {props.timestamp ? (
                         <div className="mt-1 text-sm text-gray-600 dark:text-gray-400">
                           Last refreshed{" "}
@@ -132,7 +132,7 @@ export function Wrapper(props: {
               </a>
             </Link>
             {flattend ? (
-              <header className="px-4 pt-3 sm:px-6 sm:pt-4">
+              <header className="p-4">
                 {props.timestamp ? (
                   <div className="mt-1 text-sm text-gray-600 dark:text-gray-400">
                     Last refreshed {new Date(props.timestamp).toLocaleString()}.{" "}
