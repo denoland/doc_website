@@ -1,5 +1,7 @@
 // Copyright 2020 the Deno authors. All rights reserved. MIT license.
 
+import { schoolBook } from "react-syntax-highlighter/dist/esm/styles/hljs";
+
 export enum DocNodeKind {
   Function = "function",
   Variable = "variable",
@@ -8,6 +10,7 @@ export enum DocNodeKind {
   Interface = "interface",
   TypeAlias = "typeAlias",
   Namespace = "namespace",
+  Import = "import",
 }
 export interface DocNodeLocation {
   filename: string;
@@ -341,6 +344,11 @@ export interface TypeAliasDef {
 export interface NamespaceDef {
   elements: DocNode[];
 }
+export interface ImportDef {
+  src: string;
+  local: string;
+  imported?: string;
+}
 
 export type DocNodeFunction = DocNodeShared & {
   kind: DocNodeKind.Function;
@@ -370,6 +378,10 @@ export type DocNodeNamespace = DocNodeShared & {
   kind: DocNodeKind.Namespace;
   namespaceDef: NamespaceDef;
 };
+export type DocNodeImport = DocNodeShared & {
+  kind: DocNodeKind.Import;
+  importDef: ImportDef;
+};
 
 export type DocNode =
   | DocNodeFunction
@@ -378,7 +390,8 @@ export type DocNode =
   | DocNodeEnum
   | DocNodeInterface
   | DocNodeTypeAlias
-  | DocNodeNamespace;
+  | DocNodeNamespace
+  | DocNodeImport;
 
 export interface GroupedNodes {
   functions: DocNodeFunction[];
@@ -467,6 +480,8 @@ export function groupNodes(docs: DocNode[]): GroupedNodes {
       case DocNodeKind.Namespace:
         groupedNodes.namespaces.push(node);
         break;
+      case DocNodeKind.Import:
+        break;
     }
   });
 
@@ -484,11 +499,14 @@ function findNodeByScopedName(
   while (!done) {
     const node = flattend.find(
       (node) =>
+        // Name + scope must match (if not import)
+        node.kind !== DocNodeKind.Import &&
         (node.scope && node.scope?.length > 0
                 ? node.scope.join(".") + "."
                 : "") +
               node.name ===
           (scope.length > 0 ? scope.join(".") + "." : "") + name &&
+        // Must be a type, or class, or any. Dependant on settings
         ((mustBe === "type" &&
           (node.kind === DocNodeKind.Class ||
             node.kind === DocNodeKind.Enum ||
@@ -500,6 +518,13 @@ function findNodeByScopedName(
     );
     if (node) return node;
     if (scope.length === 0) {
+      const import_ = flattend.find(
+        (node) =>
+          node.kind === DocNodeKind.Import &&
+          (name + ".").startsWith(node.name + ".")
+      );
+      console.log(import_);
+      if (import_) return import_;
       done = true;
     }
     scope.pop();
@@ -564,11 +589,27 @@ export function getLinkByScopedName(
   mustBe?: "type" | "class",
 ):
   | { type: "local"; href: string }
+  | { type: "remote"; remote: string; node: string }
   | { type: "builtin"; href: string }
   | { type: "external"; href: string }
   | undefined {
   const node = findNodeByScopedName(flattend, name, initialScope, mustBe);
   if (node) {
+    if (node.kind === DocNodeKind.Import) {
+      if (node.importDef.imported) {
+        return {
+          type: "remote",
+          remote: node.importDef.src,
+          node: node.importDef.imported ?? node.name,
+        };
+      } else {
+        return {
+          type: "remote",
+          remote: node.importDef.src,
+          node: name.substring(node.name.length),
+        };
+      }
+    }
     return {
       type: "local",
       href: `#${node.scope ? node.scope.join(".") + "." : ""}${node.name}`,

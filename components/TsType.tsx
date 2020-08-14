@@ -1,6 +1,7 @@
 // Copyright 2020 the Deno authors. All rights reserved. MIT license.
 
 import React, { memo } from "react";
+import Link from "next/link";
 import {
   TsTypeDef,
   TsTypeDefKind,
@@ -9,7 +10,6 @@ import {
 } from "../util/docs";
 import { useFlattend, useRuntimeBuiltins } from "../util/data";
 import { Params } from "./Function";
-import Link from "next/link";
 
 export const TsType = memo(
   ({ tsType, scope }: { tsType: TsTypeDef; scope: string[] }) => {
@@ -32,7 +32,6 @@ export const TsType = memo(
           </>
         );
       case TsTypeDefKind.FnOrConstructor: {
-        const paramElements: React.ReactNode[] = [];
         return (
           <>
             {tsType.fnOrConstructor.constructor ? "new " : null} (
@@ -251,6 +250,20 @@ export function LinkRef(props: {
           <a className="link">{props.name}</a>
         </Link>
       );
+    case "remote":
+      const url = props.link.remote;
+      if (url.startsWith("https://")) {
+        return (
+          <Link
+            href="/https/[...url]"
+            as={`${url.toString().replace("https://", "/https/")}#${
+              props.link.node
+            }`}
+          >
+            <a className="link">{props.name}</a>
+          </Link>
+        );
+      }
     default:
       return <>{props.name}</>;
   }
