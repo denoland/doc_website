@@ -26,6 +26,9 @@ async function handleRequest(event) {
   if (!response || forceReload) {
     //if not in cache, grab it from the origin
     response = await fetch(cacheKey);
+    if (!response.ok) {
+      return response;
+    }
     // must use Response constructor to inherit all of response's fields
     response = new Response(response.body, response);
     // Cache API respects Cache-Control headers, so by setting max-age to 86400
