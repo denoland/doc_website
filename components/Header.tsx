@@ -19,7 +19,7 @@ const Header = () => {
             />
             <div className="ml-5 flex flex-col justify-center">
               <div className="font-bold text-gray-900 dark:text-gray-200 leading-tight text-2xl sm:text-3xl tracking-tight">
-                deno doc
+                Deno Doc
               </div>
               <div className="font-normal text-gray-900 dark:text-gray-200 text-sm sm:text-lg leading-tight tracking-tight">
                 Documentation Generator
@@ -110,7 +110,7 @@ const Header = () => {
                     />
                     <div className="ml-5 flex flex-col justify-center">
                       <div className="font-bold text-gray-900 dark:text-gray-200 leading-tight text-2xl sm:text-3xl tracking-tight">
-                        deno doc
+                        Deno Doc
                       </div>
                       <div className="font-normal text-gray-900 dark:text-gray-200 text-sm sm:text-lg leading-tight tracking-tight">
                         Documentation Generator
