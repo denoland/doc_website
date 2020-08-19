@@ -130,7 +130,7 @@ function About() {
                 are currently ignored.
               </li>
               <li>
-                The time to pull source files and generate documenation from
+                The time to pull source files and generate documentation from
                 these may not exceed 9 seconds. If you are running into a
                 timeout issue because of this, please open an issue on{" "}
                 <a
