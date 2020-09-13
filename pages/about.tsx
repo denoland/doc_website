@@ -114,22 +114,6 @@ function About() {
                 only imports in the top level module are analyzed.
               </li>
               <li>
-                Only exports in the style{" "}
-                <InlineCode>
-                  export <span className="italic">declaration</span>
-                </InlineCode>{" "}
-                and <InlineCode>export ... from ...</InlineCode> are analyzed.
-                Exports in the form{" "}
-                <InlineCode>
-                  export {"{"} <span className="italic">identifiers</span> {"}"}
-                </InlineCode>{" "}
-                and{" "}
-                <InlineCode>
-                  export <span className="italic">identifier</span>
-                </InlineCode>{" "}
-                are currently ignored.
-              </li>
-              <li>
                 The time to pull source files and generate documentation from
                 these may not exceed 9 seconds. If you are running into a
                 timeout issue because of this, please open an issue on{" "}
