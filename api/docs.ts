@@ -4,7 +4,7 @@ import {
   APIGatewayProxyEvent,
   APIGatewayProxyResult,
   Context,
-} from "https://deno.land/x/lambda@1.2.1/mod.ts";
+} from "https://deno.land/x/lambda@1.4.0/mod.ts";
 
 const decoder = new TextDecoder();
 
