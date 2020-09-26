@@ -1,11 +1,10 @@
 // Copyright 2020 the Deno authors. All rights reserved. MIT license.
 
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { Sidebar } from "./Sidebar";
 import Transition from "./Transition";
-import { useFlattend } from "../util/data";
-import { sortByAlphabet, groupNodes } from "../util/docs";
+import { GroupedNodes } from "../util/docs";
 
 // TODO(lucacasonato): not have this use absolute positioning - make this less terrible CSS
 export function Wrapper(props: {
@@ -13,11 +12,8 @@ export function Wrapper(props: {
   forceReload: () => void;
   entrypoint: string;
   timestamp: string;
+  groups: GroupedNodes | undefined;
 }) {
-  const flattend = useFlattend();
-  const nodes = useMemo(() => sortByAlphabet(flattend), [flattend]);
-  const groups = useMemo(() => groupNodes(nodes), [nodes]);
-
   const [showSidebar, setShowSidebar] = useState<boolean>(false);
   const hideSidebar = () => setShowSidebar(false);
 
@@ -87,7 +83,7 @@ export function Wrapper(props: {
                       </div>
                     </a>
                   </Link>
-                  {flattend ? (
+                  {props.groups ? (
                     <header className="pt-4 pb-2 px-4">
                       {props.timestamp ? (
                         <div className="mt-1 text-sm text-gray-600 dark:text-gray-400">
@@ -109,7 +105,7 @@ export function Wrapper(props: {
                     </header>
                   ) : null}
                 </div>
-                <Sidebar groups={groups} />
+                {props.groups ? <Sidebar groups={props.groups} /> : null}
               </div>
             </Transition>
             <div className="flex-shrink-0 w-14">
@@ -131,7 +127,7 @@ export function Wrapper(props: {
                 </div>
               </a>
             </Link>
-            {flattend ? (
+            {props.groups ? (
               <header className="pt-4 pb-2 px-4">
                 {props.timestamp ? (
                   <div className="mt-1 text-sm text-gray-600 dark:text-gray-400">
@@ -152,7 +148,7 @@ export function Wrapper(props: {
               </header>
             ) : null}
           </div>
-          <Sidebar groups={groups} />
+          {props.groups ? <Sidebar groups={props.groups} /> : null}
         </div>
       </div>
       <div className="flex flex-col w-0 flex-1 overflow-hidden">
