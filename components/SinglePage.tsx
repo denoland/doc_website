@@ -7,15 +7,15 @@ import {
   RuntimeBuiltinsProvider,
 } from "../util/data";
 import {
-  groupNodes,
   DocNodeShared,
   ParamDef,
   TsTypeDef,
   DocNodeLocation,
-  sortByAlphabet,
-  DocNode,
   expandNamespaces,
   flattenNamespaces,
+  GroupedNodes,
+  groupNodes,
+  sortByAlphabet,
 } from "../util/docs";
 import { JSDoc } from "./JSDoc";
 import { ClassCard } from "./Class";
@@ -41,6 +41,7 @@ export const SinglePage = memo(
         <Wrapper
           forceReload={props.forceReload}
           entrypoint={props.entrypoint}
+          groups={undefined}
           timestamp=""
         >
           <div className="flex flex-col items-center justify-center h-full px-4 pb-3 sm:px-6 pt-8">
@@ -65,6 +66,10 @@ export const SinglePage = memo(
       ? flattenNamespaces(runtimeBuiltinsNodes)
       : undefined;
 
+    const groups = useMemo(() => groupNodes(sortByAlphabet(flattend)), [
+      flattend,
+    ]);
+
     return (
       <RuntimeBuiltinsProvider value={flattendRuntimeBuiltins}>
         <FlattendProvider value={flattend}>
@@ -72,6 +77,7 @@ export const SinglePage = memo(
             forceReload={props.forceReload}
             entrypoint={props.entrypoint}
             timestamp={props.data.timestamp}
+            groups={groups}
           >
             <div className="max-w-screen-lg px-4 sm:px-6 md:px-8 pb-12">
               <div className="py-6">
@@ -86,7 +92,7 @@ export const SinglePage = memo(
                     This module has no exports that are recognized by deno doc.
                   </h1>
                 ) : (
-                  <CardList nodes={nodes} />
+                  <CardList groups={groups} />
                 )}
               </div>
             </div>
@@ -98,9 +104,7 @@ export const SinglePage = memo(
 );
 
 export const CardList = memo(
-  ({ nodes, nested }: { nodes: DocNode[]; nested?: boolean }) => {
-    const groups = useMemo(() => groupNodes(sortByAlphabet(nodes)), [nodes]);
-
+  ({ groups, nested }: { groups: GroupedNodes; nested?: boolean }) => {
     return (
       <>
         {groups.functions.length > 0 ? (

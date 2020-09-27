@@ -443,7 +443,14 @@ function nodeName(a: DocNode): string {
 }
 
 export function sortByAlphabet(docs: DocNode[]): DocNode[] {
-  return docs.sort((a, b) => (nodeName(a) < nodeName(b) ? -1 : 1));
+  return docs.sort((a, b) => {
+    const scopeCountA = a.scope?.length ?? 0;
+    const scopeCountB = b.scope?.length ?? 0;
+    if (scopeCountA !== scopeCountB) {
+      return scopeCountA - scopeCountB;
+    }
+    return (nodeName(a) < nodeName(b) ? -1 : 1);
+  });
 }
 
 export function groupNodes(docs: DocNode[]): GroupedNodes {
@@ -521,7 +528,7 @@ function findNodeByScopedName(
       const import_ = flattend.find(
         (node) =>
           node.kind === DocNodeKind.Import &&
-          (name + ".").startsWith(node.name + ".")
+          (name + ".").startsWith(node.name + "."),
       );
       console.log(import_);
       if (import_) return import_;

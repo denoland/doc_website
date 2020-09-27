@@ -1,4 +1,4 @@
-const withPrefresh = require('@prefresh/next');
+const withPrefresh = require("@prefresh/next");
 
 module.exports = withPrefresh({
   experimental: {

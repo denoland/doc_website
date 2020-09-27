@@ -1,14 +1,7 @@
 // Copyright 2020 the Deno authors. All rights reserved. MIT license.
 
-import React, { useMemo } from "react";
-import Link from "next/link";
-import {
-  groupNodes,
-  DocNodeShared,
-  sortByAlphabet,
-  GroupedNodes,
-} from "../util/docs";
-import { useFlattend } from "../util/data";
+import React from "react";
+import { DocNodeShared, GroupedNodes } from "../util/docs";
 
 const SidebarSection = (props: {
   title: string;

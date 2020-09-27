@@ -1,7 +1,7 @@
 // Copyright 2020 the Deno authors. All rights reserved. MIT license.
 
 import React from "react";
-import { DocNodeNamespace } from "../util/docs";
+import { DocNodeNamespace, groupNodes, sortByAlphabet } from "../util/docs";
 import { SimpleCard, CardList } from "./SinglePage";
 
 export function NamespaceCard({
@@ -16,7 +16,12 @@ export function NamespaceCard({
       node={node}
       nested={nested}
       prefix="namespace"
-      details={<CardList nodes={node.namespaceDef.elements} nested />}
+      details={
+        <CardList
+          groups={groupNodes(sortByAlphabet(node.namespaceDef.elements))}
+          nested
+        />
+      }
     />
   );
 }
