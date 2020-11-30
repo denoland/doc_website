@@ -35,6 +35,11 @@ export async function handler(
 
   let sourceFile: string;
   if (isRemote) {
+    const regex = /(github\.com\/.+\/.+\/|gitlab\.com\/.+\/.+\/-\/)blob/
+    if (entrypoint.match(regex)) {
+      entrypoint = entrypoint.replace(regex, "$1raw")
+    }
+
     sourceFile = entrypoint;
   } else {
     return error("entrypoint must be a remote https:// module", 400);
