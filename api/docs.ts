@@ -35,7 +35,12 @@ export async function handler(
 
   let sourceFile: string;
   if (isRemote) {
-    sourceFile = entrypoint;
+    const regex = /(github\.com\/.+\/.+\/|gitlab\.com\/.+\/.+\/-\/)blob/
+    if (entrypoint.match(regex)) {
+      sourceFile = entrypoint.replace(regex, "$1raw")
+    } else {
+      sourceFile = entrypoint;
+    }
   } else {
     return error("entrypoint must be a remote https:// module", 400);
   }
@@ -65,18 +70,12 @@ export async function handler(
     if (killed) return error("timed out", 500);
     return error(decoder.decode(errOut), 500);
   }
-  
-  let decodedOut = decoder.decode(out)
-  const regex = /(github\.com\/.+\/.+\/|gitlab\.com\/.+\/.+\/-\/)raw/g
-  if (entrypoint.match(regex)) {
-    decodedOut = decodedOut.replace(regex, "$1blob")
-  }
 
   return {
     statusCode: 200,
     body: JSON.stringify({
       timestamp: new Date().toISOString(),
-      nodes: JSON.parse(decodedOut),
+      nodes: JSON.parse(decoder.decode(out)),
     }),
     headers: {
       "content-type": "application/json; charset=utf-8",
