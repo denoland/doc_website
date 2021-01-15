@@ -530,7 +530,6 @@ function findNodeByScopedName(
           node.kind === DocNodeKind.Import &&
           (name + ".").startsWith(node.name + "."),
       );
-      console.log(import_);
       if (import_) return import_;
       done = true;
     }
