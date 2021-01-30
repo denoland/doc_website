@@ -8,11 +8,13 @@
   "regions": ["sfo"],
   "build": {
     "env": {
+      "DENO_DIR": "/tmp/denodir",
       "DENO_VERSION": "1.7.1",
       "DENO_UNSTABLE": "true"
     }
   },
   "env": {
+    "DENO_DIR": "/tmp/denodir",
     "DENO_VERSION": "1.7.1",
     "DENO_UNSTABLE": "true"
   },
