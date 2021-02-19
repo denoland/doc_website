@@ -16,7 +16,7 @@ jobs:
       - run: yarn format --check
       # - run: CI=true yarn test
       - name: Publish CF Worker
-        if: github.ref == 'refs/heads/master' && github.event_name == 'push' && github.repository == 'denoland/doc_website'
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push' && github.repository == 'denoland/doc_website'
         uses: cloudflare/wrangler-action@1.1.0
         with:
           apiToken: ${{ secrets.cloudflareKey }}
