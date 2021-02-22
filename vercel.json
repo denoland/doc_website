@@ -1,19 +1,21 @@
 {
   "functions": {
     "api/**/*.ts": {
-      "runtime": "now-deno@0.5.0",
+      "runtime": "vercel-deno@0.7.6",
       "maxDuration": 60
     }
   },
   "regions": ["sfo"],
   "build": {
     "env": {
-      "DENO_VERSION": "1.6.2",
+      "DENO_DIR": "/tmp/denodir",
+      "DENO_VERSION": "1.7.1",
       "DENO_UNSTABLE": "true"
     }
   },
   "env": {
-    "DENO_VERSION": "1.6.2",
+    "DENO_DIR": "/tmp/denodir",
+    "DENO_VERSION": "1.7.1",
     "DENO_UNSTABLE": "true"
   },
   "github": {
