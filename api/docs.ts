@@ -20,7 +20,7 @@ export default async (req: ServerRequest) => {
     sourceFile = entrypoint;
   } else {
     return await req.respond(
-      error("entrypoint must be a remote https:// module", 400)
+      error("entrypoint must be a remote https:// module", 400),
     );
   }
 
@@ -28,6 +28,7 @@ export default async (req: ServerRequest) => {
     cmd: ["deno", "doc", sourceFile, "--json", "--reload"],
     stdout: "piped",
     stderr: "piped",
+    env: { "DENO_DIR": "/tmp/denodir" },
   });
 
   let killed = false;
