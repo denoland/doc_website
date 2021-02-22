@@ -2,7 +2,7 @@
   "functions": {
     "api/**/*.ts": {
       "runtime": "vercel-deno@0.7.6",
-      "maxDuration": 60
+      "maxDuration": 9
     }
   },
   "regions": ["sfo"],
