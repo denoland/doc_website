@@ -1,6 +1,6 @@
 // Copyright 2020 the Deno authors. All rights reserved. MIT license.
 
-const origin = "https://doc-website.denoland.now.sh/api/docs";
+const origin = "https://doc-website-git-main.denoland.vercel.app/api/docs";
 
 async function handleRequest(event) {
   let request = event.request;
