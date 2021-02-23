@@ -1,6 +1,6 @@
 // Copyright 2020 the Deno authors. All rights reserved. MIT license.
 
-const origin = "https://doc-website.denoland.now.sh/api/docs";
+const origin = "https://doc-website-git-main.denoland.vercel.app/api/docs";
 
 async function handleRequest(event) {
   let request = event.request;
@@ -13,10 +13,13 @@ async function handleRequest(event) {
   }
 
   const remoteURL = new URL(
-    `${origin}?entrypoint=${encodeURIComponent(entrypoint)}`
+    `${origin}?entrypoint=${encodeURIComponent(entrypoint)}`,
   );
 
-  let cacheKey = new Request(remoteURL, request);
+  let cacheKey = new Request(remoteURL, {
+    method: request.method,
+    headers: request.headers,
+  });
   let cache = caches.default;
 
   const forceReload = url.searchParams.get("force_reload");
@@ -50,7 +53,7 @@ addEventListener("fetch", (event) => {
     return event.respondWith(
       new Response(`{"error": "${e.message}"}`, {
         status: 500,
-      })
+      }),
     );
   }
 });
