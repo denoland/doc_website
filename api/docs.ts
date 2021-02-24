@@ -1,34 +1,16 @@
-// Copyright 2020 the Deno authors. All rights reserved. MIT license.
+// Copyright 2020-2021 the Deno authors. All rights reserved. MIT license.
 
-import {
-  APIGatewayProxyEvent,
-  APIGatewayProxyResult,
-  Context,
-} from "https://deno.land/x/lambda@1.4.0/mod.ts";
+import { ServerRequest } from "https://deno.land/std@0.84.0/http/server.ts";
 
 const decoder = new TextDecoder();
 
-export async function handler(
-  event: APIGatewayProxyEvent,
-  context: Context,
-): Promise<APIGatewayProxyResult> {
-  const url = new URL(
-    JSON.parse(event.body || '{ "path": "" }').path,
-    "https://example.com",
-  );
+export default async (req: ServerRequest) => {
+  const url = new URL(req.url, "https://example.com");
 
   const entrypoint = url.searchParams.get("entrypoint");
 
   if (!entrypoint) {
-    return {
-      statusCode: 400,
-      body: JSON.stringify({
-        error: "missing entrypoint query parameter",
-      }),
-      headers: {
-        "content-type": "application/json; charset=utf-8",
-      },
-    };
+    return await req.respond(error("missing entrypoint query parameter", 400));
   }
 
   const isRemote = entrypoint.startsWith("https://");
@@ -37,13 +19,16 @@ export async function handler(
   if (isRemote) {
     sourceFile = entrypoint;
   } else {
-    return error("entrypoint must be a remote https:// module", 400);
+    return await req.respond(
+      error("entrypoint must be a remote https:// module", 400),
+    );
   }
 
   const proc = Deno.run({
     cmd: ["deno", "doc", sourceFile, "--json", "--reload"],
     stdout: "piped",
     stderr: "piped",
+    env: { "DENO_DIR": "/tmp/denodir" },
   });
 
   let killed = false;
@@ -54,38 +39,35 @@ export async function handler(
     proc.kill(Deno.Signal.SIGKILL);
   }, 58000);
 
-  const [out, errOut] = await Promise.all([
-    proc.output(),
-    proc.stderrOutput(),
-  ]);
+  const [out, errOut] = await Promise.all([proc.output(), proc.stderrOutput()]);
   const status = await proc.status();
   clearTimeout(timer);
   proc.close();
   if (!status.success) {
-    if (killed) return error("timed out", 500);
-    return error(decoder.decode(errOut), 500);
+    if (killed) return await req.respond(error("timed out", 500));
+    return await req.respond(error(decoder.decode(errOut), 500));
   }
 
-  return {
-    statusCode: 200,
+  return await req.respond({
+    status: 200,
     body: JSON.stringify({
       timestamp: new Date().toISOString(),
       nodes: JSON.parse(decoder.decode(out)),
     }),
-    headers: {
+    headers: new Headers({
       "content-type": "application/json; charset=utf-8",
-    },
-  };
-}
+    }),
+  });
+};
 
 function error(message: string, code: number) {
   return {
-    statusCode: code,
+    status: code,
     body: JSON.stringify({
       error: message,
     }),
-    headers: {
+    headers: new Headers({
       "content-type": "application/json; charset=utf-8",
-    },
+    }),
   };
 }
