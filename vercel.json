@@ -1,7 +1,7 @@
 {
   "functions": {
     "api/**/*.ts": {
-      "runtime": "vercel-deno@0.7.6",
+      "runtime": "vercel-deno@0.7.7",
       "maxDuration": 60
     }
   },
