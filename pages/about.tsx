@@ -110,12 +110,8 @@ function About() {
             </p>
             <ul className="list-disc mt-3 pl-8">
               <li>
-                Imports are currently only followed one level deep. This means
-                only imports in the top level module are analyzed.
-              </li>
-              <li>
                 The time to pull source files and generate documentation from
-                these may not exceed 9 seconds. If you are running into a
+                these may not exceed 58 seconds. If you are running into a
                 timeout issue because of this, please open an issue on{" "}
                 <a
                   href="https://github.com/denoland/doc_website"
@@ -140,7 +136,7 @@ function About() {
             you can open an issue to share any ideas, feature requests,
             questions, or issues you are having. For general discussion about
             Deno or doc.deno.land, please use our{" "}
-            <a href="https://discord.gg/TGMHGv6" className="link">
+            <a href="https://discord.gg/deno" className="link">
               Discord server
             </a>
             .
