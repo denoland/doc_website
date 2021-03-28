@@ -8,9 +8,14 @@ export default async (req: ServerRequest) => {
   const url = new URL(req.url, "https://example.com");
 
   const entrypoint = url.searchParams.get("entrypoint");
-
   if (!entrypoint) {
     return await req.respond(error("missing entrypoint query parameter", 400));
+  }
+
+  const importMap = url.searchParams.get("import_map");
+  const importMapValidationError = validateImportMap(importMap);
+  if (importMapValidationError) {
+    await req.respond(importMapValidationError);
   }
 
   const isRemote = entrypoint.startsWith("https://");
@@ -20,15 +25,20 @@ export default async (req: ServerRequest) => {
     sourceFile = entrypoint;
   } else {
     return await req.respond(
-      error("entrypoint must be a remote https:// module", 400),
+      error("entrypoint must be a remote https:// module", 400)
     );
   }
 
+  let cmd = ["deno", "doc", sourceFile, "--json", "--reload"];
+  if (importMap) {
+    cmd.push("--import-map", `data:application/json;base64,${btoa(importMap)}`);
+  }
+
   const proc = Deno.run({
-    cmd: ["deno", "doc", sourceFile, "--json", "--reload"],
+    cmd,
     stdout: "piped",
     stderr: "piped",
-    env: { "DENO_DIR": "/tmp/denodir" },
+    env: { DENO_DIR: "/tmp/denodir" },
   });
 
   let killed = false;
@@ -70,4 +80,24 @@ function error(message: string, code: number) {
       "content-type": "application/json; charset=utf-8",
     }),
   };
+}
+
+function validateImportMap(maybeImportMap: string | null) {
+  if (!maybeImportMap) return undefined;
+
+  let parsedImportMap;
+  try {
+    parsedImportMap = JSON.parse(maybeImportMap);
+  } catch (err) {
+    return error("Invalid import map\n" + err.stack, 400);
+  }
+
+  if ("imports" in parsedImportMap || "scopes" in parsedImportMap) {
+    return undefined;
+  }
+
+  return error(
+    'import map is expected to have "imports" and/or "scopes" fields',
+    400
+  );
 }

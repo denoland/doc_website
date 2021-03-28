@@ -31,6 +31,7 @@ const HAS_VERSION_REGEX = /https:\/\/deno\.land\/(x\/[a-z0-9][a-z0-9_]+[a-z0-9]|
 export async function getData(
   entrypoint: string,
   hostname: string,
+  importMap?: string,
   forceReload?: boolean
 ): Promise<DocsData> {
   // TODO: Use a smarter way to ensure that the entrypoint is tagged with a version, currently we
@@ -40,15 +41,21 @@ export async function getData(
   // Looks for the data cached in the local storage if we know that the entrypoint is tagged with a
   // version and we aren't forcing a reload.
   const cachedData =
-    canBeCached && !forceReload ? window.localStorage.getItem(cacheKey) : null;
+    canBeCached && !forceReload && !importMap ? window.localStorage.getItem(cacheKey) : null;
 
   if (cachedData) {
     return JSON.parse(cachedData);
   } else {
+    const search = new URLSearchParams();
+    search.set("entrypoint", entrypoint);
+    if (forceReload) {
+      search.set("force_reload", "true");
+    }
+    if (importMap) {
+      search.set("import_map", importMap);
+    }
     const req = await fetch(
-      `${hostname}/api/docs?entrypoint=${encodeURIComponent(entrypoint)}${
-        forceReload ? "&force_reload=true" : ""
-      }`
+      `${hostname}/api/docs?entrypoint=${encodeURIComponent(entrypoint)}${search}`
     );
     if (!req.ok) throw new Error((await req.json()).error);
     const resp = await req.json();

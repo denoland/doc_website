@@ -10,15 +10,17 @@ import { SinglePage } from "./SinglePage";
 export const Documentation = ({
   entrypoint,
   name,
+  importMap,
 }: {
   entrypoint: string;
   name: string;
+  importMap?: string;
 }) => {
   const [loadCount, forceReload] = useReducer((i) => ++i, 0);
   const { data, error } = useSWR<DocsData, string>(
-    [entrypoint, loadCount],
+    [entrypoint, loadCount, importMap],
     () =>
-      getData(entrypoint, "", loadCount > 0).catch((err) => {
+      getData(entrypoint, "", importMap, loadCount > 0).catch((err) => {
         throw err?.message ?? err.toString();
       }),
     {
@@ -35,6 +37,7 @@ export const Documentation = ({
       getData(
         "https://doc-proxy.deno.dev/builtin/stable",
         "",
+        undefined,
         loadCount > 0
       ).catch((err) => {
         throw err?.message ?? err.toString();
