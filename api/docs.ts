@@ -15,7 +15,7 @@ export default async (req: ServerRequest) => {
   const importMap = url.searchParams.get("import_map");
   const importMapValidationError = validateImportMap(importMap);
   if (importMapValidationError) {
-    await req.respond(importMapValidationError);
+    return await req.respond(importMapValidationError);
   }
 
   const isRemote = entrypoint.startsWith("https://");
@@ -31,7 +31,12 @@ export default async (req: ServerRequest) => {
 
   let cmd = ["deno", "doc", sourceFile, "--json", "--reload"];
   if (importMap) {
-    cmd.push("--import-map", `data:application/json;base64,${btoa(importMap)}`);
+    cmd.push(
+      "--import-map",
+      isURL(importMap)
+        ? importMap
+        : `data:application/json;base64,${btoa(importMap)}`
+    );
   }
 
   const proc = Deno.run({
@@ -85,6 +90,8 @@ function error(message: string, code: number) {
 function validateImportMap(maybeImportMap: string | null) {
   if (!maybeImportMap) return undefined;
 
+  if (isURL(maybeImportMap)) return undefined;
+
   let parsedImportMap;
   try {
     parsedImportMap = JSON.parse(maybeImportMap);
@@ -100,4 +107,13 @@ function validateImportMap(maybeImportMap: string | null) {
     'import map is expected to have "imports" and/or "scopes" fields',
     400
   );
+}
+
+function isURL(maybeURL: string): boolean {
+  try {
+    new URL(maybeURL);
+    return true;
+  } catch {
+    return false;
+  }
 }

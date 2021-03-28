@@ -17,10 +17,11 @@ Page.getInitialProps = async (ctx) => {
       ? ""
       : ctx.query.url.join("/");
 
-  const importMap = validateImportMap(ctx.query["import_map"]);
+  const entrypoint = "https://" + decodeURIComponent(url);
+  const importMap = tryResolveImportMap(ctx.query["import_map"], entrypoint);
 
   return {
-    entrypoint: "https://" + decodeURIComponent(url),
+    entrypoint,
     name: decodeURIComponent(url),
     importMap,
   };
@@ -28,27 +29,33 @@ Page.getInitialProps = async (ctx) => {
 
 export default Page;
 
-function validateImportMap(
-  maybeImportMap: string[] | string | undefined
+function tryResolveImportMap(
+  maybeImportMap: string[] | string | undefined,
+  entrypoint: string
 ): string | undefined {
-  if (typeof maybeImportMap !== "string") return undefined;
+  if (typeof maybeImportMap !== "string") return;
 
-  let parsedImportMap;
+  // If maybeImportMap is a path to an importMap, resolve it relatively to the entrypoint URL.
+  let resolvedImportMapURL;
   try {
-    parsedImportMap = JSON.parse(maybeImportMap);
+    resolvedImportMapURL = new URL(maybeImportMap, entrypoint);
+    return resolvedImportMapURL.href;
+  } catch {}
+
+  // Otherwise, check if that's a strigified JSON import map.
+  try {
+    const parsedImportMap = JSON.parse(maybeImportMap);
+    if (!("imports" in parsedImportMap) && !("scopes" in parsedImportMap)) {
+      console.warn(
+        'import map is expected to have "imports" and/or "scopes" fields',
+        maybeImportMap
+      );
+      return;
+    }
+
+    return maybeImportMap;
   } catch (err) {
     console.warn("invalid import map", maybeImportMap, err);
-    return undefined;
+    return;
   }
-
-  if ("imports" in parsedImportMap || "scopes" in parsedImportMap) {
-    return maybeImportMap;
-  }
-
-  console.warn(
-    'import map is expected to have "imports" and/or "scopes" fields',
-    maybeImportMap
-  );
-
-  return undefined;
 }
