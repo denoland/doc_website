@@ -133,7 +133,7 @@ export function Params({
   params: (ParamDef | null)[];
   scope: string[];
 }) {
-  if (params.length === 0) return
+  if (params.length === 0) return <></>;
   return (
     <>
       {params
