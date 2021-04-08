@@ -697,3 +697,18 @@ export function getFieldsForClassRecursive(
     })),
   };
 }
+
+export function normalizeFilename(filename: string): string {
+  const rawRegex = /(github\.com\/.+\/.+\/|gitlab\.com\/.+\/.+\/-\/)raw/
+  const usercontentRegex = /raw\.githubusercontent\.com\/([^\/]+\/[^\/]+)/ 
+  if (filename.match(rawRegex)) {
+    return filename.replace(rawRegex, "$1blob")
+  }
+
+  if (filename.match(usercontentRegex)) {
+    return filename.replace(usercontentRegex, "github.com/$1/blob")
+  }
+
+  return filename
+}
+
