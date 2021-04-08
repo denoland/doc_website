@@ -31,3 +31,5 @@ yarn-error.log*
 
 .now
 .vercel
+
+/tmp/*

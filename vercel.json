@@ -1,19 +1,19 @@
 {
   "functions": {
     "api/**/*.ts": {
-      "runtime": "vercel-deno@0.7.6",
+      "runtime": "vercel-deno@0.7.9",
       "maxDuration": 60
     }
   },
   "regions": ["sfo"],
   "build": {
     "env": {
-      "DENO_VERSION": "1.7.5",
+      "DENO_VERSION": "1.8.3",
       "DENO_UNSTABLE": "true"
     }
   },
   "env": {
-    "DENO_VERSION": "1.7.5",
+    "DENO_VERSION": "1.8.3",
     "DENO_UNSTABLE": "true"
   },
   "github": {

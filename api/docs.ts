@@ -24,8 +24,13 @@ export default async (req: ServerRequest) => {
     );
   }
 
+  const {
+    tempFilename,
+    clearTempFile
+  } = await downloadFileInTempDir(sourceFile);
+
   const proc = Deno.run({
-    cmd: ["deno", "doc", sourceFile, "--json", "--reload"],
+    cmd: ["deno", "doc", tempFilename, "--json", "--reload"],
     stdout: "piped",
     stderr: "piped",
     env: { "DENO_DIR": "/tmp/denodir" },
@@ -37,12 +42,14 @@ export default async (req: ServerRequest) => {
   const timer = setTimeout(() => {
     killed = true;
     proc.kill(Deno.Signal.SIGKILL);
+    clearTempFile();
   }, 58000);
 
   const [out, errOut] = await Promise.all([proc.output(), proc.stderrOutput()]);
   const status = await proc.status();
   clearTimeout(timer);
   proc.close();
+  clearTempFile();
   if (!status.success) {
     if (killed) return await req.respond(error("timed out", 500));
     return await req.respond(error(decoder.decode(errOut), 500));
@@ -70,4 +77,25 @@ function error(message: string, code: number) {
       "content-type": "application/json; charset=utf-8",
     }),
   };
+}
+
+// In vercel, uses /tmp, otherwise use local ./tmp directory
+const tempDir = Deno.env.get("VERCEL") === "1" ? "/tmp" : "tmp";
+
+async function downloadFileInTempDir(sourceFile: string) {
+  // Creates random file name, ex. "/tmp/temp_rdcju7a.ts"
+  const tempFilename = `${tempDir}/temp_{Math.random().toString(36).substring(6)}.ts`;
+  const resp = await fetch(sourceFile);
+  // TODO(kt3k): This should be streaming
+  const text = await resp.text();
+  await Deno.writeTextFile(tempFilename, text);
+  const clearTempFile = async () => {
+    try {
+      await Deno.remove(tempFilename);
+    } catch {
+      // skip
+    }
+  }
+
+  return { tempFilename, clearTempFile }
 }
