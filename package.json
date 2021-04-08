@@ -11,13 +11,14 @@
   "dependencies": {
     "@tailwindcss/ui": "^0.4.0",
     "isomorphic-unfetch": "^3.0.0",
-    "next": "^9.5.4",
-    "preact": "^10.4.6",
-    "preact-render-to-string": "^5.1.10",
-    "react": "github:preact-compat/react#1.0.0",
-    "react-dom": "github:preact-compat/react-dom#1.0.0",
+    "next": "^10.0.8",
+    "next-plugin-preact": "^3.0.3",
+    "preact": "^10.5.12",
+    "preact-render-to-string": "^5.1.15",
+    "react": "npm:@preact/compat",
+    "react-dom": "npm:@preact/compat",
     "react-markdown": "^4.3.1",
-    "react-ssr-prepass": "npm:preact-ssr-prepass@^1.0.1",
+    "react-ssr-prepass": "npm:preact-ssr-prepass",
     "react-syntax-highlighter": "^13.0.0",
     "react-transition-group": "^4.4.1",
     "swr": "^0.2.3",
@@ -25,7 +26,6 @@
     "tailwindcss-prefers-dark-mode": "^1.2.0"
   },
   "devDependencies": {
-    "@prefresh/next": "^0.3.2",
     "@types/node": "^14.0.26",
     "@types/react": "^16.9.43",
     "@types/react-syntax-highlighter": "^11.0.4",
