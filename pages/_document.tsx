@@ -20,7 +20,7 @@ export default class DenoDocDocument extends Document {
         <Head>
           <link rel="stylesheet" href="/fonts/inter/inter.css" />
         </Head>
-        <body class="bg-gray-50 dark:bg-light-black-900">
+        <body className="bg-gray-50 dark:bg-light-black-900">
           <Main />
           <NextScript />
         </body>
