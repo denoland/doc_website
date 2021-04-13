@@ -9,11 +9,9 @@ const Page = () => {
   return (
     <Documentation
       entrypoint={
-        version == "stable"
-          ? "https://github.com/denoland/deno/releases/latest/download/lib.deno.d.ts"
-          : version === "unstable"
+        version === "unstable"
           ? "https://raw.githubusercontent.com/denoland/deno/main/cli/dts/lib.deno.unstable.d.ts"
-          : `https://github.com/denoland/deno/releases/download/${version}/lib.deno.d.ts`
+          : `https://lib-deno-d-ts.deno.dev/builtin/${version}`
       }
       name={`builtin@${version}`}
     />
