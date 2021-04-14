@@ -11,7 +11,7 @@ const Page = () => {
       entrypoint={
         version === "unstable"
           ? "https://raw.githubusercontent.com/denoland/deno/main/cli/dts/lib.deno.unstable.d.ts"
-          : `https://lib-deno-d-ts.deno.dev/builtin/${version}`
+          : `https://doc-proxy.deno.dev/builtin/${version}`
       }
       name={`builtin@${version}`}
     />
