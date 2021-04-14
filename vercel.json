@@ -8,12 +8,12 @@
   "regions": ["sfo"],
   "build": {
     "env": {
-      "DENO_VERSION": "1.8.3",
+      "DENO_VERSION": "1.9.0",
       "DENO_UNSTABLE": "true"
     }
   },
   "env": {
-    "DENO_VERSION": "1.8.3",
+    "DENO_VERSION": "1.9.0",
     "DENO_UNSTABLE": "true"
   },
   "github": {
