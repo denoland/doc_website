@@ -12,7 +12,7 @@ export default class DenoDocApp extends App {
       <div className="h-screen">
         <Head>
           <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-          <link rel="alternate icon" href="/favicon.ico" />
+          <link rel="icon" href="/favicon.ico" sizes="16x16"/>
         </Head>
         <Component {...pageProps} />
       </div>
