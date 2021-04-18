@@ -296,7 +296,11 @@ export function SimpleCard({
           {suffix}
         </div>
         <a
-          href={normalizeFilename(node.location.filename) + "#L" + node.location.line}
+          href={
+            normalizeFilename(node.location.filename) +
+            "#L" +
+            node.location.line
+          }
           className="pl-2 text-gray-600 dark:text-gray-400 break-words hover:text-gray-800 dark:hover:text-gray-200 hover:underline"
         >
           [src]
@@ -369,7 +373,11 @@ export function SimpleSubCard({
         </div>
         {node.location ? (
           <a
-            href={normalizeFilename(node.location.filename) + "#L" + node.location.line}
+            href={
+              normalizeFilename(node.location.filename) +
+              "#L" +
+              node.location.line
+            }
             className="pl-2 text-xs text-gray-600 dark:text-gray-400 break-words hover:text-gray-800 dark:hover:text-gray-200 hover:underline"
           >
             [src]

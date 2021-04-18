@@ -24,7 +24,8 @@ function Home() {
   function navigate() {
     router.push(
       "/https/[...url]",
-      "/https/" + url.replace("https://", "").replace("http://", "")
+      "/https/" +
+        encodeURIComponent(url.replace("https://", "").replace("http://", ""))
     );
   }
   return (
