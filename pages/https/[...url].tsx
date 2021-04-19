@@ -14,7 +14,10 @@ Page.getInitialProps = async (ctx) => {
       : ctx.query.url === undefined
       ? ""
       : ctx.query.url.join("/");
-  return { entrypoint: "https://" + url, name: url };
+  return {
+    entrypoint: "https://" + decodeURIComponent(url),
+    name: decodeURIComponent(url),
+  };
 };
 
 export default Page;
