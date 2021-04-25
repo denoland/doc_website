@@ -32,14 +32,16 @@ serve({
       return notFound();
     }
     const isBrowser = request.headers.get("accept")?.includes("text/html");
+    // The headers on a `Response` are immutable
+    const headers = new Headers(resp.headers);
     // Responses as plain text to browsers
-    resp.headers.set(
+    headers.set(
       "content-type",
       isBrowser ? "text/plain" : "application/typescript; charset=utf-8",
     );
     // Prevents downloading the file
-    resp.headers.delete("content-disposition");
-    return resp;
+    headers.delete("content-disposition");
+    return new Response(resp.body, { ...resp, headers });
   },
   404: () => notFound(),
 });
