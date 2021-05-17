@@ -33,7 +33,7 @@ export const Documentation = ({
     [loadCount],
     () =>
       getData(
-        "https://github.com/denoland/deno/releases/latest/download/lib.deno.d.ts",
+        "https://doc-proxy.deno.dev/builtin/stable",
         "",
         loadCount > 0
       ).catch((err) => {
