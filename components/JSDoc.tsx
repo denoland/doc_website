@@ -3,7 +3,6 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
-import atomOneDark from "react-syntax-highlighter/dist/cjs/styles/hljs/atom-one-dark";
 import javascript from "react-syntax-highlighter/dist/cjs/languages/hljs/javascript";
 import typescript from "react-syntax-highlighter/dist/cjs/languages/hljs/typescript";
 SyntaxHighlighter.registerLanguage("js", javascript);
@@ -60,8 +59,14 @@ export function CodeBlock(props: { value: string; language: string }) {
     <div className="my-2 bg-gray-50 rounded overflow-hidden">
       <SyntaxHighlighter
         language={props.language ?? "typescript"}
-        style={atomOneDark}
+        className="hljs"
         customStyle={{
+          // SyntaxHighlighter or maybe tailwind sets the
+          // `background-color` of `pre` to rgb(255, 255, 255). And
+          // hljs uses `background: #..` which is not applied because of
+          // background-color taking precedence. To give precedence to
+          // `background`, we pass an invalid value to backgroundColor.
+          backgroundColor: "none",
           fontSize: "0.75rem",
           padding: "0.5rem 0.75rem",
         }}
