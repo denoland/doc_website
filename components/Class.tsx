@@ -83,6 +83,21 @@ export function ClassCard({
               ) : null}
             </>
           ) : null}
+          {node.classDef.implements.length ? (
+            <>
+              {" "}
+              <span className="keyword">implements</span>{" "}
+              {node.classDef.implements
+                .map((_implements) => (
+                  <TsType tsType={_implements} scope={node.scope ?? []} />
+                ))
+                .reduce((r, a) => (
+                  <>
+                    {r}, {a}
+                  </>
+                ))}
+            </>
+          ) : null}
         </>
       }
       details={
