@@ -26,7 +26,7 @@ export interface DocsData {
 }
 
 // A regex to determine if a provided url has a version and thus can be cached.
-const HAS_VERSION_REGEX = /https:\/\/[d\w]+\.[d\w]+\/(x\/\w+|std)@\d*\.\d*\.\d*\/.+/g;
+const HAS_VERSION_REGEX = /https:\/\/deno\.land\/(x\/[a-z0-9][a-z0-9_]+[a-z0-9]|std)@\d*\.\d*\.\d*\/.+/g;
 
 export async function getData(
   entrypoint: string,
