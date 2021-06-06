@@ -86,12 +86,11 @@ export async function getData(
         let deletedData = 0;
 
         // Removes items from the local storage until we have enough to store the new data.
-        for (const [key, data, sizeInStorage] of cacheTuples) {
+        for (const [key, _, sizeInStorage] of cacheTuples) {
           if (deletedData >= dataStringified.length) {
             break;
           }
 
-          console.log(data);
           window.localStorage.removeItem(key);
           deletedData += sizeInStorage;
         }
