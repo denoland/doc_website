@@ -19,8 +19,9 @@ export default class DenoDocDocument extends Document {
       <Html lang="en" style={{ scrollPaddingTop: "5rem" }}>
         <Head>
           <link rel="stylesheet" href="/fonts/inter/inter.css" />
-          <link rel="stylesheet" href="/styles/hljs/atom-one-light.min.css" media="screen"/>
-          <link rel="stylesheet" href="/styles/hljs/atom-one-dark.min.css" media="screen and (prefers-color-scheme: dark)" />
+          <link rel="stylesheet" href="/styles/hljs/default.min.css" media="screen"/>
+          <link rel="stylesheet" href="/styles/hljs/github.min.css" media="screen"/>
+          <link rel="stylesheet" href="/styles/hljs/github-dark.min.css" media="screen and (prefers-color-scheme: dark)" />
         </Head>
         <body className="bg-gray-50 dark:bg-light-black-900">
           <Main />
