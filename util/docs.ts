@@ -58,6 +58,16 @@ export interface TsTypeLiteralDef {
   callSignatures: LiteralCallSignatureDef[];
   indexSignatures: LiteralIndexSignatureDef[];
 }
+export interface TsTypePredicateDef {
+  asserts: boolean;
+  param: {
+    type: "this";
+  } | {
+    type: "identifier";
+    name: string;
+  };
+  type: TsTypeDef | null;
+}
 export interface LiteralMethodDef {
   name: string;
   params: ParamDef[];
@@ -118,6 +128,7 @@ export enum TsTypeDefKind {
   Conditional = "conditional",
   IndexedAccess = "indexedAccess",
   TypeLiteral = "typeLiteral",
+  TypePredicate = "typePredicate",
 }
 export interface TsTypeDefShared {
   repr: string;
@@ -157,6 +168,10 @@ export interface TsTypeDefOptional extends TsTypeDefShared {
 export interface TsTypeDefParenthesized extends TsTypeDefShared {
   kind: TsTypeDefKind.Parenthesized;
   parenthesized: TsTypeDef;
+}
+export interface TsTypeDefTypePredicate extends TsTypeDefShared {
+  kind: TsTypeDefKind.TypePredicate;
+  typePredicate: TsTypePredicateDef;
 }
 export interface TsTypeDefRest extends TsTypeDefShared {
   kind: TsTypeDefKind.Rest;
@@ -205,6 +220,7 @@ export type TsTypeDef =
   | TsTypeDefTuple
   | TsTypeDefTypeLiteral
   | TsTypeDefTypeOperator
+  | TsTypeDefTypePredicate
   | TsTypeDefTypeQuery
   | TsTypeDefTypeRef
   | TsTypeDefUnion;
