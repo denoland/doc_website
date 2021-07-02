@@ -175,6 +175,30 @@ export const TsType = memo(
             <TsType tsType={tsType.typeOperator.tsType} scope={scope} />
           </>
         );
+      case TsTypeDefKind.TypePredicate: {
+        const predicate = tsType.typePredicate;
+        const paramRepr = predicate.param.type === "this"
+          ? "this"
+          : predicate.param.name;
+        if (predicate.type === null) {
+          if (predicate.asserts) {
+            return (
+              <>
+                asserts {paramRepr}
+              </>
+            );
+          } else {
+            // unreachable - type predicate must have either `asserts` or `is`
+            return null;
+          }
+        }
+        return (
+          <>
+            {predicate.asserts ? "asserts " : ""}
+            {paramRepr} is <TsType tsType={predicate.type} scope={scope} />
+          </>
+        );
+      }
       case TsTypeDefKind.TypeQuery: {
         const flattend = useFlattend();
         const runtimeBuiltins = useRuntimeBuiltins();
