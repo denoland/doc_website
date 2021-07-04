@@ -69,6 +69,22 @@ function About() {
           </p>
         </div>
         <div className="mt-12">
+          <h3
+            className="text-2xl font-semibold tracking-tight"
+            id="import-maps"
+          >
+            Import maps
+          </h3>
+          <p className="pt-2">
+            deno.doc.land supports{" "}
+            <a href="https://github.com/WICG/import-maps" className="link">
+              import maps
+            </a>
+            . Add <InlineCode>?import_map=$IMPORT_MAP_JSON$</InlineCode> to a
+            doc URL to specify one.
+          </p>
+        </div>
+        <div className="mt-12">
           <h3 className="text-2xl font-semibold tracking-tight" id="badges">
             Badges
           </h3>
