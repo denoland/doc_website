@@ -16,7 +16,7 @@ export function JSDoc(props: { jsdoc: string }) {
   // link inline tags
   for (let i of jsdoc.split("\n")) {
     if (
-      /^{@link .+}/g.test(i) &&
+      /{@link .+}/g.test(i) &&
       !/{@link .+\|.+}/g.test(i) &&
       !/{@link .+ .+}/g.test(i) &&
       !/\[.+\]{@link .+}/g.test(i)
