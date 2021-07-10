@@ -39,9 +39,10 @@ export function JSDoc(props: { jsdoc: string }) {
     } else if (/{@link .+ .+}/g.test(i)) {
       // {@link https://www.link.com link text}
       const splitString = i.split(" ");
-      const text = splitString.slice(2).join(" ");
+      let text = splitString.slice(2).join(" ");
+      text = text.slice(0, text.length - 1)
       const link = splitString[1];
-      jsdoc = jsdoc.replace(i, `\n\n[${text.slice(0, text.length - 1)}](${link})`);
+      jsdoc = jsdoc.replace(i, `\n\n[${text}](${link})`);
     }
   }
 
