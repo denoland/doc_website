@@ -26,9 +26,9 @@ export function JSDoc(props: { jsdoc: string }) {
       jsdoc = jsdoc.replace(i, `\n\n[${link}](${link})`);
     } else if (/\[.+\]{@link .+}/g.test(i)) {
       // [link text]{@link https://www.link.com}
-      const splitString = i.split("]");
-      const text = splitString[0].slice(1);
-      const link = splitString[1].slice(7, splitString[1].length - 1);
+      const splitString = i.split("{@link");
+      const text = splitString[0].slice(1, splitString[0].length - 1);
+      const link = splitString[1].slice(1, splitString[1].length - 1);
       jsdoc = jsdoc.replace(i, `\n\n[${text}](${link})`);
     } else if (/{@link .+\|.+}/g.test(i)) {
       // {@link https://www.link.com|link text}
