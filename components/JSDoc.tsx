@@ -17,8 +17,9 @@ export function JSDoc(props: { jsdoc: string }) {
   for (let i of jsdoc.split("\n")) {
     if (
       /^{@link .+}/g.test(i) &&
-      !/^{@link .+\|.+}/g.test(i) &&
-      !/{@link .+ .+}/g.test(i)
+      !/{@link .+\|.+}/g.test(i) &&
+      !/{@link .+ .+}/g.test(i) &&
+      !/\[.+\]{@link .+}/g.test(i)
     ) {
       // {@link https://www.link.com}
       const link = i.slice(7, i.length - 1);
@@ -29,7 +30,7 @@ export function JSDoc(props: { jsdoc: string }) {
       const text = splitString[0].slice(1);
       const link = splitString[1].slice(7, splitString[1].length - 1);
       jsdoc = jsdoc.replace(i, `\n\n[${text}](${link})`);
-    } else if (/^{@link .+\|.+}/g.test(i)) {
+    } else if (/{@link .+\|.+}/g.test(i)) {
       // {@link https://www.link.com|link text}
       const splitString = i.split("|");
       const text = splitString[1].slice(0, splitString[1].length - 1);
