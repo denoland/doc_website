@@ -22,14 +22,14 @@ export function JSDoc(props: { jsdoc: string }) {
       return `[${text}](${link})`;
     })
     // {@link https://www.link.com link text}
-    .replace(/{@link (.*?) (.*?)}/g, (match, link, text): string => {
+    .replace(/{@link ([^}]*?) ([^}]*?)}/g, (match, link, text): string => {
       return `[${text}](${link})`
     })
     // {@link https://www.link.com}
     .replace(/{@link (.*?)}/g, (match, link): string => {
       return `[${link}](${link})`
     })  
-  
+
   return (
     <ReactMarkdown
       source={jsdoc}
