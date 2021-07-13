@@ -11,41 +11,25 @@ SyntaxHighlighter.registerLanguage("ts", typescript);
 export function JSDoc(props: { jsdoc: string }) {
   let jsdoc = props.jsdoc
     .replace(/\n@param/g, "\n\n __param__")
-    .replace(/\n@return/g, "\n\n __return__");
-
-  // link inline tags
-  for (let i of jsdoc.split("\n")) {
-    if (
-      /{@link .+}/g.test(i) &&
-      !/{@link .+\|.+}/g.test(i) &&
-      !/{@link .+ .+}/g.test(i) &&
-      !/\[.+\]{@link .+}/g.test(i)
-    ) {
-      // {@link https://www.link.com}
-      const link = i.slice(7, i.length - 1);
-      jsdoc = jsdoc.replace(i, `\n\n[${link}](${link})`);
-    } else if (/\[.+\]{@link .+}/g.test(i)) {
-      // [link text]{@link https://www.link.com}
-      const splitString = i.split("{@link");
-      const text = splitString[0].slice(1, splitString[0].length - 1);
-      const link = splitString[1].slice(1, splitString[1].length - 1);
-      jsdoc = jsdoc.replace(i, `\n\n[${text}](${link})`);
-    } else if (/{@link .+\|.+}/g.test(i)) {
-      // {@link https://www.link.com|link text}
-      const splitString = i.split("|");
-      const text = splitString[1].slice(0, splitString[1].length - 1);
-      const link = splitString[0].slice(7);
-      jsdoc = jsdoc.replace(i, `\n\n[${text}](${link})`);
-    } else if (/{@link .+ .+}/g.test(i)) {
-      // {@link https://www.link.com link text}
-      const splitString = i.split(" ");
-      let text = splitString.slice(2).join(" ");
-      text = text.slice(0, text.length - 1)
-      const link = splitString[1];
-      jsdoc = jsdoc.replace(i, `\n\n[${text}](${link})`);
-    }
-  }
-
+    .replace(/\n@return/g, "\n\n __return__")
+    // [link text]{@link https://www.link.com}
+    .replace(/\[(.*?)\]{@link (.*?)}/g, (match, text, link): string => {
+      console.log(match)
+      return `[${text}](${link})`;
+    })
+    // {@link https://www.link.com|link text}
+    .replace(/{@link (.*?)\|(.*?)}/g, (match, link, text): string => {
+      return `[${text}](${link})`;
+    })
+    // {@link https://www.link.com link text}
+    .replace(/{@link (.*?) (.*?)}/g, (match, link, text): string => {
+      return `[${text}](${link})`
+    })
+    // {@link https://www.link.com}
+    .replace(/{@link (.*?)}/g, (match, link): string => {
+      return `[${link}](${link})`
+    })  
+  
   return (
     <ReactMarkdown
       source={jsdoc}
