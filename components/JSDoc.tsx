@@ -14,7 +14,6 @@ export function JSDoc(props: { jsdoc: string }) {
     .replace(/\n@return/g, "\n\n __return__")
     // [link text]{@link https://www.link.com}
     .replace(/\[(.*?)\]{@link (.*?)}/g, (match, text, link): string => {
-      console.log(match)
       return `[${text}](${link})`;
     })
     // {@link https://www.link.com|link text}
@@ -29,7 +28,7 @@ export function JSDoc(props: { jsdoc: string }) {
     .replace(/{@link (.*?)}/g, (match, link): string => {
       return `[${link}](${link})`
     })  
-
+  
   return (
     <ReactMarkdown
       source={jsdoc}
