@@ -9,10 +9,26 @@ SyntaxHighlighter.registerLanguage("js", javascript);
 SyntaxHighlighter.registerLanguage("ts", typescript);
 
 export function JSDoc(props: { jsdoc: string }) {
-  const jsdoc = props.jsdoc
+  let jsdoc = props.jsdoc
     .replace(/\n@param/g, "\n\n __param__")
-    .replace(/\n@return/g, "\n\n __return__");
-
+    .replace(/\n@return/g, "\n\n __return__")
+    // [link text]{@link https://www.link.com}
+    .replace(/\[(.*?)\]{@link (.*?)}/g, (match, text, link): string => {
+      return `[${text}](${link})`;
+    })
+    // {@link https://www.link.com|link text}
+    .replace(/{@link (.*?)\|(.*?)}/g, (match, link, text): string => {
+      return `[${text}](${link})`;
+    })
+    // {@link https://www.link.com link text}
+    .replace(/{@link ([^}]*?) ([^}]*?)}/g, (match, link, text): string => {
+      return `[${text}](${link})`
+    })
+    // {@link https://www.link.com}
+    .replace(/{@link (.*?)}/g, (match, link): string => {
+      return `[${link}](${link})`
+    })  
+  
   return (
     <ReactMarkdown
       source={jsdoc}
