@@ -11,7 +11,7 @@
   "dependencies": {
     "@tailwindcss/ui": "^0.4.0",
     "isomorphic-unfetch": "^3.0.0",
-    "next": "^10.0.8",
+    "next": "^11.1.0",
     "next-plugin-preact": "^3.0.3",
     "preact": "^10.5.12",
     "preact-render-to-string": "^5.1.15",
