@@ -11,7 +11,10 @@ SyntaxHighlighter.registerLanguage("ts", typescript);
 export function JSDoc(props: { jsdoc: string }) {
   let jsdoc = props.jsdoc
     .replace(/\n@param/g, "\n\n __param__")
-    .replace(/\n@return/g, "\n\n __return__")
+    .replace(/\n@return(s?)/g, "\n\n __return$1__")
+    .replace(/\n@throws/g, "\n\n __throws__")
+    .replace(/\n@exception/g, "\n\n __exception__")
+    .replace(/\n@yield(s?)/g, "\n\n __yield$1__")
     // [link text]{@link https://www.link.com}
     .replace(/\[(.*?)\]{@link (.*?)}/g, (match, text, link): string => {
       return `[${text}](${link})`;
