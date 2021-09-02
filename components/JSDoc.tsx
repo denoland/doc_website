@@ -27,7 +27,9 @@ export function JSDoc(props: { jsdoc: string }) {
     // {@link https://www.link.com}
     .replace(/{@link (.*?)}/g, (match, link): string => {
       return `[${link}](${link})`
-    })  
+    })
+    // @deprecated reason
+    .replace(/@deprecated/g, "__deprecated__");    
   
   return (
     <ReactMarkdown
