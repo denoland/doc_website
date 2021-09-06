@@ -29,7 +29,7 @@ export function JSDoc(props: { jsdoc: string }) {
       return `[${link}](${link})`
     })
     // @deprecated reason
-    .replace(/@deprecated/g, "__deprecated__");    
+    .replace(/\n@deprecated/g, "\n\n__deprecated__\n");    
   
   return (
     <ReactMarkdown
