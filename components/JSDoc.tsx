@@ -10,8 +10,10 @@ SyntaxHighlighter.registerLanguage("ts", typescript);
 
 export function JSDoc(props: { jsdoc: string }) {
   let jsdoc = props.jsdoc
-    .replace(/(\n?)@param/g, "\n\n __param__")
-    .replace(/(\n?)@return/g, "\n\n __return__")
+    // @param name description
+    .replace(/\n?@param(.*)?\n/g, "\n\n__param__$1\n")
+    // @return description
+    .replace(/\n?@return(.*)?\n/g, "\n\n__return__$1\n")
     // [link text]{@link https://www.link.com}
     .replace(/\[(.*?)\]{@link (.*?)}/g, (match, text, link): string => {
       return `[${text}](${link})`;
@@ -29,7 +31,7 @@ export function JSDoc(props: { jsdoc: string }) {
       return `[${link}](${link})`
     })
     // @deprecated reason
-    .replace(/(\n?)@deprecated/g, "\n\n__deprecated__");
+    .replace(/\n?@deprecated(.*)?\n/g, "\n\n__deprecated__$1\n");
   
   return (
     <ReactMarkdown
