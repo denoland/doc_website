@@ -1,6 +1,0 @@
-name = "deno_doc_cache"
-type = "javascript"
-account_id = "895762025d37fc687ecd72d7cc80204a"
-workers_dev = false
-route = "https://doc.deno.land/api/docs*"
-zone_id = "c192cf8ac042c681023493c52edd44c8"

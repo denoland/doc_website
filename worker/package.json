@@ -1,8 +1,0 @@
-{
-  "private": true,
-  "name": "worker",
-  "version": "1.0.0",
-  "description": "Cloudflare Worker for doc.deno.land",
-  "main": "index.js",
-  "license": "MIT"
-}
