@@ -307,9 +307,9 @@ export function SimpleCard({
         </a>
       </div>
 
-      {node.jsDoc ? (
+      {node.jsDoc?.doc ? (
         <div className="mt-2 text-xs text-gray-900 dark:text-gray-200">
-          <JSDoc jsdoc={node.jsDoc} />
+          <JSDoc jsdoc={node.jsDoc.doc} />
         </div>
       ) : null}
 
@@ -384,9 +384,9 @@ export function SimpleSubCard({
           </a>
         ) : null}
       </div>
-      {node.jsDoc ? (
+      {node.jsDoc?.doc ? (
         <div className="mt-1 text-xs">
-          <JSDoc jsdoc={node.jsDoc} />
+          <JSDoc jsdoc={node.jsDoc.doc} />
         </div>
       ) : null}
     </div>

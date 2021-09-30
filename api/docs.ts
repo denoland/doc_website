@@ -36,7 +36,7 @@ export default async (req: ServerRequest) => {
   // Zeit timeout is 60 seconds for pro tier: https://zeit.co/docs/v2/platform/limits
   const timer = setTimeout(() => {
     killed = true;
-    proc.kill(Deno.Signal.SIGKILL);
+    proc.kill("SIGKILL");
   }, 58000);
 
   const [out, errOut] = await Promise.all([proc.output(), proc.stderrOutput()]);

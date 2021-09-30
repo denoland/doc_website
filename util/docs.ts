@@ -21,7 +21,7 @@ export interface DocNodeShared {
   name: string;
   scope?: string[];
   location: DocNodeLocation;
-  jsDoc?: string;
+  jsDoc?: { doc?: string, tags?: string[] };
 }
 export interface TsTypeParamDef {
   name: string;
@@ -716,7 +716,7 @@ export function getFieldsForClassRecursive(
 
 export function normalizeFilename(filename: string): string {
   const rawRegex = /(github\.com\/.+\/.+\/|gitlab\.com\/.+\/.+\/-\/)raw/
-  const usercontentRegex = /raw\.githubusercontent\.com\/([^\/]+\/[^\/]+)/ 
+  const usercontentRegex = /raw\.githubusercontent\.com\/([^\/]+\/[^\/]+)/
   if (filename.match(rawRegex)) {
     return filename.replace(rawRegex, "$1blob")
   }
@@ -727,4 +727,3 @@ export function normalizeFilename(filename: string): string {
 
   return filename
 }
-
