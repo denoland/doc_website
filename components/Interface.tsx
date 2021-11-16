@@ -102,6 +102,7 @@ export function InterfaceCard({
               {node.interfaceDef.indexSignatures.map((node) => {
                 return (
                   <SimpleSubCard
+                    // @ts-expect-error
                     node={{ name }}
                     prefix={node.readonly ? "readonly " : ""}
                     computedParams={node.params}
